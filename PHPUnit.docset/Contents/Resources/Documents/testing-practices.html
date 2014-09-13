@@ -2,85 +2,101 @@
 <html lang="en">
  <head>
   <meta charset="utf-8">
-  <title>PHPUnit Manual &#8211; Chapter 11. Testing Practices</title>
+  <title>PHPUnit マニュアル &#8211; 第10章 テストの進め方</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="testing-practices.html">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/highlight.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
-  <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CSource+Code+Pro:400,700' rel='stylesheet' type='text/css'>
+  <!--[if lt IE 9]><script src="js/html5shiv.min.js"></script><![endif]-->
  </head>
  <body>
   
-  <div class="container">
+  <div class="container-fluid">
    <div class="row">
     <div style='padding: 1.5em'>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="test-doubles.html">Prev</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="test-driven-development.html">Next</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="test-doubles.html">戻る</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="code-coverage-analysis.html">次へ</a></div>
      </div>
-<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="testing-practices"></a>Chapter 11. Testing Practices</h1></div></div></div><div class="blockquote"><table border="0" class="blockquote" style="width: 100%; cellspacing: 0; cellpadding: 0;" summary="Block quote"><tr><td width="10%" valign="top"> </td><td width="80%" valign="top"><p>
+<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="testing-practices"></a>第10章 テストの進め方</h1></div></div></div><div class="blockquote"><table border="0" class="blockquote" style="width: 100%; cellspacing: 0; cellpadding: 0;" summary="Block quote"><tr><td width="10%" valign="top"> </td><td width="80%" valign="top"><p>
       You can always write more tests. However, you will quickly find that
       only a fraction of the tests you can imagine are actually useful. What
       you want is to write tests that fail even though you think they should
       work, or tests that succeed even though you think they should fail.
       Another way to think of it is in cost/benefit terms. You want to write
       tests that will pay you back with information.
-    </p></td><td width="10%" valign="top"> </td></tr><tr><td width="10%" valign="top"> </td><td colspan="2" align="right" valign="top">--<span class="attribution">Erich Gamma</span></td></tr></table></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="testing-practices.during-development"></a>During Development</h2></div></div></div><p>
-      <a id="idp819392" class="indexterm"></a>
+    </p><p>
+      テストはいくらでも書くことができる。でも、じきにわかるだろうが、
+      きみが考えているテストの中で本当に有用なものはごくわずかだ。
+      本当に書かなきゃいけないのは、
+      これは動くだろうと考えているにもかかわらず失敗するテスト。それから、
+      これは失敗するだろうと考えているにもかかわらず実際は成功するテストだ。
+      あるいはコストと利益の観点から考えてみてもいいだろう。
+      きみに何らかの情報を返してくれるテストを書かないとね。
+    </p></td><td width="10%" valign="top"> </td></tr><tr><td width="10%" valign="top"> </td><td colspan="2" align="right" valign="top">--<span class="attribution">Erich Gamma</span></td></tr></table></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="testing-practices.during-development"></a>開発中のテスト</h2></div></div></div><p>
+      <a id="idp281024" class="indexterm"></a>
 
-      When you need to make a change to the internal structure of the software
-      you are working on to make it easier to understand and cheaper to modify
-      without changing its observable behavior, a test suite is invaluable in
-      applying these so called <a class="ulink" href="http://martinfowler.com/bliki/DefinitionOfRefactoring.html" target="_top">refactorings</a>
-      safely. Otherwise, you might not notice the system breaking while you
-      are carrying out the restructuring.
+      開発中のソフトウェアの内部構造を変更し、
+      わかりやすく変更が簡単なものにする必要が出てきたときのことを考えましょう。
+      それによってソフトウェアの外部的な振る舞いが変わってしまってはいけません。
+      この、いわゆる
+      <a class="ulink" href="http://martinfowler.com/bliki/DefinitionOfRefactoring.html" target="_top">リファクタリング</a>
+      <a class="ulink" href="http://capsctrl.que.jp/kdmsnr/wiki/bliki/?DefinitionOfRefactoring" target="_top">(日本語)</a>
+      を安全に行うにあたり、テストスイートが非常に重要となります。
+      もしテストスイートがなければ、リファクタリングによってシステムを壊してしまっても
+      あなたはそれに気づかないでしょう。
     </p><p>
-      The following conditions will help you to improve the code and design
-      of your project, while using unit tests to verify that the refactoring's
-      transformation steps are, indeed, behavior-preserving and do not
-      introduce errors:
-    </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>All unit tests run correctly.</p></li><li class="listitem"><p>The code communicates its design principles.</p></li><li class="listitem"><p>The code contains no redundancies.</p></li><li class="listitem"><p>The code contains the minimal number of classes and methods.</p></li></ol></div><p>
-      When you need to add new functionality to the system, write the tests
-      first. Then, you will be done developing when the test runs. This
-      practice will be discussed in detail in the next chapter.
-    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="testing-practices.during-debugging"></a>During Debugging</h2></div></div></div><p>
-      When you get a defect report, your impulse might be to fix the defect as
-      quickly as possible. Experience shows that this impulse will not serve
-      you well; it is likely that the fix for the defect causes another
-      defect.
+      以下の条件が、あなたのプロジェクトのコードや設計を改善するための助けとなるでしょう。
+      また、ユニットテストを使用することで、リファクタリングによって振る舞いが変化していないこと・
+      エラーが発生していないことが確認できます。
+    </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>すべてのユニットテストが正常に動作すること。</p></li><li class="listitem"><p>コードが設計指針を満たしていること。</p></li><li class="listitem"><p>コードに冗長性がないこと。</p></li><li class="listitem"><p>コードには最小限のクラスおよびメソッドのみが含まれていること。</p></li></ol></div><p>
+      システムに新しい機能を追加する際には、まず最初にテストを書きます。
+      そのテストがきちんと実行できるようになった時点で、開発は終了です。
+      この手法については、次の章で詳しく説明します。
+    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="testing-practices.during-debugging"></a>デバッグ中のテスト</h2></div></div></div><p>
+      不具合の報告を受けたら、すぐにでもそれを修正したいと思われることでしょう。
+      しかし、あせって修正しようとしても、経験上なかなかうまくいきません。
+      不具合を修正したつもりが新たな不具合を引き起こしていたなんてこともありがちですね。
     </p><p>
-      You can hold your impulse in check by doing the following:
+      はやる気持ちを抑えて、以下のようにしてみましょう。
     </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
-          Verify that you can reproduce the defect.
+          不具合を再現できることを確認します。
         </p></li><li class="listitem"><p>
-          Find the smallest-scale demonstration of the defect in the code.
-          For example, if a number appears incorrectly in an output, find the
-          object that is computing that number.
+          不具合が発生する最小限のコードを見つけます。例えば、
+          もしおかしな数値が出力されるのなら、
+          その数値を計算しているオブジェクトが何なのかを探します。
         </p></li><li class="listitem"><p>
-          Write an automated test that fails now but will succeed when the
-          defect is fixed.
+          その不具合のせいで今は失敗する (そして、不具合が修正されたら成功する)
+          テストを書きます。
         </p></li><li class="listitem"><p>
-          Fix the defect.
+          不具合を修正します。
         </p></li></ol></div><p>
-      Finding the smallest reliable reproduction of the defect gives you the
-      opportunity to really examine the cause of the defect. The test you
-      write will improve the chances that when you fix the defect, you really
-      fix it, because the new test reduces the likelihood of undoing the fix
-      with future code changes. All the tests you wrote before reduce the
-      likelihood of inadvertently causing a different problem.
+      不具合が再現する最小限のコードを見つける過程で、
+      不具合の原因がわかるかもしれません。テストを書くことによって、
+      不具合を真の意味で修正できる可能性が高まるでしょう。なぜなら、
+      テストを書くことで、将来同じ間違いをする可能性を減らせるからです。
+      これまでに書いたすべてのテストが、
+      不注意によって別の問題を発生させる可能性を減らすために役立っているのです。
     </p><div class="blockquote"><table border="0" class="blockquote" style="width: 100%; cellspacing: 0; cellpadding: 0;" summary="Block quote"><tr><td width="10%" valign="top"> </td><td width="80%" valign="top"><p>
         Unit testing offers many advantages:
         </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>Testing gives code authors and reviewers confidence that patches produce the correct results.</p></li><li class="listitem"><p>Authoring testcases is a good impetus for developers to discover edge cases.</p></li><li class="listitem"><p>Testing provides a good way to catch regressions quickly, and to make sure that no regression will be repeated twice.</p></li><li class="listitem"><p>Unit tests provide working examples for how to use an API and can significantly aid documentation efforts.</p></li></ul></div><p>
         Overall, integrated unit testing makes the cost and risk of any
         individual change smaller. It will allow the project to make [...]
         major architectural improvements [...] quickly and confidently.
+      </p><p>
+        ユニットテストには、こんなに多くの利点がある。
+        </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>実際にコードを書いた人とコードをレビューする人が意識を共有できるようになり、パッチの精度があがる。</p></li><li class="listitem"><p>テストケースを書くことは、いろいろな想定外の事態に備えるための原動力となる。</p></li><li class="listitem"><p>テストにより、リグレッションを早期に発見できるようになる。また、同じリグレッションを二度と起こさないようになる。</p></li><li class="listitem"><p>ユニットテストそのものが、その API の使用法についてのよいサンプルとなる。ドキュメント作成の際に助けとなるだろう。</p></li></ul></div><p>
+        まとめよう。ユニットテストをうまく組み込めば、
+        プログラムを変更する際の手間やリスクをより減らすことになるのだ。
+        プロジェクトが【中略】のアーキテクチャに関する大きな改修【中略】を素早く、自信を持って行うことを可能にするだろう。
       </p></td><td width="10%" valign="top"> </td></tr><tr><td width="10%" valign="top"> </td><td colspan="2" align="right" valign="top">--<span class="attribution">Benjamin Smedberg</span></td></tr></table></div></div></div>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="test-doubles.html">Prev</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="test-driven-development.html">Next</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="test-doubles.html">戻る</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="code-coverage-analysis.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">Please <a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">open a ticket</a> on GitHub to suggest improvements to this page. Thanks!</div></div><div class="col-md-2"></div></div>
+<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
     </div>
    </div>
    <hr/>

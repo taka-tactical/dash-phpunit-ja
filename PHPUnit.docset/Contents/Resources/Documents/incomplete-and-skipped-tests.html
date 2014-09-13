@@ -2,111 +2,116 @@
 <html lang="en">
  <head>
   <meta charset="utf-8">
-  <title>PHPUnit Manual &#8211; Chapter 9. Incomplete and Skipped Tests</title>
+  <title>PHPUnit マニュアル &#8211; 第7章 不完全なテスト・テストの省略</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="incomplete-and-skipped-tests.html">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/highlight.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
-  <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CSource+Code+Pro:400,700' rel='stylesheet' type='text/css'>
+  <!--[if lt IE 9]><script src="js/html5shiv.min.js"></script><![endif]-->
  </head>
  <body>
   
-  <div class="container">
+  <div class="container-fluid">
    <div class="row">
     <div style='padding: 1.5em'>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="database.html">Prev</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="test-doubles.html">Next</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="strict-mode.html">戻る</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="database.html">次へ</a></div>
      </div>
-<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="incomplete-and-skipped-tests"></a>Chapter 9. Incomplete and Skipped Tests</h1></div></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="incomplete-and-skipped-tests.incomplete-tests"></a>Incomplete Tests</h2></div></div></div><p>
-      When you are working on a new test case class, you might want to begin
-      by writing empty test methods such as: </p><pre class="programlisting">public function testSomething()
+<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="incomplete-and-skipped-tests"></a>第7章 不完全なテスト・テストの省略</h1></div></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="incomplete-and-skipped-tests.incomplete-tests"></a>不完全なテスト</h2></div></div></div><p>
+      新しいテストケースクラスを作成する際には、
+      これから書くべきテストの内容をはっきりさせるために、
+      まず最初は以下のような空のテストメソッドを書きたくなることでしょう。
+      </p><pre class="programlisting">public function testSomething()
 {
-}</pre><p> to keep track of the tests that you have to write. The
-      problem with empty test methods is that they are interpreted as a
-      success by the PHPUnit framework. This misinterpretation leads to the
-      test reports being useless -- you cannot see whether a test is actually
-      successful or just not yet implemented. Calling
-      <code class="literal">$this-&gt;fail()</code> in the unimplemented test method
-      does not help either, since then the test will be interpreted as a
-      failure. This would be just as wrong as interpreting an unimplemented
-      test as a success.
+}</pre><p>
+      しかし、PHPUnit フレームワークでは空のメソッドを「成功した」
+      と判断してしまうという問題があります。このような解釈ミスがあると、
+      テスト結果のレポートが無意味になってしまいます。
+      そのテストがほんとうに成功したのか、
+      それともまだテストが実装されていないのかが判断できないからです。
+      実装していないテストメソッドの中で <code class="literal">$this-&gt;fail()</code>
+      をコールするようにしたところで事態は何も変わりません。
+      こうすると、テストが「失敗した」と判断されてしまいます。
+      これは未実装のテストが「成功」と判断されてしまうのと同じくらいまずいことです
+      (訳注: レポートを見ても、そのテストがほんとうに失敗したのか、
+      まだ実装されていないだけなのかがわかりません)。
     </p><p>
-      <a id="idp501744" class="indexterm"></a>
-      <a id="idp502320" class="indexterm"></a>
-      <a id="idp502912" class="indexterm"></a>
+      <a id="idp718608" class="indexterm"></a>
+      <a id="idp719200" class="indexterm"></a>
+      <a id="idp719792" class="indexterm"></a>
 
-      If we think of a successful test as a green light and a test failure
-      as a red light, we need an additional yellow light to mark a test
-      as being incomplete or not yet implemented.
-      <code class="literal">PHPUnit_Framework_IncompleteTest</code> is a marker
-      interface for marking an exception that is raised by a test method as
-      the result of the test being incomplete or currently not implemented.
-      <code class="literal">PHPUnit_Framework_IncompleteTestError</code> is the
-      standard implementation of this interface.
+      テストの成功を青信号、失敗を赤信号と考えるなら、
+      テストが未完成あるいは未実装であることを表すための黄信号が必要です。
+      そのような場合に使用するインターフェイスが
+      <code class="literal">PHPUnit_Framework_IncompleteTest</code> で、
+      これは未完成あるいは未実装のテストメソッドで発生する例外を表すものです。
+      このインターフェイスの標準的な実装が
+      <code class="literal">PHPUnit_Framework_IncompleteTestError</code> です。
     </p><p>
-      <a class="xref" href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.incomplete-tests.examples.SampleTest.php" title="Example 9.1: Marking a test as incomplete">Example 9.1</a>
-      shows a test case class, <code class="literal">SampleTest</code>, that contains one test
-      method, <code class="literal">testSomething()</code>. By calling the convenience
-      method <code class="literal">markTestIncomplete()</code> (which automatically
-      raises an <code class="literal">PHPUnit_Framework_IncompleteTestError</code>
-      exception) in the test method, we mark the test as being incomplete.
-    </p><div class="example"><a id="incomplete-and-skipped-tests.incomplete-tests.examples.SampleTest.php"></a><p class="title"><strong>Example 9.1: Marking a test as incomplete</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+      <a class="xref" href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.incomplete-tests.examples.SampleTest.php" title="例 7.1: テストに未完成の印をつける">例 7.1</a>
+      では <code class="literal">SampleTest</code> というテストケースクラスを定義しています。
+      便利なメソッド <code class="literal">markTestIncomplete()</code>
+      (これは、自動的に <code class="literal">PHPUnit_Framework_IncompleteTestError</code>
+      を発生させます) をテストメソッド内でコールすることで、
+      このメソッドがまだ完成していないことをはっきりさせます。
+    </p><div class="example"><a id="incomplete-and-skipped-tests.incomplete-tests.examples.SampleTest.php"></a><p class="title"><strong>例 7.1: テストに未完成の印をつける</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class SampleTest extends PHPUnit_Framework_TestCase
 {
     public function testSomething()
     {
-        // Optional: Test anything here, if you want.
-        $this-&gt;assertTrue(TRUE, 'This should already work.');
+        // オプション: お望みなら、ここで何かのテストをしてください。
+        $this-&gt;assertTrue(TRUE, 'これは動いているはずです。');
 
-        // Stop here and mark this test as incomplete.
+        // ここで処理を止め、テストが未完成であるという印をつけます。
         $this-&gt;markTestIncomplete(
-          'This test has not been implemented yet.'
+          'このテストは、まだ実装されていません。'
         );
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br><p>
-      An incomplete test is denoted by an <code class="literal">I</code> in the output
-      of the PHPUnit command-line test runner, as shown in the following
-      example:
+      未完成のテストは、PHPUnit のコマンドライン版テストランナーでは以下のように
+      <code class="literal">I</code> で表されます。
     </p><pre class="screen"><strong class="userinput"><code>phpunit --verbose SampleTest</code></strong>
-PHPUnit 3.7.0 by Sebastian Bergmann.
+PHPUnit 4.2.0 by Sebastian Bergmann.
 
 I
 
-Time: 0 seconds, Memory: 3.75Mb
+Time: 0 seconds, Memory: 3.95Mb
 
 There was 1 incomplete test:
 
 1) SampleTest::testSomething
-This test has not been implemented yet.
+このテストは、まだ実装されていません。
 
 /home/sb/SampleTest.php:12
 OK, but incomplete or skipped tests!
 Tests: 1, Assertions: 1, Incomplete: 1.</pre><p>
-      <a class="xref" href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.incomplete-tests.tables.api" title="Table 9.1. API for Incomplete Tests">Table 9.1</a>
-      shows the API for marking tests as incomplete.
-    </p><div class="table"><a id="incomplete-and-skipped-tests.incomplete-tests.tables.api"></a><p class="title"><strong>Table 9.1. API for Incomplete Tests</strong></p><div class="table-contents"><table summary="API for Incomplete Tests" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">Method</th><th align="left">Meaning</th></tr></thead><tbody><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestIncomplete">void markTestIncomplete()</code></td><td align="left">Marks the current test as incomplete.</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestIncomplete">void markTestIncomplete(string $message)</code></td><td align="left">Marks the current test as incomplete using <code class="literal">$message</code> as an explanatory message.</td></tr></tbody></table></div></div><br class="table-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="incomplete-and-skipped-tests.skipping-tests"></a>Skipping Tests</h2></div></div></div><p>
-      Not all tests can be run in every environment. Consider, for instance,
-      a database abstraction layer that has several drivers for the different
-      database systems it supports. The tests for the MySQL driver can of
-      course only be run if a MySQL server is available.
+      <a class="xref" href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.incomplete-tests.tables.api" title="表7.1 未完成のテスト用の API">表 7.1</a>
+      に、テストを未完成扱いにするための API を示します。
+    </p><div class="table"><a id="incomplete-and-skipped-tests.incomplete-tests.tables.api"></a><p class="title"><strong>表7.1 未完成のテスト用の API</strong></p><div class="table-contents"><table summary="未完成のテスト用の API" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">メソッド</th><th align="left">意味</th></tr></thead><tbody><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestIncomplete">void markTestIncomplete()</code></td><td align="left">現在のテストを未完成扱いにします。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestIncomplete">void markTestIncomplete(string $message)</code></td><td align="left">現在のテストを未完成扱いにします。それを説明する文字列として <code class="literal">$message</code> を使用します。</td></tr></tbody></table></div></div><br class="table-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="incomplete-and-skipped-tests.skipping-tests"></a>テストの省略</h2></div></div></div><p>
+      すべてのテストがあらゆる環境で実行できるわけではありません。
+      考えてみましょう。たとえば、データベースの抽象化レイヤーを使用しており、
+      それがさまざまなドライバを使用してさまざまなデータベースシステムを
+      サポートしているとします。MySQL ドライバのテストができるのは、
+      当然 MySQL サーバが使用できる環境だけです。
     </p><p>
-      <a class="xref" href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.skipping-tests.examples.DatabaseTest.php" title="Example 9.2: Skipping a test">Example 9.2</a>
-      shows a test case class, <code class="literal">DatabaseTest</code>, that contains one test
-      method, <code class="literal">testConnection()</code>. In the test case class'
-      <code class="literal">setUp()</code> template method we check whether the MySQLi
-      extension is available and use the <code class="literal">markTestSkipped()</code>
-      method to skip the test if it is not.
-    </p><div class="example"><a id="incomplete-and-skipped-tests.skipping-tests.examples.DatabaseTest.php"></a><p class="title"><strong>Example 9.2: Skipping a test</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+      <a class="xref" href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.skipping-tests.examples.DatabaseTest.php" title="例 7.2: テストを省略する">例 7.2</a>
+      に示すテストケースクラス <code class="literal">DatabaseTest</code> には、
+      テストメソッド <code class="literal">testConnection()</code> が含まれています。
+      このクラスのテンプレートメソッド <code class="literal">setUp()</code> では、
+      MySQLi 拡張モジュールが使用可能かを調べたうえで、もし使用できない場合は
+      <code class="literal">markTestSkipped()</code> メソッドでテストを省略するようにしています。
+    </p><div class="example"><a id="incomplete-and-skipped-tests.skipping-tests.examples.DatabaseTest.php"></a><p class="title"><strong>例 7.2: テストを省略する</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class DatabaseTest extends PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
         if (!extension_loaded('mysqli')) {
             $this-&gt;markTestSkipped(
-              'The MySQLi extension is not available.'
+              'MySQLi 拡張モジュールが使用できません。'
             );
         }
     }
@@ -117,30 +122,29 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br><p>
-      A test that has been skipped is denoted by an <code class="literal">S</code> in
-      the output of the PHPUnit command-line test runner, as shown in the
-      following example:
+      飛ばされたテストは、PHPUnit のコマンドライン版テストランナーでは以下のように
+      <code class="literal">S</code> で表されます。
     </p><pre class="screen"><strong class="userinput"><code>phpunit --verbose DatabaseTest</code></strong>
-PHPUnit 3.7.0 by Sebastian Bergmann.
+PHPUnit 4.2.0 by Sebastian Bergmann.
 
 S
 
-Time: 0 seconds, Memory: 3.75Mb
+Time: 0 seconds, Memory: 3.95Mb
 
 There was 1 skipped test:
 
 1) DatabaseTest::testConnection
-The MySQLi extension is not available.
+MySQLi 拡張モジュールが使用できません。
 
 /home/sb/DatabaseTest.php:9
 OK, but incomplete or skipped tests!
 Tests: 1, Assertions: 0, Skipped: 1.</pre><p>
-      <a class="xref" href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.skipped-tests.tables.api" title="Table 9.2. API for Skipping Tests">Table 9.2</a>
-      shows the API for skipping tests.
-    </p><div class="table"><a id="incomplete-and-skipped-tests.skipped-tests.tables.api"></a><p class="title"><strong>Table 9.2. API for Skipping Tests</strong></p><div class="table-contents"><table summary="API for Skipping Tests" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">Method</th><th align="left">Meaning</th></tr></thead><tbody><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestSkipped">void markTestSkipped()</code></td><td align="left">Marks the current test as skipped.</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestSkipped">void markTestSkipped(string $message)</code></td><td align="left">Marks the current test as skipped using <code class="literal">$message</code> as an explanatory message.</td></tr></tbody></table></div></div><br class="table-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="incomplete-and-skipped-tests.skipping-tests-using-requires"></a>Skipping Tests using @requires</h2></div></div></div><p>
-      In addition to the above methods it is also possible to use the
-      <code class="literal">@requires</code> annotation to express common preconditions for a test case.
-    </p><div class="table"><a id="incomplete-and-skipped-tests.requires.tables.api"></a><p class="title"><strong>Table 9.3. Possible @requires usages</strong></p><div class="table-contents"><table summary="Possible @requires usages" border="1"><colgroup><col></col><col></col><col></col><col></col></colgroup><thead><tr><th align="left">Type</th><th align="left">Possible Values</th><th align="left">Examples</th><th align="left">Another example</th></tr></thead><tbody><tr><td align="left"><code class="literal">PHP</code></td><td align="left">Any PHP version identifier</td><td align="left">@requires PHP 5.3.3</td><td align="left">@requires PHP 5.4-dev</td></tr><tr><td align="left"><code class="literal">PHPUnit</code></td><td align="left">Any PHPUnit version identifier</td><td align="left">@requires PHPUnit 3.6.3</td><td align="left">@requires PHPUnit 3.7</td></tr><tr><td align="left"><code class="literal">function</code></td><td align="left">Any valid parameter to <a class="ulink" href="http://php.net/function_exists" target="_top">function_exists</a></td><td align="left">@requires function imap_open</td><td align="left">@requires function ReflectionMethod::setAccessible</td></tr><tr><td align="left"><code class="literal">extension</code></td><td align="left">Any extension name</td><td align="left">@requires extension mysqli</td><td align="left">@requires extension curl</td></tr></tbody></table></div></div><br class="table-break"></br><div class="example"><a id="incomplete-and-skipped-tests.skipping-tests.examples.DatabaseClassSkippingTest.php"></a><p class="title"><strong>Example 9.3: Skipping test cases using @requires</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+      <a class="xref" href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.skipped-tests.tables.api" title="表7.2 テストを省略するための API">表 7.2</a>
+      に、テストを省略するための API を示します。
+    </p><div class="table"><a id="incomplete-and-skipped-tests.skipped-tests.tables.api"></a><p class="title"><strong>表7.2 テストを省略するための API</strong></p><div class="table-contents"><table summary="テストを省略するための API" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">メソッド</th><th align="left">意味</th></tr></thead><tbody><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestSkipped">void markTestSkipped()</code></td><td align="left">現在のテストを省略扱いにします。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestSkipped">void markTestSkipped(string $message)</code></td><td align="left">現在のテストを省略扱いにします。それを説明する文字列として <code class="literal">$message</code> を使用します。</td></tr></tbody></table></div></div><br class="table-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="incomplete-and-skipped-tests.skipping-tests-using-requires"></a>@requires によるテストのスキップ</h2></div></div></div><p>
+      ここまでに示したメソッドに加えて、
+      <code class="literal">@requires</code> アノテーションを使って共通の事前条件を記述することもできます。
+    </p><div class="table"><a id="incomplete-and-skipped-tests.requires.tables.api"></a><p class="title"><strong>表7.3 @requires の例用例</strong></p><div class="table-contents"><table summary="@requires の例用例" border="1"><colgroup><col></col><col></col><col></col><col></col></colgroup><thead><tr><th align="left">型</th><th align="left">取り得る値</th><th align="left">例</th><th align="left">別の例</th></tr></thead><tbody><tr><td align="left"><code class="literal">PHP</code></td><td align="left">PHP のバージョン</td><td align="left">@requires PHP 5.3.3</td><td align="left">@requires PHP 5.4-dev</td></tr><tr><td align="left"><code class="literal">PHPUnit</code></td><td align="left">PHPUnit のバージョン</td><td align="left">@requires PHPUnit 3.6.3</td><td align="left">@requires PHPUnit 4.2</td></tr><tr><td align="left"><code class="literal">OS</code></td><td align="left"><a class="ulink" href="http://php.net/reserved.constants.php#constant.php-os" target="_top">PHP_OS</a> にマッチする正規表現</td><td align="left">@requires OS Linux</td><td align="left">@requires OS WIN32|WINNT</td></tr><tr><td align="left"><code class="literal">function</code></td><td align="left"><a class="ulink" href="http://php.net/function_exists" target="_top">function_exists</a> に渡せるパラメータ</td><td align="left">@requires function imap_open</td><td align="left">@requires function ReflectionMethod::setAccessible</td></tr><tr><td align="left"><code class="literal">extension</code></td><td align="left">拡張モジュール名</td><td align="left">@requires extension mysqli</td><td align="left">@requires extension curl</td></tr></tbody></table></div></div><br class="table-break"></br><div class="example"><a id="incomplete-and-skipped-tests.skipping-tests.examples.DatabaseClassSkippingTest.php"></a><p class="title"><strong>例 7.3: @requires を使ったテストケースのスキップ</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 /**
  * @requires extension mysqli
  */
@@ -151,20 +155,21 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
      */
     public function testConnection()
     {
-        // Test requires the mysqli extension and PHP &gt;= 5.3
+        // このテストには mysqli 拡張モジュールと PHP 5.3 以降が必須です
     }
 
-    // ... All other tests require the mysqli extension
+    // ... その他のすべてのテストには mysqli 拡張モジュールが必須です
 }
 ?&gt;</pre></div></div><br class="example-break"></br><p>
-      If you are using syntax that doesn't compile with a certain PHP Version look into the xml
-      configuration for version dependent includes in <a class="xref" href="appendixes.configuration.html#appendixes.configuration.testsuites" title="Test Suites">the section called “Test Suites”</a>
+      特定のバージョンの PHP でしか使えない構文を利用する場合は、
+      <a class="xref" href="appendixes.configuration.html#appendixes.configuration.testsuites" title="テストスイート">「テストスイート」</a>
+      にあるように XML 設定ファイルでのバージョン依存のインクルードを検討しましょう。
     </p></div></div>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="database.html">Prev</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="test-doubles.html">Next</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="strict-mode.html">戻る</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="database.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">Please <a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">open a ticket</a> on GitHub to suggest improvements to this page. Thanks!</div></div><div class="col-md-2"></div></div>
+<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
     </div>
    </div>
    <hr/>

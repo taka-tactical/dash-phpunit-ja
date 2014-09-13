@@ -2,232 +2,230 @@
 <html lang="en">
  <head>
   <meta charset="utf-8">
-  <title>PHPUnit Manual &#8211; Chapter 3. Installing PHPUnit</title>
+  <title>PHPUnit マニュアル &#8211; 第1章 PHPUnit のインストール</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="installation.html">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/highlight.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
-  <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CSource+Code+Pro:400,700' rel='stylesheet' type='text/css'>
+  <!--[if lt IE 9]><script src="js/html5shiv.min.js"></script><![endif]-->
  </head>
  <body>
   
-  <div class="container">
+  <div class="container-fluid">
    <div class="row">
     <div style='padding: 1.5em'>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="goals.html">Prev</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="writing-tests-for-phpunit.html">Next</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="index.html">戻る</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="writing-tests-for-phpunit.html">次へ</a></div>
      </div>
-<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="installation"></a>Chapter 3. Installing PHPUnit</h1></div></div></div><div class="alert alert-info"><h3 class="title">Note</h3><p>
-      PHPUnit 3.7 requires PHP 5.3.3; using the latest version of PHP is highly
-      recommended.
+<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="installation"></a>第1章 PHPUnit のインストール</h1></div></div></div><div class="alert alert-info"><h3 class="title">注記</h3><p>
+      以前のバージョンの PHPUnit からのアップグレードをする場合は、
+      <a class="xref" href="appendixes.upgrading.html#appendixes.upgrading.phpunit-4-2" title="PHPUnit 4.1 から PHPUnit 4.2 へのアップグレード">「PHPUnit 4.1 から PHPUnit 4.2 へのアップグレード」</a> を参照ください。
+    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="installation.requirements"></a>要件</h2></div></div></div><p>
+      PHPUnit 4.2 は PHP 5.3.3 以降のバージョンで動作しますが、最新版の PHP
+      を使うことを強く推奨します。
     </p><p>
-      For code coverage support, <a class="ulink" href="http://xdebug.org/" target="_top">Xdebug</a>
-      2.1.3 is required; using the latest version of Xdebug is highly
-      recommended.
+      PHPUnit を使うには、拡張モジュール <a class="ulink" href="http://php.net/manual/ja/dom.setup.php" target="_top">dom</a>、<a class="ulink" href="http://php.net/manual/ja/json.installation.php" target="_top">json</a>、
+      が必要です。これらは通常、デフォルトで有効になっています。
+    </p><p>
+      PHPUnit また、拡張モジュール
+      <a class="ulink" href="http://php.net/manual/ja/pcre.installation.php" target="_top">pcre</a>、
+      <a class="ulink" href="http://php.net/manual/ja/reflection.installation.php" target="_top">reflection</a>、
+      そして <a class="ulink" href="http://php.net/manual/ja/spl.installation.php" target="_top">spl</a>
+      も必要です。これらは、PHP 5.3.0 以降は PHP コアが必ず使うものであり、
+      通常は無効にすることすらできません。
+    </p><p>
+      コードカバレッジをサポートするには <a class="ulink" href="http://xdebug.org/" target="_top">Xdebug</a>
+      2.1.3 以降と <a class="ulink" href="http://php.net/manual/ja/tokenizer.installation.php" target="_top">tokenizer</a>
+      拡張モジュールが必要です。
+      XML 形式で情報を出力するには、<a class="ulink" href="http://php.net/manual/ja/xmlwriter.installation.php" target="_top">xmlwriter</a>
+      拡張モジュールも必要です。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="installation.phar"></a>PHP Archive (PHAR)</h2></div></div></div><p>
-      The easiest way to obtain PHPUnit is to download a <a class="ulink" href="http://php.net/phar" target="_top">PHP Archive (PHAR)</a> that has all required
-      (as well as some optional) dependencies of PHPUnit bundled in a single
-      file:
-    </p><pre class="screen"><strong class="userinput"><code>wget https://phar.phpunit.de/phpunit.phar</code></strong>
-<strong class="userinput"><code>chmod +x phpunit.phar</code></strong>
-<strong class="userinput"><code>mv phpunit.phar /usr/local/bin/phpunit</code></strong></pre><p>
-      You can also immediately use the PHAR after you have downloaded it, of
-      course:
-    </p><pre class="screen"><strong class="userinput"><code>wget https://phar.phpunit.de/phpunit.phar</code></strong>
-<strong class="userinput"><code>php phpunit.phar</code></strong></pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="installation.composer"></a>Composer</h2></div></div></div><p>
-      Simply add a dependency on <code class="literal">phpunit/phpunit</code> to your
-      project's <code class="literal">composer.json</code> file if you use
-      <a class="ulink" href="http://getcomposer.org/" target="_top">Composer</a> to manage the
-      dependencies of your project. Here is a minimal example of a
-      <code class="literal">composer.json</code> file that just defines a development-time
-      dependency on PHPUnit 3.7:
+      PHPUnit を入手する一番簡単な方法は、<a class="ulink" href="http://php.net/phar" target="_top">PHP Archive (PHAR)</a> をダウンロードすることです。
+      必要な依存コンポーネントがすべて (オプションのコンポーネントの一部も含めて)
+      ひとつのファイルにまとめられています。
+    </p><p>
+      PHP Archives (PHAR) を利用するには、
+      <a class="ulink" href="http://php.net/manual/en/phar.installation.php" target="_top">phar</a>
+      拡張モジュールが必要です。
+    </p><p>
+      PHAR の <code class="literal">--self-update</code> 機能を使うには、
+      <a class="ulink" href="http://php.net/manual/en/openssl.installation.php" target="_top">openssl</a>
+      拡張モジュールが必要です。
+    </p><p>
+      <a class="ulink" href="http://suhosin.org/" target="_top">Suhosin</a> 拡張モジュールが有効になっている場合は、
+      <code class="literal">php.ini</code> で PHAR の実行を許可する必要があります。
+
+      </p><pre class="screen">
+suhosin.executor.include.whitelist = phar
+</pre><p>
+    </p><div class="alert alert-info"><h3 class="title">注記</h3><p>
+        <code class="literal">https://phar.phpunit.de/</code> からダウンロードするには、
+        <a class="ulink" href="http://en.wikipedia.org/wiki/Server_Name_Indication" target="_top">TLS/SNI
+        をサポートしたクライアント</a>、たとえば wget 1.14 以降などが必要です。
+      </p></div><p>
+      PHAR をグローバルにインストールするには、次のようにします。
+    </p><pre class="screen">
+<code class="prompt">$</code> <strong class="userinput"><code>wget https://phar.phpunit.de/phpunit.phar</code></strong>
+<code class="prompt">$</code> <strong class="userinput"><code>chmod +x phpunit.phar</code></strong>
+<code class="prompt">$</code> <strong class="userinput"><code>sudo mv phpunit.phar /usr/local/bin/phpunit</code></strong>
+<code class="prompt">$</code> <strong class="userinput"><code>phpunit --version</code></strong>
+<code class="computeroutput">PHPUnit x.y.z by Sebastian Bergmann.</code>
+</pre><p>
+      ダウンロードした PHAR ファイルを直接使ってもかまいません。
+    </p><pre class="screen">
+<code class="prompt">$</code> <strong class="userinput"><code>wget https://phar.phpunit.de/phpunit.phar</code></strong>
+<code class="prompt">$</code> <strong class="userinput"><code>php phpunit.phar --version</code></strong>
+<code class="computeroutput">PHPUnit x.y.z by Sebastian Bergmann.</code>
+</pre><pre class="screen"><strong class="userinput"><code>wget https://phar.phpunit.de/phpunit.phar</code></strong>
+<strong class="userinput"><code>php phpunit.phar</code></strong></pre><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="installation.phar.windows"></a>Windows</h3></div></div></div><p>
+        PHAR をグローバルにインストールする方法は、
+        <a class="ulink" href="https://getcomposer.org/doc/00-intro.md#installation-windows" target="_top">
+        Composer を Windows に手動でインストールする</a>
+        のと同じ手順です。
+      </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+            PHP バイナリ用のディレクトリを作ります（例：<code class="filename">C:\bin</code>）
+          </p></li><li class="listitem"><p>
+            <strong class="userinput"><code>;C:\bin</code></strong> を、環境変数 <code class="varname">PATH</code>
+            に追記します
+            (<a class="ulink" href="http://stackoverflow.com/questions/6318156/adding-python-path-on-windows-7" target="_top">参考資料</a>)。
+          </p></li><li class="listitem"><p>
+            <a class="ulink" href="https://phar.phpunit.de/phpunit.phar" target="_top">https://phar.phpunit.de/phpunit.phar</a> をダウンロードして、
+            <code class="filename">C:\bin\phpunit.phar</code> に保存します。
+          </p></li><li class="listitem"><p>
+            コマンドプロンプトを開きます (
+            <span class="keycap"><strong>Windows</strong></span>+<span class="keycap"><strong>R</strong></span>
+            » <strong class="userinput"><code>cmd</code></strong>
+            » <span class="keycap"><strong>ENTER</strong></span>)。
+          </p></li><li class="listitem"><p>
+            以下のようにして、バッチスクリプト
+            (<code class="filename">C:\bin\phpunit.cmd</code>)
+            を作ります。
+          </p><pre class="screen">
+<code class="prompt">C:\Users\username&gt;</code> <strong class="userinput"><code>cd C:\bin</code></strong>
+<code class="prompt">C:\bin&gt;</code> <strong class="userinput"><code>echo @php "%~dp0phpunit.phar" %* &gt; phpunit.cmd</code></strong>
+<code class="prompt">C:\bin&gt;</code> <strong class="userinput"><code>exit</code></strong>
+</pre></li><li class="listitem"><p>
+            コマンドプロンプトをもう一枚開き、どこからでも PHPUnit を実行できることを確認します。
+          </p><pre class="screen">
+<code class="prompt">C:\Users\username&gt;</code> <strong class="userinput"><code>phpunit --version</code></strong>
+<code class="computeroutput">PHPUnit x.y.z by Sebastian Bergmann.</code>
+</pre></li></ol></div><p>
+        Cygwin や MingW32 (TortoiseGit など) のシェル環境で使う場合は、
+        五番目のステップは飛ばしてもかまいません。単にファイルを
+        <code class="filename">phpunit</code>
+        という名前 (拡張子 <code class="filename">.phar</code> は不要) で保存して、あとは
+        <strong class="userinput"><code>chmod 775 phpunit</code></strong>
+        で実行可能にしておきましょう。
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="installation.phar.verification"></a>PHPUnit の PHAR リリースの検証</h3></div></div></div><p>
+        PHPUnit プロジェクトが配布する公式リリースにはすべて、
+        リリースマネージャーによる署名がついています。
+        検証用の PGP 署名と SHA1 ハッシュは、<a class="ulink" href="https://phar.phpunit.de/" target="_top">phar.phpunit.de</a>
+        から取得できます。
+      </p><p>
+        リリースの検証をどのように行うのかについて、説明しましょう。まず、
+        <code class="filename">phpunit.phar</code> をダウンロードし、さらにその
+        PGP 署名 <code class="filename">phpunit.phar.asc</code> もダウンロードします。
+      </p><pre class="screen"><strong class="userinput"><code>wget https://phar.phpunit.de/phpunit.phar</code></strong>
+<strong class="userinput"><code>wget https://phar.phpunit.de/phpunit.phar.asc</code></strong></pre><p>
+        ダウンロードした PHPUnit の PHP Archive (<code class="filename">phpunit.phar</code>)
+        を、署名 (<code class="filename">phpunit.phar.asc</code>) で検証します。
+      </p><pre class="screen"><strong class="userinput"><code>gpg phpunit.phar.asc</code></strong>
+gpg: Signature made Sat 19 Jul 2014 01:28:02 PM CEST using RSA key ID 6372C20A
+gpg: Can't check signature: public key not found</pre><p>
+        リリースマネージャーの公開鍵 (<code class="literal">6372C20A</code>)
+        が、ローカルシステム上に存在しないようです。
+        検証を進めるには、リリースマネージャーの公開鍵を、鍵サーバーから取得する必要があります。
+        鍵サーバーには、たとえば <code class="filename">pgp.uni-mainz.de</code> などがあります。
+        公開鍵サーバーはお互いリンクしあっているので、どの鍵サーバーを使ってもかまいません。
+      </p><pre class="screen"><strong class="userinput"><code>gpg --keyserver pgp.uni-mainz.de --recv-keys 0x4AA394086372C20A</code></strong>
+gpg: requesting key 6372C20A from hkp server pgp.uni-mainz.de
+gpg: key 6372C20A: public key "Sebastian Bergmann &lt;sb@sebastian-bergmann.de&gt;" imported
+gpg: Total number processed: 1
+gpg:               imported: 1  (RSA: 1)</pre><p>
+        これで、"Sebastian
+        Bergmann &lt;sb@sebastian-bergmann.de&gt;" さんの公開鍵を取得できました。
+        ただ、この鍵を作ったのが本当に Sebastian Bergmann という人なのかは、確かめようがありません。
+        ともあれ、もう一度リリースの署名を検証してみましょう。
+      </p><pre class="screen"><strong class="userinput"><code>gpg phpunit.phar.asc</code></strong>
+gpg: Signature made Sat 19 Jul 2014 01:28:02 PM CEST using RSA key ID 6372C20A
+gpg: Good signature from "Sebastian Bergmann &lt;sb@sebastian-bergmann.de&gt;"
+gpg:                 aka "Sebastian Bergmann &lt;sebastian@php.net&gt;"
+gpg:                 aka "Sebastian Bergmann &lt;sebastian@thephp.cc&gt;"
+gpg:                 aka "Sebastian Bergmann &lt;sebastian@phpunit.de&gt;"
+gpg:                 aka "Sebastian Bergmann &lt;sebastian.bergmann@thephp.cc&gt;"
+gpg:                 aka "[jpeg image of size 40635]"
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: D840 6D0D 8294 7747 2937  7831 4AA3 9408 6372 C20A</pre><p>
+        とりあえず、署名が正しいことはわかりました。
+        ただ、この署名が信頼できるものであるかどうかは、まだわかりません。
+        ここで言う「署名が正しい」とは、リリースのファイルが改ざんされていないということです。
+        しかし、公開鍵暗号方式の性質上、これだけでは不十分です。
+        <code class="literal">6372C20A</code> を作ったのが
+        Sebastian Bergmann 本人であることを、確かめる必要があります。
+      </p><p>
+        公開鍵を作って公開鍵サーバーにアップロードするのは、誰にだってできることです。
+        当然、悪意のある攻撃者にも可能なことです。
+        攻撃者は、このニセの鍵を使って署名した、悪意のあるリリースを作ることもできます。
+        このリリース (そして署名) をダウンロードして検証すると、成功するでしょう。
+        なぜならその公開鍵は、悪意のある攻撃者が作ったニセの鍵だからです。
+        こういったことを防ぐために、鍵の作者も検証しなければいけないのです。
+        公開鍵の作者を検証する方法については、このマニュアルの範囲を超えるので、割愛します。
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="installation.composer"></a>Composer</h2></div></div></div><p>
+      <a class="ulink" href="https://getcomposer.org/" target="_top">Composer</a>
+      を使ってプロジェクトの依存関係を管理するには、
+      <code class="literal">phpunit/phpunit</code> への依存情報をプロジェクトの
+      <code class="filename">composer.json</code> ファイルに追加します。
+      次に示すのは最小限の
+      <code class="filename">composer.json</code> ファイルの例で、
+      開発時の PHPUnit 4.2 への依存を定義しています。
     </p><pre class="programlisting">{
     "require-dev": {
-        "phpunit/phpunit": "3.7.*"
+        "phpunit/phpunit": "4.2.*"
     }
 }</pre><p>
-      For a system-wide installation via Composer, you can run:
-    </p><pre class="screen"><strong class="userinput"><code>composer global require 'phpunit/phpunit=3.7.*'</code></strong></pre><p>
-      Make sure you have <code class="literal">~/.composer/vendor/bin/</code> in your
-      path.
-    </p><div class="alert alert-info"><h3 class="title">Note</h3><p>
-        Support for Composer and PHP Archive (PHAR) was added in PHPUnit 3.7
-        (and is known to be stable since PHPUnit 3.7.5). Earlier releases of
-        PHPUnit are not available through these distribution channels.
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="installation.pear"></a>PEAR</h2></div></div></div><p>
-      The following two commands (which you may have to run as
-      <code class="literal">root</code>) are all that is required to install PHPUnit using
-      the <a class="ulink" href="http://pear.php.net/manual/en/guide.users.commandline.cli.php" target="_top">PEAR Installer</a>:
-    </p><pre class="screen"><strong class="userinput"><code>pear config-set auto_discover 1</code></strong>
-<strong class="userinput"><code>pear install pear.phpunit.de/PHPUnit</code></strong></pre><div class="alert alert-error"><h3 class="title">Caution</h3><p>
-        Depending on your OS distribution and/or your PHP environment, you may
-        need to install PEAR or update your existing PEAR installation before
-        you can proceed with the instructions in this section.
-      </p><p>
-        <strong class="userinput"><code>sudo pear upgrade PEAR</code></strong> usually suffices to
-        upgrade an existing PEAR installation. The <a class="ulink" href="http://pear.php.net/manual/en/installation.getting.php" target="_top">PEAR Manual</a>
-        explains how to perform a fresh installation of PEAR.
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="installation.optional-packages"></a>Optional packages</h2></div></div></div><p>
-      The following optional packages are available:
+      システム全体で使えるように Composer でインストールするには、次のようにします。
+    </p><pre class="screen"><strong class="userinput"><code>composer global require "phpunit/phpunit=4.2.*"</code></strong></pre><p>
+      <code class="literal">~/.composer/vendor/bin/</code> にパスを通すことを忘れないようにしましょう。
+    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="installation.optional-packages"></a>オプションのパッケージ</h2></div></div></div><p>
+      オプションのパッケージとして、これらが使えます。
     </p><div class="variablelist"><dl class="variablelist"><dt><span class="term">
-          <code class="literal">DbUnit</code>
-        </span></dt><dd><p>
-            DbUnit port for PHP/PHPUnit to support database interaction testing.
-          </p><p>
-            This package can be installed via PEAR using the following command:
-          </p><pre class="screen"><strong class="userinput"><code>pear install phpunit/DbUnit</code></strong></pre><p>
-            This package can be installed via Composer by adding the following
-            <code class="literal">"require-dev"</code> dependency:
-          </p><pre class="screen"><strong class="userinput"><code>"phpunit/dbunit": "&gt;=1.2"</code></strong></pre></dd><dt><span class="term">
           <code class="literal">PHP_Invoker</code>
         </span></dt><dd><p>
-            A utility class for invoking callables with a timeout. This package is
-            required to enforce test timeouts in strict mode.
+            callable をタイムアウトつきで実行するユーティリティクラス。
+            テストのタイムアウトを厳格に指定するために必要なパッケージ。
           </p><p>
-            This package can be installed using the following command:
-          </p><pre class="screen"><strong class="userinput"><code>pear install phpunit/PHP_Invoker</code></strong></pre><p>
-            This package can be installed via Composer by adding the following
-            <code class="literal">"require-dev"</code> dependency:
+            このパッケージは、PHPUnit の PHAR 版の中に含まれています。
+            Composer でインストールするには、
+            <code class="literal">"require-dev"</code>
+            に次の行を追加します。
           </p><pre class="screen"><strong class="userinput"><code>"phpunit/php-invoker": "*"</code></strong></pre></dd><dt><span class="term">
+          <code class="literal">DbUnit</code>
+        </span></dt><dd><p>
+            DbUnit の PHP/PHPUnit 向けの移植。データベースとのやりとりをテスト可能にする。
+          </p><p>
+            このパッケージは、PHPUnit の PHAR 版の中に含まれています。
+            Composer でインストールするには、
+            <code class="literal">"require-dev"</code>
+            に次の行を追加します。
+          </p><pre class="screen"><strong class="userinput"><code>"phpunit/dbunit": "&gt;=1.2"</code></strong></pre></dd><dt><span class="term">
           <code class="literal">PHPUnit_Selenium</code>
         </span></dt><dd><p>
-            Selenium RC integration for PHPUnit.
+            PHPUnit 用の Selenium RC インテグレーション。
           </p><p>
-            This package can be installed via PEAR using the following command:
-          </p><pre class="screen"><strong class="userinput"><code>pear install phpunit/PHPUnit_Selenium</code></strong></pre><p>
-            This package can be installed via Composer by adding the following
-            <code class="literal">"require-dev"</code> dependency:
-          </p><pre class="screen"><strong class="userinput"><code>"phpunit/phpunit-selenium": "&gt;=1.2"</code></strong></pre></dd><dt><span class="term">
-          <code class="literal">PHPUnit_Story</code>
-        </span></dt><dd><p>
-            Story-based test runner for Behavior-Driven Development with PHPUnit.
-          </p><p>
-            This package can be installed via PEAR using the following command:
-          </p><pre class="screen"><strong class="userinput"><code>pear install phpunit/PHPUnit_Story</code></strong></pre><p>
-            This package can be installed via Composer by adding the following
-            <code class="literal">"require-dev"</code> dependency:
-          </p><pre class="screen"><strong class="userinput"><code>"phpunit/phpunit-story": "*"</code></strong></pre></dd><dt><span class="term">
-          <code class="literal">PHPUnit_SkeletonGenerator</code>
-        </span></dt><dd><p>
-            Tool that can generate skeleton test classes from production code
-            classes and vice versa.
-          </p><p>
-            This package can be installed using the following command:
-          </p><pre class="screen"><strong class="userinput"><code>pear install phpunit/PHPUnit_SkeletonGenerator</code></strong></pre></dd><dt><span class="term">
-          <code class="literal">PHPUnit_TestListener_DBUS</code>
-        </span></dt><dd><p>
-            A TestListener that sends events to DBUS.
-          </p><p>
-            This package can be installed using the following command:
-          </p><pre class="screen"><strong class="userinput"><code>pear install phpunit/PHPUnit_TestListener_DBUS</code></strong></pre></dd><dt><span class="term">
-          <code class="literal">PHPUnit_TestListener_XHProf</code>
-        </span></dt><dd><p>
-            A TestListener that uses XHProf for automated profiling of the tested code.
-          </p><p>
-            This package can be installed using the following command:
-          </p><pre class="screen"><strong class="userinput"><code>pear install phpunit/PHPUnit_TestListener_XHProf</code></strong></pre></dd><dt><span class="term">
-          <code class="literal">PHPUnit_TicketListener_Fogbugz</code>
-        </span></dt><dd><p>
-            A ticket listener that interacts with the Fogbugz issue API.
-          </p><p>
-            This package can be installed using the following command:
-          </p><pre class="screen"><strong class="userinput"><code>pear install phpunit/PHPUnit_TicketListener_Fogbugz</code></strong></pre></dd><dt><span class="term">
-          <code class="literal">PHPUnit_TicketListener_GitHub</code>
-        </span></dt><dd><p>
-            A ticket listener that interacts with the GitHub issue API.
-          </p><p>
-            This package can be installed using the following command:
-          </p><pre class="screen"><strong class="userinput"><code>pear install phpunit/PHPUnit_TicketListener_GitHub</code></strong></pre></dd><dt><span class="term">
-          <code class="literal">PHPUnit_TicketListener_GoogleCode</code>
-        </span></dt><dd><p>
-            A ticket listener that interacts with the Google Code issue API.
-          </p><p>
-            This package can be installed using the following command:
-          </p><pre class="screen"><strong class="userinput"><code>pear install phpunit/PHPUnit_TicketListener_GoogleCode</code></strong></pre></dd><dt><span class="term">
-          <code class="literal">PHPUnit_TicketListener_Trac</code>
-        </span></dt><dd><p>
-            A ticket listener that interacts with the Trac issue API.
-          </p><p>
-            This package can be installed using the following command:
-          </p><pre class="screen"><strong class="userinput"><code>pear install phpunit/PHPUnit_TicketListener_Trac</code></strong></pre></dd></dl></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="installing.upgrading"></a>Upgrading</h2></div></div></div><p>
-      This section serves as a collection of minor BC issues that one might
-      run into when upgrading from PHPUnit 3.6 to PHPUnit 3.7.
-    </p><p>
-      The upgrade should be rather easy and work without any issues as it was
-      tested against all major Open Source frameworks and there was not a
-      single problem for them. Still every project is different and if you
-      did not get around to trying one of the release candidates and have ran
-      into an issue this document might provide some help.
-    </p><div class="variablelist"><dl class="variablelist"><dt><span class="term"><span class="strong"><strong>Removed deprecated OutputTestCase</strong></span></span></dt><dd><p>
-            The class <code class="literal">PHPUnit_Extensions_OutputTestCase</code> has
-            been removed. PHPUnit 3.6 issued a deprecation notice when it was
-            used. To see how output can now be tested look into
-            <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.output" title="Testing Output">the section called “Testing Output”</a>.
-          </p></dd><dt><span class="term"><span class="strong"><strong>Current working directory will be restored after each test case</strong></span></span></dt><dd><p>
-            If a test changes the current working directory
-            (<code class="literal">cwd</code>) PHPUnit ran into issues when generating
-            code coverage output. Now that the cwd is restored after each
-            test case you might find that one of your tests depended on
-            another test changing the cwd. Something that isn't desirable
-            anyways and should be easy to fix.
-          </p></dd><dt><span class="term"><span class="strong"><strong>Test listeners trigger one autoload call</strong></span></span></dt><dd><p>
-            When using custom test listeners as described in
-            <a class="xref" href="appendixes.configuration.html#appendixes.configuration.test-listeners" title="Test Listeners">the section called “Test Listeners”</a> PHPUnit
-            silently ignored missing test listeners and it was quite hard to
-            debug that issues for the user. Now one autoload call will be
-            triggered trying to locate the class. If your autoloader produces
-            an error when it doesn't find a test listener you might run into an
-            issue here. Removing the listener or making sure it's loaded in your
-            <code class="literal">bootstrap.php</code> will solve this.
-          </p></dd><dt><span class="term"><span class="strong"><strong>Parameters for mock objects do not get cloned anymore</strong></span></span></dt><dd><p>
-            Previously all object parameters where cloned when mocking.
-            This lead to issues when testing trying to check whether the same
-            object was passed to method or not and other problem with
-            uncloneable objects. As a long standing feature request by many
-            this behavior was changed.
-            <a class="xref" href="test-doubles.html#test-doubles.mock-objects.examples.clone-object-parameters-usecase.php" title="Example 10.15: Testing that a method gets called once and with the identical object as was passed">Example 10.15</a>
-            shows where the new implementation could be useful.
-            <a class="xref" href="test-doubles.html#test-doubles.mock-objects.examples.enable-clone-object-parameters.php" title="Example 10.16: Create a mock object with cloning parameters enabled">Example 10.16</a>
-            shows how to switch back to previous behavior.
-          </p></dd><dt><span class="term"><span class="strong"><strong>
-          <code class="literal">addUncoveredFilesFromWhitelist</code>
-          was removed in favor of
-          <code class="literal">processUncoveredFilesFromWhitelist</code></strong></span>
-        </span></dt><dd><p>
-            When generating code coverage and using
-            <code class="literal">&lt;whitelist addUncoveredFilesFromWhitelist="true"&gt;</code>
-            all uncovered files got included by PHPUnit. This was an issue for
-            people with executable code in those files. PHPUnit will now scan
-            the file and guess what code is executable and what code is not
-            without including it. This might lead to different code coverage
-            reports.
-          </p><p>
-            To switch back to the old behavior the setting
-            <code class="literal">&lt;whitelist processUncoveredFilesFromWhitelist="true"&gt;</code>
-            can be used. If you want the behavior with PHPUnit 3.6. and 3.7.
-            it is possible to use both settings for a while.
-          </p></dd><dt><span class="term"><span class="strong"><strong>
-          Default value of <code class="literal">cacheTokens</code> changed to
-          <code class="literal">false</code></strong></span>
-        </span></dt><dd><p>
-            Since PHPUnit <code class="literal">3.7.2</code> we turned off the caching
-            of tokenized files by default. When processing code coverage
-            reports for big projects this cache consumed a lot of memory and
-            due to the change in whitelist behavior it was problematic for
-            folks with code bases with more than a couple of thousand classes.
-          </p><p>
-            If your project is smaller or you have enough memory you will get
-            a runtime benefit by adding <code class="literal">cacheTokens="true"</code>
-            to your <code class="literal">phpunit.xml</code> file. See
-            <a class="xref" href="appendixes.configuration.html#appendixes.configuration.phpunit" title="PHPUnit">the section called “PHPUnit”</a>.
-          </p></dd></dl></div></div></div>
+            このパッケージは、PHPUnit の PHAR 版の中に含まれています。
+            Composer でインストールするには、
+            <code class="literal">"require-dev"</code>
+            に次の行を追加します。
+          </p><pre class="screen"><strong class="userinput"><code>"phpunit/phpunit-selenium": "&gt;=1.2"</code></strong></pre></dd></dl></div></div></div>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="goals.html">Prev</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="writing-tests-for-phpunit.html">Next</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="index.html">戻る</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="writing-tests-for-phpunit.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">Please <a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">open a ticket</a> on GitHub to suggest improvements to this page. Thanks!</div></div><div class="col-md-2"></div></div>
+<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
     </div>
    </div>
    <hr/>

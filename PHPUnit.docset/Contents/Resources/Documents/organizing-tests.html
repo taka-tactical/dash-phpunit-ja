@@ -2,133 +2,122 @@
 <html lang="en">
  <head>
   <meta charset="utf-8">
-  <title>PHPUnit Manual &#8211; Chapter 7. Organizing Tests</title>
+  <title>PHPUnit マニュアル &#8211; 第5章 テストの構成</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="organizing-tests.html">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/highlight.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
-  <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CSource+Code+Pro:400,700' rel='stylesheet' type='text/css'>
+  <!--[if lt IE 9]><script src="js/html5shiv.min.js"></script><![endif]-->
  </head>
  <body>
   
-  <div class="container">
+  <div class="container-fluid">
    <div class="row">
     <div style='padding: 1.5em'>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="fixtures.html">Prev</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="database.html">Next</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="fixtures.html">戻る</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="strict-mode.html">次へ</a></div>
      </div>
-<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="organizing-tests"></a>Chapter 7. Organizing Tests</h1></div></div></div><p>
-    <a id="idp830416" class="indexterm"></a>
+<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="organizing-tests"></a>第5章 テストの構成</h1></div></div></div><p>
+    <a id="idp524400" class="indexterm"></a>
 
-    One of the goals of PHPUnit (see <a class="xref" href="goals.html" title="Chapter 2. PHPUnit's Goals">Chapter 2</a>) is that tests
-    should be composable: we want to be able to run any number or combination
-    of tests together, for instance all tests for the whole project, or the
-    tests for all classes of a component that is part of the project, or just
-    the tests for a single class.
+    PHPUnit の目指すところのひとつに
+    「自由に組み合わせられる」ということがあります。つまり、
+    例えば「そのプロジェクトのすべてのテストを実行する」「プロジェクトの中の
+    ある部品を構成するすべてのクラスについて、すべてのテストを実行する」
+    「特定のひとつのクラスのテストのみを実行する」など、
+    数や組み合わせにとらわれずに好きなテストを一緒に実行できるということです。
   </p><p>
-    PHPUnit supports different ways of organizing tests and composing them into
-    a test suite. This chapter shows the most commonly used approaches.
-  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="organizing-tests.filesystem"></a>Composing a Test Suite Using the Filesystem</h2></div></div></div><p>
-      Probably the easiest way to compose a test suite is to keep all test case
-      source files in a test directory. PHPUnit can automatically discover and
-      run the tests by recursively traversing the test directory.
+    PHPUnit では、さまざまな方法でテストを組み合わせてテストスイートにまとめることができます。
+    本章では、その中でもよく使われる手法を説明します。
+  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="organizing-tests.filesystem"></a>ファイルシステムを用いたテストスイートの構成</h2></div></div></div><p>
+      おそらく、テストスイートをとりまとめるもっとも簡単な方法は
+      すべてのテストケースのソースファイルを一つのテストディレクトリにまとめることでしょう。
+      PHPUnit はテストディレクトリを再帰的に探索し、
+      テストを自動的に見つけて実行します。
     </p><p>
-      Lets take a look at the test suite of the <a class="ulink" href="http://github.com/sebastianbergmann/php-object-freezer/" target="_top">Object_Freezer</a>
-      library. Looking at this project's directory structure, we see that the
-      test case classes in the <code class="filename">Tests</code> directory mirror the
-      package and class structure of the System Under Test (SUT) in the
-      <code class="filename">Object</code> directory:
-    </p><pre class="screen">Object                              Tests
-|-- Freezer                         |-- Freezer
-|   |-- HashGenerator               |   |-- HashGenerator
-|   |   `-- NonRecursiveSHA1.php    |   |   `-- NonRecursiveSHA1Test.php
-|   |-- HashGenerator.php           |   |
-|   |-- IdGenerator                 |   |-- IdGenerator
-|   |   `-- UUID.php                |   |   `-- UUIDTest.php
-|   |-- IdGenerator.php             |   |
-|   |-- LazyProxy.php               |   |
-|   |-- Storage                     |   |-- Storage
-|   |   `-- CouchDB.php             |   |   `-- CouchDB
-|   |                               |   |       |-- WithLazyLoadTest.php
-|   |                               |   |       `-- WithoutLazyLoadTest.php
-|   |-- Storage.php                 |   |-- StorageTest.php
-|   `-- Util.php                    |   `-- UtilTest.php
-`-- Freezer.php                     `-- FreezerTest.php</pre><p>
-      To run all tests for the library we just need to point the PHPUnit
-      command-line test runner to the test directory:
-    </p><pre class="screen"><strong class="userinput"><code>phpunit Tests</code></strong>
-PHPUnit 3.7.0 by Sebastian Bergmann.
+      <a class="ulink" href="https://github.com/sebastianbergmann/money/" target="_top">sebastianbergmann/money</a>
+      ライブラリのテストスイートを見てみましょう。このプロジェクトのディレクトリ構成を見ると、
+      テストケースクラスが <code class="filename">tests</code> ディレクトリにまとめられていることがわかります。
+      その中のディレクトリの構造は、テスト対象のシステム (SUT) がある
+      <code class="filename">src</code> ディレクトリ以下の構造と同じになっています。
+    </p><pre class="screen">src                                 tests
+`-- Currency.php                    `-- CurrencyTest.php
+`-- IntlFormatter.php               `-- IntlFormatterTest.php
+`-- Money.php                       `-- MoneyTest.php
+`-- autoload.php</pre><p>
+      PHPUnit のコマンドラインテストランナーに
+      テストディレクトリの場所を指示してやるだけで、
+      このライブラリのすべてのテストを実行できます。
+    </p><pre class="screen"><strong class="userinput"><code>phpunit tests</code></strong>
+PHPUnit 4.2.0 by Sebastian Bergmann.
 
-............................................................ 60 / 75
-...............
+.................................
 
-Time: 0 seconds
+Time: 636 ms, Memory: 3.50Mb
 
-OK (75 tests, 164 assertions)</pre><div class="alert alert-info"><h3 class="title">Note</h3><p>
-        If you point the PHPUnit command-line test runner to a directory it will
-        look for <code class="filename">*Test.php</code> files.
+OK (33 tests, 52 assertions)</pre><div class="alert alert-info"><h3 class="title">注記</h3><p>
+        PHPUnit のコマンドラインテストランナーでディレクトリを指定すると、
+        その中の <code class="filename">*Test.php</code> ファイルを見つけて実行します。
       </p></div><p>
-      To run only the tests that are declared in the <code class="literal">Object_FreezerTest</code>
-      test case class in <code class="filename">Tests/FreezerTest.php</code> we can use
-      the following command:
-    </p><pre class="screen"><strong class="userinput"><code>phpunit Tests/FreezerTest</code></strong>
-PHPUnit 3.7.0 by Sebastian Bergmann.
+      <code class="filename">tests/CurrencyTest.php</code> にあるテストケースクラス
+      <code class="literal">CurrencyTest</code> で宣言されているテストだけを実行するには、
+      次のコマンドを実行します。
+    </p><pre class="screen"><strong class="userinput"><code>phpunit tests/CurrencyTest</code></strong>
+PHPUnit 4.2.0 by Sebastian Bergmann.
 
-............................
+........
 
-Time: 0 seconds
+Time: 280 ms, Memory: 2.75Mb
 
-OK (28 tests, 60 assertions)</pre><p>
-      For more fine-grained control of which tests to run we can use the
-      <code class="literal">--filter</code> switch:
-    </p><pre class="screen"><strong class="userinput"><code>phpunit --filter testFreezingAnObjectWorks Tests</code></strong>
-PHPUnit 3.7.0 by Sebastian Bergmann.
+OK (8 tests, 8 assertions)</pre><p>
+      実行したいテストをより細かく指示するには
+      <code class="literal">--filter</code> オプションを使います。
+    </p><pre class="screen"><strong class="userinput"><code>phpunit --filter testObjectCanBeConstructedForValidConstructorArgument tests</code></strong>
+PHPUnit 4.2.0 by Sebastian Bergmann.
 
-.
+..
 
-Time: 0 seconds
+Time: 167 ms, Memory: 3.00Mb
 
-OK (1 test, 2 assertions)</pre><div class="alert alert-info"><h3 class="title">Note</h3><p>
-        A drawback of this approach is that we have no control over the order in
-        which the test are run. This can lead to problems with regard to test
-        dependencies, see <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.test-dependencies" title="Test Dependencies">the section called “Test Dependencies”</a>.
-        In the next section you will see how you can make the test execution
-        order explicit by using the XML configuration file.
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="organizing-tests.xml-configuration"></a>Composing a Test Suite Using XML Configuration</h2></div></div></div><a id="idp126240" class="indexterm"></a><p>
-      PHPUnit's XML configuration file (<a class="xref" href="appendixes.configuration.html" title="Appendix C. The XML Configuration File">Appendix C</a>)
-      can also be used to compose a test suite.
-      <a class="xref" href="organizing-tests.html#organizing-tests.xml-configuration.examples.phpunit.xml" title="Example 7.1: Composing a Test Suite Using XML Configuration">Example 7.1</a>
-      shows a minimal example that will add all <code class="literal">*Test</code> classes
-      that are found in <code class="filename">*Test.php</code> files when the
-      <code class="filename">Tests</code> is recursively traversed.
-    </p><div class="example"><a id="organizing-tests.xml-configuration.examples.phpunit.xml"></a><p class="title"><strong>Example 7.1: Composing a Test Suite Using XML Configuration</strong></p><div class="example-contents"><pre class="programlisting">&lt;phpunit&gt;
+OK (2 test, 2 assertions)</pre><div class="alert alert-info"><h3 class="title">注記</h3><p>
+        この方式の欠点は、テストの実行順を制御できないことです。
+        そのため、テストの依存性に関する問題を引き起こすことがあります。
+        <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.test-dependencies" title="テストの依存性">「テストの依存性」</a>
+        を参照ください。
+        次の節では、テストの実行順序を XML 設定ファイルで明示的に指定する方法を説明します。
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="organizing-tests.xml-configuration"></a>XML 設定ファイルを用いたテストスイートの構成</h2></div></div></div><a id="idp149792" class="indexterm"></a><p>
+      PHPUnit の XML 設定ファイル (<a class="xref" href="appendixes.configuration.html" title="付録C XML 設定ファイル">付録 C</a>)
+      を使ってテストスイートを構成することもできます。
+      <a class="xref" href="organizing-tests.html#organizing-tests.xml-configuration.examples.phpunit.xml" title="例 5.1: XML 設定ファイルを用いたテストスイートの構成">例 5.1</a>
+      に、最小限の例を示します。これは、
+      <code class="filename">tests</code> を再帰的に探索して
+      <code class="filename">*Test.php</code> というファイルにある
+      <code class="literal">*Test</code> クラスをすべて追加する設定です。
+    </p><div class="example"><a id="organizing-tests.xml-configuration.examples.phpunit.xml"></a><p class="title"><strong>例 5.1: XML 設定ファイルを用いたテストスイートの構成</strong></p><div class="example-contents"><pre class="programlisting">&lt;phpunit&gt;
   &lt;testsuites&gt;
-    &lt;testsuite name="Object_Freezer"&gt;
-      &lt;directory&gt;Tests&lt;/directory&gt;
+    &lt;testsuite name="money"&gt;
+      &lt;directory&gt;tests&lt;/directory&gt;
     &lt;/testsuite&gt;
   &lt;/testsuites&gt;
 &lt;/phpunit&gt;</pre></div></div><br class="example-break"></br><p>
-      The order in which tests are executed can be made explicit:
-    </p><div class="example"><a id="organizing-tests.xml-configuration.examples.phpunit.xml2"></a><p class="title"><strong>Example 7.2: Composing a Test Suite Using XML Configuration</strong></p><div class="example-contents"><pre class="programlisting">&lt;phpunit&gt;
+      どのテストを実行するのかを明示的に指定することができます。
+    </p><div class="example"><a id="organizing-tests.xml-configuration.examples.phpunit.xml2"></a><p class="title"><strong>例 5.2: XML 設定ファイルを用いたテストスイートの構成</strong></p><div class="example-contents"><pre class="programlisting">&lt;phpunit&gt;
   &lt;testsuites&gt;
-    &lt;testsuite name="Object_Freezer"&gt;
-      &lt;file&gt;Tests/Freezer/HashGenerator/NonRecursiveSHA1Test.php&lt;/file&gt;
-      &lt;file&gt;Tests/Freezer/IdGenerator/UUIDTest.php&lt;/file&gt;
-      &lt;file&gt;Tests/Freezer/UtilTest.php&lt;/file&gt;
-      &lt;file&gt;Tests/FreezerTest.php&lt;/file&gt;
-      &lt;file&gt;Tests/Freezer/StorageTest.php&lt;/file&gt;
-      &lt;file&gt;Tests/Freezer/Storage/CouchDB/WithLazyLoadTest.php&lt;/file&gt;
-      &lt;file&gt;Tests/Freezer/Storage/CouchDB/WithoutLazyLoadTest.php&lt;/file&gt;
+    &lt;testsuite name="money"&gt;
+      &lt;file&gt;tests/IntlFormatterTest.php&lt;/file&gt;
+      &lt;file&gt;tests/MoneyTest.php&lt;/file&gt;
+      &lt;file&gt;tests/CurrencyTest.php&lt;/file&gt;
     &lt;/testsuite&gt;
   &lt;/testsuites&gt;
 &lt;/phpunit&gt;</pre></div></div><br class="example-break"></br></div></div>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="fixtures.html">Prev</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="database.html">Next</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="fixtures.html">戻る</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="strict-mode.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">Please <a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">open a ticket</a> on GitHub to suggest improvements to this page. Thanks!</div></div><div class="col-md-2"></div></div>
+<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
     </div>
    </div>
    <hr/>

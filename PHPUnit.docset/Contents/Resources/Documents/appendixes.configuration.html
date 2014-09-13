@@ -2,29 +2,30 @@
 <html lang="en">
  <head>
   <meta charset="utf-8">
-  <title>PHPUnit Manual &#8211; Appendix C. The XML Configuration File</title>
+  <title>PHPUnit マニュアル &#8211; 付録C XML 設定ファイル</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="appendixes.configuration.html">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/highlight.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
-  <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CSource+Code+Pro:400,700' rel='stylesheet' type='text/css'>
+  <!--[if lt IE 9]><script src="js/html5shiv.min.js"></script><![endif]-->
  </head>
  <body>
   
-  <div class="container">
+  <div class="container-fluid">
    <div class="row">
     <div style='padding: 1.5em'>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="appendixes.annotations.html">Prev</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="appendixes.index.html">Next</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="appendixes.annotations.html">戻る</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="appendixes.upgrading.html">次へ</a></div>
      </div>
-<div class="appendix"><div class="titlepage"><div><div><h1 class="title"><a id="appendixes.configuration"></a>Appendix C. The XML Configuration File</h1></div></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.phpunit"></a>PHPUnit</h2></div></div></div><p>
-      The attributes of the <code class="literal">&lt;phpunit&gt;</code> element can
-      be used to configure PHPUnit's core functionality.
+<div class="appendix"><div class="titlepage"><div><div><h1 class="title"><a id="appendixes.configuration"></a>付録C XML 設定ファイル</h1></div></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.phpunit"></a>PHPUnit</h2></div></div></div><p>
+      <code class="literal">&lt;phpunit&gt;</code> 要素の属性を使って
+      PHPUnit のコア機能を設定します。
     </p><pre class="screen">&lt;phpunit
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/3.7/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.2/phpunit.xsd"
          backupGlobals="true"
          backupStaticAttributes="false"
          &lt;!--bootstrap="/path/to/bootstrap.php"--&gt;
@@ -51,52 +52,47 @@
          verbose="false"&gt;
   &lt;!-- ... --&gt;
 &lt;/phpunit&gt;</pre><p>
-      The XML configuration above corresponds to the default behaviour of the
-      TextUI test runner documented in <a class="xref" href="textui.html#textui.clioptions" title="Command-Line switches">the section called “Command-Line switches”</a>.
+      上の XML 設定ファイルは、TextUI テストランナーをデフォルトの設定で起動します。
+      その詳細は <a class="xref" href="textui.html#textui.clioptions" title="Command-Line switches">「Command-Line switches」</a> で説明します。
     </p><p>
-      Additional options that are not available as command-line switches are:
+      その他、コマンドラインからは設定できないオプションもあります。
     </p><div class="variablelist"><dl class="variablelist"><dt><span class="term"><code class="literal">convertErrorsToExceptions</code></span></dt><dd><p>
-            By default, PHPUnit will install an error handler that converts
-            the following errors to exceptions:
-          </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><code class="literal">E_WARNING</code></li><li class="listitem"><code class="literal">E_NOTICE</code></li><li class="listitem"><code class="literal">E_USER_ERROR</code></li><li class="listitem"><code class="literal">E_USER_WARNING</code></li><li class="listitem"><code class="literal">E_USER_NOTICE</code></li><li class="listitem"><code class="literal">E_STRICT</code></li><li class="listitem"><code class="literal">E_RECOVERABLE_ERROR</code></li><li class="listitem"><code class="literal">E_DEPRECATED</code></li><li class="listitem"><code class="literal">E_USER_DEPRECATED</code></li></ul></div><p>
-            Set <code class="literal">convertErrorsToExceptions</code> to
-            <code class="literal">false</code> to disable this feature.
+            <code class="literal">false</code> にすると、
+            すべての PHP のエラーを例外に変換するエラーハンドラをインストールしません。
           </p></dd><dt><span class="term"><code class="literal">convertNoticesToExceptions</code></span></dt><dd><p>
-            When set to <code class="literal">false</code>, the error handler installed
-            by <code class="literal">convertErrorsToExceptions</code> will not convert
-            <code class="literal">E_NOTICE</code>, <code class="literal">E_USER_NOTICE</code>, or
-            <code class="literal">E_STRICT</code> errors to exceptions.
+            <code class="literal">false</code> にすると、
+            <code class="literal">convertErrorsToExceptions</code> でインストールしたエラーハンドラが
+            <code class="literal">E_NOTICE</code> や <code class="literal">E_USER_NOTICE</code> そして
+            <code class="literal">E_STRICT</code> を例外に変換しなくなります。
           </p></dd><dt><span class="term"><code class="literal">convertWarningsToExceptions</code></span></dt><dd><p>
-            When set to <code class="literal">false</code>, the error handler installed
-            by <code class="literal">convertErrorsToExceptions</code> will not convert
-            <code class="literal">E_WARNING</code> or <code class="literal">E_USER_WARNING</code>
-            errors to exceptions.
+            <code class="literal">false</code> にすると、
+            <code class="literal">convertErrorsToExceptions</code> でインストールしたエラーハンドラが
+            <code class="literal">E_WARNING</code> や <code class="literal">E_USER_WARNING</code>
+            を例外に変換しなくなります。
           </p></dd><dt><span class="term"><code class="literal">forceCoversAnnotation</code></span></dt><dd><p>
-            Code Coverage will only be recorded for tests that use the
-            <code class="literal">@covers</code> annotation documented in
-            <a class="xref" href="appendixes.annotations.html#appendixes.annotations.covers" title="@covers">the section called “@covers”</a>.
+            コードカバレッジの記録を、
+            <code class="literal">@covers</code> アノテーションを使っている関数だけに限定します。
+            このアノテーションについては
+            <a class="xref" href="appendixes.annotations.html#appendixes.annotations.covers" title="@covers">「@covers」</a> で説明します。
           </p></dd><dt><span class="term"><code class="literal">timeoutForLargeTests</code></span></dt><dd><p>
-            If the <code class="literal">PHP_Invoker</code> package is installed and
-            strict mode is enabled, this attribute sets the timeout for all
-            tests marked as <code class="literal">@large</code>. If a test does not
-            complete within this configured timeout, it will fail.
+            <code class="literal">PHP_Invoker</code> パッケージがインストールされていて strict モードが有効な場合に、
+            <code class="literal">@large</code> とマークされたすべてのテストのタイムアウトをこの属性で設定します。
+            ここで指定した時間内にテストが完了しなかった場合、テストは失敗します。
           </p></dd><dt><span class="term"><code class="literal">timeoutForMediumTests</code></span></dt><dd><p>
-            If the <code class="literal">PHP_Invoker</code> package is installed and
-            strict mode is enabled, this attribute sets the timeout for all
-            tests marked as <code class="literal">@medium</code>. If a test does not
-            complete within this configured timeout, it will fail.
+            <code class="literal">PHP_Invoker</code> パッケージがインストールされていて strict モードが有効な場合に、
+            <code class="literal">@medium</code> とマークされたすべてのテストのタイムアウトをこの属性で設定します。
+            ここで指定した時間内にテストが完了しなかった場合、テストは失敗します。
           </p></dd><dt><span class="term"><code class="literal">timeoutForSmallTests</code></span></dt><dd><p>
-            If the <code class="literal">PHP_Invoker</code> package is installed and
-            strict mode is enabled, this attribute sets the timeout for all
-            tests not marked as <code class="literal">@medium</code> or
-            <code class="literal">@large</code>. If a test does not complete within this
-            configured timeout, it will fail.
-          </p></dd></dl></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.testsuites"></a>Test Suites</h2></div></div></div><p>
-      <a id="idp2256064" class="indexterm"></a>
+            <code class="literal">PHP_Invoker</code> パッケージがインストールされていて strict モードが有効な場合に、
+            <code class="literal">@medium</code> あるいは <code class="literal">@large</code>
+            のいずれのマークもついていないすべてのテストのタイムアウトをこの属性で設定します。
+            ここで指定した時間内にテストが完了しなかった場合、テストは失敗します。
+          </p></dd></dl></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.testsuites"></a>テストスイート</h2></div></div></div><p>
+      <a id="idp1902224" class="indexterm"></a>
 
-      The <code class="literal">&lt;testsuites&gt;</code> element and its
-      one or more <code class="literal">&lt;testsuite&gt;</code> children can be
-      used to compose a test suite out of test suites and test cases.
+      <code class="literal">&lt;testsuites&gt;</code> 要素とその子要素である
+      <code class="literal">&lt;testsuite&gt;</code> を使って、
+      テストスイート群やテストケース群の中からテストスイートを構成します。
     </p><pre class="screen">&lt;testsuites&gt;
   &lt;testsuite name="My Test Suite"&gt;
     &lt;directory&gt;/path/to/*Test.php files&lt;/directory&gt;
@@ -104,28 +100,29 @@
     &lt;exclude&gt;/path/to/exclude&lt;/exclude&gt;
   &lt;/testsuite&gt;
 &lt;/testsuites&gt;</pre><p>
-      Using the <code class="literal">phpVersion</code> and
-      <code class="literal">phpVersionOperator</code> attributes, a required PHP version
-      can be specified. The example below will only add the
-      <code class="filename">/path/to/*Test.php</code> files and
-      <code class="filename">/path/to/MyTest.php</code> file if the PHP version is at
-      least 5.3.0.
+      <code class="literal">phpVersion</code> および
+      <code class="literal">phpVersionOperator</code> 属性を使うと、必要な PHP
+      のバージョンを指定できます。次の例は、PHP のバージョンが 5.3.0 以降である場合にのみ
+      <code class="filename">/path/to/*Test.php</code> と
+      <code class="filename">/path/to/MyTest.php</code> を追加します。
     </p><pre class="screen">  &lt;testsuites&gt;
     &lt;testsuite name="My Test Suite"&gt;
       &lt;directory suffix="Test.php" phpVersion="5.3.0" phpVersionOperator="&gt;="&gt;/path/to/files&lt;/directory&gt;
       &lt;file phpVersion="5.3.0" phpVersionOperator="&gt;="&gt;/path/to/MyTest.php&lt;/file&gt;
     &lt;/testsuite&gt;
   &lt;/testsuites&gt;</pre><p>
-      The <code class="literal">phpVersionOperator</code> attribute is optional and
-      defaults to <code class="literal">&gt;=</code>.
-    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.groups"></a>Groups</h2></div></div></div><p>
-      <a id="idp2563984" class="indexterm"></a>
+      <code class="literal">phpVersionOperator</code> 属性はオプションで、デフォルトは
+      <code class="literal">&gt;=</code> です。
+    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.groups"></a>グループ</h2></div></div></div><p>
+      <a id="idp1581968" class="indexterm"></a>
 
-      The <code class="literal">&lt;groups&gt;</code> element and its
-      <code class="literal">&lt;include&gt;</code>,
-      <code class="literal">&lt;exclude&gt;</code>, and
-      <code class="literal">&lt;group&gt;</code> children can be used to select
-      groups of tests from a suite of tests that should (not) be run.
+      <code class="literal">&lt;groups&gt;</code> 要素とその子要素である
+      <code class="literal">&lt;include&gt;</code>、
+      <code class="literal">&lt;exclude&gt;</code> および
+      <code class="literal">&lt;group&gt;</code> を使って、
+      <code class="literal">@group</code> アノテーション
+      (<a class="xref" href="appendixes.annotations.html#appendixes.annotations.group" title="@group">「@group」</a> を参照ください)
+      でマークされたテストグループから実行する (しない) ものを選びます。
     </p><pre class="screen">&lt;groups&gt;
   &lt;include&gt;
     &lt;group&gt;name&lt;/group&gt;
@@ -134,16 +131,14 @@
     &lt;group&gt;name&lt;/group&gt;
   &lt;/exclude&gt;
 &lt;/groups&gt;</pre><p>
-      The XML configuration above corresponds to invoking the TextUI test runner
-      with the following switches:
-    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="literal">--group name</code></p></li><li class="listitem"><p><code class="literal">--exclude-group name</code></p></li></ul></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.blacklist-whitelist"></a>Including and Excluding Files for Code Coverage</h2></div></div></div><p>
-      <a id="idp2571088" class="indexterm"></a>
-      <a id="idp2571664" class="indexterm"></a>
-      <a id="idp2572240" class="indexterm"></a>
+      上の XML 設定ファイルは、 TextUI テストランナーを以下の引数で起動します。
+    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="literal">--group name</code></p></li><li class="listitem"><p><code class="literal">--exclude-group name</code></p></li></ul></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.blacklist-whitelist"></a>コードカバレッジ対象のファイルの追加や除外</h2></div></div></div><p>
+      <a id="idp1590032" class="indexterm"></a>
+      <a id="idp1590608" class="indexterm"></a>
+      <a id="idp1591184" class="indexterm"></a>
 
-      The <code class="literal">&lt;filter&gt;</code> element and its children can
-      be used to configure the blacklist and whitelist for the code coverage
-      reporting.
+      <code class="literal">&lt;filter&gt;</code> 要素とその子要素を使って、
+      コードカバレッジレポートのブラックリストとホワイトリストを設定します。
     </p><pre class="screen">&lt;filter&gt;
   &lt;blacklist&gt;
     &lt;directory suffix=".php"&gt;/path/to/files&lt;/directory&gt;
@@ -161,12 +156,12 @@
       &lt;file&gt;/path/to/file&lt;/file&gt;
     &lt;/exclude&gt;
   &lt;/whitelist&gt;
-&lt;/filter&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.logging"></a>Logging</h2></div></div></div><p>
-      <a id="idp2575968" class="indexterm"></a>
+&lt;/filter&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.logging"></a>ログ出力</h2></div></div></div><p>
+      <a id="idp1594944" class="indexterm"></a>
 
-      The <code class="literal">&lt;logging&gt;</code> element and its
-      <code class="literal">&lt;log&gt;</code> children can be used to configure the
-      logging of the test execution.
+      <code class="literal">&lt;logging&gt;</code> 要素とその子要素である
+      <code class="literal">&lt;log&gt;</code> を使って、
+      テストの実行結果のログ出力を設定します。
     </p><pre class="screen">&lt;logging&gt;
   &lt;log type="coverage-html" target="/tmp/report" charset="UTF-8"
        highlight="false" lowUpperBound="35" highLowerBound="70"/&gt;
@@ -179,21 +174,20 @@
   &lt;log type="testdox-html" target="/tmp/testdox.html"/&gt;
   &lt;log type="testdox-text" target="/tmp/testdox.txt"/&gt;
 &lt;/logging&gt;</pre><p>
-      The XML configuration above corresponds to invoking the TextUI test runner
-      with the following switches:
+      上の XML 設定ファイルは、 TextUI テストランナーを以下の引数で起動します。
     </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="literal">--coverage-html /tmp/report</code></p></li><li class="listitem"><p><code class="literal">--coverage-clover /tmp/coverage.xml</code></p></li><li class="listitem"><p><code class="literal">--coverage-php /tmp/coverage.serialized</code></p></li><li class="listitem"><p><code class="literal">--coverage-text</code></p></li><li class="listitem"><p><code class="literal">--log-json /tmp/logfile.json</code></p></li><li class="listitem"><p><code class="literal">&gt; /tmp/logfile.txt</code></p></li><li class="listitem"><p><code class="literal">--log-tap /tmp/logfile.tap</code></p></li><li class="listitem"><p><code class="literal">--log-junit /tmp/logfile.xml</code></p></li><li class="listitem"><p><code class="literal">--testdox-html /tmp/testdox.html</code></p></li><li class="listitem"><p><code class="literal">--testdox-text /tmp/testdox.txt</code></p></li></ul></div><p>
-      The <code class="literal">charset</code>, <code class="literal">highlight</code>,
-      <code class="literal">lowUpperBound</code>, <code class="literal">highLowerBound</code>,
-      <code class="literal">logIncompleteSkipped</code> and
-      <code class="literal">showUncoveredFiles</code> attributes have no equivalent TextUI
-      test runner switch.
-    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="literal">charset</code>: Character set to be used for the generated HTML pages</p></li><li class="listitem"><p><code class="literal">highlight</code>: When set to <code class="literal">true</code>, the code in your coverage reports is syntax highlighted.</p></li><li class="listitem"><p><code class="literal">lowUpperBound</code>: Maximum coverage percentage to be considered "lowly" covered.</p></li><li class="listitem"><p><code class="literal">highLowerBound</code>: Minimum coverage percentage to be considered "highly" covered.</p></li><li class="listitem"><p><code class="literal">showUncoveredFiles</code>: Show all whitelisted files in <code class="literal">--coverage-text</code> output not just the ones with coverage information.</p></li></ul></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.test-listeners"></a>Test Listeners</h2></div></div></div><p>
-      <a id="idp2597456" class="indexterm"></a>
-      <a id="idp2598048" class="indexterm"></a>
+      <code class="literal">charset</code>、<code class="literal">highlight</code>、
+      <code class="literal">lowUpperBound</code>、<code class="literal">highLowerBound</code>、
+      <code class="literal">logIncompleteSkipped</code>
+      および <code class="literal">showUncoveredFiles</code>
+      属性には、TextUI テストランナーで対応するオプションがありません。
+    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="literal">charset</code>: 生成する html ページで使う文字セット。</p></li><li class="listitem"><p><code class="literal">highlight</code>: <code class="literal">true</code> にすると、カバレッジレポート内のコードにシンタックスハイライト処理を施します。</p></li><li class="listitem"><p><code class="literal">lowUpperBound</code>: カバー率がこの値に満たないときに、カバー率が "低い" とみなします。</p></li><li class="listitem"><p><code class="literal">highLowerBound</code>: カバー率がこの値を超えるときに、カバー率が "高い" とみなします。</p></li><li class="listitem"><p><code class="literal">showUncoveredFiles</code>: <code class="literal">--coverage-text</code> の出力で、カバレッジ情報だけではなくホワイトリストの全ファイル一覧も表示します。</p></li><li class="listitem"><p><code class="literal">showOnlySummary</code>: Show only the summary in <code class="literal">--coverage-text</code> output.</p></li></ul></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.test-listeners"></a>テストリスナー</h2></div></div></div><p>
+      <a id="idp1618032" class="indexterm"></a>
+      <a id="idp1618624" class="indexterm"></a>
 
-      The <code class="literal">&lt;listeners&gt;</code> element and its
-      <code class="literal">&lt;listener&gt;</code> children can be used to attach
-      additional test listeners to the test execution.
+      <code class="literal">&lt;listeners&gt;</code> 要素とその子要素である
+      <code class="literal">&lt;listener&gt;</code> を使って、
+      テスト実行時にテストリスナーをアタッチします。
     </p><pre class="screen">&lt;listeners&gt;
   &lt;listener class="MyListener" file="/optional/path/to/MyListener.php"&gt;
     &lt;arguments&gt;
@@ -210,8 +204,9 @@
     &lt;/arguments&gt;
   &lt;/listener&gt;
 &lt;/listeners&gt;</pre><p>
-      The XML configuration above corresponds to attaching the
-      <code class="literal">$listener</code> object (see below) to the test execution:
+      上の XML 設定は、
+      <code class="literal">$listener</code> オブジェクト (以下を参照ください)
+      をテストの実行時にアタッチします。
     </p><pre class="screen">$listener = new MyListener(
   array('Sebastian'),
   22,
@@ -219,14 +214,14 @@
   19.78,
   NULL,
   new stdClass
-);</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.php-ini-constants-variables"></a>Setting PHP INI settings, Constants and Global Variables</h2></div></div></div><p>
-      <a id="idp2603616" class="indexterm"></a>
-      <a id="idp2604192" class="indexterm"></a>
-      <a id="idp2604768" class="indexterm"></a>
+);</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.php-ini-constants-variables"></a>PHP INI 項目や定数、グローバル変数の設定</h2></div></div></div><p>
+      <a id="idp1713136" class="indexterm"></a>
+      <a id="idp1713712" class="indexterm"></a>
+      <a id="idp1714288" class="indexterm"></a>
 
-      The <code class="literal">&lt;php&gt;</code> element and its children can be
-      used to configure PHP settings, constants, and global variables. It can
-      also be used to prepend the <code class="literal">include_path</code>.
+      <code class="literal">&lt;php&gt;</code> 要素とその子要素を使って、
+      PHP の設定や定数、グローバル変数を設定します。また、
+      <code class="literal">include_path</code> の先頭にパスを追加することもできます。
     </p><pre class="screen">&lt;php&gt;
   &lt;includePath&gt;.&lt;/includePath&gt;
   &lt;ini name="foo" value="bar"/&gt;
@@ -240,7 +235,7 @@
   &lt;files name="foo" value="bar"/&gt;
   &lt;request name="foo" value="bar"/&gt;
 &lt;/php&gt;</pre><p>
-      The XML configuration above corresponds to the following PHP code:
+      上の XML 設定は、次の PHP コードに対応します。
     </p><pre class="screen">ini_set('foo', 'bar');
 define('foo', 'bar');
 $GLOBALS['foo'] = 'bar';
@@ -250,12 +245,12 @@ $_GET['foo'] = 'bar';
 $_COOKIE['foo'] = 'bar';
 $_SERVER['foo'] = 'bar';
 $_FILES['foo'] = 'bar';
-$_REQUEST['foo'] = 'bar';</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.selenium-rc"></a>Configuring Browsers for Selenium RC</h2></div></div></div><p>
-      <a id="idp2610144" class="indexterm"></a>
+$_REQUEST['foo'] = 'bar';</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.selenium-rc"></a>Selenium RC の設定ブラウザ</h2></div></div></div><p>
+      <a id="idp1719600" class="indexterm"></a>
 
-      The <code class="literal">&lt;selenium&gt;</code> element and its
-      <code class="literal">&lt;browser&gt;</code> children can be used to
-      configure a list of Selenium RC servers.
+      <code class="literal">&lt;selenium&gt;</code> 要素とその子要素である
+      <code class="literal">&lt;browser&gt;</code> を使って、
+      Selenium RC サーバのリストを設定します。
     </p><pre class="screen">&lt;selenium&gt;
   &lt;browser name="Firefox on Linux"
            browser="*firefox /usr/lib/firefox/firefox-bin"
@@ -263,7 +258,7 @@ $_REQUEST['foo'] = 'bar';</pre></div><div class="section"><div class="titlepage"
            port="4444"
            timeout="30000"/&gt;
 &lt;/selenium&gt;</pre><p>
-      The XML configuration above corresponds to the following PHP code:
+      上の XML 設定は、次の PHP コードに対応します。
     </p><pre class="screen">class WebTest extends PHPUnit_Extensions_SeleniumTestCase
 {
     public static $browsers = array(
@@ -279,10 +274,10 @@ $_REQUEST['foo'] = 'bar';</pre></div><div class="section"><div class="titlepage"
     // ...
 }</pre></div></div>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="appendixes.annotations.html">Prev</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="appendixes.index.html">Next</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="appendixes.annotations.html">戻る</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="appendixes.upgrading.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">Please <a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">open a ticket</a> on GitHub to suggest improvements to this page. Thanks!</div></div><div class="col-md-2"></div></div>
+<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
     </div>
    </div>
    <hr/>

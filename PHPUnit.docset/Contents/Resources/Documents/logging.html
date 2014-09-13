@@ -2,32 +2,35 @@
 <html lang="en">
  <head>
   <meta charset="utf-8">
-  <title>PHPUnit Manual &#8211; Chapter 18. Logging</title>
+  <title>PHPUnit マニュアル &#8211; 第14章 ログ出力</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="logging.html">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/highlight.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
-  <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CSource+Code+Pro:400,700' rel='stylesheet' type='text/css'>
+  <!--[if lt IE 9]><script src="js/html5shiv.min.js"></script><![endif]-->
  </head>
  <body>
   
-  <div class="container">
+  <div class="container-fluid">
    <div class="row">
     <div style='padding: 1.5em'>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="selenium.html">Prev</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="extending-phpunit.html">Next</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="selenium.html">戻る</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="extending-phpunit.html">次へ</a></div>
      </div>
-<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="logging"></a>Chapter 18. Logging</h1></div></div></div><p>
-    <a id="idp436160" class="indexterm"></a>
+<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="logging"></a>第14章 ログ出力</h1></div></div></div><p>
+    <a id="idp17600" class="indexterm"></a>
 
-    PHPUnit can produce several types of logfiles.
-  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="logging.xml"></a>Test Results (XML)</h2></div></div></div><p>
-      The XML logfile for test results produced by PHPUnit is based upon the one
-      used by the <a class="ulink" href="http://ant.apache.org/manual/OptionalTasks/junit.html" target="_top">JUnit
-      task for Apache Ant</a>. The following example shows the XML
-      logfile generated for the tests in <code class="literal">ArrayTest</code>:
+    PHPUnit は、いくつかの形式のログファイルを作成することができます。
+  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="logging.xml"></a>テスト結果 (XML)</h2></div></div></div><p>
+      PHPUnit が作成するテスト結果の XML のログファイルは、
+      <a class="ulink" href="http://ant.apache.org/manual/OptionalTasks/junit.html" target="_top">
+      Apache Ant の JUnit タスク</a>
+      が使用しているものを参考にしています。
+      以下の例は、<code class="literal">ArrayTest</code> のテストが生成した
+      XML ログファイルです。
     </p><pre class="screen">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;testsuites&gt;
   &lt;testsuite name="ArrayTest"
@@ -51,10 +54,10 @@
               time="0.007986"/&gt;
   &lt;/testsuite&gt;
 &lt;/testsuites&gt;</pre><p>
-      The following XML logfile was generated for two tests,
-      <code class="literal">testFailure</code> and <code class="literal">testError</code>,
-      of a test case class named <code class="literal">FailureErrorTest</code> and
-      shows how failures and errors are denoted.
+      次の XML ログファイルは、テストクラス
+      <code class="literal">FailureErrorTest</code> にある 2 つのテスト
+      <code class="literal">testFailure</code> および <code class="literal">testError</code>
+      が出力したものです。失敗やエラーがどのように表示されるのかを確認しましょう。
     </p><pre class="screen">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;testsuites&gt;
   &lt;testsuite name="FailureErrorTest"
@@ -90,19 +93,20 @@ Exception:
 &lt;/error&gt;
     &lt;/testcase&gt;
   &lt;/testsuite&gt;
-&lt;/testsuites&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="logging.tap"></a>Test Results (TAP)</h2></div></div></div><p>
-      The <a class="ulink" href="http://testanything.org/" target="_top">Test Anything Protocol (TAP)</a>
-      is Perl's simple text-based interface between testing modules. The
-      following example shows the TAP logfile generated for the tests in
-      <code class="literal">ArrayTest</code>:
+&lt;/testsuites&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="logging.tap"></a>テスト結果 (TAP)</h2></div></div></div><p>
+      <a class="ulink" href="http://testanything.org/" target="_top">Test Anything Protocol (TAP)</a>
+      は、Perl のモジュールをテストする際に使用する、
+      シンプルなテキストベースのインターフェイスです。
+      以下の例は、<code class="literal">ArrayTest</code> のテストが生成した
+      TAP ログファイルです。
     </p><pre class="screen">TAP version 13
 ok 1 - testNewArrayIsEmpty(ArrayTest)
 ok 2 - testArrayContainsAnElement(ArrayTest)
 1..2</pre><p>
-      The following TAP logfile was generated for two tests,
-      <code class="literal">testFailure</code> and <code class="literal">testError</code>,
-      of a test case class named <code class="literal">FailureErrorTest</code> and
-      shows how failures and errors are denoted.
+      次の TAP ログファイルは、テストクラス
+      <code class="literal">FailureErrorTest</code> にあるメソッド
+      <code class="literal">testFailure</code> および <code class="literal">testError</code>
+      が出力したものです。失敗やエラーがどのように表示されるのかを確認しましょう。
     </p><pre class="screen">TAP version 13
 not ok 1 - Failure: testFailure(FailureErrorTest)
   ---
@@ -113,10 +117,10 @@ not ok 1 - Failure: testFailure(FailureErrorTest)
     expected: 1
   ...
 not ok 2 - Error: testError(FailureErrorTest)
-1..2</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="logging.json"></a>Test Results (JSON)</h2></div></div></div><p>
-      The <a class="ulink" href="http://www.json.org/" target="_top">JavaScript Object Notation (JSON)</a>
-      is a lightweight data-interchange format. The following example shows
-      the JSON messages generated for the tests in <code class="literal">ArrayTest</code>:
+1..2</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="logging.json"></a>テスト結果 (JSON)</h2></div></div></div><p>
+      <a class="ulink" href="http://www.json.org/" target="_top">JavaScript Object Notation (JSON)</a>
+      は、軽量なデータ交換用フォーマットです。次の例は、
+      <code class="literal">ArrayTest</code> のテストが作成した JSON メッセージです。
     </p><pre class="screen">{"event":"suiteStart","suite":"ArrayTest","tests":2}
 {"event":"test","suite":"ArrayTest",
  "test":"testNewArrayIsEmpty(ArrayTest)","status":"pass",
@@ -124,10 +128,10 @@ not ok 2 - Error: testError(FailureErrorTest)
 {"event":"test","suite":"ArrayTest",
  "test":"testArrayContainsAnElement(ArrayTest)","status":"pass",
  "time":0.000422954559,"trace":[],"message":""}</pre><p>
-      The following JSON messages were generated for two tests,
-      <code class="literal">testFailure</code> and <code class="literal">testError</code>,
-      of a test case class named <code class="literal">FailureErrorTest</code> and
-      show how failures and errors are denoted.
+      次の JSON メッセージは、
+      <code class="literal">FailureErrorTest</code> にある 2 つのテスト
+      <code class="literal">testFailure</code> および <code class="literal">testError</code>
+      が出力したものです。失敗やエラーがどのように表示されるのかを確認しましょう。
     </p><pre class="screen">{"event":"suiteStart","suite":"FailureErrorTest","tests":2}
 {"event":"test","suite":"FailureErrorTest",
  "test":"testFailure(FailureErrorTest)","status":"fail",
@@ -135,11 +139,12 @@ not ok 2 - Error: testError(FailureErrorTest)
  "message":"Failed asserting that &lt;integer:2&gt; is equal to &lt;integer:1&gt;."}
 {"event":"test","suite":"FailureErrorTest",
  "test":"testError(FailureErrorTest)","status":"error",
- "time":0.0083680152893066,"trace":[],"message":""}</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="logging.codecoverage.xml"></a>Code Coverage (XML)</h2></div></div></div><p>
-      The XML format for code coverage information logging produced by PHPUnit
-      is loosely based upon the one used by <a class="ulink" href="http://www.atlassian.com/software/clover/" target="_top">
-      Clover</a>. The following example shows the XML
-      logfile generated for the tests in <code class="literal">BankAccountTest</code>:
+ "time":0.0083.90152893066,"trace":[],"message":""}</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="logging.codecoverage.xml"></a>コードカバレッジ (XML)</h2></div></div></div><p>
+      PHPUnit がコードカバレッジ情報のログ出力の際に使用している XML のフォーマットは、
+      <a class="ulink" href="http://www.atlassian.com/software/clover/" target="_top">Clover</a>
+      のものを参考にしています。
+      以下の例は、<code class="literal">BankAccountTest</code> のテストが生成した
+      XML ログファイルです。
     </p><pre class="screen">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;coverage generated="1184835473" phpunit="3.6.0"&gt;
   &lt;project name="BankAccountTest" timestamp="1184835473"&gt;
@@ -174,28 +179,30 @@ not ok 2 - Error: testError(FailureErrorTest)
              coveredmethods="4" statements="13" coveredstatements="5"
              elements="17" coveredelements="9"/&gt;
   &lt;/project&gt;
-&lt;/coverage&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="logging.codecoverage.text"></a>Code Coverage (TEXT)</h2></div></div></div><p>
-      Human readable code coverage output for the command-line or a text file.
+&lt;/coverage&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="logging.codecoverage.text"></a>コードカバレッジ (テキスト)</h2></div></div></div><p>
+      人間が読める形式のコードカバレッジ情報を、コマンドラインあるいはテキストファイルに出力します。
       
-      The aim of this output format is to provide a quick coverage overview while
-      working on a small set of classes. For bigger projects this output can be
-      useful to get an quick overview of the projects coverage or when used with 
-      the <code class="literal">--filter</code> functionality.
+      この出力フォーマットの狙いは、ちょっとしたクラス群のカバレッジの概要を手軽に把握することです。
+      大規模なプロジェクトでは、このフォーマットを使えばプロジェクト全体のカバレッジを大まかに把握しやすくなるでしょう。
+      <code class="literal">--filter</code> と組み合わせて使うこともできます。
 
-      When used from the command-line by writing to <code class="literal">php://stdout</code>
-      this will honor the <code class="literal">--colors</code> setting.
+      コマンドラインから使う場合は <code class="literal">php://stdout</code> に書き込みます。
+      この出力は <code class="literal">--colors</code> の設定を反映したものになります。
 
-      Writing to standard out is the default option when used from the command-line.
+      コマンドラインから使った場合は、デフォルトの出力先は標準出力となります。
 
-      By default this will only show files that have at least one covered line.
-      This can only be changed via the <code class="literal">showUncoveredFiles</code> xml
-      configuration option. See <a class="xref" href="appendixes.configuration.html#appendixes.configuration.logging" title="Logging">the section called “Logging”</a>.
-    </p><div class="figure"><a id="code-coverage-analysis.figures.Code_Coverage4.png"></a><p class="title"><strong>Figure 18.1. Code Coverage output on the command-line with colors</strong></p><div class="figure-contents"><div><img src="http://phpunit.de/manual/current/en/figures/Code_Coverage4.png" alt="Code Coverage output on the command-line with colors"></img></div></div></div><br class="figure-break"></br></div></div>
+      デフォルトでは、テストで少なくとも一行はカバーしているファイルしか表示しません。
+      この設定は、xml の <code class="literal">showUncoveredFiles</code> オプションでしか変更できません。
+      <a class="xref" href="appendixes.configuration.html#appendixes.configuration.logging" title="ログ出力">「ログ出力」</a> を参照ください。
+
+      デフォルトでは、すべてのファイルとそのカバレッジ情報が、詳細形式で表示されます。
+      この設定は、xml のオプション <code class="literal">showOnlySummary</code> で変更できます。
+    </p><div class="figure"><a id="code-coverage-analysis.figures.Code_Coverage4.png"></a><p class="title"><strong>図14.1 コマンドラインでの、色つきのコードカバレッジ出力</strong></p><div class="figure-contents"><div><img src="https://phpunit.de/manual/current/ja/figures/Code_Coverage4.png" alt="コマンドラインでの、色つきのコードカバレッジ出力"></img></div></div></div><br class="figure-break"></br></div></div>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="selenium.html">Prev</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="extending-phpunit.html">Next</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="selenium.html">戻る</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="extending-phpunit.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">Please <a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">open a ticket</a> on GitHub to suggest improvements to this page. Thanks!</div></div><div class="col-md-2"></div></div>
+<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
     </div>
    </div>
    <hr/>

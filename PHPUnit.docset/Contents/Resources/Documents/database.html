@@ -2,150 +2,144 @@
 <html lang="en">
  <head>
   <meta charset="utf-8">
-  <title>PHPUnit Manual &#8211; Chapter 8. Database Testing</title>
+  <title>PHPUnit マニュアル &#8211; 第8章 データベースのテスト</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="database.html">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/highlight.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
-  <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CSource+Code+Pro:400,700' rel='stylesheet' type='text/css'>
+  <!--[if lt IE 9]><script src="js/html5shiv.min.js"></script><![endif]-->
  </head>
  <body>
   
-  <div class="container">
+  <div class="container-fluid">
    <div class="row">
     <div style='padding: 1.5em'>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="organizing-tests.html">Prev</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="incomplete-and-skipped-tests.html">Next</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="incomplete-and-skipped-tests.html">戻る</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="test-doubles.html">次へ</a></div>
      </div>
-<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="database"></a>Chapter 8. Database Testing</h1></div></div></div><p>
-    Many beginner and intermediate unit testing examples in any programming
-    language suggest that it is perfectly easy to test your application's logic with
-    simple tests. For database-centric applications this is far away from the
-    reality. Start using Wordpress, TYPO3 or Symfony with Doctrine or Propel,
-    for example, and you will easily experience considerable problems with
-    PHPUnit: just because the database is so tightly coupled to these libraries.
+<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="database"></a>第8章 データベースのテスト</h1></div></div></div><p>
+    初級者・中級者向けのユニットテストのサンプルは、
+    どんな言語を対象としたものであっても、
+    テストしやすいようなロジックに対してシンプルなテストをしているものばかりです。
+    データベースを扱う一般的なアプリケーションを考えると、これはまったく現実離れしています。
+    たとえば Wordpress や TYPO3、あるいは Symfony で Doctrine や Propel などを使い始めるとすぐに、
+    PHPUnit でのテストがやりづらいことを実感するはずです。
+    データベースとこれらのライブラリが密結合になっているからです。
   </p><p>
-    You probably know this scenario from your daily work and projects,
-    where you want to put your fresh or experienced PHPUnit skills to
-    work and get stuck by one of the following problems:
+    きっと日々の業務やプロジェクトでも身に覚えがあることでしょう。
+    自分の持つ PHPUnit に関する知識を駆使して作業を進めようとしたのに、
+    こんな問題のせいで行き詰ってしまうことが。
   </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
-        The method you want to test executes a rather large JOIN operation and
-        uses the data to calculate some important results.
+        テストしたいメソッドがかなり大きめの JOIN 操作を実行し、
+        データを使って重要な結果を算出している。
       </p></li><li class="listitem"><p>
-        Your business logic performs a mix of SELECT, INSERT, UPDATE and
-        DELETE statements.
+        ひとつのビジネスロジックの中で SELECT、INSERT、UPDATE そして DELETE
+        を組み合わせて実行している。
       </p></li><li class="listitem"><p>
-        You need to setup test data in (possibly much) more than two tables
-        to get reasonable initial data for the methods you want to test.
+        ふたつ以上の (おそらくもっと多い) テーブルから初期データを準備しないと
+        そのメソッドのテストができない。
       </p></li></ol></div><p>
-    The DbUnit extension considerably simplifies the setup of a database for
-    testing purposes and allows you to verify the contents of a database after
-    performing a series of operations. It can be installed like this:
-  </p><pre class="screen"><strong class="userinput"><code>pear install phpunit/DbUnit</code></strong></pre><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.supported-vendors-for-database-testing"></a>Supported Vendors for Database Testing</h2></div></div></div><p>
-      DbUnit currently supports MySQL, PostgreSQL, Oracle and SQLite. Through
-      <a class="ulink" href="http://framework.zend.com" target="_top">Zend Framework</a> or
+    DBUnit 拡張を使うと、テスト用のデータベースのセットアップを単純化でき、
+    データベース操作後の内容の検証もすることができます。
+  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.supported-vendors-for-database-testing"></a>データベースのテストに対応しているベンダー</h2></div></div></div><p>
+      DBUnit が現在サポートしているのは、MySQL および
+      PostgreSQL、Oracle、SQLite です。
+      <a class="ulink" href="http://framework.zend.com" target="_top">Zend Framework</a> や
       <a class="ulink" href="http://www.doctrine-project.org" target="_top">Doctrine 2</a>
-      integrations it has access to other database systems such as IBM DB2 or
-      Microsoft SQL Server.
-    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.difficulties-in-database-testing"></a>Difficulties in Database Testing</h2></div></div></div><p>
-      There is a good reason why all the examples on unit testing do not include
-      interactions with the database: these kind of tests are both complex to
-      setup and maintain. While testing against your database you need to take
-      care of the following variables:
+      を使うと、IBM DB2 や Microsoft SQL Server のような他のデータベースにもアクセスできます。
+    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.difficulties-in-database-testing"></a>データベースのテストの難しさ</h2></div></div></div><p>
+      ウェブ上にあるユニットテストのサンプルの中にデータベースを扱うものが全く見当たらない理由はなぜか。
+      それは、データベースを扱うテストは準備するのも保守するのもたいへんだからです。
+      データベースを使うテストをするには、このようなことに気をつける必要があります。
     </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
-          The database schema and tables
+          データベースのスキーマやテーブル
         </p></li><li class="listitem"><p>
-          Inserting the rows required for the test into these tables
+          テーブルへの、テストで必要となるレコードの追加
         </p></li><li class="listitem"><p>
-          Verifying the state of the database after your test has run
+          テスト実行後のデータベースの状態の検証
         </p></li><li class="listitem"><p>
-          Cleanup the database for each new test
+          テスト実行ごとのデータベースの後始末
         </p></li></ul></div><p>
-      Because many database APIs such as PDO, MySQLi or OCI8 are cumbersome to
-      use and verbose in writing doing these steps manually is an absolute
-      nightmare.
+      PDO や MySQLi あるいは OCI8 といったデータベース API はどれも使いにくい上に、
+      こういった処理を自分で書こうとすると長ったらしくなってしまって面倒です。
     </p><p>
-      Test code should be as short and precise as possible for several reasons:
+      テストコードはできる限り簡潔に、そして明確に書かねばなりません。その理由は次のとおりです。
     </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
-          You do not want to modify considerable amount of test code for little
-          changes in your production code.
+          製品コードにちょっと手を加えるたびに大量のテストコードを変更する羽目になるのは困る。
         </p></li><li class="listitem"><p>
-          You want to be able to read and understand the test code easily,
-          even months after writing it.
+          数ヵ月後に改めて読み直したときにも
+          読みやすく理解しやすいテストコードであってほしい。
         </p></li></ul></div><p>
-      Additionally you have to realize that the database is essentially a
-      global input variable to your code. Two tests in your test suite
-      could run against the same database, possibly reusing data multiple
-      times. Failures in one test can easily affect the result of the
-      following tests making your testing experience very difficult. The
-      previously mentioned cleanup step is of major importance
-      to solve the <span class="quote">“<span class="quote">database is a global input</span>”</span> problem.
+      さらに知っておく必要があることは、
+      データベースは基本的に、自分のコードへのグローバルな入力変数であるということです。
+      テストスイート内にあるふたつのテストを同じデータベースに対して実行すると、
+      おそらくデータを複数回再利用することになります。あるテストが失敗すると
+      それ以降のテストの結果にも影響を及ぼしやすく、テストを進めるのが非常に難しくなります。
+      先ほど箇条書きでまとめた中の「後始末」こそが、この
+      <span class="quote">「<span class="quote">データベースがグローバルな入力になる</span>」</span>
+      問題を解決するために重要です。
     </p><p>
-      DbUnit helps to simplify all these problems with database testing in an
-      elegant way.
+      DbUnit を使うと、
+      データベースのテストにおけるこれらの問題をシンプルにする助けになります。
     </p><p>
-      What PHPUnit cannot help you with is the fact that database tests
-      are very slow compared to tests not using the database. Depending
-      on how large the interactions with your database are your tests
-      could run a considerable amount of time. However if you keep the amount of
-      data used for each test small and try to test as much code using
-      non-database tests you can easily get away in under a minute even
-      for large test suites.
+      PHPUnit では助けようにもどうにもならないことが、
+      データベースのテストはデータベースを使わないものに比べてとても遅くなるという事実です。
+      テストの実行時間がどれくらいになるかはデータベースとのやりとりの量に依存しますが、
+      各テストで使うデータの量を少なめにしておいて
+      可能な限りはデータベースを使わないテストで済ませるようにすれば、
+      巨大なテストスイートであっても 1 分未満で実行させるのは容易です。
     </p><p>
-      The <a class="ulink" href="http://www.doctrine-project.org" target="_top">Doctrine 2
-      project</a>'s test suite, for example, currently has a test suite of
-      about 1000 tests where nearly half of them accesses the database
-      and still runs in 15 seconds against a MySQL database on a standard
-      desktop computer.
-    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.the-four-stages-of-a-database-test"></a>The four stages of a database test</h2></div></div></div><p>
-      In his book on xUnit Test Patterns Gerard Meszaros lists the four
-      stages of a unit-test:
+      <a class="ulink" href="http://www.doctrine-project.org" target="_top">Doctrine 2 プロジェクト</a> がよい例です。
+      このプロジェクトのテストスイートには現時点で約 1000 件のテストが含まれています。
+      そのほぼ半数がデータベースを扱うテストですが、
+      標準的なデスクトップコンピューター上の MySQL
+      を使ってテストスイートを実行しても 15 秒程度でテストが完了します。
+    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.the-four-stages-of-a-database-test"></a>データベーステストの四段階</h2></div></div></div><p>
+      Gerard Meszaros は、著書 xUnit Test Patterns でユニットテストを次の四段階に分類しています。
     </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
-          Set up fixture
+          フィクスチャのセットアップ (Setup)
         </p></li><li class="listitem"><p>
-          Exercise System Under Test
+          テストしたいシステムの実行 (Exercise)
         </p></li><li class="listitem"><p>
-          Verify outcome
+          結果の検証 (Verify)
         </p></li><li class="listitem"><p>
-          Teardown
+          後始末 (Teardown)
         </p></li></ol></div><div class="blockquote"><blockquote class="blockquote"><p>
-        <span class="strong"><strong>What is a Fixture?</strong></span>
+        <span class="strong"><strong>フィクスチャとは?</strong></span>
       </p><p>
-        A fixture describes the initial state your application and database
-        are in when you execute a test.
+        フィクスチャとは、アプリケーションやデータベースの初期状態のことです。
+        テストを実行する前に用意します。
       </p></blockquote></div><p>
-      Testing the database requires you to hook into at least the
-      setup and teardown to clean-up and write the required fixture data
-      into your tables. However the database extension has good reason to
-      revert the four stages in a database test to resemble the following
-      workflow that is executed for each single test:
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.clean-up-database"></a>1. Clean-Up Database</h3></div></div></div><p>
-        Since there is always a first test that runs against the database
-        you do not know exactly if there is already data in the tables.
-        PHPUnit will execute a TRUNCATE against all the tables you
-        specified to reset their status to empty.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.set-up-fixture"></a>2. Set up fixture</h3></div></div></div><p>
-        PHPUnit will then iterate over all the fixture rows specified and
-        insert them into their respective tables.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.run-test-verify-outcome-and-teardown"></a>3–5. Run Test, Verify outcome and Teardown</h3></div></div></div><p>
-        After the database is reset and loaded with its initial state the
-        actual test is executed by PHPUnit. This part of the test code does
-        not require awareness of the Database Extension at all, you can
-        go on and test whatever you like with your code.
+      データベースをテストするには、少なくとも setup と teardown
+      のときにはテーブルに接続してフィクスチャのクリーンアップや書き込みをしなければなりません。
+      しかし、データベース拡張には、
+      データベーステストの四段階を次のようなワークフローに振り向ける十分な理由があります。
+      このフローは、個々のテストに対して実行します。
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.clean-up-database"></a>1. データベースのクリーンアップ</h3></div></div></div><p>
+        データベースを扱う最初のテストというのはいつでも存在します。
+        実際のところ、そのときテーブルにデータが存在するのかどうかはわかりません。
+        PHPUnit は指定した全テーブルに対して TRUNCATE を実行し、
+        テーブルの中身を空にします。
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.set-up-fixture"></a>2. フィクスチャの準備</h3></div></div></div><p>
+        その後、PHPUnit はフィクスチャの各行を順次処理し、対応するテーブルに書き込みます。
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.run-test-verify-outcome-and-teardown"></a>3–5. テストの実行、結果の検証、そして後始末</h3></div></div></div><p>
+        データベースをリセットして初期状態を読み込んだら、
+        実際のテストを PHPUnit が実行します。
+        テストコードのこの部分は Database Extension の存在を知っている必要はなく、
+        コードに対してなんでもお好みのテストをすることができます。
       </p><p>
-        In your test use a special assertion called
-        <code class="literal">assertDataSetsEqual()</code> for verification purposes,
-        however this is entirely optional. This feature will be explained
-        in the section <span class="quote">“<span class="quote">Database Assertions</span>”</span>.
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.configuration-of-a-phpunit-database-testcase"></a>Configuration of a PHPUnit Database TestCase</h2></div></div></div><p>
-      Usually when using PHPUnit your testcases would extend the
-      <code class="literal">PHPUnit_Framework_TestCase</code> class in the
-      following way:
+        テストの中で <code class="literal">assertDataSetsEqual()</code>
+        という特殊なアサーションを使って検証しているかもしれません。
+        しかし、この機能は完全なオプションです。
+        この機能は <span class="quote">「<span class="quote">データベースアサーション</span>」</span> で説明します。
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.configuration-of-a-phpunit-database-testcase"></a>PHPUnit のデータベーステストケースの設定</h2></div></div></div><p>
+      通常、PHPUnit を使うテストケースでは
+      <code class="literal">PHPUnit_Framework_TestCase</code>
+      クラスを継承してこのようにします。
     </p><pre class="programlisting">&lt;?php
-require_once "PHPUnit/Framework/TestCase.php";
-
 class MyTest extends PHPUnit_Framework_TestCase
 {
     public function testCalculate()
@@ -154,14 +148,11 @@ class MyTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre><p>
-      If you want to test code that works with the Database Extension the
-      setup is a bit more complex and you have to extend a different
-      abstract TestCase requiring you to implement two abstract methods
-      <code class="literal">getConnection()</code> and
-      <code class="literal">getDataSet()</code>:
+      テストコードで Database Extension を使う場合は少しだけ複雑になり、
+      別の抽象テストケースを継承しなければなりません。そして、二つの抽象メソッド
+      <code class="literal">getConnection()</code> と
+      <code class="literal">getDataSet()</code> を実装します。
     </p><pre class="programlisting">&lt;?php
-require_once "PHPUnit/Extensions/Database/TestCase.php";
-
 class MyGuestbookTest extends PHPUnit_Extensions_Database_TestCase
 {
     /**
@@ -181,78 +172,70 @@ class MyGuestbookTest extends PHPUnit_Extensions_Database_TestCase
         return $this-&gt;createFlatXMLDataSet(dirname(__FILE__).'/_files/guestbook-seed.xml');
     }
 }
-?&gt;</pre><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.implementing-getconnection"></a>Implementing getConnection()</h3></div></div></div><p>
-        To allow the clean-up and fixture loading functionalities to work
-        the PHPUnit Database Extension requires access to a database
-        connection abstracted across vendors through the PDO library. It
-        is important to note that your application does not need to be
-        based on PDO to use PHPUnit's database extension, the connection is
-        merely used for the clean-up and fixture setup.
+?&gt;</pre><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.implementing-getconnection"></a>getConnection() の実装</h3></div></div></div><p>
+        クリーンアップとフィクスチャの読み込みの機能を動かすには、
+        PHPUnit Database Extension からデータベース接続にアクセスできなければなりません。
+        データベース接続の抽象化には PDO ライブラリを使います。
+        重要なのは、PHPUnit のデータベース拡張を使うためだけに
+        わざわざアプリケーションを PDO ベースにする必要はないということです。
+        この接続を使うのは、単にクリーンアップとフィクスチャの準備のためだけです。
       </p><p>
-        In the previous example we create an in-memory Sqlite connection
-        and pass it to the <code class="literal">createDefaultDBConnection</code>
-        method which wraps the PDO instance and the second parameter (the
-        database-name) in a very simple abstraction layer for database
-        connections of the type
-        <code class="literal">PHPUnit_Extensions_Database_DB_IDatabaseConnection</code>.
+        先ほどの例では、インメモリの SQLite 接続を作って
+        <code class="literal">createDefaultDBConnection</code> メソッドに渡しました。
+        このメソッドは PDO のインスタンスをラップしたもので、二番目のパラメータ
+        (データベース名) に非常にシンプルなデータベース接続の抽象化レイヤーを渡します。このパラメータの型は
+        <code class="literal">PHPUnit_Extensions_Database_DB_IDatabaseConnection</code> です。
       </p><p>
-        The section <span class="quote">“<span class="quote">Using the Database Connection</span>”</span> explains
-        the API of this interface and how you can make the best use of it.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.implementing-getdataset"></a>Implementing getDataSet()</h3></div></div></div><p>
-        The <code class="literal">getDataSet()</code> method defines how the initial
-        state of the database should look before each test is
-        executed. The state of a database is abstracted through the
-        concepts DataSet and DataTable both being represented by the
-        interfaces
-        <code class="literal">PHPUnit_Extensions_Database_DataSet_IDataSet</code> and
-        <code class="literal">PHPUnit_Extensions_Database_DataSet_IDataTable</code>.
-        The next section will describe in detail how these concepts work
-        and what the benefits are for using them in database testing.
+        <span class="quote">「<span class="quote">データベース接続の使い方</span>」</span>で、このインターフェイスの API
+        と、その活用法について説明します。
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.implementing-getdataset"></a>getDataSet() の実装</h3></div></div></div><p>
+        <code class="literal">getDataSet()</code> メソッドで定義するのは、
+        個々のテストを実行する前のデータベースの初期状態がどうあるべきかということです。
+        データベースの状態の抽象化は DataSet と DataTable
+        という概念を使って行い、これらをそれぞれ
+        <code class="literal">PHPUnit_Extensions_Database_DataSet_IDataSet</code> および
+        <code class="literal">PHPUnit_Extensions_Database_DataSet_IDataTable</code>
+        というインターフェイスで表します。次の節でこれらの概念を詳しく説明し、
+        これをデータベースのテストに使うと何がうれしいのかについても示します。
       </p><p>
-        For the implementation we only need to know that the
-        <code class="literal">getDataSet()</code> method is called once during
-        <code class="literal">setUp()</code> to retrieve the fixture data-set and
-        insert it into the database. In the example we are using a factory
-        method <code class="literal">createFlatXMLDataSet($filename)</code> that
-        represents a data-set through an XML representation.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.what-about-the-database-schema-ddl"></a>What about the Database Schema (DDL)?</h3></div></div></div><p>
-        PHPUnit assumes that the database schema with all its tables,
-        triggers, sequences and views is created before a test is run. This
-        means you as developer have to make sure that the database is
-        correctly setup before running the suite.
+        実装するために最低限知っておくべきことは、
+        <code class="literal">getDataSet()</code> メソッドがコールされるのが
+        <code class="literal">setUp()</code> の中で一度だけであり、
+        ここでフィクスチャのデータセットを取得してデータベースに挿入するということです。
+        先ほどの例では、ファクトリメソッド
+        <code class="literal">createFlatXMLDataSet($filename)</code>
+        を使って XML 形式のデータセットを表しました。
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.what-about-the-database-schema-ddl"></a>データベーススキーマ (DDL) とは?</h3></div></div></div><p>
+        PHPUnit は、テストの実行前にデータベーススキーマ
+        (すべてのテーブル、トリガー、シーケンス、ビューを含むもの)
+        ができあがっていることを想定しています。つまり開発者としては、
+        テストスイートを実行する前にデータベースを正しく準備しておかねばならないということです。
       </p><p>
-        There are several means to achieve this pre-condition to database
-        testing.
+        データベースのテストにおけるこの事前条件を満たす方法には、次のようなものがあります。
       </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
-            If you are using a persistent database (not Sqlite Memory) you can
-            easily setup the database once with tools such as phpMyAdmin for
-            MySQL and re-use the database for every test-run.
+            インメモリの SQLite ではなく永続化したデータベースを使うのなら、
+            最初に一度 phpMyAdmin (MySQL の場合) などのツールでデータベースを用意しておけば、
+            あとはテストを実行するたびにそれを再利用できます。
           </p></li><li class="listitem"><p>
-            If you are using libraries such as
-            <a class="ulink" href="http://www.doctrine-project.org" target="_top">Doctrine 2</a> or
+            <a class="ulink" href="http://www.doctrine-project.org" target="_top">Doctrine 2</a> や
             <a class="ulink" href="http://www.propelorm.org/" target="_top">Propel</a>
-            you can use their APIs to create the database schema you
-            need once before you run the tests. You can utilize
-            <a class="ulink" href="http://www.phpunit.de/manual/current/en/textui.html" target="_top">PHPUnit's Bootstrap and Configuration</a>
-            capabilities to execute this code whenever your tests are run.
-          </p></li></ol></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.tip-use-your-own-abstract-database-testcase"></a>Tip: Use your own Abstract Database TestCase</h3></div></div></div><p>
-        From the previous implementation example you can easily see that
-        <code class="literal">getConnection()</code> method is pretty static and
-        could be re-used in different database test-cases. Additionally to
-        keep performance of your tests good and database overhead low you
-        can refactor the code a little bit to get a generic abstract test
-        case for your application, which still allows you to specify a
-        different data-fixture for each test case:
+            といったライブラリを使っている場合は、その API を使えばテストの実行前に必要なデータベーススキーマを作ることができます。
+            <a class="ulink" href="textui.html" target="_top">PHPUnit のブートストラップ</a>
+            機能を使うと、そのコードをテスト実行時に毎回実行させることもできます。
+          </p></li></ol></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.tip-use-your-own-abstract-database-testcase"></a>ヒント: 自前でのデータベーステストケースの抽象化</h3></div></div></div><p>
+        先の実装例を見ればすぐにわかるでしょうが、
+        <code class="literal">getConnection()</code> メソッドはきわめて静的なものであり、
+        さまざまなデータベーステストケースで再利用することができます。
+        さらに、テストのパフォーマンスを良好に保ちつつデータベースのオーバーヘッドを下げるために、
+        ちょっとしたリファクタリングを施して汎用的な抽象テストケースを用意しましょう。
+        このようにしても、テストケースごとに異なるデータフィクスチャを指定することができます。
       </p><pre class="programlisting">&lt;?php
-require_once "PHPUnit/Extensions/Database/TestCase.php";
-
 abstract class MyApp_Tests_DatabaseTestCase extends PHPUnit_Extensions_Database_TestCase
 {
-    // only instantiate pdo once for test clean-up/fixture load
+    // PDO のインスタンス生成は、クリーンアップおよびフィクスチャ読み込みのときに一度だけ
     static private $pdo = null;
 
-    // only instantiate PHPUnit_Extensions_Database_DB_IDatabaseConnection once per test
-    private $conn = null;
+    // PHPUnit_Extensions_Database_DB_IDatabaseConnection のインスタンス生成は、テストご    private $conn = null;
 
     final public function getConnection()
     {
@@ -267,13 +250,13 @@ abstract class MyApp_Tests_DatabaseTestCase extends PHPUnit_Extensions_Database_
     }
 }
 ?&gt;</pre><p>
-        This has the database connection hardcoded in the PDO connection
-        though. PHPUnit has another awesome feature that could make this
-        testcase even more generic. If you use the
-        <a class="ulink" href="http://www.phpunit.de/manual/current/en/appendixes.configuration.html#appendixes.configuration.php-ini-constants-variables" target="_top">XML Configuration</a>
-        you could make the database connection configurable per test-run.
-        First let's create a <span class="quote">“<span class="quote">phpunit.xml</span>”</span> file in our tests/
-        directory of the application that looks like:
+        しかし、これはまだデータベースへの接続情報を
+        PDO 接続の設定にハードコードしてしまっています。
+        PHPUnit にはさらにすばらしい機能があるので、それを使ってテストケースをより汎用的にしましょう。
+        <a class="ulink" href="appendixes.configuration.html#appendixes.configuration.php-ini-constants-variables" target="_top">XML 設定ファイル</a>
+        を使えば、テストの実行のたびにデータベース接続を設定できます。
+        まずは <span class="quote">「<span class="quote">phpunit.xml</span>」</span> というファイルをアプリケーションの tests/ ディレクトリに作り、
+        中身をこのようにします。
       </p><pre class="screen">
 &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
 &lt;phpunit&gt;
@@ -285,14 +268,14 @@ abstract class MyApp_Tests_DatabaseTestCase extends PHPUnit_Extensions_Database_
     &lt;/php&gt;
 &lt;/phpunit&gt;
 </pre><p>
-        We can now modify our test-case to look like:
+        テストケースはこのように書き直せます。
       </p><pre class="programlisting">&lt;?php
 abstract class Generic_Tests_DatabaseTestCase extends PHPUnit_Extensions_Database_TestCase
 {
-    // only instantiate pdo once for test clean-up/fixture load
+    // PDO のインスタンス生成は、クリーンアップおよびフィクスチャ読み込みのときに一度だけ
     static private $pdo = null;
 
-    // only instantiate PHPUnit_Extensions_Database_DB_IDatabaseConnection once per test
+    // PHPUnit_Extensions_Database_DB_IDatabaseConnection のインスタンス生成は、テストごとに一度だけ
     private $conn = null;
 
     final public function getConnection()
@@ -308,69 +291,70 @@ abstract class Generic_Tests_DatabaseTestCase extends PHPUnit_Extensions_Databas
     }
 }
 ?&gt;</pre><p>
-        We can now run the database test suite using different
-        configurations from the command-line interface:
-      </p><pre class="screen"><strong class="userinput"><code>phpunit --configuration developer-a.xml MyTests/</code></strong>
-<strong class="userinput"><code>phpunit --configuration developer-b.xml MyTests/</code></strong></pre><p>
-        The possibility to run the database tests against different
-        database targets easily is very important if you are developing on
-        the development machine. If several developers run the database
-        tests against the same database connection you can easily
-        experience test-failures because of race-conditions.
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.understanding-datasets-and-datatables"></a>Understanding DataSets and DataTables</h2></div></div></div><p>
-      A central concept of PHPUnit's Database Extension are DataSets and
-      DataTables. You should try to understand this simple concept to
-      master database testing with PHPUnit. The DataSet and DataTable are
-      an abstraction layer around your database tables, rows and
-      columns. A simple API hides the underlying database contents in an
-      object structure, which can also be implemented by other
-      non-database sources.
+        データベースの設定情報を切り替えてテストスイートを実行するには、
+        コマンドラインから次のようにします。
+      </p><pre class="screen"><strong class="userinput"><code>user@desktop&gt; phpunit --configuration developer-a.xml MyTests/</code></strong>
+<strong class="userinput"><code>user@desktop&gt; phpunit --configuration developer-b.xml MyTests/</code></strong></pre><p>
+        データベースのテストを実行するときにターゲットデータベースを切り替えられるようにしておくことは、
+        開発機で作業をしている場合などは特に重要です。
+        複数の開発者が同じデータベース接続を使ってデータベースのテストを実行したりすると、
+        レースコンディション (競合条件) によるテストの失敗が頻発するでしょう。
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.understanding-datasets-and-datatables"></a>データセットとデータテーブルについて知る</h2></div></div></div><p>
+      PHPUnit Database Extension の中心となる概念が
+      データセットとデータテーブルです。まずはこの考え方を理解することが、
+      PHPUnit でのデータベースのテストをマスターする近道です。
+      データセットとデータテーブルは、データベースのテーブルや行、
+      そしてカラムの抽象化レイヤーです。シンプルな API
+      によってデータベースの内容をオブジェクト構造に隠蔽できるだけでなく、
+      データベース以外のソースによる実装もできるようになっています。
     </p><p>
-      This abstraction is necessary to compare the actual contents of a
-      database against the expected contents. Expectations can be
-      represented as XML, YAML, CSV files or PHP array for example. The
-      DataSet and DataTable interfaces enable the comparison of this
-      conceptually different sources, emulating relational database
-      storage in a semantically similar approach.
+      この抽象化を使って、データベースの実際の中身と我々が期待する内容を比較します。
+      期待する内容は XML や YAML そして CSV などのファイルでも表せますし、
+      PHP の配列として表すこともできます。
+      DataSet インターフェイスと DataTable インターフェイスのおかげで、
+      これらの全く異なる概念のソースをリレーショナルデータベースに見立てて
+      同様に扱えるようになります。
     </p><p>
-      A workflow for database assertions in your tests then consists of
-      three simple steps:
+      データベースのアサーションをテストの中で行う流れは、
+      次のようにシンプルな三段階となります。
     </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
-          Specify one or more tables in your database by table name (actual
-          dataset)
+          ひとつあるいは複数のテーブルをデータベース内から指定する
+          (実際のデータセット)。
         </p></li><li class="listitem"><p>
-          Specify the expected dataset in your preferred format (YAML, XML,
-          ..)
+          期待するデータセットをお好みのフォーマット (YAML, XML など)
+          で用意する。
         </p></li><li class="listitem"><p>
-          Assert that both dataset representations equal each other.
+          両者がお互いに等しいことを確認する。
         </p></li></ul></div><p>
-      Assertions are not the only use-case for the DataSet and DataTable
-      in PHPUnit's Database Extension. As shown in the previous section
-      they also describe the initial contents of a database. You are
-      forced to define a fixture dataset by the Database TestCase, which
-      is then used to:
+      データセットやデータテーブルの
+      PHPUnit Database Extension における使い道は、
+      何もアサーションだけだというわけではありません。先ほどの節で見たように、
+      これらを使ってデータベースの初期状態の内容を記述することもできます。
+      フィクスチャとなるデータセットを Database TestCase
+      で定義すると、それをこのように使うことができます。
     </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
-          Delete all the rows from the tables specified in the dataset.
+          データセットで指定したテーブルのすべての行を削除する。
         </p></li><li class="listitem"><p>
-          Write all the rows in the data-tables into the database.
-        </p></li></ul></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.available-implementations"></a>Available Implementations</h3></div></div></div><p>
-        There are three different types of datasets/datatables:
+          データテーブルのすべての行をデータベースに書き込む。
+        </p></li></ul></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.available-implementations"></a>利用できる実装</h3></div></div></div><p>
+        これら三種類のデータセット/データテーブルが用意されています。
       </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
-            File-Based DataSets and DataTables
+            ファイルベースのデータセットやデータテーブル
           </p></li><li class="listitem"><p>
-            Query-Based DataSet and DataTable
+            クエリベースのデータセットやデータテーブル
           </p></li><li class="listitem"><p>
-            Filter and Composition DataSets and DataTables
+            フィルタ用や合成用のデータセットやデータテーブル
           </p></li></ul></div><p>
-        The file-based datasets and tables are generally used for the
-        initial fixture and to describe the expected state of the database.
-      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.flat-xml-dataset"></a>Flat XML DataSet</h4></div></div></div><p>
-          The most common dataset is called Flat XML. It is a very simple xml
-          format where a tag inside the root node
-          <code class="literal">&lt;dataset&gt;</code> represents exactly one row in the
-          database. The tags name equals the table to insert the row into and
-          an attribute represents the column. An example for a simple guestbook
-          application could look like this:
+        ファイルベースのデータセットやデータテーブルは、
+        初期状態のフィクスチャを定義したり期待する状態を定義したりするときによく使います。
+      </p><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.flat-xml-dataset"></a>フラット XML データセット</h4></div></div></div><p>
+          最も一般的なデータセットは、フラット XML と呼ばれるものです。
+          これは非常にシンプルな xml 形式で、ルートノード
+          <code class="literal">&lt;dataset&gt;</code>
+          の中のタグがデータベースのひとつの行を表します。
+          テーブルと同じ名前のタグが追加する行を表し、
+          その属性がカラムを表します。
+          単純な掲示板アプリケーションの例は、このようになります。
         </p><pre class="screen">
 &lt;?xml version="1.0" ?&gt;
 &lt;dataset&gt;
@@ -378,32 +362,31 @@ abstract class Generic_Tests_DatabaseTestCase extends PHPUnit_Extensions_Databas
     &lt;guestbook id="2" content="I like it!" user="nancy" created="2010-04-26 12:14:20" /&gt;
 &lt;/dataset&gt;
 </pre><p>
-          This is obviously easy to write. Here
-          <code class="literal">&lt;guestbook&gt;</code> is the table name where two rows
-          are inserted into each with four columns <span class="quote">“<span class="quote">id</span>”</span>,
-          <span class="quote">“<span class="quote">content</span>”</span>, <span class="quote">“<span class="quote">user</span>”</span> and
-          <span class="quote">“<span class="quote">created</span>”</span> with their respective values.
+          見るからに書きやすそうですね。この場合は
+          <code class="literal">&lt;guestbook&gt;</code> がテーブル名で、
+          2 行が追加されます。そして、四つのカラム <span class="quote">「<span class="quote">id</span>」</span>、
+          <span class="quote">「<span class="quote">content</span>」</span>、<span class="quote">「<span class="quote">user</span>」</span> そして
+          <span class="quote">「<span class="quote">created</span>」</span> に、それぞれ対応する値が設定されています。
         </p><p>
-          However this simplicity comes at a cost.
+          しかし、この単純性による問題もあります。
         </p><p>
-          From the previous example it isn't obvious how you would specify an
-          empty table. You can insert a tag with no attributes with the name
-          of the empty table. A flat xml file for an empty guestbook table
-          would then look like:
+          たとえば、先ほどの例で空のテーブルはどうやって指定すればいいのかがよくわかりません。
+          実は、何も属性を指定せずにテーブルと同じ名前のタグを追加すれば、空のテーブルを表すことができます。
+          空の guestbook テーブルを表すフラット xml ファイルは、このようになります。
         </p><pre class="screen">
 &lt;?xml version="1.0" ?&gt;
 &lt;dataset&gt;
     &lt;guestbook /&gt;
 &lt;/dataset&gt;
 </pre><p>
-          The handling of NULL values with the flat xml dataset is tedious. A
-          NULL value is different than an empty string value in almost any
-          database (Oracle being an exception), something that is difficult
-          to describe in the flat xml format. You can represent a NULL's value
-          by omitting the attribute from the row specification. If our
-          guestbook would allow anonymous entries represented by a NULL value
-          in the user column, a hypothetical state of the guestbook table
-          could look like:
+          フラット xml データセットでの NULL 値の処理は、あまりおもしろいものではありません。
+          ほとんどのデータベースでは、NULL 値と空文字列は別のものとして扱います
+          (例外のひとつは Oracle です) が、これをフラット xml
+          形式で表すのは困難です。NULL 値を表すには、
+          行の指定のときに属性を省略します。
+          この例の掲示板で、匿名の投稿を許可し、そのときには
+          user カラムに NULL を指定することにしましょう。
+          guestbook テーブルの状態は、このようになります。
         </p><pre class="screen">
 &lt;?xml version="1.0" ?&gt;
 &lt;dataset&gt;
@@ -411,43 +394,43 @@ abstract class Generic_Tests_DatabaseTestCase extends PHPUnit_Extensions_Databas
     &lt;guestbook id="2" content="I like it!" created="2010-04-26 12:14:20" /&gt;
 &lt;/dataset&gt;
 </pre><p>
-          In this case the second entry is posted anonymously. However this
-          leads to a serious problem with column recognition. During dataset
-          equality assertions each dataset has to specify what columns a
-          table holds. If an attribute is NULL for all the rows of a
-          data-table, how would the Database Extension know that the column
-          should be part of the table?
+          この例では、二番目のエントリが匿名の投稿を表します。
+          しかし、これはカラムの認識において深刻な問題につながります。
+          データセットが等しいことを確認するアサーションでは、各データセットでテーブルの持つカラムを指定しなければなりません。
+          ある属性がデータテーブルのすべての行で NULL だったなら、
+          Database Extension はそのカラムがテーブルに存在することをどうやって知るというのでしょう?
         </p><p>
-          The flat xml dataset makes a crucial assumption now, defining that
-          the attributes on the first defined row of a table define the
-          columns of this table. In the previous example this would mean
-          <span class="quote">“<span class="quote">id</span>”</span>, <span class="quote">“<span class="quote">content</span>”</span>, <span class="quote">“<span class="quote">user</span>”</span> and
-          <span class="quote">“<span class="quote">created</span>”</span> are columns of the guestbook table. For the
-          second row where <span class="quote">“<span class="quote">user</span>”</span> is not defined a NULL would be
-          inserted into the database.
+          フラット XML データセットはここで、重大な前提を使っています。
+          テーブルの最初の行で定義されている属性が、そのテーブルのカラムを定義しているものと見なすのです。
+          先ほどの例では、guestbook テーブルのカラムが
+          <span class="quote">「<span class="quote">id</span>」</span> と <span class="quote">「<span class="quote">content</span>」</span>、<span class="quote">「<span class="quote">user</span>」</span> そして
+          <span class="quote">「<span class="quote">created</span>」</span> であると見なすということです。二番目の行には
+          <span class="quote">「<span class="quote">user</span>」</span> が定義されていないので、データベースには
+          NULL を挿入します。
         </p><p>
-          When the first guestbook entry is deleted from the dataset only
-          <span class="quote">“<span class="quote">id</span>”</span>, <span class="quote">“<span class="quote">content</span>”</span> and
-          <span class="quote">“<span class="quote">created</span>”</span> would be columns of the guestbook table,
-          since <span class="quote">“<span class="quote">user</span>”</span> is not specified.
+          guestbook の最初のエントリをデータセットから削除すると、guestbook テーブルのカラムは
+          <span class="quote">「<span class="quote">id</span>」</span>、<span class="quote">「<span class="quote">content</span>」</span> そして
+          <span class="quote">「<span class="quote">created</span>」</span> だけになってしまいます。
+          <span class="quote">「<span class="quote">user</span>」</span> が指定されていないからです。
         </p><p>
-          To use the Flat XML dataset effectively when NULL values are
-          relevant the first row of each table must not contain any NULL
-          value and only successive rows are allowed to omit attributes. This
-          can be awkward, since the order of the rows is a relevant factor
-          for database assertions.
+          フラット XML データセットを効率的に使うには、NULL 値がからむ場合は
+          各テーブルの最初の行には NULL を含まないようにします。
+          それ以降の行では、属性を省略して NULL を表すことができます。
+          これはあまりスマートなやり方ではありません。
+          というのも、データベースのアサーションで行の順番が影響してしまうからです。
         </p><p>
-          In turn, if you specify only a subset of the table columns in the
-          Flat XML dataset all the omitted values are set to their default
-          values. This will lead to errors if one of the omitted columns is
-          defined as <span class="quote">“<span class="quote">NOT NULL DEFAULT NULL</span>”</span>.
+          一方、テーブルのカラムの一部だけをフラット XML データセットで指定すると、
+          それ以外のカラムにはデフォルト値が設定されます。
+          そのため、もし省略したカラムの定義が
+          <span class="quote">「<span class="quote">NOT NULL DEFAULT NULL</span>」</span>
+          などの場合はエラーになります。
         </p><p>
-          In conclusion I can only advise using the Flat XML datasets if you
-          do not need NULL values.
+          結論として言えるのは、フラット XML データセットを使うなら
+          NULL 値が不要な場合だけにしておいたほうがよい、ということだけです。
         </p><p>
-          You can create a flat xml dataset instance from within your
-          Database TestCase by calling the
-          <code class="literal">createFlatXmlDataSet($filename)</code> method:
+          フラット XML データセットのインスタンスを
+          Database TestCase から作るには、
+          <code class="literal">createFlatXmlDataSet($filename)</code> メソッドを使います。
         </p><pre class="programlisting">&lt;?php
 class MyTestCase extends PHPUnit_Extensions_Database_TestCase
 {
@@ -456,15 +439,15 @@ class MyTestCase extends PHPUnit_Extensions_Database_TestCase
         return $this-&gt;createFlatXmlDataSet('myFlatXmlFixture.xml');
     }
 }
-?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.xml-dataset"></a>XML DataSet</h4></div></div></div><p>
-          There is another more structured XML dataset, which is a bit more
-          verbose to write but avoids the NULL problems of the Flat XML
-          dataset. Inside the root node <code class="literal">&lt;dataset&gt;</code> you
-          can specify <code class="literal">&lt;table&gt;</code>,
-          <code class="literal">&lt;column&gt;</code>, <code class="literal">&lt;row&gt;</code>,
-          <code class="literal">&lt;value&gt;</code> and
-          <code class="literal">&lt;null /&gt;</code> tags. An equivalent dataset to the
-          previously defined Guestbook Flat XML looks like:
+?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.xml-dataset"></a>XML データセット</h4></div></div></div><p>
+          もうひとつ別の構造の XML データセットもあります。これは多少冗長な書き方ですが、
+          フラット XML データセットにおける NULL の問題は発生しません。
+          ルートノード <code class="literal">&lt;dataset&gt;</code> の配下に指定できるタグは、
+          <code class="literal">&lt;table&gt;</code> や
+          <code class="literal">&lt;column&gt;</code>、<code class="literal">&lt;row&gt;</code>、
+          <code class="literal">&lt;value&gt;</code> そして
+          <code class="literal">&lt;null /&gt;</code> です。
+          先に定義した Guestbook のフラット XML と同様のデータセットは、このようになります。
         </p><pre class="screen">
 &lt;?xml version="1.0" ?&gt;
 &lt;dataset&gt;
@@ -488,19 +471,20 @@ class MyTestCase extends PHPUnit_Extensions_Database_TestCase
     &lt;/table&gt;
 &lt;/dataset&gt;
 </pre><p>
-          Any defined <code class="literal">&lt;table&gt;</code> has a name and requires
-          a definition of all the columns with their names. It can contain zero
-          or any positive number of nested <code class="literal">&lt;row&gt;</code>
-          elements. Defining no <code class="literal">&lt;row&gt;</code> element means
-          the table is empty. The <code class="literal">&lt;value&gt;</code> and
-          <code class="literal">&lt;null /&gt;</code> tags have to be specified in the
-          order of the previously given <code class="literal">&lt;column&gt;</code>
-          elements. The <code class="literal">&lt;null /&gt;</code> tag obviously means
-          that the value is NULL.
+          <code class="literal">&lt;table&gt;</code> には name が必須で、
+          さらにすべてのカラムの名前を定義しなければなりません。
+          また、ゼロ個以上の <code class="literal">&lt;row&gt;</code>
+          要素を含めることができます。<code class="literal">&lt;row&gt;</code>
+          要素を定義しなければ、そのテーブルが空であることになります。
+          <code class="literal">&lt;value&gt;</code> タグや
+          <code class="literal">&lt;null /&gt;</code> タグは、先に指定した
+          <code class="literal">column&gt;</code> 要素の順番で指定しなければなりません。
+          <code class="literal">&lt;null /&gt;</code> タグは、
+          見た目の通り、値が NULL であることを表します。
         </p><p>
-          You can create a xml dataset instance from within your
-          Database TestCase by calling the
-          <code class="literal">createXmlDataSet($filename)</code> method:
+          XML データセットのインスタンスを
+          Database TestCase から作るには、
+          <code class="literal">createXmlDataSet($filename)</code> メソッドを使います。
         </p><pre class="programlisting">&lt;?php
 class MyTestCase extends PHPUnit_Extensions_Database_TestCase
 {
@@ -509,19 +493,18 @@ class MyTestCase extends PHPUnit_Extensions_Database_TestCase
         return $this-&gt;createXMLDataSet('myXmlFixture.xml');
     }
 }
-?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.mysql-xml-dataset"></a>MySQL XML DataSet</h4></div></div></div><p>
-          This new XML format is specific to the
-          <a class="ulink" href="http://www.mysql.com" target="_top">MySQL database server</a>.
-          Support for it was added in PHPUnit 3.5. Files in this format can
-          be generated using the
+?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.mysql-xml-dataset"></a>MySQL XML データセット</h4></div></div></div><p>
+          この新しい XML フォーマットは、
+          <a class="ulink" href="http://www.mysql.com" target="_top">MySQL データベース</a> 専用です。
+          PHPUnit 3.5 以降で対応します。この形式のファイルを生成するには、
           <a class="ulink" href="http://dev.mysql.com/doc/refman/5.0/en/mysqldump.html" target="_top"><code class="literal">mysqldump</code></a>
-          utility. Unlike CSV datasets, which <code class="literal">mysqldump</code>
-          also supports, a single file in this XML format can contain data
-          for multiple tables. You can create a file in this format by
-          invoking <code class="literal">mysqldump</code> like so:
+          を使います。<code class="literal">mysqldump</code> では CSV データセットも対応していますが、
+          それとは違ってこの XML 形式の場合はひとつのファイルに複数のテーブルを含めることができます。
+          この形式のファイルを作るには、
+          <code class="literal">mysqldump</code> を次のように実行します。
         </p><pre class="screen"><strong class="userinput"><code>mysqldump --xml -t -u [username] --password=[password] [database] &gt; /path/to/file.xml</code></strong></pre><p>
-          This file can be used in your Database TestCase by calling the
-          <code class="literal">createMySQLXMLDataSet($filename)</code> method:
+          このファイルを Database TestCase で使うには、
+          <code class="literal">createMySQLXMLDataSet($filename)</code> メソッドをコールします。
         </p><pre class="programlisting">&lt;?php
 class MyTestCase extends PHPUnit_Extensions_Database_TestCase
 {
@@ -530,11 +513,8 @@ class MyTestCase extends PHPUnit_Extensions_Database_TestCase
         return $this-&gt;createMySQLXMLDataSet('/path/to/file.xml');
     }
 }
-?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.yaml-dataset"></a>YAML DataSet</h4></div></div></div><p>
-          New with PHPUnit 3.4 is the ability to specify a dataset in the
-          popular YAML format. For this to work you have to install PHPUnit
-          3.4 from PEAR with its optional Symfony YAML dependency. You can
-          then write a YAML dataset for the guestbook example:
+?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.yaml-dataset"></a>YAML データセット</h4></div></div></div><p>
+          あるいは、YAML データセットを使って、guestbook の例をこのように表すこともできます。
         </p><pre class="screen">
 guestbook:
   -
@@ -548,16 +528,16 @@ guestbook:
     user:
     created: 2010-04-26 12:14:20
 </pre><p>
-          This is simple, convient AND it solves the NULL issue that the
-          similar Flat XML dataset has. A NULL in YAML is just the column
-          name without no value specified. An empty string is specified as
-          <code class="literal">column1: ""</code>.
+          これは、シンプルで便利なうえに、さらにフラット XML
+          データセットが持つ NULL の問題も解決しています。
+          NULL を YAML で表すには、単にカラム名の後に何も値を指定しなければよいのです。
+          空文字列を指定する場合は
+          <code class="literal">column1: ""</code>
+          のようにします。
         </p><p>
-          The YAML Dataset has no factory method on the Database TestCase
-          currently, so you have to instantiate it manually:
+          YAML Dataset 用のファクトリーメソッドは今のところ Database TestCase
+          に存在しないので、手動でインスタンスを生成しなければなりません。
         </p><pre class="programlisting">&lt;?php
-require_once "PHPUnit/Extensions/Database/DataSet/YamlDataSet.php";
-
 class YamlGuestbookTest extends PHPUnit_Extensions_Database_TestCase
 {
     protected function getDataSet()
@@ -567,24 +547,23 @@ class YamlGuestbookTest extends PHPUnit_Extensions_Database_TestCase
         );
     }
 }
-?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.csv-dataset"></a>CSV DataSet</h4></div></div></div><p>
-          Another file-based dataset is based on CSV files. Each table of the
-          dataset is represented as a single CSV file. For our guestbook
-          example we would define a guestbook-table.csv file:
+?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.csv-dataset"></a>CSV データセット</h4></div></div></div><p>
+          さらにもうひとつのファイルベースのデータセットとして、CSV
+          ファイルを使ったものもあります。データセット内の各テーブルを、
+          それぞれ単一の CSV ファイルとして扱います。
+          guestbook の例では、このようなファイル
+          guestbook-table.csv を定義します。
         </p><pre class="screen">
-id;content;user;created
-1;"Hello buddy!";"joe";"2010-04-24 17:15:23"
-2;"I like it!""nancy";"2010-04-26 12:14:20"
+id,content,user,created
+1,"Hello buddy!","joe","2010-04-24 17:15:23"
+2,"I like it!","nancy","2010-04-26 12:14:20"
 </pre><p>
-          While this is very convenient for editing with Excel or OpenOffice,
-          you cannot specify NULL values with the CSV dataset. An empty
-          column will lead to the database default empty value being inserted
-          into the column.
+          この形式は Excel や OpenOffice で編集できるという点で非常に便利ですが、
+          CSV データセットでは NULL 値を指定することができません。
+          空のカラムは、データベースのデフォルトに基づいた空の値として扱われます。
         </p><p>
-          You can create a CSV DataSet by calling:
+          CSV データセットを作るには、このようにします。
         </p><pre class="programlisting">&lt;?php
-require_once 'PHPUnit/Extensions/Database/DataSet/CsvDataSet.php';
-
 class CsvGuestbookTest extends PHPUnit_Extensions_Database_TestCase
 {
     protected function getDataSet()
@@ -594,10 +573,10 @@ class CsvGuestbookTest extends PHPUnit_Extensions_Database_TestCase
         return $dataSet;
     }
 }
-?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.array-dataset"></a>Array DataSet</h4></div></div></div><p>
-          There is no Array based DataSet in PHPUnit's Database Extension
-          (yet), but we can implement our own easily. Our guestbook example
-          should look like:
+?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.array-dataset"></a>Array データセット</h4></div></div></div><p>
+          PHPUnit の Database Extension には、(今のところ)
+          配列ベースのデータセットが存在しません。しかし、自分で簡単に実装できます。
+          guestbook の例だと、このようになります。
         </p><pre class="programlisting">&lt;?php
 class ArrayGuestbookTest extends PHPUnit_Extensions_Database_TestCase
 {
@@ -612,32 +591,21 @@ class ArrayGuestbookTest extends PHPUnit_Extensions_Database_TestCase
     }
 }
 ?&gt;</pre><p>
-          A PHP DataSet has obvious advantages over all the other file-based
-          datasets:
+          PHP の DataSet には、これまでのファイルベースのデータセットに比べて明らかな利点があります。
         </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
-              PHP Arrays can obviously handle <code class="literal">NULL</code> values.
+              PHP の配列は <code class="literal">NULL</code> 値を扱える。
             </p></li><li class="listitem"><p>
-              You won't need additional files for assertions and can specify them
-              directly in the TestCase.
+              アサーション用に新たなファイルを用意する必要がなく、
+              直接テストケース内で指定できる。
             </p></li></ul></div><p>
-          For this dataset like the Flat XML, CSV and YAML DataSets the keys
-          of the first specified row define the table's column names, in the
-          previous case this would be <span class="quote">“<span class="quote">id</span>”</span>,
-          <span class="quote">“<span class="quote">content</span>”</span>, <span class="quote">“<span class="quote">user</span>”</span> and
-          <span class="quote">“<span class="quote">created</span>”</span>.
+          このデータセットでは、フラット XML や CSV そして YAML
+          データセットと同様に、最初に指定した行のキーがテーブルのカラム名を表します。
+          つまり、先ほどの例だと <span class="quote">「<span class="quote">id</span>」</span>、
+          <span class="quote">「<span class="quote">content</span>」</span>、<span class="quote">「<span class="quote">user</span>」</span> そして
+          <span class="quote">「<span class="quote">created</span>」</span> です。
         </p><p>
-          The implementation for this Array DataSet is simple and
-          straightforward:
+          この Array データセットの実装は、シンプルで直感的なものです。
         </p><pre class="programlisting">&lt;?php
-require_once 'PHPUnit/Util/Filter.php';
-
-require_once 'PHPUnit/Extensions/Database/DataSet/AbstractDataSet.php';
-require_once 'PHPUnit/Extensions/Database/DataSet/DefaultTableIterator.php';
-require_once 'PHPUnit/Extensions/Database/DataSet/DefaultTable.php';
-require_once 'PHPUnit/Extensions/Database/DataSet/DefaultTableMetaData.php';
-
-PHPUnit_Util_Filter::addFileToFilter(__FILE__, 'PHPUNIT');
-
 class MyApp_DbUnit_ArrayDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
 {
     /**
@@ -680,39 +648,37 @@ class MyApp_DbUnit_ArrayDataSet extends PHPUnit_Extensions_Database_DataSet_Abst
         return $this-&gt;tables[$tableName];
     }
 }
-?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.query-sql-dataset"></a>Query (SQL) DataSet</h4></div></div></div><p>
-          For database assertions you do not only need the file-based datasets
-          but also a Query/SQL based Dataset that contains the actual
-          contents of the database. This is where the Query DataSet shines:
+?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.query-sql-dataset"></a>Query (SQL) データセット</h4></div></div></div><p>
+          データベースのアサーションでは、ファイルベースのデータセットだけでなく
+          Query/SQL ベースのデータセットでデータベースの実際の中身を含むものが必要になることもあります。
+          そんなときに使えるのが Query データセットです。
         </p><pre class="programlisting">&lt;?php
 $ds = new PHPUnit_Extensions_Database_DataSet_QueryDataSet($this-&gt;getConnection());
 $ds-&gt;addTable('guestbook');
 ?&gt;</pre><p>
-          Adding a table just by name is an implicit way to define the
-          data-table with the following query:
+          単にテーブル名だけを指定してテーブルを追加すると、
+          次のクエリを実行してデータテーブルを定義したのと同じ意味になります。
         </p><pre class="programlisting">&lt;?php
 $ds = new PHPUnit_Extensions_Database_DataSet_QueryDataSet($this-&gt;getConnection());
 $ds-&gt;addTable('guestbook', 'SELECT * FROM guestbook');
 ?&gt;</pre><p>
-          You can make use of this by specifying arbitrary queries for your
-          tables, for example restricting rows, column or adding
-          <code class="literal">ORDER BY</code> clauses:
+          ここでテーブルに対して任意のクエリを実行して、
+          取得する行や列を絞り込んだり
+          <code class="literal">ORDER BY</code> 句を追加したりすることができます。
         </p><pre class="programlisting">&lt;?php
 $ds = new PHPUnit_Extensions_Database_DataSet_QueryDataSet($this-&gt;getConnection());
 $ds-&gt;addTable('guestbook', 'SELECT id, content FROM guestbook ORDER BY created DESC');
 ?&gt;</pre><p>
-          The section on Database Assertions will show some more details on
-          how to make use of the Query DataSet.
-        </p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.database-db-dataset"></a>Database (DB) Dataset</h4></div></div></div><p>
-          Accessing the Test Connection you can automatically create a
-          DataSet that consists of all the tables with their content in the
-          database specified as second parameter to the Connections Factory
-          method.
+          データベースアサーションの節で、このデータセットを使う方法をより詳しく説明しています。
+        </p></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.database-db-dataset"></a>Database (DB) データセット</h4></div></div></div><p>
+          テスト用のデータベース接続にアクセスすると、
+          自動的にすべてのテーブルとその中身を含むデータセットを生成します。
+          接続先のデータベースは、接続用のファクトリーメソッドの二番目のパラメータで指定します。
         </p><p>
-          You can either create a dataset for the complete database as shown
-          in <code class="literal">testGuestbook()</code>, or restrict it to a set of
-          specified table names with a whitelist as shown in
-          <code class="literal">testFilteredGuestbook()</code> method.
+          データベース全体の完全なデータセットを作るには
+          <code class="literal">testGuestbook()</code> のようにします。
+          ホワイトリスト形式で指定したテーブルだけに絞り込むには
+          <code class="literal">testFilteredGuestbook()</code> メソッドのようにします。
         </p><pre class="programlisting">&lt;?php
 class MySqlGuestbookTest extends PHPUnit_Extensions_Database_TestCase
 {
@@ -739,15 +705,15 @@ class MySqlGuestbookTest extends PHPUnit_Extensions_Database_TestCase
         // ...
     }
 }
-?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.replacement-dataset"></a>Replacement DataSet</h4></div></div></div><p>
-          I have been talking about NULL problems with the Flat XML and CSV
-          DataSet, but there is a slightly complicated workaround to get both
-          types of datasets working with NULLs.
+?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.replacement-dataset"></a>Replacement データセット</h4></div></div></div><p>
+          これまで、フラット XML や CSV のデータセットには NULL
+          の問題があると説明してきました。
+          しかし、ちょっとわかりにくい回避策を使えばこれらのデータセットで
+          NULL を扱うこともできます。
         </p><p>
-          The Replacement DataSet is a decorator for an existing dataset and
-          allows you to replace values in any column of the dataset by another
-          replacement value. To get our guestbook example working with NULL
-          values we specify the file like:
+          Replacement データセットは既存のデータセットに対するデコレータで、
+          データセットの任意のカラムの値を別の値で置換することができます。
+          guestbook の例で NULL 値を扱うには、このようなファイルを作ります。
         </p><pre class="screen">
 &lt;?xml version="1.0" ?&gt;
 &lt;dataset&gt;
@@ -755,10 +721,8 @@ class MySqlGuestbookTest extends PHPUnit_Extensions_Database_TestCase
     &lt;guestbook id="2" content="I like it!" user="##NULL##" created="2010-04-26 12:14:20" /&gt;
 &lt;/dataset&gt;
 </pre><p>
-          We then wrap the Flat XML DataSet into a Replacement DataSet:
+          そして、フラット XML データセットを Replacement データセットでラップします。
         </p><pre class="programlisting">&lt;?php
-require_once 'PHPUnit/Extensions/Database/DataSet/ReplacementDataSet.php';
-
 class ReplacementTest extends PHPUnit_Extensions_Database_TestCase
 {
     public function getDataSet()
@@ -769,11 +733,12 @@ class ReplacementTest extends PHPUnit_Extensions_Database_TestCase
         return $rds;
     }
 }
-?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.dataset-filter"></a>DataSet Filter</h4></div></div></div><p>
-          If you have a large fixture file you can use the DataSet Filter for
-          white- and blacklisting of tables and columns that should be
-          contained in a sub-dataset. This is especially handy in combination
-          with the DB DataSet to filter the columns of the datasets.
+?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.dataset-filter"></a>データセットフィルタ</h4></div></div></div><p>
+          巨大なフィクスチャファイルを扱うときには、
+          データセットフィルタをホワイトリストあるいはブラックリストとして使って
+          テーブルやカラムを絞り込んだサブデータセットを作ることができます。
+          これは、DB データセットと組み合わせて
+          データセットのカラムを絞り込むときに使うと非常に便利です。
         </p><pre class="programlisting">&lt;?php
 class DataSetFilterTest extends PHPUnit_Extensions_Database_TestCase
 {
@@ -800,30 +765,30 @@ class DataSetFilterTest extends PHPUnit_Extensions_Database_TestCase
     }
 }
 ?&gt;</pre><div class="blockquote"><blockquote class="blockquote"><p>
-            <span class="strong"><strong>NOTE</strong></span> You cannot use both exclude
-            and include column filtering on the same table, only on different
-            ones. Plus it is only possible to either white- or blacklist
-            tables, not both of them.
-          </p></blockquote></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.composite-dataset"></a>Composite DataSet</h4></div></div></div><p>
-          The composite DataSet is very useful for aggregating several
-          already existing datasets into a single dataset. When several
-          datasets contain the same table the rows are appended in the
-          specified order. For example if we have two datasets
-          <span class="emphasis"><em>fixture1.xml</em></span>:
+            <span class="strong"><strong>注意</strong></span>
+            ひとつのテーブルに対してカラムの exclude フィルタと
+            include フィルタを同時に使うことはできません。
+            さらに、テーブルのホワイトリストとブラックリストはどちらか一方しか指定できません。
+          </p></blockquote></div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a id="database.composite-dataset"></a>Composite データセット</h4></div></div></div><p>
+          Composite データセットは、既存の複数のデータセットをひとつにまとめるときに有用です。
+          複数のデータセットに同名のテーブルが含まれる場合は、
+          指定した順で行を連結します。
+          たとえば、このようなふたつのデータセットがあるものとしましょう。
+          まずは <span class="emphasis"><em>fixture1.xml</em></span>。
         </p><pre class="screen">
 &lt;?xml version="1.0" ?&gt;
 &lt;dataset&gt;
     &lt;guestbook id="1" content="Hello buddy!" user="joe" created="2010-04-24 17:15:23" /&gt;
 &lt;/dataset&gt;
 </pre><p>
-          and <span class="emphasis"><em>fixture2.xml</em></span>:
+          そして <span class="emphasis"><em>fixture2.xml</em></span>。
         </p><pre class="screen">
 &lt;?xml version="1.0" ?&gt;
 &lt;dataset&gt;
     &lt;guestbook id="2" content="I like it!" user="##NULL##" created="2010-04-26 12:14:20" /&gt;
 &lt;/dataset&gt;
 </pre><p>
-          Using the Composite DataSet we can aggregate both fixture files:
+          Composite データセットを使えば、両方のフィクスチャファイルをまとめることができます。
         </p><pre class="programlisting">&lt;?php
 class CompositeTest extends PHPUnit_Extensions_Database_TestCase
 {
@@ -839,16 +804,16 @@ class CompositeTest extends PHPUnit_Extensions_Database_TestCase
         return $compositeDs;
     }
 }
-?&gt;</pre></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.beware-of-foreign-keys"></a>Beware of Foreign Keys</h3></div></div></div><p>
-        During Fixture SetUp PHPUnit's Database Extension inserts the rows
-        into the database in the order they are specified in your fixture.
-        If your database schema uses foreign keys this means you have to
-        specify the tables in an order that does not cause foreign key
-        constraints to fail.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.implementing-your-own-datasetsdatatables"></a>Implementing your own DataSets/DataTables</h3></div></div></div><p>
-        To understand the internals of DataSets and DataTables, lets have a
-        look at the interface of a DataSet. You can skip this part if you
-        do not plan to implement your own DataSet or DataTable.
+?&gt;</pre></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.beware-of-foreign-keys"></a>外部キーには注意</h3></div></div></div><p>
+        フィクスチャを準備するとき、PHPUnit の Database Extension
+        はフィクスチャ内で定義された順に行を追加していきます。
+        データベースのスキーマ定義で外部キーを使っている場合は、
+        外部キー制約に違反しないような順番でテーブルを指定しなければなりません。
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.implementing-your-own-datasetsdatatables"></a>自作のデータセットやデータテーブルの実装</h3></div></div></div><p>
+        データセットやデータテーブルの内部構造を理解するために、
+        まずはデータセットのインターフェイスから見ていきましょう。
+        自分でデータセットやデータテーブルを作るつもりのない人は、
+        読み飛ばしてもかまいません。
       </p><pre class="programlisting">&lt;?php
 interface PHPUnit_Extensions_Database_DataSet_IDataSet extends IteratorAggregate
 {
@@ -860,22 +825,23 @@ interface PHPUnit_Extensions_Database_DataSet_IDataSet extends IteratorAggregate
     public function getReverseIterator();
 }
 ?&gt;</pre><p>
-        The public interface is used internally by the
-        <code class="literal">assertDataSetsEqual()</code> assertion on the Database
-        TestCase to check for dataset quality. From the
-        <code class="literal">IteratorAggregate</code> interface the IDataSet
-        inherits the <code class="literal">getIterator()</code> method to iterate
-        over all tables of the dataset. The reverse iterator allows PHPUnit to 
-        truncate tables opposite the order they were created to satisfy foreign 
-        key constraints.
+        公開インターフェイスは、データベーステストケースの
+        <code class="literal">assertDataSetsEqual()</code>
+        アサーションで内部的に使われており、これでデータセットの内容を検証します。
+        IDataSet は <code class="literal">IteratorAggregate</code>
+        インターフェイスから <code class="literal">getIterator()</code>
+        メソッドを継承しており、これを使ってデータセット内の全テーブルの反復処理を行います。
+        リバースイテレータを使うと、PHPUnit で作ったテーブルのデータの切り詰めを、
+        テーブルを作ったときと逆の順番で行えます。これで、外部キー制約に違反せずに済むようになります。
       </p><p>
-        Depending on the implementation different approaches are taken to
-        add table instances to a dataset. For example, tables are added
-        internally during construction from the source file in all
-        file-based datasets such as <code class="literal">YamlDataSet</code>,
-        <code class="literal">XmlDataSet</code> or <code class="literal">FlatXmlDataSet</code>.
+        テーブルのインスタンスをデータセットに追加するには、
+        実装によってさまざまな手法があります。たとえば
+        <code class="literal">YamlDataSet</code> や
+        <code class="literal">XmlDataSet</code> そして <code class="literal">FlatXmlDataSet</code>
+        のようなファイルベースのデータセットでは、
+        データセットの作成時にソースファイルを使って内部的に追加します。
       </p><p>
-        A table is also represented by the following interface:
+        テーブルは、このようなインターフェイスを使って表します。
       </p><pre class="programlisting">&lt;?php
 interface PHPUnit_Extensions_Database_DataSet_ITable
 {
@@ -886,30 +852,28 @@ interface PHPUnit_Extensions_Database_DataSet_ITable
     public function assertEquals(PHPUnit_Extensions_Database_DataSet_ITable $other);
 }
 ?&gt;</pre><p>
-        Except the <code class="literal">getTableMetaData()</code> method it is
-        pretty self-explainatory. The methods are used are all required for
-        the different assertions of the Database Extension that are
-        explained in the next chapter. The
-        <code class="literal">getTableMetaData()</code> method has to return an
-        implementation of the
+        <code class="literal">getTableMetaData()</code> メソッドは別として、
+        それ以外のメソッドはまさに文字通りの働きをするものです。
+        これらのメソッドはすべて、Database Extension のさまざまなアサーションで必須となります。
+        その詳細は次の章で説明します。
+        <code class="literal">getTableMetaData()</code> メソッドの返す値は、
         <code class="literal">PHPUnit_Extensions_Database_DataSet_ITableMetaData</code>
-        interface, which describes the structure of the table. It holds
-        information on:
+        インターフェイスを実装したものでなければなりません。
+        このインターフェイスはテーブルの構造を表し、このような情報を保持します。
       </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
-            The table name
+            テーブル名。
           </p></li><li class="listitem"><p>
-            An array of column-names of the table, ordered by their appearance
-            in the result-set.
+            テーブルのカラム名の配列。並び順は、結果セットに登場する順と同じ。
           </p></li><li class="listitem"><p>
-            An array of the primary-key columns.
+            主キーカラムの配列。
           </p></li></ul></div><p>
-        This interface also has an assertion that checks if two instances
-        of Table Metadata equal each other, which is used by the data-set
-        equality assertion.
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.the-connection-api"></a>The Connection API</h2></div></div></div><p>
-      There are three interesting methods on the Connection interface
-      which has to be returned from the
-      <code class="literal">getConnection()</code> method on the Database TestCase:
+        このインターフェイスには、ふたつの TableMetaData
+        のインスタンスがお互いに等しいかを調べるアサーションも定義されています。
+        これは、データセットの同一性を調べるアサーションで利用するものです。
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.the-connection-api"></a>接続 API</h2></div></div></div><p>
+      Connection インターフェイスには、三種類のおもしろいメソッドが用意されています。
+      このインターフェイスは、データベーステストケースの
+      <code class="literal">getConnection()</code> メソッドが返すものです。
     </p><pre class="programlisting">&lt;?php
 interface PHPUnit_Extensions_Database_DB_IDatabaseConnection
 {
@@ -920,8 +884,8 @@ interface PHPUnit_Extensions_Database_DB_IDatabaseConnection
     // ...
 }
 ?&gt;</pre><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
-          The <code class="literal">createDataSet()</code> method creates a Database
-          (DB) DataSet as described in the DataSet implementations section.
+          <code class="literal">createDataSet()</code> メソッドは、Database
+          (DB) データセットを作ります。これは、データセットの実装の節で説明したものです。
         </p><pre class="programlisting">&lt;?php
 class ConnectionTest extends PHPUnit_Extensions_Database_TestCase
 {
@@ -932,11 +896,10 @@ class ConnectionTest extends PHPUnit_Extensions_Database_TestCase
     }
 }
 ?&gt;</pre></li><li class="listitem"><p>
-          The <code class="literal">createQueryTable()</code> method can be used to
-          create instances of a QueryTable, give them a result name and SQL
-          query. This is a handy method when it comes to result/table
-          assertions as will be shown in the next section on the Database
-          Assertions API.
+          <code class="literal">createQueryTable()</code> メソッドを使うと、
+          QuryTable のインスタンスを作れます。引数には、結果の名前と SQL クエリを渡します。
+          これは、次の節 (データベースアサーション API)
+          で説明する結果やテーブルのアサーションで有用なメソッドです。
         </p><pre class="programlisting">&lt;?php
 class ConnectionTest extends PHPUnit_Extensions_Database_TestCase
 {
@@ -947,10 +910,10 @@ class ConnectionTest extends PHPUnit_Extensions_Database_TestCase
     }
 }
 ?&gt;</pre></li><li class="listitem"><p>
-          The <code class="literal">getRowCount()</code> method is a convienent way to
-          access the number of rows in a table, optionally filtered by an
-          additional where clause. This can be used with a simple equality
-          assertion:
+          <code class="literal">getRowCount()</code> は、
+          テーブル内の行数を手軽に取得するためのメソッドです。
+          オプションで、where 句によるフィルタリングもできます。
+          これを使えば、シンプルな同一性のアサーションが可能です。
         </p><pre class="programlisting">&lt;?php
 class ConnectionTest extends PHPUnit_Extensions_Database_TestCase
 {
@@ -959,18 +922,16 @@ class ConnectionTest extends PHPUnit_Extensions_Database_TestCase
         $this-&gt;assertEquals(2, $this-&gt;getConnection()-&gt;getRowCount('guestbook'));
     }
 }
-?&gt;</pre></li></ol></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.database-assertions-api"></a>Database Assertions API</h2></div></div></div><p>
-      For a testing tool the Database Extension surely provides some
-      assertions that you can use to verify the current state ot the
-      database, tables and the row-count of tables. This section
-      describes this functionality in detail:
-    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.asserting-the-row-count-of-a-table"></a>Asserting the Row-Count of a Table</h3></div></div></div><p>
-        It is often helpful to check if a table contains a specific amount
-        of rows. You can easily achieve this without additional glue code
-        using the Connection API. Say we wanted to check that after
-        insertion of a row into our guestbook we not only have the two
-        initial entries that have accompanied us in all the previous
-        example, but a third one:
+?&gt;</pre></li></ol></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.database-assertions-api"></a>データベースアサーション API</h2></div></div></div><p>
+      テストツール用として、Database Extension ではいくつかのアサーションを提供しています。
+      これらを使えば、データベースやテーブルの現在の状態
+      そしてテーブルの行数を検証できます。この節では、
+      これらの機能の詳細を説明します。
+    </p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.asserting-the-row-count-of-a-table"></a>テーブルの行数のアサーション</h3></div></div></div><p>
+        テーブルの行数が特定の値であるかどうかを調べられれば便利なことがよくあります。
+        これは、接続 API を使ってちょっとしたコードを書かなくとも簡単に実現できます。
+        guestbook に行を追加した後で、初期登録した 2 エントリ以外にもう一行増えて
+        3 行になっていることを調べるには、このようにします。
       </p><pre class="programlisting">&lt;?php
 class GuestbookTest extends PHPUnit_Extensions_Database_TestCase
 {
@@ -984,15 +945,14 @@ class GuestbookTest extends PHPUnit_Extensions_Database_TestCase
         $this-&gt;assertEquals(3, $this-&gt;getConnection()-&gt;getRowCount('guestbook'), "Inserting failed");
     }
 }
-?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.asserting-the-state-of-a-table"></a>Asserting the State of a Table</h3></div></div></div><p>
-        The previous assertion is helpful, but we surely want to check the
-        actual contents of the table to verify that all the values were
-        written into the correct columns. This can be achieved by a table
-        assertion.
+?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.asserting-the-state-of-a-table"></a>テーブルの状態のアサーション</h3></div></div></div><p>
+        先ほどのアサーションも有用ですが、本当にチェックしたいのは、
+        すべての値が正しいカラムにきちんと登録されたかどうかです。
+        これは、テーブルのアサーションで実現します。
       </p><p>
-        For this we would define a Query Table instance which derives its
-        content from a table name and SQL query and compare it to a
-        File/Array Based Data Set:
+        そのために、QueryTable のインスタンスを定義しました。
+        テーブル名と SQL クエリからその内容を取得し、
+        それをファイルベースあるいは配列ベースのデータセットと比較します。
       </p><pre class="programlisting">&lt;?php
 class GuestbookTest extends PHPUnit_Extensions_Database_TestCase
 {
@@ -1010,8 +970,8 @@ class GuestbookTest extends PHPUnit_Extensions_Database_TestCase
     }
 }
 ?&gt;</pre><p>
-        Now we have to write the <span class="emphasis"><em>expectedBook.xml</em></span> Flat
-        XML file for this assertion:
+        さて次に、このアサーションに使うフラット XML ファイル
+        <span class="emphasis"><em>expectedBook.xml</em></span> を用意しましょう。
       </p><pre class="screen">
 &lt;?xml version="1.0" ?&gt;
 &lt;dataset&gt;
@@ -1020,15 +980,13 @@ class GuestbookTest extends PHPUnit_Extensions_Database_TestCase
     &lt;guestbook id="3" content="Hello world!" user="suzy" created="2010-05-01 21:47:08" /&gt;
 &lt;/dataset&gt;
 </pre><p>
-        This assertion would only pass on exactly one second of the
-        universe though, on <span class="emphasis"><em>2010–05–01 21:47:08</em></span>. Dates
-        pose a special problem to database testing and we can circumvent
-        the failure by omitting the <span class="quote">“<span class="quote">created</span>”</span> column from the
-        assertion.
+        残念ながら、このアサーションが成功するのは、ちょうど
+        <span class="emphasis"><em>2010–05–01 21:47:08</em></span> に実行したときだけになります。
+        日付はデータベースのテストでいつも問題になるものなので、それを回避する手段として
+        <span class="quote">「<span class="quote">created</span>」</span> カラムをアサーションで無視させることができます。
       </p><p>
-        The adjusted <span class="emphasis"><em>expectedBook.xml</em></span> Flat XML file
-        would probably have to look like the following to make the
-        assertion pass:
+        調整後のフラット XML ファイル <span class="emphasis"><em>expectedBook.xml</em></span>
+        はこのようになり、これでアサーションを通過させることができます。
       </p><pre class="screen">
 &lt;?xml version="1.0" ?&gt;
 &lt;dataset&gt;
@@ -1037,15 +995,15 @@ class GuestbookTest extends PHPUnit_Extensions_Database_TestCase
     &lt;guestbook id="3" content="Hello world!" user="suzy" /&gt;
 &lt;/dataset&gt;
 </pre><p>
-        We have to fix up the Query Table call:
+        QueryTable の呼び出しも修正しなければなりません。
       </p><pre class="programlisting">&lt;?php
 $queryTable = $this-&gt;getConnection()-&gt;createQueryTable(
     'guestbook', 'SELECT id, content, user FROM guestbook'
 );
-?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.asserting-the-result-of-a-query"></a>Asserting the Result of a Query</h3></div></div></div><p>
-        You can also assert the result of complex queries with the Query
-        Table approach, just specify a result name with a query and
-        compare it to a dataset:
+?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.asserting-the-result-of-a-query"></a>クエリの結果のアサーション</h3></div></div></div><p>
+        複雑なクエリの結果に対するアサーションも、
+        QueryTable 方式で可能です。単に結果の名前とクエリを指定して、
+        それをデータセットと比較すればよいのです。
       </p><pre class="programlisting">&lt;?php
 class ComplexQueryTest extends PHPUnit_Extensions_Database_TestCase
 {
@@ -1059,13 +1017,13 @@ class ComplexQueryTest extends PHPUnit_Extensions_Database_TestCase
         $this-&gt;assertTablesEqual($expectedTable, $queryTable);
     }
 }
-?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.asserting-the-state-of-multiple-tables"></a>Asserting the State of Multiple Tables</h3></div></div></div><p>
-        For sure you can assert the state of multiple tables at once and
-        compare a query dataset against a file based dataset. There are two
-        different ways for DataSet assertions.
+?&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.asserting-the-state-of-multiple-tables"></a>複数のテーブルの状態のアサーション</h3></div></div></div><p>
+        もちろん、複数のテーブルの状態を一度に確かめたり
+        クエリデータセットをファイルベースのデータセットと比較したりすることも可能です。
+        データセットのアサーションには二通りの方法があります。
       </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
-            You can use the Database (DB) DataSet from the Connection and
-            compare it to a File-Based DataSet.
+            接続の Database (DB) データセットを使い、
+            それをファイルベースのデータセットと比較する。
           </p><pre class="programlisting">&lt;?php
 class DataSetAssertionsTest extends PHPUnit_Extensions_Database_TestCase
 {
@@ -1077,7 +1035,7 @@ class DataSetAssertionsTest extends PHPUnit_Extensions_Database_TestCase
     }
 }
 ?&gt;</pre></li><li class="listitem"><p>
-            You can construct the DataSet on your own:
+            データセットを自分で作ることもできます。
           </p><pre class="programlisting">&lt;?php
 class DataSetAssertionsTest extends PHPUnit_Extensions_Database_TestCase
 {
@@ -1090,49 +1048,41 @@ class DataSetAssertionsTest extends PHPUnit_Extensions_Database_TestCase
         $this-&gt;assertDataSetsEqual($expectedDataSet, $dataSet);
     }
 }
-?&gt;</pre></li></ol></div></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.frequently-asked-questions"></a>Frequently Asked Questions</h2></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.will-phpunit-re-create-the-database-schema-for-each-test"></a>Will PHPUnit (re-)create the database schema for each
-             test?</h3></div></div></div><p>
-        No, PHPUnit requires all database objects to be available when the
-        suite is started. The Database, tables, sequences, triggers and
-        views have to be created before you run the test suite.
+?&gt;</pre></li></ol></div></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="database.frequently-asked-questions"></a>よくある質問</h2></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.will-phpunit-re-create-the-database-schema-for-each-test"></a>PHPUnit は、テストごとにデータベーススキーマを作り直すの?</h3></div></div></div><p>
+        いいえ。PHPUnit は、テストスイートの開始時にすべてのデータベースオブジェクトが存在することを前提とします。
+        データベースやテーブル、シーケンス、トリガー、そしてビューなどは、
+        テストスイートを実行する前に作っておく必要があります。
       </p><p>
-        <a class="ulink" href="http://www.doctrine-project.org" target="_top">Doctrine 2</a> or
-        <a class="ulink" href="http://www.ezcomponents.org" target="_top">eZ Components</a> have
-        powerful tools that allows you to create the database schema from
-        pre-defined datastructures, however these have to be hooked into
-        the PHPUnit extension to allow automatic database re-creation
-        before the complete test-suite is run.
+        <a class="ulink" href="http://www.doctrine-project.org" target="_top">Doctrine 2</a> や
+        <a class="ulink" href="http://www.ezcomponents.org" target="_top">eZ Components</a>
+        の強力なツールを使えば、定義済みのデータ構造からデータベーススキーマを作成できます。
+        しかし、これらを使うには PHPUnit extension にフックで組み込まねばなりません。
+        そうしないと、テストスイートを実行する前にデータベースの自動再作成ができなくなります。
       </p><p>
-        Since each test completely cleans the database you are not even
-        required to re-create the database for each test-run. A permanently
-        available database works perfectly.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.am-i-required-to-use-pdo-in-my-application-for-the-database-extension-to-work"></a>Am I required to use PDO in my application for the Database
-             Extension to work?</h3></div></div></div><p>
-        No, PDO is only required for the fixture clean- and set-up and for
-        assertions. You can use whatever database abstraction you want
-        inside your own code.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.what-can-i-do-when-i-get-a-too-much-connections-error"></a>What can I do, when I get a
-             <span class="quote">“<span class="quote">Too much Connections</span>”</span> Error?</h3></div></div></div><p>
-        If you do not cache the PDO instance that is created from the
-        TestCase <code class="literal">getConnection()</code> method the number of
-        connections to the database is increasing by one or more with each
-        database test. With default configuration MySql only allows 100
-        concurrent connections other vendors also have maximum connection
-        limits.
+        各テストの実行後はデータベースをクリアするので、
+        テストを実行するたびにデータベースを再作成する必要はありません。
+        事前に作ったデータベースをずっと使いまわすことができます。
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.am-i-required-to-use-pdo-in-my-application-for-the-database-extension-to-work"></a>PDO を使ったアプリケーションじゃないと Database Extension を使えないの?</h3></div></div></div><p>
+        いいえ。PDO が必要なのは、フィクスチャの準備や後始末とアサーションのときだけです。
+        テスト対象のコード内では、なんでもお好みの方法でデータベースにアクセスできます。
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.what-can-i-do-when-i-get-a-too-much-connections-error"></a><span class="quote">「<span class="quote">Too much Connections</span>」</span> というエラーが出たらどうすればいい?</h3></div></div></div><p>
+        テストケースの <code class="literal">getConnection()</code> メソッドで作った
+        PDO インスタンスをキャッシュしていなければ、
+        データベースを使うテストを実行するたびにデータベースへの接続の数は増加し続けます。
+        デフォルトの設定では MySQL が受け付ける同時接続は 100 までであり、
+        他のデータベースにも同様の接続数制限があります。
       </p><p>
-        The SubSection
-        <span class="quote">“<span class="quote">Use your own Abstract Database TestCase</span>”</span> shows how
-        you can prevent this error from happening by using a single cached
-        PDO instance in all your tests.
-      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.how-to-handle-null-with-flat-xml-csv-datasets"></a>How to handle NULL with Flat XML / CSV Datasets?</h3></div></div></div><p>
-        Do not do this. Instead, you should use either the XML or the YAML
-        DataSets.
+        <span class="quote">「<span class="quote">自前でのデータベーステストケースの抽象化</span>」</span>
+        に、このエラーを回避する方法を示しています。
+        ひとつの PDO インスタンスをキャッシュして、すべてのテストで使いまわす方法です。
+      </p></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a id="database.how-to-handle-null-with-flat-xml-csv-datasets"></a>フラット XML や CSV のデータセットで NULL を扱う方法は?</h3></div></div></div><p>
+        そんな方法はありません。NULL が使いたければ XML あるいは YAML データセットを使わないといけません。
       </p></div></div></div>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="organizing-tests.html">Prev</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="incomplete-and-skipped-tests.html">Next</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="incomplete-and-skipped-tests.html">戻る</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="test-doubles.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">Please <a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">open a ticket</a> on GitHub to suggest improvements to this page. Thanks!</div></div><div class="col-md-2"></div></div>
+<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
     </div>
    </div>
    <hr/>
