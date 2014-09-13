@@ -1,7 +1,7 @@
 <?php
 
 // set your language (en/ja/zh_cn)
-$lang = 'en';
+$lang = 'ja';
 $ver  = '4.2';
 
 exec("rm -rf PHPUnit.docset/Contents/Resources/");
