@@ -72,7 +72,7 @@ foreach ($dom->getElementsByTagName("a") as $a) {
 		$edited[$file] = true;
 	}
 
-	$name = trim(preg_replace("#\s+#", " ", preg_replace("#^[A-Z0-9–]+\.#", "", $a->nodeValue)));
+	$name = trim(preg_replace("#\s+#u", " ", preg_replace("#^[A-Z0-9-]+\.#u", "", $a->nodeValue)));
 	if (empty($name)) continue;
 
 	$class = "Guide";
