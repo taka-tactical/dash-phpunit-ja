@@ -21,12 +21,12 @@
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="textui.html">次へ</a></div>
      </div>
 <div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="writing-tests-for-phpunit"></a>第2章 PHPUnit 用のテストの書き方</h1></div></div></div><p>
-    <a id="idp151872" class="indexterm"></a>
+    <a id="idp144880" class="indexterm"></a>
 
     <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.examples.StackTest.php" title="例 2.1: PHPUnit での配列操作のテスト">例 2.1</a> で、
     PHP の配列操作のテストを PHPUnit 用に書く方法を示します。
     この例では、PHPUnit を使ったテストを書く際の基本的な決まり事や手順を紹介します。
-  </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><code class="literal">Class</code> という名前のクラスのテストは、<code class="literal">ClassTest</code> という名前のクラスに記述します。</p></li><li class="listitem"><p><code class="literal">ClassTest</code> は、(ほとんどの場合) <code class="literal">PHPUnit_Framework_TestCase</code> を継承します。</p></li><li class="listitem"><a id="idp176288" class="indexterm"></a><a id="idp176704" class="indexterm"></a><p>テストは、<code class="literal">test*</code> という名前のパブリックメソッドとなります。</p><p><a id="idp177952" class="indexterm"></a>あるいは、<code class="literal">@test</code> アノテーションをメソッドのコメント部で使用することで、それがテストメソッドであることを示すこともできます。</p></li><li class="listitem"><p>テストメソッドの中で <code class="literal">assertEquals()</code> のようなアサーションメソッド (<a class="xref" href="appendixes.assertions.html" title="付録A アサーション">付録 A</a> を参照ください) を使用して、期待される値と実際の値が等しいことを確かめます。</p></li></ol></div><div class="example"><a id="writing-tests-for-phpunit.examples.StackTest.php"></a><p class="title"><strong>例 2.1: PHPUnit での配列操作のテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+  </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><code class="literal">Class</code> という名前のクラスのテストは、<code class="literal">ClassTest</code> という名前のクラスに記述します。</p></li><li class="listitem"><p><code class="literal">ClassTest</code> は、(ほとんどの場合) <code class="literal">PHPUnit_Framework_TestCase</code> を継承します。</p></li><li class="listitem"><a id="idp169264" class="indexterm"></a><a id="idp169680" class="indexterm"></a><p>テストは、<code class="literal">test*</code> という名前のパブリックメソッドとなります。</p><p><a id="idp170928" class="indexterm"></a>あるいは、<code class="literal">@test</code> アノテーションをメソッドのコメント部で使用することで、それがテストメソッドであることを示すこともできます。</p></li><li class="listitem"><p>テストメソッドの中で <code class="literal">assertEquals()</code> のようなアサーションメソッド (<a class="xref" href="appendixes.assertions.html" title="付録A アサーション">付録 A</a> を参照ください) を使用して、期待される値と実際の値が等しいことを確かめます。</p></li></ol></div><div class="example"><a id="writing-tests-for-phpunit.examples.StackTest.php"></a><p class="title"><strong>例 2.1: PHPUnit での配列操作のテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class StackTest extends PHPUnit_Framework_TestCase
 {
     public function testPushAndPop()
@@ -70,15 +70,15 @@ class StackTest extends PHPUnit_Framework_TestCase
         複数のテストメソッドの間に暗黙の依存性があって、
         隠された実装シナリオがテストの中にあるのもよくあることだ。
       </p></td><td width="10%" valign="top"> </td></tr><tr><td width="10%" valign="top"> </td><td colspan="2" align="right" valign="top">--<span class="attribution">Adrian Kuhn et. al.</span></td></tr></table></div><p>
-      <a id="idp238336" class="indexterm"></a>
+      <a id="idp231184" class="indexterm"></a>
 
       PHPUnit は、テストメソッド間の依存性の明示的な宣言をサポートしています。
       この依存性とは、テストメソッドが実行される順序を定義するものではありません。
       プロデューサーがテストフィクスチャを作ってそのインスタンスを返し、
       依存するコンシューマーがそれを受け取って利用するというものです。
     </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>プロデューサーとは、返り値としてテスト対象のユニットを生成するテストメソッドのこと。</p></li><li class="listitem"><p>コンシューマーとは、プロデューサーの返り値に依存するテストメソッドのこと。</p></li></ul></div><p>
-      <a id="idp241600" class="indexterm"></a>
-      <a id="idp242176" class="indexterm"></a>
+      <a id="idp234448" class="indexterm"></a>
+      <a id="idp235024" class="indexterm"></a>
 
       <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.examples.StackTest2.php" title="例 2.2: @depends アノテーションを使った依存性の表現">例 2.2</a>
       は、<code class="literal">@depends</code> アノテーションを使ってテストメソッドの依存性をあらわす例です。
@@ -124,7 +124,7 @@ class StackTest extends PHPUnit_Framework_TestCase
       最後の <code class="literal">testPop()</code> は
       <code class="literal">testPush()</code> に依存しています。
     </p><p>
-      <a id="idp70960" class="indexterm"></a>
+      <a id="idp62320" class="indexterm"></a>
 
       問題の局所化を手早く行うには、失敗したテストに目を向けやすくしたいものです。
       そのため PHPUnit では、
@@ -213,8 +213,8 @@ PHPUnit 4.2.0 by Sebastian Bergmann.
 Time: 0 seconds, Memory: 3.25Mb
 
 OK (3 tests, 3 assertions)</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="writing-tests-for-phpunit.data-providers"></a>データプロバイダ</h2></div></div></div><p>
-      <a id="idp83248" class="indexterm"></a>
-      <a id="idp83824" class="indexterm"></a>
+      <a id="idp74608" class="indexterm"></a>
+      <a id="idp75184" class="indexterm"></a>
       テストメソッドには任意の引数を渡すことができます。
       この引数は、データプロバイダメソッド
       (<a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.data-providers.examples.DataTest.php" title="例 2.5: 配列の配列を返すデータプロバイダの使用">例 2.5</a>
@@ -335,9 +335,9 @@ class CsvFileIterator implements Iterator {
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br><p>
-      <a id="idp368640" class="indexterm"></a>
-      <a id="idp369216" class="indexterm"></a>
-      <a id="idp369792" class="indexterm"></a>
+      <a id="idp361472" class="indexterm"></a>
+      <a id="idp362048" class="indexterm"></a>
+      <a id="idp362624" class="indexterm"></a>
 
       <code class="literal">@dataProvider</code> で指定したメソッドと
       <code class="literal">@depends</code> で指定したテストの両方からの入力を受け取るテストの場合、
@@ -404,18 +404,18 @@ Array (
 FAILURES!
 Tests: 4, Assertions: 4, Failures: 1.
 </pre></div></div><br class="example-break"></br><div class="alert alert-info"><h3 class="title">注記</h3><p>
-        <a id="idp376480" class="indexterm"></a>
-        <a id="idp377056" class="indexterm"></a>
-        <a id="idp377632" class="indexterm"></a>
+        <a id="idp369312" class="indexterm"></a>
+        <a id="idp369888" class="indexterm"></a>
+        <a id="idp370464" class="indexterm"></a>
 
         あるテストがデータプロバイダを使う別のテストに依存している場合、
         別のテストで少なくともひとつのデータセットに対するテストが成功すれば
         そのテストも実行されます。
         データプロバイダを使ったテストの結果をそのテストに注入することはできません。
       </p></div><div class="alert alert-info"><h3 class="title">注記</h3><p>
-        <a id="idp379488" class="indexterm"></a>
-        <a id="idp380064" class="indexterm"></a>
-        <a id="idp380640" class="indexterm"></a>
+        <a id="idp372320" class="indexterm"></a>
+        <a id="idp372896" class="indexterm"></a>
+        <a id="idp373472" class="indexterm"></a>
 
         すべてのデータプロバイダを実行してから、
         静的メソッド <code class="literal">setUpBeforeClass</code>
@@ -423,8 +423,8 @@ Tests: 4, Assertions: 4, Failures: 1.
         これらのメソッドで作った変数にデータプロバイダ内からアクセスすることはできません。
         そうなっている理由は、PHPUnit がテストの総数を算出できるようにするためです。
       </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="writing-tests-for-phpunit.exceptions"></a>例外のテスト</h2></div></div></div><p>
-      <a id="idp384304" class="indexterm"></a>
-      <a id="idp384880" class="indexterm"></a>
+      <a id="idp377136" class="indexterm"></a>
+      <a id="idp377712" class="indexterm"></a>
 
       <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions.examples.ExceptionTest.php" title="例 2.9: @expectedException アノテーションの使用法">例 2.9</a>
       は、テストするコード内で例外がスローされたかどうかを
@@ -454,10 +454,10 @@ Expected exception InvalidArgumentException
 
 FAILURES!
 Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br><p>
-      <a id="idp389904" class="indexterm"></a>
-      <a id="idp390480" class="indexterm"></a>
-      <a id="idp391056" class="indexterm"></a>
-      <a id="idp391648" class="indexterm"></a>
+      <a id="idp382736" class="indexterm"></a>
+      <a id="idp383312" class="indexterm"></a>
+      <a id="idp383888" class="indexterm"></a>
+      <a id="idp384480" class="indexterm"></a>
 
       さらに、<code class="literal">@expectedExceptionMessage</code> や
       <code class="literal">@expectedExceptionCode</code> を
@@ -588,11 +588,11 @@ class ExceptionTest extends PHPUnit_Framework_TestCase {
       によってテストが終了し、問題を報告します。期待通りに例外が発生すると、
       <code class="literal">catch</code> ブロックが実行されてテストは正常終了します。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="writing-tests-for-phpunit.errors"></a>PHP のエラーのテスト</h2></div></div></div><p>
-      <a id="idp423040" class="indexterm"></a>
-      <a id="idp423616" class="indexterm"></a>
-      <a id="idp424192" class="indexterm"></a>
-      <a id="idp424768" class="indexterm"></a>
-      <a id="idp425344" class="indexterm"></a>
+      <a id="idp415872" class="indexterm"></a>
+      <a id="idp416448" class="indexterm"></a>
+      <a id="idp417024" class="indexterm"></a>
+      <a id="idp417600" class="indexterm"></a>
+      <a id="idp418176" class="indexterm"></a>
 
       デフォルトでは、PHPUnit はテストの実行中に発生した PHP のエラーや警告そして notice
       を例外に変換します。これらの例外を用いて、たとえば
@@ -622,8 +622,8 @@ PHPUnit 4.2.0 by Sebastian Bergmann.
 Time: 0 seconds
 
 OK (1 test, 1 assertion)</pre></div></div><br class="example-break"></br><p>
-      <a id="idp431696" class="indexterm"></a>
-      <a id="idp432288" class="indexterm"></a>
+      <a id="idp424528" class="indexterm"></a>
+      <a id="idp425120" class="indexterm"></a>
 
       <code class="literal">PHPUnit_Framework_Error_Notice</code> および
       <code class="literal">PHPUnit_Framework_Error_Warning</code> は、

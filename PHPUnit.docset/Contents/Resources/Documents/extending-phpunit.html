@@ -25,7 +25,7 @@
     PHPUnit はさまざまな方法で拡張することができます。
     PHPUnit を拡張するための第一歩をここで説明します。
   </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="extending-phpunit.PHPUnit_Framework_TestCase"></a>PHPUnit_Framework_TestCase のサブクラスの作成</h2></div></div></div><p>
-      <a id="idp1415680" class="indexterm"></a>
+      <a id="idp975360" class="indexterm"></a>
 
       <code class="literal">PHPUnit_Framework_TestCase</code>
       を継承した抽象サブクラスにカスタムアサーションやユーティリティメソッドを書き、
@@ -107,7 +107,7 @@ class PHPUnit_Framework_Constraint_IsTrue extends PHPUnit_Framework_Constraint
       さらに、モックオブジェクトを設定する際の matcher として <code class="literal">isTrue()</code>
       メソッドを使えるようにもなります。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="extending-phpunit.PHPUnit_Framework_TestListener"></a>PHPUnit_Framework_TestListener の実装</h2></div></div></div><p>
-      <a id="idp1399936" class="indexterm"></a>
+      <a id="idp1392032" class="indexterm"></a>
 
       <a class="xref" href="extending-phpunit.html#extending-phpunit.examples.SimpleTestListener.php" title="例 15.3: シンプルなテストリスナー">例 15.3</a> は、
       <code class="literal">PHPUnit_Framework_TestListener</code>
@@ -161,7 +161,7 @@ class SimpleTestListener implements PHPUnit_Framework_TestListener
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br><p>
-      <a id="idp1405200" class="indexterm"></a>
+      <a id="idp1397296" class="indexterm"></a>
 
       <a class="xref" href="extending-phpunit.html#extending-phpunit.examples.BaseTestListener.php" title="例 15.4: ベーステストリスナーの利用法">例 15.4</a>
       は、抽象クラス <code class="literal">PHPUnit_Framework_BaseTestListener</code>
@@ -180,14 +180,14 @@ class ShortTestListener extends PHPUnit_Framework_BaseTestListener
       に、自作のテストリスナーをテスト実行時にアタッチするための
       PHPUnit の設定方法についての説明があります。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="extending-phpunit.PHPUnit_Extensions_TestDecorator"></a>PHPUnit_Extensions_TestDecorator のサブクラスの作成</h2></div></div></div><p>
-      <a id="idp1411840" class="indexterm"></a>
+      <a id="idp1403936" class="indexterm"></a>
 
       <code class="literal">PHPUnit_Extensions_TestDecorator</code>
       のサブクラスでテストケースあるいはテストスイートをラッピングし、
       デコレータパターンを使用することで
       各テストの実行前後に何らかの処理をさせることができます。
     </p><p>
-      <a id="idp1413584" class="indexterm"></a>
+      <a id="idp1405680" class="indexterm"></a>
 
       PHPUnit には、<code class="literal">PHPUnit_Extensions_RepeatedTest</code>
       という具象テストデコレータが付属しています。
@@ -232,8 +232,8 @@ class PHPUnit_Extensions_RepeatedTest extends PHPUnit_Extensions_TestDecorator
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="extending-phpunit.PHPUnit_Framework_Test"></a>PHPUnit_Framework_Test の実装</h2></div></div></div><p>
-      <a id="idp1533200" class="indexterm"></a>
-      <a id="idp1533776" class="indexterm"></a>
+      <a id="idp1526304" class="indexterm"></a>
+      <a id="idp1526880" class="indexterm"></a>
 
       <code class="literal">PHPUnit_Framework_Test</code> インターフェイスの機能は限られており、
       実装するのは簡単です。<code class="literal">PHPUnit_Framework_Test</code>

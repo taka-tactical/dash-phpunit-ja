@@ -32,7 +32,7 @@
       - 何をテストすべきなのかを知ること、何がテストされているのかを知ること。
       これが大切だ。
     </p></td><td width="10%" valign="top"> </td></tr><tr><td width="10%" valign="top"> </td><td colspan="2" align="right" valign="top">--<span class="attribution">Murali Nandigama</span></td></tr></table></div><p>
-    <a id="idp886144" class="indexterm"></a>
+    <a id="idp851760" class="indexterm"></a>
 
     この章では、PHPUnit のコードカバレッジ機能について学びます。
     これは、テストを実行したときに、実装コードのどの部分が実行されたかを調べるものです。
@@ -46,7 +46,7 @@
     もしテストで実際に実行されたのがそのうちの 75 行だけだったなら、
     そのメソッドのコードカバレッジは 75 パーセントだと考えるということです。
   </p><p>
-    <a id="idp890896" class="indexterm"></a>
+    <a id="idp856512" class="indexterm"></a>
 
     PHPUnit のコードカバレッジ解析では
     <a class="ulink" href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage</a>
@@ -109,8 +109,8 @@ class BankAccountTest extends PHPUnit_Framework_TestCase
     <a class="xref" href="code-coverage-analysis.html#code-coverage-analysis.figures.Code_Coverage3.png" title="図11.2 setBalance() にテストを追加した後のコードカバレッジ">図 11.2</a> は、
     テストを追加した後の <code class="literal">setBalance()</code> のコードカバレッジです。
   </p><div class="figure"><a id="code-coverage-analysis.figures.Code_Coverage3.png"></a><p class="title"><strong>図11.2 <code class="literal">setBalance()</code> にテストを追加した後のコードカバレッジ</strong></p><div class="figure-contents"><div><img src="https://phpunit.de/manual/current/ja/figures/Code_Coverage3.png" alt="setBalance() にテストを追加した後のコードカバレッジ"></img></div></div></div><br class="figure-break"></br><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="code-coverage-analysis.specifying-covered-methods"></a>カバーするメソッドの指定</h2></div></div></div><p>
-      <a id="idp819264" class="indexterm"></a>
-      <a id="idp819840" class="indexterm"></a>
+      <a id="idp818416" class="indexterm"></a>
+      <a id="idp818992" class="indexterm"></a>
 
       テストコードで <code class="literal">@covers</code> アノテーション
       (<a class="xref" href="appendixes.annotations.html#appendixes.annotations.covers.tables.annotations" title="表B.1 カバーするメソッドを指定するためのアノテーション">表 B.1</a>)
@@ -191,8 +191,8 @@ class BankAccountTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br><p>
-      <a id="idp826096" class="indexterm"></a>
-      <a id="idp826672" class="indexterm"></a>
+      <a id="idp825152" class="indexterm"></a>
+      <a id="idp825728" class="indexterm"></a>
 
       あるテストが、<span class="emphasis"><em>一切</em></span>メソッドをカバーしてはならないことも指定できます。
       そのために使うのが <code class="literal">@coversNothing</code> アノテーションです。
@@ -220,10 +220,10 @@ class GuestbookIntegrationTest extends PHPUnit_Extensions_Database_TestCase
 }
 ?&gt;
       </pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="code-coverage-analysis.ignoring-code-blocks"></a>コードブロックの無視</h2></div></div></div><p>
-      <a id="idp833024" class="indexterm"></a>
-      <a id="idp833600" class="indexterm"></a>
-      <a id="idp834176" class="indexterm"></a>
-      <a id="idp938064" class="indexterm"></a>
+      <a id="idp832080" class="indexterm"></a>
+      <a id="idp832656" class="indexterm"></a>
+      <a id="idp833232" class="indexterm"></a>
+      <a id="idp931072" class="indexterm"></a>
 
       どうしてもテストができないコードブロックなどを、
       コードカバレッジ解析時に無視させたいこともあるでしょう。
@@ -264,9 +264,9 @@ if (FALSE) {
       もし実行可能なら (たとえ実行されていなくても) 実行されたものとみなされ、
       強調表示されません。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="code-coverage-analysis.including-excluding-files"></a>ファイルのインクルードや除外</h2></div></div></div><p>
-      <a id="idp946384" class="indexterm"></a>
-      <a id="idp946960" class="indexterm"></a>
-      <a id="idp947536" class="indexterm"></a>
+      <a id="idp939392" class="indexterm"></a>
+      <a id="idp939968" class="indexterm"></a>
+      <a id="idp940544" class="indexterm"></a>
 
       デフォルトでは、1 行でもコードが実行されたソースコードファイルはすべて
       (そしてそのようなファイルのみが) レポートに含められます。

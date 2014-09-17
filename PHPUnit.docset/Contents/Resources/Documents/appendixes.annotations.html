@@ -21,7 +21,7 @@
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="appendixes.configuration.html">次へ</a></div>
      </div>
 <div class="appendix"><div class="titlepage"><div><div><h1 class="title"><a id="appendixes.annotations"></a>付録B アノテーション</h1></div></div></div><p>
-    <a id="idp1983712" class="indexterm"></a>
+    <a id="idp1976704" class="indexterm"></a>
 
     アノテーションとはメタデータを表す特別な構文のことで、
     プログラミング言語のソースコードに追加することができます。
@@ -41,7 +41,7 @@
     </p></div><p>
     本章では、PHPUnit がサポートするすべてのアノテーションについて解説します。
   </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.author"></a>@author</h2></div></div></div><p>
-      <a id="idp1564400" class="indexterm"></a>
+      <a id="idp1550592" class="indexterm"></a>
 
       <code class="literal">@author</code> アノテーションは
       <code class="literal">@group</code> アノテーション (<a class="xref" href="appendixes.annotations.html#appendixes.annotations.group" title="@group">「@group」</a> を参照ください) のエイリアスで、
@@ -92,7 +92,7 @@
     }
 }</pre><p>
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.backupGlobals"></a>@backupGlobals</h2></div></div></div><p>
-      <a id="idp1880752" class="indexterm"></a>
+      <a id="idp1864704" class="indexterm"></a>
 
       グローバル変数の保存や復元を、テストケースクラスのすべてのテストで完全に無効にすることができます。
       このように使います。</p><pre class="programlisting">/**
@@ -103,7 +103,7 @@ class MyTest extends PHPUnit_Framework_TestCase
     // ...
 }</pre><p>
     </p><p>
-      <a id="idp1882608" class="indexterm"></a>
+      <a id="idp1866560" class="indexterm"></a>
 
       <code class="literal">@backupGlobals</code> アノテーションは、テストメソッドレベルで使うこともできます。
       これによって、保存と復元の操作をより細やかに制御できるようになります。</p><pre class="programlisting">/**
@@ -120,7 +120,7 @@ class MyTest extends PHPUnit_Framework_TestCase
     }
 }</pre><p>
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.backupStaticAttributes"></a>@backupStaticAttributes</h2></div></div></div><p>
-      <a id="idp1886256" class="indexterm"></a>
+      <a id="idp1870144" class="indexterm"></a>
 
       <code class="literal">@backupStaticAttributes</code> アノテーションを使うと、
       宣言されたクラス内のすべての static プロパティの値をバックアップしてからテストを始め、
@@ -195,9 +195,9 @@ class MyTest extends PHPUnit_Framework_TestCase
     }
 }</pre><p>
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.codeCoverageIgnore"></a>@codeCoverageIgnore*</h2></div></div></div><p>
-      <a id="idp1973440" class="indexterm"></a>
-      <a id="idp1974016" class="indexterm"></a>
-      <a id="idp1974608" class="indexterm"></a>
+      <a id="idp1966368" class="indexterm"></a>
+      <a id="idp1966944" class="indexterm"></a>
+      <a id="idp1967536" class="indexterm"></a>
 
       <code class="literal">@codeCoverageIgnore</code> や
       <code class="literal">@codeCoverageIgnoreStart</code>、そして
@@ -206,8 +206,8 @@ class MyTest extends PHPUnit_Framework_TestCase
     </p><p>
       利用法は <a class="xref" href="code-coverage-analysis.html#code-coverage-analysis.ignoring-code-blocks" title="コードブロックの無視">「コードブロックの無視」</a> を参照ください。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.covers"></a>@covers</h2></div></div></div><p>
-      <a id="idp1979344" class="indexterm"></a>
-      <a id="idp1979920" class="indexterm"></a>
+      <a id="idp1972272" class="indexterm"></a>
+      <a id="idp1972848" class="indexterm"></a>
 
       <code class="literal">@covers</code> アノテーションをテストコードで使うと、
       そのテストメソッドがどのメソッドをテストするのかを指定することができます。</p><pre class="programlisting">/**
@@ -223,7 +223,7 @@ public function testBalanceIsInitiallyZero()
       <a class="xref" href="appendixes.annotations.html#appendixes.annotations.covers.tables.annotations" title="表B.1 カバーするメソッドを指定するためのアノテーション">表 B.1</a>
       に <code class="literal">@covers</code> アノテーションの構文を示します。
     </p><div class="table"><a id="appendixes.annotations.covers.tables.annotations"></a><p class="title"><strong>表B.1 カバーするメソッドを指定するためのアノテーション</strong></p><div class="table-contents"><table summary="カバーするメソッドを指定するためのアノテーション" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">アノテーション</th><th align="left">説明</th></tr></thead><tbody><tr><td align="left"><code class="literal">@covers ClassName::methodName</code></td><td align="left"><code class="literal">そのテストメソッドが指定したメソッドをカバーすることを表します。</code></td></tr><tr><td align="left"><code class="literal">@covers ClassName</code></td><td align="left"><code class="literal">そのテストメソッドが指定したクラスのすべてのメソッドをカバーすることを表します。</code></td></tr><tr><td align="left"><code class="literal">@covers ClassName&lt;extended&gt;</code></td><td align="left"><code class="literal">そのテストメソッドが、指定したクラスとその親クラスおよびインターフェイスのすべてのメソッドをカバーすることを表します。</code></td></tr><tr><td align="left"><code class="literal">@covers ClassName::&lt;public&gt;</code></td><td align="left"><code class="literal">そのテストメソッドが、指定したクラスのすべての public メソッドをカバーすることを表します。</code></td></tr><tr><td align="left"><code class="literal">@covers ClassName::&lt;protected&gt;</code></td><td align="left"><code class="literal">そのテストメソッドが、指定したクラスのすべての protected メソッドをカバーすることを表します。</code></td></tr><tr><td align="left"><code class="literal">@covers ClassName::&lt;private&gt;</code></td><td align="left"><code class="literal">そのテストメソッドが、指定したクラスのすべての private メソッドをカバーすることを表します。</code></td></tr><tr><td align="left"><code class="literal">@covers ClassName::&lt;!public&gt;</code></td><td align="left"><code class="literal">そのテストメソッドが、指定したクラスのすべての非 public メソッドをカバーすることを表します。</code></td></tr><tr><td align="left"><code class="literal">@covers ClassName::&lt;!protected&gt;</code></td><td align="left"><code class="literal">そのテストメソッドが、指定したクラスのすべての非 protected メソッドをカバーすることを表します。</code></td></tr><tr><td align="left"><code class="literal">@covers ClassName::&lt;!private&gt;</code></td><td align="left"><code class="literal">そのテストメソッドが、指定したクラスのすべての非 private メソッドをカバーすることを表します。</code></td></tr><tr><td align="left"><code class="literal">@covers ::functionName</code></td><td align="left"><code class="literal">そのテストメソッドが、指定したグローバル関数をカバーすることを表します。</code></td></tr></tbody></table></div></div><br class="table-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.coversDefaultClass"></a>@coversDefaultClass</h2></div></div></div><p>
-      <a id="idp1933696" class="indexterm"></a>
+      <a id="idp1917840" class="indexterm"></a>
 
       <code class="literal">@coversDefaultClass</code> アノテーションを使うと、
       デフォルトの名前空間あるいはクラス名を指定できます。
@@ -247,7 +247,7 @@ class CoversDefaultClassTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.coversNothing"></a>@coversNothing</h2></div></div></div><p>
-      <a id="idp1939552" class="indexterm"></a>
+      <a id="idp1923776" class="indexterm"></a>
 
       <code class="literal">@coversNothing</code> アノテーションをテストコードで使うと、
       そのテストケースについてはコードカバレッジ情報を記録しないように指定できます。
@@ -259,7 +259,7 @@ class CoversDefaultClassTest extends PHPUnit_Framework_TestCase
         このメソッドはクラスレベルおよびメソッドレベルで使え、
         あらゆる <code class="literal">@covers</code> タグを上書きします。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.dataProvider"></a>@dataProvider</h2></div></div></div><p>
-      <a id="idp1944560" class="indexterm"></a>
+      <a id="idp1928688" class="indexterm"></a>
 
       テストメソッドには任意の引数を渡すことができます。
       引数は、データプロバイダメソッド
@@ -271,7 +271,7 @@ class CoversDefaultClassTest extends PHPUnit_Framework_TestCase
       詳細は <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.data-providers" title="データプロバイダ">「データプロバイダ」</a>
       を参照ください。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.depends"></a>@depends</h2></div></div></div><p>
-      <a id="idp1949584" class="indexterm"></a>
+      <a id="idp1933712" class="indexterm"></a>
 
       PHPUnit は、テストメソッド間の依存性の明示的な宣言をサポートしています。
       この依存性とは、テストメソッドが実行される順序を定義するものではありません。
@@ -283,7 +283,7 @@ class CoversDefaultClassTest extends PHPUnit_Framework_TestCase
       詳細は <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.test-dependencies" title="テストの依存性">「テストの依存性」</a>
       を参照ください。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.expectedException"></a>@expectedException</h2></div></div></div><p>
-      <a id="idp1954416" class="indexterm"></a>
+      <a id="idp1938544" class="indexterm"></a>
 
       <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions.examples.ExceptionTest.php" title="例 2.9: @expectedException アノテーションの使用法">例 2.9</a>
       は、テストするコード内で例外がスローされたかどうかを
@@ -292,7 +292,7 @@ class CoversDefaultClassTest extends PHPUnit_Framework_TestCase
       詳細は <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions" title="例外のテスト">「例外のテスト」</a>
       を参照ください。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.expectedExceptionCode"></a>@expectedExceptionCode</h2></div></div></div><p>
-      <a id="idp1958880" class="indexterm"></a>
+      <a id="idp1943008" class="indexterm"></a>
 
       <code class="literal">@expectedExceptionCode</code> アノテーションを
       <code class="literal">@expectedException</code> と組み合わせて使うと、
@@ -333,7 +333,7 @@ class MyClass
 }</pre><p>
 
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.expectedExceptionMessage"></a>@expectedExceptionMessage</h2></div></div></div><p>
-      <a id="idp1964784" class="indexterm"></a>
+      <a id="idp1948912" class="indexterm"></a>
 
       <code class="literal">@expectedExceptionMessage</code> アノテーションは
       <code class="literal">@expectedExceptionCode</code> と似ており、
@@ -390,7 +390,7 @@ class MyClass
 
       サンプルコードは <a class="xref" href="appendixes.annotations.html#appendixes.annotations.expectedExceptionCode" title="@expectedExceptionCode">「@expectedExceptionCode」</a> を参照ください。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.group"></a>@group</h2></div></div></div><p>
-      <a id="idp1648096" class="indexterm"></a>
+      <a id="idp1956656" class="indexterm"></a>
 
       あるテストを、ひとつあるいは複数のグループに属するものとすることができます。
       <code class="literal">@group</code> アノテーションをこのように使用します。</p><pre class="programlisting">class MyTest extends PHPUnit_Framework_TestCase
@@ -417,34 +417,34 @@ class MyClass
       オプションを指定します。XML 設定ファイルの場合は、
       それぞれ対応するディレクティブを指定します。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.large"></a>@large</h2></div></div></div><p>
-      <a id="idp1653248" class="indexterm"></a>
+      <a id="idp1637296" class="indexterm"></a>
 
       <code class="literal">@large</code> アノテーションは、
       <code class="literal">@group large</code> のエイリアスです。
     </p><p>
-      <a id="idp1655328" class="indexterm"></a>
-      <a id="idp1656032" class="indexterm"></a>
+      <a id="idp1639376" class="indexterm"></a>
+      <a id="idp1640080" class="indexterm"></a>
 
       <code class="literal">PHP_Invoker</code> パッケージがインストールされていて strict モードが有効な場合に、
       large テストは実行時間が 60 秒を超えたら失敗します。
       このタイムアウト時間は、XML 設定ファイルの
       <code class="literal">timeoutForLargeTests</code> 属性で変更できます。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.medium"></a>@medium</h2></div></div></div><p>
-      <a id="idp1659520" class="indexterm"></a>
+      <a id="idp1643568" class="indexterm"></a>
 
       <code class="literal">@medium</code> アノテーションは
       <code class="literal">@group medium</code> のエイリアスです。
       medium テストは、<code class="literal">@large</code> とマークしたテストに依存してはいけません。
     </p><p>
-      <a id="idp1662128" class="indexterm"></a>
-      <a id="idp1662832" class="indexterm"></a>
+      <a id="idp1646176" class="indexterm"></a>
+      <a id="idp1646880" class="indexterm"></a>
 
       <code class="literal">PHP_Invoker</code> パッケージがインストールされていて strict モードが有効な場合に、
       medium テストは実行時間が 10 秒を超えたら失敗します。
       このタイムアウト時間は、XML 設定ファイルの
       <code class="literal">timeoutForMediumTests</code> 属性で変更できます。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.preserveGlobalState"></a>@preserveGlobalState</h2></div></div></div><p>
-      <a id="idp1666336" class="indexterm"></a>
+      <a id="idp1650320" class="indexterm"></a>
 
       テストを別プロセスで実行するときに、
       PHPUnit は親プロセスのグローバルな状態を保存しようと試みます。
@@ -465,18 +465,18 @@ class MyClass
     }
 }</pre><p>
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.requires"></a>@requires</h2></div></div></div><p>
-      <a id="idp1670272" class="indexterm"></a>
+      <a id="idp1654256" class="indexterm"></a>
 
       <code class="literal">@requires</code> アノテーションを使うと、共通の事前条件
       (たとえば PHP のバージョンや拡張モジュールのインストール状況)
       を満たさないときにテストをスキップできます。
     </p><p>
-      <a id="idp1672080" class="indexterm"></a>
+      <a id="idp1656064" class="indexterm"></a>
       条件に指定できる内容やその例については
       <a class="xref" href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.requires.tables.api" title="表7.3 @requires の例用例">表 7.3</a>
       を参照ください。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.runTestsInSeparateProcesses"></a>@runTestsInSeparateProcesses</h2></div></div></div><p>
-      <a id="idp1675104" class="indexterm"></a>
+      <a id="idp1659088" class="indexterm"></a>
 
       テストクラス内のすべてのテストケースを、個別の PHP プロセスで実行するように指示します。
       </p><pre class="programlisting">/**
@@ -496,7 +496,7 @@ class MyTest extends PHPUnit_Framework_TestCase
       この問題の対処法については <a class="xref" href="appendixes.annotations.html#appendixes.annotations.preserveGlobalState" title="@preserveGlobalState">「@preserveGlobalState」</a>
       を参照ください。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.runInSeparateProcess"></a>@runInSeparateProcess</h2></div></div></div><p>
-      <a id="idp1679920" class="indexterm"></a>
+      <a id="idp1663904" class="indexterm"></a>
 
       そのテストを個別の PHP プロセスで実行するように指示します。
       </p><pre class="programlisting">class MyTest extends PHPUnit_Framework_TestCase
@@ -519,14 +519,14 @@ class MyTest extends PHPUnit_Framework_TestCase
       この問題の対処法については <a class="xref" href="appendixes.annotations.html#appendixes.annotations.preserveGlobalState" title="@preserveGlobalState">「@preserveGlobalState」</a>
       を参照ください。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.small"></a>@small</h2></div></div></div><p>
-      <a id="idp1684720" class="indexterm"></a>
+      <a id="idp1668704" class="indexterm"></a>
 
       <code class="literal">@small</code> アノテーションは
       <code class="literal">@group small</code> のエイリアスです。
       small テストは、<code class="literal">@medium</code> や <code class="literal">@large</code> とマークしたテストに依存してはいけません。
     </p><p>
-      <a id="idp1687776" class="indexterm"></a>
-      <a id="idp1688480" class="indexterm"></a>
+      <a id="idp1671760" class="indexterm"></a>
+      <a id="idp1672464" class="indexterm"></a>
 
       <code class="literal">PHP_Invoker</code> パッケージがインストールされていて strict モードが有効な場合に、
       small テストは実行時間が 1 秒を超えたら失敗します。
@@ -539,7 +539,7 @@ class MyTest extends PHPUnit_Framework_TestCase
         明示的なアノテーションで <code class="literal">small</code> とマークしているテストだけを small
         と見なすことに注意しましょう。
       </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.test"></a>@test</h2></div></div></div><p>
-      <a id="idp1694944" class="indexterm"></a>
+      <a id="idp1678928" class="indexterm"></a>
 
       テストメソッド名の先頭に <code class="literal">test</code>
       をつけるかわりに、メソッドのドキュメンテーションブロックで <code class="literal">@test</code>
@@ -552,12 +552,12 @@ public function initialBalanceShouldBe0()
     $this-&gt;assertEquals(0, $this-&gt;ba-&gt;getBalance());
 }</pre><p>
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.testdox"></a>@testdox</h2></div></div></div><p>
-      <a id="idp1698832" class="indexterm"></a>
-      <a id="idp1699408" class="indexterm"></a>
+      <a id="idp1682816" class="indexterm"></a>
+      <a id="idp1683392" class="indexterm"></a>
     </p><pre class="programlisting"></pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.ticket"></a>@ticket</h2></div></div></div><p>
-      <a id="idp1701904" class="indexterm"></a>
+      <a id="idp1685888" class="indexterm"></a>
     </p><pre class="programlisting"></pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.annotations.uses"></a>@uses</h2></div></div></div><p>
-      <a id="idp1704400" class="indexterm"></a>
+      <a id="idp1688384" class="indexterm"></a>
 
       <code class="literal">@uses</code> アノテーションは、
       テストから実行されてはいるが、そのテストでカバーするつもりはないコードを指定します。

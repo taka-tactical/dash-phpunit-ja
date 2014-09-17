@@ -21,7 +21,7 @@
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="organizing-tests.html">次へ</a></div>
      </div>
 <div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="fixtures"></a>第4章 フィクスチャ</h1></div></div></div><p>
-    <a id="idp253568" class="indexterm"></a>
+    <a id="idp347200" class="indexterm"></a>
 
     テストを記述する際にいちばん時間を食うのは、テストを開始するための事前設定と
     テスト終了後の後始末の処理を書くことです。この事前設定は、テストの
@@ -37,9 +37,9 @@
     テストフレームワークの助けがなければ、
     個々のテストのなかで同じような準備コードを繰り返し書くはめになってしまいます。
   </p><p>
-    <a id="idp482208" class="indexterm"></a>
-    <a id="idp482752" class="indexterm"></a>
-    <a id="idp483328" class="indexterm"></a>
+    <a id="idp517984" class="indexterm"></a>
+    <a id="idp518528" class="indexterm"></a>
+    <a id="idp519104" class="indexterm"></a>
 
     PHPUnit は、準備用のコードの共有をサポートしています。
     各テストメソッドが実行される前に、<code class="literal">setUp()</code>
@@ -94,31 +94,31 @@ class StackTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br><p>
-    <a id="idp532864" class="indexterm"></a>
-    <a id="idp533440" class="indexterm"></a>
-    <a id="idp534016" class="indexterm"></a>
-    <a id="idp534592" class="indexterm"></a>
-    <a id="idp535168" class="indexterm"></a>
+    <a id="idp254432" class="indexterm"></a>
+    <a id="idp255008" class="indexterm"></a>
+    <a id="idp255584" class="indexterm"></a>
+    <a id="idp264432" class="indexterm"></a>
+    <a id="idp265008" class="indexterm"></a>
 
     テンプレートメソッド <code class="literal">setUp()</code> および <code class="literal">tearDown()</code>
     は、テストケースクラスのテストメソッドごとに (そして最初にインスタンスを作成したときに)
     一度ずつ実行されます。
   </p><p>
-    <a id="idp537264" class="indexterm"></a>
-    <a id="idp537840" class="indexterm"></a>
-    <a id="idp538416" class="indexterm"></a>
-    <a id="idp538992" class="indexterm"></a>
-    <a id="idp539568" class="indexterm"></a>
-    <a id="idp540144" class="indexterm"></a>
-    <a id="idp540720" class="indexterm"></a>
-    <a id="idp541296" class="indexterm"></a>
+    <a id="idp267056" class="indexterm"></a>
+    <a id="idp267632" class="indexterm"></a>
+    <a id="idp268208" class="indexterm"></a>
+    <a id="idp268784" class="indexterm"></a>
+    <a id="idp269360" class="indexterm"></a>
+    <a id="idp269936" class="indexterm"></a>
+    <a id="idp270512" class="indexterm"></a>
+    <a id="idp271088" class="indexterm"></a>
 
     さらに、テンプレートメソッド <code class="literal">setUpBeforeClass()</code> および
     <code class="literal">tearDownAfterClass()</code> が存在します。
     これらはそれぞれ、テストケースクラスの最初のテストメソッドの実行前と
     テストケースクラスの最後のテストの実行後にコールされます。
   </p><p>
-    <a id="idp543392" class="indexterm"></a>
+    <a id="idp273184" class="indexterm"></a>
 
     以下の例は、テストケースクラスで使用できるすべてのテンプレートメソッドを示すものです。
   </p><div class="example"><a id="fixtures.examples.TemplateMethodsTest.php"></a><p class="title"><strong>例 4.2: 利用可能なすべてのテンプレートメソッド</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
@@ -230,8 +230,8 @@ Tests: 2, Assertions: 2, Failures: 1.</pre></div></div><br class="example-break"
       最初にログインした状態を再利用するということです。こうすることで、
       テストの実行時間を短縮できます。
     </p><p>
-      <a id="idp289664" class="indexterm"></a>
-      <a id="idp290240" class="indexterm"></a>
+      <a id="idp533248" class="indexterm"></a>
+      <a id="idp533824" class="indexterm"></a>
 
       <a class="xref" href="fixtures.html#fixtures.sharing-fixture.examples.DatabaseTest.php" title="例 4.3: テストスイートの複数テスト間でのフィクスチャの共有">例 4.3</a>
       では、テンプレートメソッド <code class="literal">setUpBeforeClass()</code> および
@@ -273,8 +273,8 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
     </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>グローバル変数 <code class="literal">$foo = 'bar';</code> は、<code class="literal">$GLOBALS['foo'] = 'bar';</code> として格納される。</p></li><li class="listitem"><p><code class="literal">$GLOBALS</code> は<span class="emphasis"><em>スーパーグローバル</em></span>変数と呼ばれる。</p></li><li class="listitem"><p>スーパーグローバル変数は組み込みの変数で、すべてのスコープで常に利用できる。</p></li><li class="listitem"><p>関数やメソッドのスコープでグローバル変数 <code class="literal">$foo</code> にアクセスするには、直接 <code class="literal">$GLOBALS['foo']</code> にアクセスするか、あるいは <code class="literal">global $foo;</code> を用いて (グローバル変数を参照する) ローカル変数を作成する。</p></li></ul></div><p>
       グローバル変数のほかに、クラスの静的属性もグローバル状態となります。
     </p><p>
-      <a id="idp306304" class="indexterm"></a>
-      <a id="idp306880" class="indexterm"></a>
+      <a id="idp298528" class="indexterm"></a>
+      <a id="idp299104" class="indexterm"></a>
 
       デフォルトでは、PHPUnit がテストを実行する際には、
       グローバル変数やスーパーグローバル変数 (<code class="literal">$GLOBALS</code>,
@@ -292,8 +292,8 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
         のオブジェクトはシリアライズできないため、そのようなオブジェクトが
         <code class="literal">$GLOBALS</code> 配列に格納されている場合はバックアップ操作が失敗します。
       </p></div><p>
-      <a id="idp315264" class="indexterm"></a>
-      <a id="idp315968" class="indexterm"></a>
+      <a id="idp307488" class="indexterm"></a>
+      <a id="idp308192" class="indexterm"></a>
 
       <a class="xref" href="appendixes.annotations.html#appendixes.annotations.backupGlobals" title="@backupGlobals">「@backupGlobals」</a> で説明している
       <code class="literal">@backupGlobals</code> アノテーションを使用すると、
@@ -311,8 +311,8 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
         プロパティをたとえば <code class="literal">setUp()</code>
         メソッド内で設定しても効果が及びません。
       </p></div><p>
-      <a id="idp320880" class="indexterm"></a>
-      <a id="idp321584" class="indexterm"></a>
+      <a id="idp313104" class="indexterm"></a>
+      <a id="idp313808" class="indexterm"></a>
 
       <a class="xref" href="appendixes.annotations.html#appendixes.annotations.backupStaticAttributes" title="@backupStaticAttributes">「@backupStaticAttributes」</a>
       で説明する <code class="literal">@backupStaticAttributes</code> アノテーションを使うと、
