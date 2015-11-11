@@ -118,5 +118,5 @@ foreach (array("appendixes.assertions", "appendixes.annotations", "incomplete-an
 	file_put_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/$file.html", $html);
 }
 
-echo "PHPUnit docset created !\n";
+echo "\nPHPUnit docset created !\n";
 
