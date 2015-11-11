@@ -48,7 +48,9 @@ if ($p !== false) {
 }
 
 // add links from the table of contents
+echo "\nCreate search indexes ...\n\n";
 $links = $edited = array();
+
 foreach ($dom->getElementsByTagName("a") as $a) {
 	$href = $a->getAttribute("href");
 	$str  = substr($href, 0, 6);
@@ -79,6 +81,8 @@ foreach ($dom->getElementsByTagName("a") as $a) {
 	if (substr($href, 0, 30) == "writing-tests-for-phpunit.html" && strpos($name, "(") !== false) $class = "Function";
 	$links[$name] = true;
 	$db->query("INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (\"$name\",\"$class\",\"$href\")");
+
+	echo "{$name}\n";
 }
 
 // now go through some of the files to add pointers to inline documentation
@@ -106,9 +110,13 @@ foreach (array("appendixes.assertions", "appendixes.annotations", "incomplete-an
 
 		if (isset($links[$name])) continue;
 		$db->query("INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (\"$name\",\"Function\",\"$href\")");
+
+		echo "{$name}\n";
 	}
 
 	$html = str_replace($search, $replace, $html);
 	file_put_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/$file.html", $html);
 }
+
+echo "PHPUnit docset created !\n";
 
