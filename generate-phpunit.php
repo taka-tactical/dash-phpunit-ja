@@ -30,15 +30,15 @@ file_put_contents(__DIR__ . "/PHPUnit.docset/Contents/Info.plist", <<<ENDE
 ENDE
 );
 copy(__DIR__ . "/icon.png", __DIR__ . "/PHPUnit.docset/icon.png");
+$html = file_get_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/index.html");
 
 $dom = new DomDocument;
-@$dom->loadHTMLFile(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/index.html");
+@$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
 
 $db = new sqlite3(__DIR__ . "/PHPUnit.docset/Contents/Resources/docSet.dsidx");
 $db->query("CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT)");
 $db->query("CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path)");
 
-$html = file_get_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/index.html");
 $p = strpos($html, '<nav');
 if ($p !== false) {
 	$q = strpos($html, '</nav');
@@ -72,8 +72,7 @@ foreach ($dom->getElementsByTagName("a") as $a) {
 		$edited[$file] = true;
 	}
 
-	$name = trim(preg_replace("#\s+#u", ' ', preg_replace("#^[A-Z0-9-]+\.#u", '',
-			mb_convert_encoding($a->nodeValue, 'UTF-8', mb_detect_encoding($a->nodeValue)))));
+	$name = trim(preg_replace("#\s+#u", ' ', preg_replace("#^[A-Z0-9-]+\.#u", '', $a->nodeValue)));
 	if (empty($name)) continue;
 
 	$class = "Guide";
@@ -85,13 +84,14 @@ foreach ($dom->getElementsByTagName("a") as $a) {
 // now go through some of the files to add pointers to inline documentation
 foreach (array("appendixes.assertions", "appendixes.annotations", "incomplete-and-skipped-tests", "test-doubles", "writing-tests-for-phpunit") as $file) {
 	$search = $replace = array();
-	@$dom->loadHTMLFile(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/$file.html");
+	$html   = file_get_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/{$file}.html");
+
+	@$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
+
 	foreach ($dom->getElementsByTagName("td") as $td) {
 		if (!$td->firstChild) continue;
 		if (strtolower($td->firstChild->nodeName) != "code") continue;
-
 		$name = $td->firstChild->nodeValue;
-		mb_convert_variables('UTF-8', mb_detect_encoding($name), $name);
 		if (!preg_match("#^([a-z_]+ )?([a-z0-9_]+\()#i", $name, $m)) continue;
 
 		$name = isset($m[2]) ? $m[2] : $m[1];
@@ -107,7 +107,7 @@ foreach (array("appendixes.assertions", "appendixes.annotations", "incomplete-an
 		if (isset($links[$name])) continue;
 		$db->query("INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (\"$name\",\"Function\",\"$href\")");
 	}
-	$html = file_get_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/$file.html");
+
 	$html = str_replace($search, $replace, $html);
 	file_put_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/$file.html", $html);
 }
