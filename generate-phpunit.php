@@ -2,7 +2,7 @@
 
 // set your language (en/ja/zh_cn)
 $lang = 'ja';
-$ver  = '4.2';
+$ver  = '5.0';
 
 exec("rm -rf PHPUnit.docset/Contents/Resources/");
 exec("mkdir -p PHPUnit.docset/Contents/Resources/");
@@ -72,7 +72,8 @@ foreach ($dom->getElementsByTagName("a") as $a) {
 		$edited[$file] = true;
 	}
 
-	$name = trim(preg_replace("#\s+#u", " ", preg_replace("#^[A-Z0-9-]+\.#u", "", $a->nodeValue)));
+	$name = trim(preg_replace("#\s+#u", ' ', preg_replace("#^[A-Z0-9-]+\.#u", '',
+			mb_convert_encoding($a->nodeValue, 'UTF-8', mb_detect_encoding($a->nodeValue)))));
 	if (empty($name)) continue;
 
 	$class = "Guide";
@@ -88,14 +89,14 @@ foreach (array("appendixes.assertions", "appendixes.annotations", "incomplete-an
 	foreach ($dom->getElementsByTagName("td") as $td) {
 		if (!$td->firstChild) continue;
 		if (strtolower($td->firstChild->nodeName) != "code") continue;
-		$name = $td->firstChild->nodeValue;
-		if (!preg_match("#^([a-z_]+ )?([a-z0-9_]+\()#i", $name, $m)) continue;
 
+		$name = $td->firstChild->nodeValue;
+		mb_convert_variables('UTF-8', mb_detect_encoding($name), $name);
+		if (!preg_match("#^([a-z_]+ )?([a-z0-9_]+\()#i", $name, $m)) continue;
 
 		$name = isset($m[2]) ? $m[2] : $m[1];
 		$anchor = preg_replace("#[^a-z]#i", "", $name);
 		$href = $file .".html#" . $anchor;
-
 
 		$search[] = '<td align="left"><code class="literal">' . $m[0];
 		$replace[] = '<td align="left"><code class="literal" style="white-space: normal" id="' . $anchor . '">' . $m[0];
