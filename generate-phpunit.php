@@ -17,7 +17,7 @@ $html = file_get_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Document
 
 if (preg_match('#>(\d+(\.\d+)) \(<strong>stable</strong>\)</a>#', $html, $matches)) {
 	$ver = $matches[1];
-	echo "\nDetect version '{$ver}'. set as current ...\n\n";
+	echo "\nDetect version '{$ver}'. set as current ...\n";
 }
 
 // gen Info.plist
