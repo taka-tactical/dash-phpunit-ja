@@ -2,14 +2,25 @@
 
 // set your language (en/ja/zh_cn)
 $lang = 'ja';
-$ver  = '5.0';
+$ver  = 'latest';
 
+
+// get manual html
 exec("rm -rf PHPUnit.docset/Contents/Resources/");
 exec("mkdir -p PHPUnit.docset/Contents/Resources/");
 exec("wget -rkl1 http://phpunit.de/manual/current/{$lang}/index.html");
 exec("mv " . __DIR__ . "/phpunit.de/manual/current/{$lang} " . __DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/");
 exec("rm -r " . __DIR__ . "/phpunit.de/");
 
+// get current version (if available)
+$html = file_get_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/index.html");
+
+if (preg_match('#>(\d+(\.\d+)) \(<strong>stable</strong>\)</a>#', $html, $matches)) {
+	$ver = $matches[1];
+	echo "\nDetect version '{$ver}'. set as current ...\n\n";
+}
+
+// gen Info.plist
 file_put_contents(__DIR__ . "/PHPUnit.docset/Contents/Info.plist", <<<ENDE
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -30,8 +41,8 @@ file_put_contents(__DIR__ . "/PHPUnit.docset/Contents/Info.plist", <<<ENDE
 ENDE
 );
 copy(__DIR__ . "/icon.png", __DIR__ . "/PHPUnit.docset/icon.png");
-$html = file_get_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/index.html");
 
+// gen docset
 $dom = new DomDocument;
 @$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
 
