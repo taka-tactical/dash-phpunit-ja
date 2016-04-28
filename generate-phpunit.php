@@ -8,7 +8,7 @@ $ver  = 'latest';
 // get manual html
 exec("rm -rf PHPUnit.docset/Contents/Resources/");
 exec("mkdir -p PHPUnit.docset/Contents/Resources/");
-exec("wget -rkl1 http://phpunit.de/manual/current/{$lang}/index.html");
+exec("wget -rkl1 https://phpunit.de/manual/current/{$lang}/index.html");
 exec("mv " . __DIR__ . "/phpunit.de/manual/current/{$lang} " . __DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/");
 exec("rm -r " . __DIR__ . "/phpunit.de/");
 
@@ -51,10 +51,10 @@ $db->query("CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEX
 $db->query("CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path)");
 
 $p = strpos($html, '<nav');
+
 if ($p !== false) {
 	$q = strpos($html, '</nav');
-	$html = substr($html, 0, $p) . substr($html, $q + 6);
-
+	$html = substr($html, 0, $p) . '<br />' . substr($html, $q + 6);
 	file_put_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/index.html", $html);
 }
 
