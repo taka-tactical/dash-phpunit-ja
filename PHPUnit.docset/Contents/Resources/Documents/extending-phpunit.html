@@ -2,7 +2,7 @@
 <html lang="en">
  <head>
   <meta charset="utf-8">
-  <title>PHPUnit マニュアル &#8211; 第15章 PHPUnit の拡張</title>
+  <title>PHPUnit マニュアル &#8211; 第14章 PHPUnit の拡張</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="extending-phpunit.html">
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -15,17 +15,17 @@
   
   <div class="container-fluid">
    <div class="row">
-    <div style='padding: 1.5em'>
+    <div style='padding: 2.0em'>
      <div class="row">
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="logging.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="appendixes.assertions.html">次へ</a></div>
      </div>
-<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="extending-phpunit"></a>第15章 PHPUnit の拡張</h1></div></div></div><p>
+<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="extending-phpunit"></a>第14章 PHPUnit の拡張</h1></div></div></div><p>
     テストを書きやすくする、あるいはテストの実行結果の表示方法を変更するなど、
     PHPUnit はさまざまな方法で拡張することができます。
     PHPUnit を拡張するための第一歩をここで説明します。
   </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="extending-phpunit.PHPUnit_Framework_TestCase"></a>PHPUnit_Framework_TestCase のサブクラスの作成</h2></div></div></div><p>
-      <a id="idp975360" class="indexterm"></a>
+      <a id="idp828272" class="indexterm"></a>
 
       <code class="literal">PHPUnit_Framework_TestCase</code>
       を継承した抽象サブクラスにカスタムアサーションやユーティリティメソッドを書き、
@@ -33,12 +33,12 @@
       これが、PHPUnit を拡張するための一番簡単な方法です。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="extending-phpunit.custom-assertions"></a>カスタムアサーションの作成</h2></div></div></div><p>
       カスタムアサーションを作成するときには、PHPUnit 自体のアサーションの実装方法を真似るのがおすすめです。
-      <a class="xref" href="extending-phpunit.html#extending-phpunit.examples.Assert.php" title="例 15.1: PHPUnit_Framework_Assert クラスの assertTrue() および isTrue() メソッド">例 15.1</a> を見ればわかるとおり、
+      <a class="xref" href="extending-phpunit.html#extending-phpunit.examples.Assert.php" title="例 14.1: PHPUnit_Framework_Assert クラスの assertTrue() および isTrue() メソッド">例 14.1</a> を見ればわかるとおり、
       <code class="literal">assertTrue()</code> メソッドは
       <code class="literal">isTrue()</code> および <code class="literal">assertThat()</code> メソッドの単なるラッパーに過ぎません。
       <code class="literal">isTrue()</code> が matcher オブジェクトを作り、それを
       <code class="literal">assertThat()</code> に渡して評価しています。
-    </p><div class="example"><a id="extending-phpunit.examples.Assert.php"></a><p class="title"><strong>例 15.1: PHPUnit_Framework_Assert クラスの assertTrue() および isTrue() メソッド</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="extending-phpunit.examples.Assert.php"></a><p class="title"><strong>例 14.1: PHPUnit_Framework_Assert クラスの assertTrue() および isTrue() メソッド</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 abstract class PHPUnit_Framework_Assert
 {
     // ...
@@ -70,11 +70,11 @@ abstract class PHPUnit_Framework_Assert
 
     // ...
 }?&gt;</pre></div></div><br class="example-break"></br><p>
-      <a class="xref" href="extending-phpunit.html#extending-phpunit.examples.IsTrue.php" title="例 15.2: PHPUnit_Framework_Constraint_IsTrue クラス">例 15.2</a> は、
+      <a class="xref" href="extending-phpunit.html#extending-phpunit.examples.IsTrue.php" title="例 14.2: PHPUnit_Framework_Constraint_IsTrue クラス">例 14.2</a> は、
       <code class="literal">PHPUnit_Framework_Constraint_IsTrue</code> が
       matcher オブジェクト (あるいは制約) のために抽象クラス
       <code class="literal">PHPUnit_Framework_Constraint</code> を継承している部分です。
-    </p><div class="example"><a id="extending-phpunit.examples.IsTrue.php"></a><p class="title"><strong>例 15.2: PHPUnit_Framework_Constraint_IsTrue クラス</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="extending-phpunit.examples.IsTrue.php"></a><p class="title"><strong>例 14.2: PHPUnit_Framework_Constraint_IsTrue クラス</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class PHPUnit_Framework_Constraint_IsTrue extends PHPUnit_Framework_Constraint
 {
     /**
@@ -107,12 +107,12 @@ class PHPUnit_Framework_Constraint_IsTrue extends PHPUnit_Framework_Constraint
       さらに、モックオブジェクトを設定する際の matcher として <code class="literal">isTrue()</code>
       メソッドを使えるようにもなります。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="extending-phpunit.PHPUnit_Framework_TestListener"></a>PHPUnit_Framework_TestListener の実装</h2></div></div></div><p>
-      <a id="idp1392032" class="indexterm"></a>
+      <a id="idp1378784" class="indexterm"></a>
 
-      <a class="xref" href="extending-phpunit.html#extending-phpunit.examples.SimpleTestListener.php" title="例 15.3: シンプルなテストリスナー">例 15.3</a> は、
+      <a class="xref" href="extending-phpunit.html#extending-phpunit.examples.SimpleTestListener.php" title="例 14.3: シンプルなテストリスナー">例 14.3</a> は、
       <code class="literal">PHPUnit_Framework_TestListener</code>
       インターフェイスのシンプルな実装例です。
-    </p><div class="example"><a id="extending-phpunit.examples.SimpleTestListener.php"></a><p class="title"><strong>例 15.3: シンプルなテストリスナー</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="extending-phpunit.examples.SimpleTestListener.php"></a><p class="title"><strong>例 14.3: シンプルなテストリスナー</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class SimpleTestListener implements PHPUnit_Framework_TestListener
 {
     public function addError(PHPUnit_Framework_Test $test, Exception $e, $time)
@@ -161,13 +161,13 @@ class SimpleTestListener implements PHPUnit_Framework_TestListener
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br><p>
-      <a id="idp1397296" class="indexterm"></a>
+      <a id="idp1384048" class="indexterm"></a>
 
-      <a class="xref" href="extending-phpunit.html#extending-phpunit.examples.BaseTestListener.php" title="例 15.4: ベーステストリスナーの利用法">例 15.4</a>
+      <a class="xref" href="extending-phpunit.html#extending-phpunit.examples.BaseTestListener.php" title="例 14.4: ベーステストリスナーの利用法">例 14.4</a>
       は、抽象クラス <code class="literal">PHPUnit_Framework_BaseTestListener</code>
       のサブクラスを作る例です。これは、インターフェイスのメソッドのうち実際に使うものだけを指定し、
       他のメソッドについては空の実装を提供します。
-    </p><div class="example"><a id="extending-phpunit.examples.BaseTestListener.php"></a><p class="title"><strong>例 15.4: ベーステストリスナーの利用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="extending-phpunit.examples.BaseTestListener.php"></a><p class="title"><strong>例 14.4: ベーステストリスナーの利用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class ShortTestListener extends PHPUnit_Framework_BaseTestListener
 {
     public function endTest(PHPUnit_Framework_Test $test, $time)
@@ -180,23 +180,26 @@ class ShortTestListener extends PHPUnit_Framework_BaseTestListener
       に、自作のテストリスナーをテスト実行時にアタッチするための
       PHPUnit の設定方法についての説明があります。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="extending-phpunit.PHPUnit_Extensions_TestDecorator"></a>PHPUnit_Extensions_TestDecorator のサブクラスの作成</h2></div></div></div><p>
-      <a id="idp1403936" class="indexterm"></a>
+      <a id="idp1390688" class="indexterm"></a>
 
       <code class="literal">PHPUnit_Extensions_TestDecorator</code>
       のサブクラスでテストケースあるいはテストスイートをラッピングし、
       デコレータパターンを使用することで
       各テストの実行前後に何らかの処理をさせることができます。
     </p><p>
-      <a id="idp1405680" class="indexterm"></a>
+      <a id="idp1392432" class="indexterm"></a>
+      <a id="idp1393024" class="indexterm"></a>
 
       PHPUnit には、<code class="literal">PHPUnit_Extensions_RepeatedTest</code>
-      という具象テストデコレータが付属しています。
-      これはテストを繰り返し実行し、それらが全て成功した場合にのみ成功とみなします。
+      および <code class="literal">PHPUnit_Extensions_TestSetup</code>
+      という 2 つの具象テストデコレータが付属しています。
+      前者はテストを繰り返し実行し、それらが全て成功した場合にのみ成功とみなします。
+      後者については <a class="xref" href="fixtures.html" title="第4章 フィクスチャ">第 4 章</a> で説明しました。
     </p><p>
-      <a class="xref" href="extending-phpunit.html#extending-phpunit.examples.RepeatedTest.php" title="例 15.5: RepeatedTest デコレータ">例 15.5</a>
+      <a class="xref" href="extending-phpunit.html#extending-phpunit.examples.RepeatedTest.php" title="例 14.5: RepeatedTest デコレータ">例 14.5</a>
       は、テストデコレータ <code class="literal">PHPUnit_Extensions_RepeatedTest</code>
       の一部を抜粋したものです。独自のデコレータを作成するための参考にしてください。
-    </p><div class="example"><a id="extending-phpunit.examples.RepeatedTest.php"></a><p class="title"><strong>例 15.5: RepeatedTest デコレータ</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="extending-phpunit.examples.RepeatedTest.php"></a><p class="title"><strong>例 14.5: RepeatedTest デコレータ</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 require_once 'PHPUnit/Extensions/TestDecorator.php';
 
 class PHPUnit_Extensions_RepeatedTest extends PHPUnit_Extensions_TestDecorator
@@ -232,8 +235,8 @@ class PHPUnit_Extensions_RepeatedTest extends PHPUnit_Extensions_TestDecorator
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="extending-phpunit.PHPUnit_Framework_Test"></a>PHPUnit_Framework_Test の実装</h2></div></div></div><p>
-      <a id="idp1526304" class="indexterm"></a>
-      <a id="idp1526880" class="indexterm"></a>
+      <a id="idp1417360" class="indexterm"></a>
+      <a id="idp1417936" class="indexterm"></a>
 
       <code class="literal">PHPUnit_Framework_Test</code> インターフェイスの機能は限られており、
       実装するのは簡単です。<code class="literal">PHPUnit_Framework_Test</code>
@@ -242,11 +245,11 @@ class PHPUnit_Extensions_RepeatedTest extends PHPUnit_Extensions_TestDecorator
       などを実行します。
     </p><p>
       カンマ区切り (CSV) ファイルの値と比較する、データ駆動のテストを
-      <a class="xref" href="extending-phpunit.html#extending-phpunit.examples.DataDrivenTest.php" title="例 15.6: データ駆動のテスト">例 15.6</a>
+      <a class="xref" href="extending-phpunit.html#extending-phpunit.examples.DataDrivenTest.php" title="例 14.6: データ駆動のテスト">例 14.6</a>
       に示します。このファイルの各行は <code class="literal">foo;bar</code>
       のような形式になっており (訳注: CSV じゃない……)、
       最初の値が期待値で 2 番目の値が実際の値です。
-    </p><div class="example"><a id="extending-phpunit.examples.DataDrivenTest.php"></a><p class="title"><strong>例 15.6: データ駆動のテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="extending-phpunit.examples.DataDrivenTest.php"></a><p class="title"><strong>例 14.6: データ駆動のテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class DataDrivenTest implements PHPUnit_Framework_Test
 {
     private $lines;
@@ -303,7 +306,7 @@ class DataDrivenTest implements PHPUnit_Framework_Test
 
 $test = new DataDrivenTest('data_file.csv');
 $result = PHPUnit_TextUI_TestRunner::run($test);
-?&gt;</pre><pre class="screen">PHPUnit 4.2.0 by Sebastian Bergmann.
+?&gt;</pre><pre class="screen">PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 .F
 
@@ -325,12 +328,14 @@ Tests: 2, Failures: 1.</pre></div></div><br class="example-break"></br></div></d
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="logging.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="appendixes.assertions.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
+
+
+
     </div>
    </div>
    <hr/>
    <footer>
-    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2014 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
+    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2016 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
    </footer>
   </div>
   <script src="js/jquery.js"></script>
@@ -338,18 +343,6 @@ Tests: 2, Failures: 1.</pre></div></div><br class="example-break"></br></div></d
   <script src="js/highlight.pack.js"></script>
   <script type="text/javascript">
   $(document).ready(function() { $('pre.programlisting').each(function(i, e) {hljs.highlightBlock(e)}); });
-
-  var _paq = _paq || [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "2"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-  })();
   </script>
  </body>
 </html>

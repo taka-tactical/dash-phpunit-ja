@@ -15,13 +15,13 @@
   
   <div class="container-fluid">
    <div class="row">
-    <div style='padding: 1.5em'>
+    <div style='padding: 2.0em'>
      <div class="row">
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="textui.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="organizing-tests.html">次へ</a></div>
      </div>
 <div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="fixtures"></a>第4章 フィクスチャ</h1></div></div></div><p>
-    <a id="idp347200" class="indexterm"></a>
+    <a id="idp326080" class="indexterm"></a>
 
     テストを記述する際にいちばん時間を食うのは、テストを開始するための事前設定と
     テスト終了後の後始末の処理を書くことです。この事前設定は、テストの
@@ -37,9 +37,9 @@
     テストフレームワークの助けがなければ、
     個々のテストのなかで同じような準備コードを繰り返し書くはめになってしまいます。
   </p><p>
-    <a id="idp517984" class="indexterm"></a>
-    <a id="idp518528" class="indexterm"></a>
-    <a id="idp519104" class="indexterm"></a>
+    <a id="idp518208" class="indexterm"></a>
+    <a id="idp518752" class="indexterm"></a>
+    <a id="idp519328" class="indexterm"></a>
 
     PHPUnit は、準備用のコードの共有をサポートしています。
     各テストメソッドが実行される前に、<code class="literal">setUp()</code>
@@ -94,31 +94,31 @@ class StackTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br><p>
-    <a id="idp254432" class="indexterm"></a>
-    <a id="idp255008" class="indexterm"></a>
-    <a id="idp255584" class="indexterm"></a>
-    <a id="idp264432" class="indexterm"></a>
-    <a id="idp265008" class="indexterm"></a>
+    <a id="idp529792" class="indexterm"></a>
+    <a id="idp530368" class="indexterm"></a>
+    <a id="idp530944" class="indexterm"></a>
+    <a id="idp531520" class="indexterm"></a>
+    <a id="idp256176" class="indexterm"></a>
 
     テンプレートメソッド <code class="literal">setUp()</code> および <code class="literal">tearDown()</code>
     は、テストケースクラスのテストメソッドごとに (そして最初にインスタンスを作成したときに)
     一度ずつ実行されます。
   </p><p>
-    <a id="idp267056" class="indexterm"></a>
-    <a id="idp267632" class="indexterm"></a>
-    <a id="idp268208" class="indexterm"></a>
-    <a id="idp268784" class="indexterm"></a>
-    <a id="idp269360" class="indexterm"></a>
-    <a id="idp269936" class="indexterm"></a>
-    <a id="idp270512" class="indexterm"></a>
-    <a id="idp271088" class="indexterm"></a>
+    <a id="idp258224" class="indexterm"></a>
+    <a id="idp258800" class="indexterm"></a>
+    <a id="idp259376" class="indexterm"></a>
+    <a id="idp259952" class="indexterm"></a>
+    <a id="idp260528" class="indexterm"></a>
+    <a id="idp261104" class="indexterm"></a>
+    <a id="idp261680" class="indexterm"></a>
+    <a id="idp262256" class="indexterm"></a>
 
     さらに、テンプレートメソッド <code class="literal">setUpBeforeClass()</code> および
     <code class="literal">tearDownAfterClass()</code> が存在します。
     これらはそれぞれ、テストケースクラスの最初のテストメソッドの実行前と
     テストケースクラスの最後のテストの実行後にコールされます。
   </p><p>
-    <a id="idp273184" class="indexterm"></a>
+    <a id="idp264352" class="indexterm"></a>
 
     以下の例は、テストケースクラスで使用できるすべてのテンプレートメソッドを示すものです。
   </p><div class="example"><a id="fixtures.examples.TemplateMethodsTest.php"></a><p class="title"><strong>例 4.2: 利用可能なすべてのテンプレートメソッド</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
@@ -173,7 +173,7 @@ class TemplateMethodsTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit TemplateMethodsTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 TemplateMethodsTest::setUpBeforeClass
 TemplateMethodsTest::setUp
@@ -230,8 +230,8 @@ Tests: 2, Assertions: 2, Failures: 1.</pre></div></div><br class="example-break"
       最初にログインした状態を再利用するということです。こうすることで、
       テストの実行時間を短縮できます。
     </p><p>
-      <a id="idp533248" class="indexterm"></a>
-      <a id="idp533824" class="indexterm"></a>
+      <a id="idp449008" class="indexterm"></a>
+      <a id="idp449584" class="indexterm"></a>
 
       <a class="xref" href="fixtures.html#fixtures.sharing-fixture.examples.DatabaseTest.php" title="例 4.3: テストスイートの複数テスト間でのフィクスチャの共有">例 4.3</a>
       では、テンプレートメソッド <code class="literal">setUpBeforeClass()</code> および
@@ -273,8 +273,8 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
     </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>グローバル変数 <code class="literal">$foo = 'bar';</code> は、<code class="literal">$GLOBALS['foo'] = 'bar';</code> として格納される。</p></li><li class="listitem"><p><code class="literal">$GLOBALS</code> は<span class="emphasis"><em>スーパーグローバル</em></span>変数と呼ばれる。</p></li><li class="listitem"><p>スーパーグローバル変数は組み込みの変数で、すべてのスコープで常に利用できる。</p></li><li class="listitem"><p>関数やメソッドのスコープでグローバル変数 <code class="literal">$foo</code> にアクセスするには、直接 <code class="literal">$GLOBALS['foo']</code> にアクセスするか、あるいは <code class="literal">global $foo;</code> を用いて (グローバル変数を参照する) ローカル変数を作成する。</p></li></ul></div><p>
       グローバル変数のほかに、クラスの静的属性もグローバル状態となります。
     </p><p>
-      <a id="idp298528" class="indexterm"></a>
-      <a id="idp299104" class="indexterm"></a>
+      <a id="idp465296" class="indexterm"></a>
+      <a id="idp465872" class="indexterm"></a>
 
       デフォルトでは、PHPUnit がテストを実行する際には、
       グローバル変数やスーパーグローバル変数 (<code class="literal">$GLOBALS</code>,
@@ -292,8 +292,8 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
         のオブジェクトはシリアライズできないため、そのようなオブジェクトが
         <code class="literal">$GLOBALS</code> 配列に格納されている場合はバックアップ操作が失敗します。
       </p></div><p>
-      <a id="idp307488" class="indexterm"></a>
-      <a id="idp308192" class="indexterm"></a>
+      <a id="idp474208" class="indexterm"></a>
+      <a id="idp474912" class="indexterm"></a>
 
       <a class="xref" href="appendixes.annotations.html#appendixes.annotations.backupGlobals" title="@backupGlobals">「@backupGlobals」</a> で説明している
       <code class="literal">@backupGlobals</code> アノテーションを使用すると、
@@ -311,8 +311,8 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
         プロパティをたとえば <code class="literal">setUp()</code>
         メソッド内で設定しても効果が及びません。
       </p></div><p>
-      <a id="idp313104" class="indexterm"></a>
-      <a id="idp313808" class="indexterm"></a>
+      <a id="idp479728" class="indexterm"></a>
+      <a id="idp480432" class="indexterm"></a>
 
       <a class="xref" href="appendixes.annotations.html#appendixes.annotations.backupStaticAttributes" title="@backupStaticAttributes">「@backupStaticAttributes」</a>
       で説明する <code class="literal">@backupStaticAttributes</code> アノテーションを使うと、
@@ -360,12 +360,14 @@ class MyTest extends PHPUnit_Framework_TestCase
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="textui.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="organizing-tests.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
+
+
+
     </div>
    </div>
    <hr/>
    <footer>
-    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2014 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
+    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2016 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
    </footer>
   </div>
   <script src="js/jquery.js"></script>
@@ -373,18 +375,6 @@ class MyTest extends PHPUnit_Framework_TestCase
   <script src="js/highlight.pack.js"></script>
   <script type="text/javascript">
   $(document).ready(function() { $('pre.programlisting').each(function(i, e) {hljs.highlightBlock(e)}); });
-
-  var _paq = _paq || [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "2"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-  })();
   </script>
  </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en">
  <head>
   <meta charset="utf-8">
-  <title>PHPUnit マニュアル &#8211; 第6章 Strict モード</title>
+  <title>PHPUnit マニュアル &#8211; 第6章 リスクを伴うテスト</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="strict-mode.html">
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -15,18 +15,14 @@
   
   <div class="container-fluid">
    <div class="row">
-    <div style='padding: 1.5em'>
+    <div style='padding: 2.0em'>
      <div class="row">
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="organizing-tests.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="incomplete-and-skipped-tests.html">次へ</a></div>
      </div>
-<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="strict-mode"></a>第6章 Strict モード</h1></div></div></div><p>
-    PHPUnit は、テストを実行する際に、追加のチェックをすることができます。
-    以下に示すさまざまなモードによるきめ細やかな制御だけでなく、
-    コマンドラインオプション <code class="literal">--strict</code> を使ったり、PHPUnit
-    の XML 設定ファイルで <code class="literal">strict="true"</code> を設定することで、
-    これらを一括で有効にすることもできます。
-  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="strict-mode.useless-tests"></a>無意味なテスト</h2></div></div></div><p>
+<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="strict-mode"></a>第6章 リスクを伴うテスト</h1></div></div></div><p>
+    PHPUnit は、テストを実行する際に、以下のような追加のチェックをすることができます。
+  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="risky-tests.useless-tests"></a>無意味なテスト</h2></div></div></div><p>
       PHPUnit は、何も確かめていないテストを検出することができます。
       このチェックを有効にするには、コマンドラインオプション
       <code class="literal">--report-useless-tests</code>
@@ -37,7 +33,7 @@
       何もアサーションを実行していないテストは、このチェックを有効にしておくと、
       危険であるとマークされます。モックオブジェクトでの例外や、
       <code class="code">@expectedException</code> などのアノテーションは、アサーションとみなします。
-    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="strict-mode.unintentionally-covered-code"></a>意図せぬうちにカバーされているコード</h2></div></div></div><p>
+    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="risky-tests.unintentionally-covered-code"></a>意図せぬうちにカバーされているコード</h2></div></div></div><p>
       PHPUnit は、意図せずカバーされているコードを検出することができます。
       このチェックを有効にするには、コマンドラインオプション
       <code class="literal">--strict-coverage</code>
@@ -48,7 +44,7 @@
       <code class="code">@covers</code> アノテーションつきのテストが、
       <code class="code">@covers</code> や <code class="code">@uses</code> に記されていないコードを実行している場合に、
       このチェックを有効にしておくと、危険であるとマークされます。
-    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="strict-mode.output-during-test-execution"></a>テストの実行時の出力</h2></div></div></div><p>
+    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="risky-tests.output-during-test-execution"></a>テストの実行時の出力</h2></div></div></div><p>
       PHPUnit は、テストの最中の出力を検出することができます。
       このチェックを有効にするには、コマンドラインオプション
       <code class="literal">--disallow-test-output</code>
@@ -59,7 +55,7 @@
       テストコードあるいは被テストコードの中で、<code class="code">print</code>
       などで何かを出力している場合に、
       このチェックを有効にしておくと、危険であるとマークされます。
-    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="strict-mode.test-execution-timeout"></a>テストの実行時のタイムアウト</h2></div></div></div><p>
+    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="risky-tests.test-execution-timeout"></a>テストの実行時のタイムアウト</h2></div></div></div><p>
       <code class="literal">PHP_Invoker</code> パッケージがインストールされており、
       かつ <code class="literal">pcntl</code> 拡張モジュールが利用可能な場合は、
       テストの実行時間に制限を設けることができます。
@@ -84,17 +80,25 @@
       このテストは、実行時間が 1 秒を超えたら失敗します。
       このタイムアウト時間は、XML 設定ファイルの
       <code class="literal">timeoutForSmallTests</code> 属性で変更できます。
+    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="risky-tests.global-state-manipulation"></a>グローバルな状態の変更</h2></div></div></div><p>
+      PHPUnit は、グローバルな状態を変更するテストを厳格にチェックすることができます。
+      このチェックを有効にするには、コマンドラインで <code class="literal">--strict-global-state</code>
+      オプションを指定するか、PHPUnit の XML 設定ファイルで
+      <code class="literal">beStrictAboutChangesToGlobalState="true"</code>
+      を指定します。
     </p></div></div>
      <div class="row">
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="organizing-tests.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="incomplete-and-skipped-tests.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
+
+
+
     </div>
    </div>
    <hr/>
    <footer>
-    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2014 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
+    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2016 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
    </footer>
   </div>
   <script src="js/jquery.js"></script>
@@ -102,18 +106,6 @@
   <script src="js/highlight.pack.js"></script>
   <script type="text/javascript">
   $(document).ready(function() { $('pre.programlisting').each(function(i, e) {hljs.highlightBlock(e)}); });
-
-  var _paq = _paq || [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "2"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-  })();
   </script>
  </body>
 </html>

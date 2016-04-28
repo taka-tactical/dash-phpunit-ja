@@ -2,7 +2,7 @@
 <html lang="en">
  <head>
   <meta charset="utf-8">
-  <title>PHPUnit マニュアル &#8211; 第14章 ログ出力</title>
+  <title>PHPUnit マニュアル &#8211; 第13章 ログ出力</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="logging.html">
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -15,18 +15,18 @@
   
   <div class="container-fluid">
    <div class="row">
-    <div style='padding: 1.5em'>
+    <div style='padding: 2.0em'>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="selenium.html">戻る</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="other-uses-for-tests.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="extending-phpunit.html">次へ</a></div>
      </div>
-<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="logging"></a>第14章 ログ出力</h1></div></div></div><p>
-    <a id="idp889536" class="indexterm"></a>
+<div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="logging"></a>第13章 ログ出力</h1></div></div></div><p>
+    <a id="idp536320" class="indexterm"></a>
 
     PHPUnit は、いくつかの形式のログファイルを作成することができます。
   </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="logging.xml"></a>テスト結果 (XML)</h2></div></div></div><p>
       PHPUnit が作成するテスト結果の XML のログファイルは、
-      <a class="ulink" href="http://ant.apache.org/manual/OptionalTasks/junit.html" target="_top">
+      <a class="ulink" href="http://ant.apache.org/manual/Tasks/junit.html" target="_top">
       Apache Ant の JUnit タスク</a>
       が使用しているものを参考にしています。
       以下の例は、<code class="literal">ArrayTest</code> のテストが生成した
@@ -139,14 +139,14 @@ not ok 2 - Error: testError(FailureErrorTest)
  "message":"Failed asserting that &lt;integer:2&gt; is equal to &lt;integer:1&gt;."}
 {"event":"test","suite":"FailureErrorTest",
  "test":"testError(FailureErrorTest)","status":"error",
- "time":0.0083.90152893066,"trace":[],"message":""}</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="logging.codecoverage.xml"></a>コードカバレッジ (XML)</h2></div></div></div><p>
+ "time":0.0083680152893066,"trace":[],"message":""}</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="logging.codecoverage.xml"></a>コードカバレッジ (XML)</h2></div></div></div><p>
       PHPUnit がコードカバレッジ情報のログ出力の際に使用している XML のフォーマットは、
       <a class="ulink" href="http://www.atlassian.com/software/clover/" target="_top">Clover</a>
       のものを参考にしています。
       以下の例は、<code class="literal">BankAccountTest</code> のテストが生成した
       XML ログファイルです。
     </p><pre class="screen">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;coverage generated="1184835473" phpunit="3.6.0"&gt;
+&lt;coverage generated="1184835473" phpunit="4.8.0"&gt;
   &lt;project name="BankAccountTest" timestamp="1184835473"&gt;
     &lt;file name="/home/sb/BankAccount.php"&gt;
       &lt;class name="BankAccountException"&gt;
@@ -197,17 +197,19 @@ not ok 2 - Error: testError(FailureErrorTest)
 
       デフォルトでは、すべてのファイルとそのカバレッジ情報が、詳細形式で表示されます。
       この設定は、xml のオプション <code class="literal">showOnlySummary</code> で変更できます。
-    </p><div class="figure"><a id="code-coverage-analysis.figures.Code_Coverage4.png"></a><p class="title"><strong>図14.1 コマンドラインでの、色つきのコードカバレッジ出力</strong></p><div class="figure-contents"><div><img src="https://phpunit.de/manual/current/ja/figures/Code_Coverage4.png" alt="コマンドラインでの、色つきのコードカバレッジ出力"></img></div></div></div><br class="figure-break"></br></div></div>
+    </p></div></div>
      <div class="row">
-      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="selenium.html">戻る</a></div>
+      <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="other-uses-for-tests.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="extending-phpunit.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
+
+
+
     </div>
    </div>
    <hr/>
    <footer>
-    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2014 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
+    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2016 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
    </footer>
   </div>
   <script src="js/jquery.js"></script>
@@ -215,18 +217,6 @@ not ok 2 - Error: testError(FailureErrorTest)
   <script src="js/highlight.pack.js"></script>
   <script type="text/javascript">
   $(document).ready(function() { $('pre.programlisting').each(function(i, e) {hljs.highlightBlock(e)}); });
-
-  var _paq = _paq || [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "2"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-  })();
   </script>
  </body>
 </html>

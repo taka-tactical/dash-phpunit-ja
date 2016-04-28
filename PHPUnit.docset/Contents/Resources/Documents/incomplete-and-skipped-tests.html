@@ -15,7 +15,7 @@
   
   <div class="container-fluid">
    <div class="row">
-    <div style='padding: 1.5em'>
+    <div style='padding: 2.0em'>
      <div class="row">
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="strict-mode.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="database.html">次へ</a></div>
@@ -39,9 +39,9 @@
       (訳注: レポートを見ても、そのテストがほんとうに失敗したのか、
       まだ実装されていないだけなのかがわかりません)。
     </p><p>
-      <a id="idp711408" class="indexterm"></a>
-      <a id="idp711952" class="indexterm"></a>
-      <a id="idp712544" class="indexterm"></a>
+      <a id="idp299504" class="indexterm"></a>
+      <a id="idp300048" class="indexterm"></a>
+      <a id="idp300592" class="indexterm"></a>
 
       テストの成功を青信号、失敗を赤信号と考えるなら、
       テストが未完成あるいは未実装であることを表すための黄信号が必要です。
@@ -75,7 +75,7 @@ class SampleTest extends PHPUnit_Framework_TestCase
       未完成のテストは、PHPUnit のコマンドライン版テストランナーでは以下のように
       <code class="literal">I</code> で表されます。
     </p><pre class="screen"><strong class="userinput"><code>phpunit --verbose SampleTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 I
 
@@ -91,7 +91,7 @@ OK, but incomplete or skipped tests!
 Tests: 1, Assertions: 1, Incomplete: 1.</pre><p>
       <a class="xref" href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.incomplete-tests.tables.api" title="表7.1 未完成のテスト用の API">表 7.1</a>
       に、テストを未完成扱いにするための API を示します。
-    </p><div class="table"><a id="incomplete-and-skipped-tests.incomplete-tests.tables.api"></a><p class="title"><strong>表7.1 未完成のテスト用の API</strong></p><div class="table-contents"><table summary="未完成のテスト用の API" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">メソッド</th><th align="left">意味</th></tr></thead><tbody><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestIncomplete">void markTestIncomplete()</code></td><td align="left">現在のテストを未完成扱いにします。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestIncomplete">void markTestIncomplete(string $message)</code></td><td align="left">現在のテストを未完成扱いにします。それを説明する文字列として <code class="literal">$message</code> を使用します。</td></tr></tbody></table></div></div><br class="table-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="incomplete-and-skipped-tests.skipping-tests"></a>テストの省略</h2></div></div></div><p>
+    </p><div class="table"><a id="incomplete-and-skipped-tests.incomplete-tests.tables.api"></a><p class="title"><strong>表7.1 未完成のテスト用の API</strong></p><div class="table-contents"><table class="table" summary="未完成のテスト用の API" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">メソッド</th><th align="left">意味</th></tr></thead><tbody><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestIncomplete">void markTestIncomplete()</code></td><td align="left">現在のテストを未完成扱いにします。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestIncomplete">void markTestIncomplete(string $message)</code></td><td align="left">現在のテストを未完成扱いにします。それを説明する文字列として <code class="literal">$message</code> を使用します。</td></tr></tbody></table></div></div><br class="table-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="incomplete-and-skipped-tests.skipping-tests"></a>テストの省略</h2></div></div></div><p>
       すべてのテストがあらゆる環境で実行できるわけではありません。
       考えてみましょう。たとえば、データベースの抽象化レイヤーを使用しており、
       それがさまざまなドライバを使用してさまざまなデータベースシステムを
@@ -125,7 +125,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
       飛ばされたテストは、PHPUnit のコマンドライン版テストランナーでは以下のように
       <code class="literal">S</code> で表されます。
     </p><pre class="screen"><strong class="userinput"><code>phpunit --verbose DatabaseTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 S
 
@@ -141,10 +141,10 @@ OK, but incomplete or skipped tests!
 Tests: 1, Assertions: 0, Skipped: 1.</pre><p>
       <a class="xref" href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.skipped-tests.tables.api" title="表7.2 テストを省略するための API">表 7.2</a>
       に、テストを省略するための API を示します。
-    </p><div class="table"><a id="incomplete-and-skipped-tests.skipped-tests.tables.api"></a><p class="title"><strong>表7.2 テストを省略するための API</strong></p><div class="table-contents"><table summary="テストを省略するための API" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">メソッド</th><th align="left">意味</th></tr></thead><tbody><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestSkipped">void markTestSkipped()</code></td><td align="left">現在のテストを省略扱いにします。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestSkipped">void markTestSkipped(string $message)</code></td><td align="left">現在のテストを省略扱いにします。それを説明する文字列として <code class="literal">$message</code> を使用します。</td></tr></tbody></table></div></div><br class="table-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="incomplete-and-skipped-tests.skipping-tests-using-requires"></a>@requires によるテストのスキップ</h2></div></div></div><p>
+    </p><div class="table"><a id="incomplete-and-skipped-tests.skipped-tests.tables.api"></a><p class="title"><strong>表7.2 テストを省略するための API</strong></p><div class="table-contents"><table class="table" summary="テストを省略するための API" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">メソッド</th><th align="left">意味</th></tr></thead><tbody><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestSkipped">void markTestSkipped()</code></td><td align="left">現在のテストを省略扱いにします。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="markTestSkipped">void markTestSkipped(string $message)</code></td><td align="left">現在のテストを省略扱いにします。それを説明する文字列として <code class="literal">$message</code> を使用します。</td></tr></tbody></table></div></div><br class="table-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="incomplete-and-skipped-tests.skipping-tests-using-requires"></a>@requires によるテストのスキップ</h2></div></div></div><p>
       ここまでに示したメソッドに加えて、
       <code class="literal">@requires</code> アノテーションを使って共通の事前条件を記述することもできます。
-    </p><div class="table"><a id="incomplete-and-skipped-tests.requires.tables.api"></a><p class="title"><strong>表7.3 @requires の例用例</strong></p><div class="table-contents"><table summary="@requires の例用例" border="1"><colgroup><col></col><col></col><col></col><col></col></colgroup><thead><tr><th align="left">型</th><th align="left">取り得る値</th><th align="left">例</th><th align="left">別の例</th></tr></thead><tbody><tr><td align="left"><code class="literal">PHP</code></td><td align="left">PHP のバージョン</td><td align="left">@requires PHP 5.3.3</td><td align="left">@requires PHP 5.4-dev</td></tr><tr><td align="left"><code class="literal">PHPUnit</code></td><td align="left">PHPUnit のバージョン</td><td align="left">@requires PHPUnit 3.6.3</td><td align="left">@requires PHPUnit 4.2</td></tr><tr><td align="left"><code class="literal">OS</code></td><td align="left"><a class="ulink" href="http://php.net/reserved.constants.php#constant.php-os" target="_top">PHP_OS</a> にマッチする正規表現</td><td align="left">@requires OS Linux</td><td align="left">@requires OS WIN32|WINNT</td></tr><tr><td align="left"><code class="literal">function</code></td><td align="left"><a class="ulink" href="http://php.net/function_exists" target="_top">function_exists</a> に渡せるパラメータ</td><td align="left">@requires function imap_open</td><td align="left">@requires function ReflectionMethod::setAccessible</td></tr><tr><td align="left"><code class="literal">extension</code></td><td align="left">拡張モジュール名</td><td align="left">@requires extension mysqli</td><td align="left">@requires extension curl</td></tr></tbody></table></div></div><br class="table-break"></br><div class="example"><a id="incomplete-and-skipped-tests.skipping-tests.examples.DatabaseClassSkippingTest.php"></a><p class="title"><strong>例 7.3: @requires を使ったテストケースのスキップ</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="table"><a id="incomplete-and-skipped-tests.requires.tables.api"></a><p class="title"><strong>表7.3 @requires の例用例</strong></p><div class="table-contents"><table class="table" summary="@requires の例用例" border="1"><colgroup><col></col><col></col><col></col><col></col></colgroup><thead><tr><th align="left">型</th><th align="left">取り得る値</th><th align="left">例</th><th align="left">別の例</th></tr></thead><tbody><tr><td align="left"><code class="literal">PHP</code></td><td align="left">PHP のバージョン</td><td align="left">@requires PHP 5.3.3</td><td align="left">@requires PHP 5.4-dev</td></tr><tr><td align="left"><code class="literal">PHPUnit</code></td><td align="left">PHPUnit のバージョン</td><td align="left">@requires PHPUnit 3.6.3</td><td align="left">@requires PHPUnit 4.6</td></tr><tr><td align="left"><code class="literal">OS</code></td><td align="left"><a class="ulink" href="http://php.net/manual/ja/reserved.constants.php#constant.php-os" target="_top">PHP_OS</a> にマッチする正規表現</td><td align="left">@requires OS Linux</td><td align="left">@requires OS WIN32|WINNT</td></tr><tr><td align="left"><code class="literal">function</code></td><td align="left"><a class="ulink" href="http://php.net/function_exists" target="_top">function_exists</a> に渡せるパラメータ</td><td align="left">@requires function imap_open</td><td align="left">@requires function ReflectionMethod::setAccessible</td></tr><tr><td align="left"><code class="literal">extension</code></td><td align="left">拡張モジュール名 (オプションでバージョンも指定できる)</td><td align="left">@requires extension mysqli</td><td align="left">@requires extension redis 2.2.0</td></tr></tbody></table></div></div><br class="table-break"></br><div class="example"><a id="incomplete-and-skipped-tests.skipping-tests.examples.DatabaseClassSkippingTest.php"></a><p class="title"><strong>例 7.3: @requires を使ったテストケースのスキップ</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 /**
  * @requires extension mysqli
  */
@@ -169,12 +169,14 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="strict-mode.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="database.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
+
+
+
     </div>
    </div>
    <hr/>
    <footer>
-    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2014 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
+    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2016 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
    </footer>
   </div>
   <script src="js/jquery.js"></script>
@@ -182,18 +184,6 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
   <script src="js/highlight.pack.js"></script>
   <script type="text/javascript">
   $(document).ready(function() { $('pre.programlisting').each(function(i, e) {hljs.highlightBlock(e)}); });
-
-  var _paq = _paq || [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "2"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-  })();
   </script>
  </body>
 </html>

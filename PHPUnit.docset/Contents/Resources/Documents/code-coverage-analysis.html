@@ -15,39 +15,23 @@
   
   <div class="container-fluid">
    <div class="row">
-    <div style='padding: 1.5em'>
+    <div style='padding: 2.0em'>
      <div class="row">
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="testing-practices.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="other-uses-for-tests.html">次へ</a></div>
      </div>
 <div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="code-coverage-analysis"></a>第11章 コードカバレッジ解析</h1></div></div></div><div class="blockquote"><table border="0" class="blockquote" style="width: 100%; cellspacing: 0; cellpadding: 0;" summary="Block quote"><tr><td width="10%" valign="top"> </td><td width="80%" valign="top"><p>
-      The beauty of testing is found not in the effort but in the efficiency.
-    </p><p>
-      - テストの美学は、どれだけ汗を流したかではなく
-      どれだけ効率的であるかである。
-    </p><p>
-      Knowing what should be tested is beautiful, and knowing what is being
-      tested is beautiful.
-    </p><p>
-      - 何をテストすべきなのかを知ること、何がテストされているのかを知ること。
-      これが大切だ。
-    </p></td><td width="10%" valign="top"> </td></tr><tr><td width="10%" valign="top"> </td><td colspan="2" align="right" valign="top">--<span class="attribution">Murali Nandigama</span></td></tr></table></div><p>
-    <a id="idp851760" class="indexterm"></a>
+      In computer science, code coverage is a measure used to describe the
+      degree to which the source code of a program is tested by a particular
+      test suite. A program with high code coverage has been more thoroughly
+      tested and has a lower chance of containing software bugs than a program
+      with low code coverage.
+    </p></td><td width="10%" valign="top"> </td></tr><tr><td width="10%" valign="top"> </td><td colspan="2" align="right" valign="top">--<span class="attribution">Wikipedia</span></td></tr></table></div><p>
+    <a id="idp806256" class="indexterm"></a>
+    <a id="idp806800" class="indexterm"></a>
 
     この章では、PHPUnit のコードカバレッジ機能について学びます。
     これは、テストを実行したときに、実装コードのどの部分が実行されたかを調べるものです。
-    次のような疑問に対する答えとなるでしょう。
-  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
-        テストされていないコードを見つけるには? 言い換えれば、まだテストで
-        <span class="emphasis"><em>カバーされていない</em></span>部分を見つけるには?
-      </p></li><li class="listitem"><p>完全にテストができたことをどうやって確認するの?</p></li></ul></div><p>
-    ステートメントカバレッジというのは、たとえば
-    100 行のコードで構成されるメソッドがあった場合に、
-    もしテストで実際に実行されたのがそのうちの 75 行だけだったなら、
-    そのメソッドのコードカバレッジは 75 パーセントだと考えるということです。
-  </p><p>
-    <a id="idp856512" class="indexterm"></a>
-
     PHPUnit のコードカバレッジ解析では
     <a class="ulink" href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage</a>
     コンポーネントを使っています。このコンポーネントは、
@@ -61,56 +45,123 @@
       <a class="ulink" href="http://xdebug.org/docs/install" target="_top">Xdebug のインストールガイド</a>
       を読んでみましょう。
     </p></div><p>
-    それでは、<code class="literal">BankAccount</code> クラスについての
-    コードカバレッジレポートを作成してみましょう。
-  </p><pre class="screen"><strong class="userinput"><code>phpunit --coverage-html ./report BankAccountTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+    PHPUnit は、HTML ベースのコードカバレッジレポートを生成するだけでなく、
+    XML ベースのログファイルにコードカバレッジ情報を出力することもできます。
+    Clover、Crap4J、PHPUnit など、さまざまな形式に対応しています。
+    また、コードカバレッジ情報をテキスト形式で出力 (そして、標準出力に表示)
+    したり、PHP のコードとして出力して後処理をしたりすることもできます。
+  </p><p>
+    コードカバレッジ機能を制御するための
+    コマンドラインスイッチの一覧は、<a class="xref" href="textui.html" title="第3章 コマンドラインのテストランナー">第 3 章</a> を参照ください。
+    また、設定項目については <a class="xref" href="appendixes.configuration.html#appendixes.configuration.logging" title="ログ出力">「ログ出力」</a> を参照ください。
+  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="code-coverage-analysis.metrics"></a>コードカバレッジの指標</h2></div></div></div><p>
+      コードカバレッジを計測するための指標には、さまざまなものがあります。
+    </p><div class="variablelist"><dl class="variablelist"><dt><span class="term"><span class="emphasis"><em>Line Coverage</em></span></span></dt><dd><p>
+            <span class="emphasis"><em>ラインカバレッジ</em></span> は、
+            実行可能な行が実行されたかどうかを計測します。
+          </p></dd><dt><span class="term"><span class="emphasis"><em>Function and Method Coverage</em></span></span></dt><dd><p>
+            <span class="emphasis"><em>関数・メソッドカバレッジ</em></span> は、
+            関数やメソッドが実行されたかどうかを計測します。
+            PHP_CodeCoverage は、その関数やメソッド内の実行可能な行がすべて実行された場合にのみ、
+            その関数やメソッドが実行されたとみなします。
+          </p></dd><dt><span class="term"><span class="emphasis"><em>クラス・トレイトカバレッジ</em></span></span></dt><dd><p>
+            <span class="emphasis"><em>クラス・トレイトカバレッジ</em></span> は、
+            クラスやトレイトがカバーされたかどうかを計測します。
+            PHP_CodeCoverage は、クラスやトレイト内のすべてのメソッドがカバーされている場合にのみ、
+            そのクラスやトレイトがカバーされたとみなします。
+          </p></dd><dt><span class="term"><span class="emphasis"><em>Opcode Coverage</em></span></span></dt><dd><p>
+            <span class="emphasis"><em>オペコードカバレッジ</em></span> は、関数やメソッドのオペコードが、
+            テストスイートの実行中に実行されたかどうかを計測します。
+            通常は、1 行のコードをコンパイルすると、複数のオペコードになります。
+            ラインカバレッジは、複数のオペコードのうち少なくともひとつが実行された時点で、
+            その行が実行されたとみなします。
+          </p></dd><dt><span class="term"><span class="emphasis"><em>Branch Coverage</em></span></span></dt><dd><p>
+            <span class="emphasis"><em>ブランチカバレッジ</em></span> は、テストスイートの実行中に、
+            制御構造内の boolean 式が <code class="literal">true</code> あるいは <code class="literal">false</code>
+            のどちらかとして評価されたかどうかを計測します。
+          </p></dd><dt><span class="term"><span class="emphasis"><em>Path Coverage</em></span></span></dt><dd><p>
+            <span class="emphasis"><em>パスカバレッジ</em></span> は、テストスイートの実行中に、
+            関数やメソッド内で取りうる実行パスが網羅されたかどうかを計測します。
+            実行パスとは、関数やメソッドに入ってから出るまでの間のルート内での分岐のことです。
+          </p></dd><dt><span class="term"><span class="emphasis"><em>Change Risk Anti-Patterns (CRAP) Index</em></span></span></dt><dd><p>
+            <span class="emphasis"><em>Change Risk Anti-Patterns (CRAP) インデックス</em></span>
+            とは、循環的複雑度と、あるコード単位のコードカバレッジに基づいて算出される指標です。
+            複雑度が低く、適切なテストカバレッジが達成されているコードは、CRAPインデックスの値が低くなります。
+            CRAPインデックスを下げるには、テストを書くか、
+            あるいはリファクタリングでコードの複雑性を下げます。
+          </p></dd></dl></div><div class="alert alert-info"><h3 class="title">注記</h3><p>
+        <span class="emphasis"><em>オペコードカバレッジ</em></span>、
+        <span class="emphasis"><em>ブランチカバレッジ</em></span>、
+        <span class="emphasis"><em>パスカバレッジ</em></span> については、
+        PHP_CodeCoverage ではまだサポートしていません。
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="code-coverage-analysis.whitelisting-files"></a>ファイルのホワイトリスト</h2></div></div></div><p>
+      <a id="idp973232" class="indexterm"></a>
 
-...
+      <span class="emphasis"><em>ホワイトリスト</em></span> を設定して、
+      PHPUnit に対してどのソースコードファイルをコードカバレッジレポートに含めるかを指定する必要があります。
+      ホワイトリストの設定には、コマンドラインオプションの <code class="literal">--whitelist</code>
+      を使うか、あるいは設定ファイルを使います (<a class="xref" href="appendixes.configuration.html#appendixes.configuration.whitelisting-files" title="コードカバレッジ対象のファイルのホワイトリスト">「コードカバレッジ対象のファイルのホワイトリスト」</a> を参照ください)。
+    </p><p>
+      オプションで、ホワイトリストに追加したファイルをすべて、コードカバレッジレポートに追加することもできます。
+      そのためには、PHPUnit の設定で <code class="literal">addUncoveredFilesFromWhitelist="true"</code>
+      とします (<a class="xref" href="appendixes.configuration.html#appendixes.configuration.whitelisting-files" title="コードカバレッジ対象のファイルのホワイトリスト">「コードカバレッジ対象のファイルのホワイトリスト」</a> を参照ください)。
+      こうすれば、まだテストされていないファイルもすべて、レポートに含めることができます。
+      カバーされていないファイルにおける、実行可能な行についての情報を知りたい場合は、同じく PHPUnit の設定で
+      <code class="literal">processUncoveredFilesFromWhitelist="true"</code> とします
+      (<a class="xref" href="appendixes.configuration.html#appendixes.configuration.whitelisting-files" title="コードカバレッジ対象のファイルのホワイトリスト">「コードカバレッジ対象のファイルのホワイトリスト」</a> を参照ください)。
+    </p><div class="alert alert-info"><h3 class="title">注記</h3><p>
+        <code class="literal">processUncoveredFilesFromWhitelist="true"</code>
+        が設定されている場合のソースコードファイルの読み込みでは、
+        もしクラスや関数のスコープから外れるコードが含まれていたときに問題が起こる可能性があります。
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="code-coverage-analysis.ignoring-code-blocks"></a>コードブロックの無視</h2></div></div></div><p>
+      <a id="idp982176" class="indexterm"></a>
+      <a id="idp982752" class="indexterm"></a>
+      <a id="idp983328" class="indexterm"></a>
+      <a id="idp983920" class="indexterm"></a>
 
-Time: 0 seconds
-
-OK (3 tests, 3 assertions)
-
-Generating report, this may take a moment.</pre><p>
-    <a class="xref" href="code-coverage-analysis.html#code-coverage-analysis.figures.Code_Coverage.png" title="図11.1 setBalance() のコードカバレッジ">図 11.1</a>
-    は、コードカバレッジレポートの一部を抜粋したものです。
-    テスト時に実行された行は、緑色で強調表示されます。
-    実行可能なコードであるにもかかわらず実行されなかった行については赤色で強調表示されます。
-    また、"無意味なコード" についてはグレーで強調表示されます。
-    行の左にある数字は、その行をカバーするテストの数を表します。
-  </p><div class="figure"><a id="code-coverage-analysis.figures.Code_Coverage.png"></a><p class="title"><strong>図11.1 <code class="literal">setBalance()</code> のコードカバレッジ</strong></p><div class="figure-contents"><div><img src="https://phpunit.de/manual/current/ja/figures/Code_Coverage.png" alt="setBalance() のコードカバレッジ"></img></div></div></div><br class="figure-break"></br><p>
-    <code class="literal">BankAccount</code> のコードカバレッジレポートからわかることは、
-    <code class="literal">setBalance()</code>、<code class="literal">depositMoney()</code>
-    をコールするテストがまだ存在しないということ、
-    そして <code class="literal">withdrawMoney()</code>
-    に正しい値を指定した場合のテストも存在しないということです。
-    <code class="literal">BankAccountTest</code> クラスに追加するテストを
-    <a class="xref" href="code-coverage-analysis.html#code-coverage-analysis.examples.BankAccountTest.php" title="例 11.1: 完全なコードカバレッジを達成するために欠けているテスト">例 11.1</a>
-    に示します。これによって、<code class="literal">BankAccount</code>
-    クラスのテストケースを完全に網羅できるようになります。
-  </p><div class="example"><a id="code-coverage-analysis.examples.BankAccountTest.php"></a><p class="title"><strong>例 11.1: 完全なコードカバレッジを達成するために欠けているテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
-require_once 'BankAccount.php';
-
-class BankAccountTest extends PHPUnit_Framework_TestCase
+      どうしてもテストができないコードブロックなどを、
+      コードカバレッジ解析時に無視させたいこともあるでしょう。
+      PHPUnit でこれを実現するには、
+      <code class="literal">@codeCoverageIgnore</code>、
+      <code class="literal">@codeCoverageIgnoreStart</code> および
+      <code class="literal">@codeCoverageIgnoreEnd</code> アノテーションを
+      <a class="xref" href="code-coverage-analysis.html#code-coverage-analysis.ignoring-code-blocks.examples.Sample.php" title="例 11.1: @codeCoverageIgnore、@codeCoverageIgnoreStart および @codeCoverageIgnoreEnd アノテーションの使用法">例 11.1</a>
+      のように使用します。
+    </p><div class="example"><a id="code-coverage-analysis.ignoring-code-blocks.examples.Sample.php"></a><p class="title"><strong>例 11.1: <code class="literal">@codeCoverageIgnore</code>、<code class="literal">@codeCoverageIgnoreStart</code> および <code class="literal">@codeCoverageIgnoreEnd</code> アノテーションの使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+/**
+ * @codeCoverageIgnore
+ */
+class Foo
 {
-    // ...
-
-    public function testDepositWithdrawMoney()
+    public function bar()
     {
-        $this-&gt;assertEquals(0, $this-&gt;ba-&gt;getBalance());
-        $this-&gt;ba-&gt;depositMoney(1);
-        $this-&gt;assertEquals(1, $this-&gt;ba-&gt;getBalance());
-        $this-&gt;ba-&gt;withdrawMoney(1);
-        $this-&gt;assertEquals(0, $this-&gt;ba-&gt;getBalance());
     }
 }
+
+class Bar
+{
+    /**
+     * @codeCoverageIgnore
+     */
+    public function foo()
+    {
+    }
+}
+
+if (FALSE) {
+    // @codeCoverageIgnoreStart
+    print '*';
+    // @codeCoverageIgnoreEnd
+}
+
+exit; // @codeCoverageIgnore
 ?&gt;</pre></div></div><br class="example-break"></br><p>
-    <a class="xref" href="code-coverage-analysis.html#code-coverage-analysis.figures.Code_Coverage3.png" title="図11.2 setBalance() にテストを追加した後のコードカバレッジ">図 11.2</a> は、
-    テストを追加した後の <code class="literal">setBalance()</code> のコードカバレッジです。
-  </p><div class="figure"><a id="code-coverage-analysis.figures.Code_Coverage3.png"></a><p class="title"><strong>図11.2 <code class="literal">setBalance()</code> にテストを追加した後のコードカバレッジ</strong></p><div class="figure-contents"><div><img src="https://phpunit.de/manual/current/ja/figures/Code_Coverage3.png" alt="setBalance() にテストを追加した後のコードカバレッジ"></img></div></div></div><br class="figure-break"></br><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="code-coverage-analysis.specifying-covered-methods"></a>カバーするメソッドの指定</h2></div></div></div><p>
-      <a id="idp818416" class="indexterm"></a>
-      <a id="idp818992" class="indexterm"></a>
+      これらのアノテーションを使って無視するよう指定された行は、
+      もし実行可能なら (たとえ実行されていなくても) 実行されたものとみなされ、
+      強調表示されません。
+    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="code-coverage-analysis.specifying-covered-methods"></a>カバーするメソッドの指定</h2></div></div></div><p>
+      <a id="idp992240" class="indexterm"></a>
+      <a id="idp992816" class="indexterm"></a>
 
       テストコードで <code class="literal">@covers</code> アノテーション
       (<a class="xref" href="appendixes.annotations.html#appendixes.annotations.covers.tables.annotations" title="表B.1 カバーするメソッドを指定するためのアノテーション">表 B.1</a>)
@@ -120,8 +171,6 @@ class BankAccountTest extends PHPUnit_Framework_TestCase
       <a class="xref" href="code-coverage-analysis.html#code-coverage-analysis.specifying-covered-methods.examples.BankAccountTest.php" title="例 11.2: どのメソッドを対象とするかを指定したテスト">例 11.2</a>
       に例を示します。
     </p><div class="example"><a id="code-coverage-analysis.specifying-covered-methods.examples.BankAccountTest.php"></a><p class="title"><strong>例 11.2: どのメソッドを対象とするかを指定したテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
-require_once 'BankAccount.php';
-
 class BankAccountTest extends PHPUnit_Framework_TestCase
 {
     protected $ba;
@@ -180,7 +229,6 @@ class BankAccountTest extends PHPUnit_Framework_TestCase
      * @covers BankAccount::depositMoney
      * @covers BankAccount::withdrawMoney
      */
-
     public function testDepositWithdrawMoney()
     {
         $this-&gt;assertEquals(0, $this-&gt;ba-&gt;getBalance());
@@ -191,8 +239,8 @@ class BankAccountTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br><p>
-      <a id="idp825152" class="indexterm"></a>
-      <a id="idp825728" class="indexterm"></a>
+      <a id="idp998848" class="indexterm"></a>
+      <a id="idp999424" class="indexterm"></a>
 
       あるテストが、<span class="emphasis"><em>一切</em></span>メソッドをカバーしてはならないことも指定できます。
       そのために使うのが <code class="literal">@coversNothing</code> アノテーションです。
@@ -213,103 +261,31 @@ class GuestbookIntegrationTest extends PHPUnit_Extensions_Database_TestCase
         $queryTable = $this-&gt;getConnection()-&gt;createQueryTable(
             'guestbook', 'SELECT * FROM guestbook'
         );
+
         $expectedTable = $this-&gt;createFlatXmlDataSet("expectedBook.xml")
                               -&gt;getTable("guestbook");
+
         $this-&gt;assertTablesEqual($expectedTable, $queryTable);
     }
 }
 ?&gt;
-      </pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="code-coverage-analysis.ignoring-code-blocks"></a>コードブロックの無視</h2></div></div></div><p>
-      <a id="idp832080" class="indexterm"></a>
-      <a id="idp832656" class="indexterm"></a>
-      <a id="idp833232" class="indexterm"></a>
-      <a id="idp931072" class="indexterm"></a>
-
-      どうしてもテストができないコードブロックなどを、
-      コードカバレッジ解析時に無視させたいこともあるでしょう。
-      PHPUnit でこれを実現するには、
-      <code class="literal">@codeCoverageIgnore</code>、
-      <code class="literal">@codeCoverageIgnoreStart</code> および
-      <code class="literal">@codeCoverageIgnoreEnd</code> アノテーションを
-      <a class="xref" href="code-coverage-analysis.html#code-coverage-analysis.ignoring-code-blocks.examples.Sample.php" title="例 11.4: @codeCoverageIgnore、@codeCoverageIgnoreStart および @codeCoverageIgnoreEnd アノテーションの使用法">例 11.4</a>
-      のように使用します。
-    </p><div class="example"><a id="code-coverage-analysis.ignoring-code-blocks.examples.Sample.php"></a><p class="title"><strong>例 11.4: <code class="literal">@codeCoverageIgnore</code>、<code class="literal">@codeCoverageIgnoreStart</code> および <code class="literal">@codeCoverageIgnoreEnd</code> アノテーションの使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
-/**
- * @codeCoverageIgnore
- */
-class Foo
-{
-    public function bar()
-    {
-    }
-}
-
-class Bar
-{
-    /**
-     * @codeCoverageIgnore
-     */
-    public function foo()
-    {
-    }
-}
-
-if (FALSE) {
-    // @codeCoverageIgnoreStart
-    print '*';
-    // @codeCoverageIgnoreEnd
-}
-?&gt;</pre></div></div><br class="example-break"></br><p>
-      これらのアノテーションを使って無視するよう指定された行は、
-      もし実行可能なら (たとえ実行されていなくても) 実行されたものとみなされ、
-      強調表示されません。
-    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="code-coverage-analysis.including-excluding-files"></a>ファイルのインクルードや除外</h2></div></div></div><p>
-      <a id="idp939392" class="indexterm"></a>
-      <a id="idp939968" class="indexterm"></a>
-      <a id="idp940544" class="indexterm"></a>
-
-      デフォルトでは、1 行でもコードが実行されたソースコードファイルはすべて
-      (そしてそのようなファイルのみが) レポートに含められます。
-      レポートに含まれるソースコードファイルは、
-      ホワイトリスト方式あるいはブラックリスト方式でフィルタリングすることができます。
-    </p><p>
-      ブラックリストには、PHPUnit
-      自身のソースコードファイルやテストファイルがデフォルトで登録されています。
-      ホワイトリストが空 (デフォルト) の場合はブラックリストを使用し、
-      ホワイトリストが空でない場合はホワイトリストを使用します。
-      ホワイトリスト内の各ファイルは、そのファイルが実行されるかどうかにかかわらず
-      レポートに追加されます。追加されたファイルのすべての行は、
-      実行不能な行も含めて「実行されなかった行」とみなします。
-    </p><p>
-      PHPUnit の設定で <code class="literal">processUncoveredFilesFromWhitelist="true"</code>
-      (<a class="xref" href="appendixes.configuration.html#appendixes.configuration.blacklist-whitelist" title="コードカバレッジ対象のファイルの追加や除外">「コードカバレッジ対象のファイルの追加や除外」</a> を参照ください)
-      とすると、これらのファイルが PHP_CodeCoverage
-      に渡され、実行可能な行数を適切に算出します。
-    </p><div class="alert alert-info"><h3 class="title">注記</h3><p>
-        <code class="literal">processUncoveredFilesFromWhitelist="true"</code>
-        が設定されている場合のソースコードファイルの読み込みでは、
-        もしクラスや関数のスコープから外れるコードが含まれていたときに問題が起こる可能性があります。
-      </p></div><p>
-      PHPUnit の XML 設定ファイル (<a class="xref" href="appendixes.configuration.html#appendixes.configuration.blacklist-whitelist" title="コードカバレッジ対象のファイルの追加や除外">「コードカバレッジ対象のファイルの追加や除外」</a> を参照ください)
-      を使って、ブラックリストやホワイトリストを制御することができます。
-      おすすめの方法は、ホワイトリスト方式を使ってコードカバレッジレポートに含めるファイルを制御することです。
-    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="code-coverage-analysis.edge-cases"></a>エッジケース</h2></div></div></div><p>
-      ほとんどの場面では、PHPUnit が「行単位の」コードカバレッジ情報を提供してくれると考えて間違いないでしょう。
-      しかし、その情報収集の方法が原因で、特筆すべきエッジケースもいくつか存在します。
-    </p><div class="example"><a id="code-coverage-analysis.edge-cases.examples.Sample.php"></a><p class="title"><strong>例 11.5: </strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+      </pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="code-coverage-analysis.edge-cases"></a>エッジケース</h2></div></div></div><p>
+      この節では、コードカバレッジ情報がわかりにくくなってしまうような、
+      エッジケースについて紹介します。
+    </p><div class="example"><a id="code-coverage-analysis.edge-cases.examples.Sample.php"></a><p class="title"><strong>例 11.4: </strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 // カバレッジは「行単位」であって文単位ではないので、
 // 一行にまとめられた行はひとつのカバレッジ状態しか持ちません
-if(false) this_function_call_shows_up_as_covered();
+if (false) this_function_call_shows_up_as_covered();
 
 // コードカバレッジの内部動作上、これら 2 行は特別です。
 // 次の行は「実行されていない」となります
-if(false)
+if (false)
     // 次の行は「実行されている」となります
     // 実際のところ、ひとつ上の if 文のカバレッジ情報がここに表示されることになるからです!
-    will_also_show_up_as_coveraged();
+    will_also_show_up_as_covered();
 
 // これを避けるには、必ず波括弧を使わなければなりません
-if(false) {
+if (false) {
     this_call_will_never_show_up_as_covered();
 }
 ?&gt;</pre></div></div><br class="example-break"></br></div></div>
@@ -317,12 +293,14 @@ if(false) {
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="testing-practices.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="other-uses-for-tests.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
+
+
+
     </div>
    </div>
    <hr/>
    <footer>
-    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2014 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
+    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2016 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
    </footer>
   </div>
   <script src="js/jquery.js"></script>
@@ -330,18 +308,6 @@ if(false) {
   <script src="js/highlight.pack.js"></script>
   <script type="text/javascript">
   $(document).ready(function() { $('pre.programlisting').each(function(i, e) {hljs.highlightBlock(e)}); });
-
-  var _paq = _paq || [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "2"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-  })();
   </script>
  </body>
 </html>

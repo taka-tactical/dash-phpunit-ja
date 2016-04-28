@@ -15,13 +15,13 @@
   
   <div class="container-fluid">
    <div class="row">
-    <div style='padding: 1.5em'>
+    <div style='padding: 2.0em'>
      <div class="row">
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="fixtures.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="strict-mode.html">次へ</a></div>
      </div>
 <div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="organizing-tests"></a>第5章 テストの構成</h1></div></div></div><p>
-    <a id="idp281456" class="indexterm"></a>
+    <a id="idp126224" class="indexterm"></a>
 
     PHPUnit の目指すところのひとつに
     「自由に組み合わせられる」ということがあります。つまり、
@@ -38,7 +38,7 @@
       PHPUnit はテストディレクトリを再帰的に探索し、
       テストを自動的に見つけて実行します。
     </p><p>
-      <a class="ulink" href="https://github.com/sebastianbergmann/money/" target="_top">sebastianbergmann/money</a>
+      <a class="ulink" href="http://github.com/sebastianbergmann/money/" target="_top">sebastianbergmann/money</a>
       ライブラリのテストスイートを見てみましょう。このプロジェクトのディレクトリ構成を見ると、
       テストケースクラスが <code class="filename">tests</code> ディレクトリにまとめられていることがわかります。
       その中のディレクトリの構造は、テスト対象のシステム (SUT) がある
@@ -51,8 +51,8 @@
       PHPUnit のコマンドラインテストランナーに
       テストディレクトリの場所を指示してやるだけで、
       このライブラリのすべてのテストを実行できます。
-    </p><pre class="screen"><strong class="userinput"><code>phpunit tests</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+    </p><pre class="screen"><strong class="userinput"><code>phpunit --bootstrap src/autoload.php tests</code></strong>
+PHPUnit 5.3.0 by Sebastian Bergmann.
 
 .................................
 
@@ -65,8 +65,8 @@ OK (33 tests, 52 assertions)</pre><div class="alert alert-info"><h3 class="title
       <code class="filename">tests/CurrencyTest.php</code> にあるテストケースクラス
       <code class="literal">CurrencyTest</code> で宣言されているテストだけを実行するには、
       次のコマンドを実行します。
-    </p><pre class="screen"><strong class="userinput"><code>phpunit tests/CurrencyTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+    </p><pre class="screen"><strong class="userinput"><code>phpunit --bootstrap src/autoload.php tests/CurrencyTest</code></strong>
+PHPUnit 5.3.0 by Sebastian Bergmann.
 
 ........
 
@@ -75,8 +75,8 @@ Time: 280 ms, Memory: 2.75Mb
 OK (8 tests, 8 assertions)</pre><p>
       実行したいテストをより細かく指示するには
       <code class="literal">--filter</code> オプションを使います。
-    </p><pre class="screen"><strong class="userinput"><code>phpunit --filter testObjectCanBeConstructedForValidConstructorArgument tests</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+    </p><pre class="screen"><strong class="userinput"><code>phpunit --bootstrap src/autoload.php --filter testObjectCanBeConstructedForValidConstructorArgument tests</code></strong>
+PHPUnit 5.3.0 by Sebastian Bergmann.
 
 ..
 
@@ -88,23 +88,29 @@ OK (2 test, 2 assertions)</pre><div class="alert alert-info"><h3 class="title">�
         <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.test-dependencies" title="テストの依存性">「テストの依存性」</a>
         を参照ください。
         次の節では、テストの実行順序を XML 設定ファイルで明示的に指定する方法を説明します。
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="organizing-tests.xml-configuration"></a>XML 設定ファイルを用いたテストスイートの構成</h2></div></div></div><a id="idp240336" class="indexterm"></a><p>
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="organizing-tests.xml-configuration"></a>XML 設定ファイルを用いたテストスイートの構成</h2></div></div></div><a id="idp136560" class="indexterm"></a><p>
       PHPUnit の XML 設定ファイル (<a class="xref" href="appendixes.configuration.html" title="付録C XML 設定ファイル">付録 C</a>)
       を使ってテストスイートを構成することもできます。
       <a class="xref" href="organizing-tests.html#organizing-tests.xml-configuration.examples.phpunit.xml" title="例 5.1: XML 設定ファイルを用いたテストスイートの構成">例 5.1</a>
-      に、最小限の例を示します。これは、
-      <code class="filename">tests</code> を再帰的に探索して
+      に、最小限の <code class="filename">phpunit.xml</code> ファイルを示します。これは、
+      <code class="filename">tests</code> ディレクトリを再帰的に探索して
       <code class="filename">*Test.php</code> というファイルにある
       <code class="literal">*Test</code> クラスをすべて追加する設定です。
-    </p><div class="example"><a id="organizing-tests.xml-configuration.examples.phpunit.xml"></a><p class="title"><strong>例 5.1: XML 設定ファイルを用いたテストスイートの構成</strong></p><div class="example-contents"><pre class="programlisting">&lt;phpunit&gt;
+    </p><div class="example"><a id="organizing-tests.xml-configuration.examples.phpunit.xml"></a><p class="title"><strong>例 5.1: XML 設定ファイルを用いたテストスイートの構成</strong></p><div class="example-contents"><pre class="programlisting">&lt;phpunit bootstrap="src/autoload.php"&gt;
   &lt;testsuites&gt;
     &lt;testsuite name="money"&gt;
       &lt;directory&gt;tests&lt;/directory&gt;
     &lt;/testsuite&gt;
   &lt;/testsuites&gt;
 &lt;/phpunit&gt;</pre></div></div><br class="example-break"></br><p>
+      <code class="literal">--configuration</code> が設定
+      <span class="emphasis"><em>されていない</em></span> 場合は、現在の作業ディレクトリから
+      <code class="filename">phpunit.xml</code> あるいは
+      <code class="filename">phpunit.xml.dist</code> を (この順に) 探し、
+      見つかった場合はそれを自動的に読み込みます。
+    </p><p>
       どのテストを実行するのかを明示的に指定することができます。
-    </p><div class="example"><a id="organizing-tests.xml-configuration.examples.phpunit.xml2"></a><p class="title"><strong>例 5.2: XML 設定ファイルを用いたテストスイートの構成</strong></p><div class="example-contents"><pre class="programlisting">&lt;phpunit&gt;
+    </p><div class="example"><a id="organizing-tests.xml-configuration.examples.phpunit.xml2"></a><p class="title"><strong>例 5.2: XML 設定ファイルを用いたテストスイートの構成</strong></p><div class="example-contents"><pre class="programlisting">&lt;phpunit bootstrap="src/autoload.php"&gt;
   &lt;testsuites&gt;
     &lt;testsuite name="money"&gt;
       &lt;file&gt;tests/IntlFormatterTest.php&lt;/file&gt;
@@ -117,12 +123,14 @@ OK (2 test, 2 assertions)</pre><div class="alert alert-info"><h3 class="title">�
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="fixtures.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="strict-mode.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
+
+
+
     </div>
    </div>
    <hr/>
    <footer>
-    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2014 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
+    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2016 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
    </footer>
   </div>
   <script src="js/jquery.js"></script>
@@ -130,18 +138,6 @@ OK (2 test, 2 assertions)</pre><div class="alert alert-info"><h3 class="title">�
   <script src="js/highlight.pack.js"></script>
   <script type="text/javascript">
   $(document).ready(function() { $('pre.programlisting').each(function(i, e) {hljs.highlightBlock(e)}); });
-
-  var _paq = _paq || [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "2"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-  })();
   </script>
  </body>
 </html>

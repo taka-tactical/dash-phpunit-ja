@@ -15,7 +15,7 @@
   
   <div class="container-fluid">
    <div class="row">
-    <div style='padding: 1.5em'>
+    <div style='padding: 2.0em'>
      <div class="row">
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="database.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="testing-practices.html">次へ</a></div>
@@ -24,7 +24,7 @@
     Gerard Meszaros は、テストダブルの概念を
     <a class="xref" href="appendixes.bibliography.html#Meszaros2007" title="xUnit Test Patterns: Refactoring Test Code">[<abbr class="abbrev">Meszaros2007</abbr>]</a> でこのように述べています。
   </p><div class="blockquote"><table border="0" class="blockquote" style="width: 100%; cellspacing: 0; cellpadding: 0;" summary="Block quote"><tr><td width="10%" valign="top"> </td><td width="80%" valign="top"><p>
-      <a id="idp727344" class="indexterm"></a>
+      <a id="idp858032" class="indexterm"></a>
 
       Sometimes it is just plain hard to test the system under test (SUT)
       because it depends on other components that cannot be used in the test
@@ -42,8 +42,8 @@
       それ以外の場合も、テスト環境の内部的な振る舞いをきちんと制御して
       目に見えるようにしておくことが必要です。
     </p><p>
-      <a id="idp729968" class="indexterm"></a>
-      <a id="idp730544" class="indexterm"></a>
+      <a id="idp860656" class="indexterm"></a>
+      <a id="idp861232" class="indexterm"></a>
 
       When we are writing a test in which we cannot (or chose not to) use a real
       depended-on component (DOC), we can replace it with a Test Double. The
@@ -58,16 +58,16 @@
       単に実際のものと同じ API を提供し、
       SUT に「これは本物だ!」と思わせるだけでいいのです。
     </p></td><td width="10%" valign="top"> </td></tr><tr><td width="10%" valign="top"> </td><td colspan="2" align="right" valign="top">--<span class="attribution">Gerard Meszaros</span></td></tr></table></div><p>
-    PHPUnit の <code class="literal">getMock($className)</code> メソッドを使うと、
-    指定した元クラスのテストダブルとして振る舞うオブジェクトを自動的に生成することができます。
-    このテストダブルオブジェクトは、元クラスのオブジェクトを要するすべての場面で使うことができます。
+    PHPUnit の <code class="literal">getMockBuilder($type)</code> メソッドを使うと、
+    指定した元インターフェイス (あるいは元クラス) のテストダブルとして振る舞うオブジェクトを自動的に生成することができます。
+    このテストダブルオブジェクトは、元のオブジェクトを要するすべての場面で使うことができます。
   </p><p>
     デフォルトでは、元クラスのすべてのメソッドが置き換えられて、
-    (元のメソッドは呼び出さずに) 単に <code class="literal">NULL</code>
+    (元のメソッドは呼び出さずに) 単に <code class="literal">null</code>
     を返すだけのダミー実装になります。たとえば
     <code class="literal">will($this-&gt;returnValue())</code> メソッドを使うと、
     ダミー実装がコールされたときに値を返すよう設定することができます。
-  </p><div class="alert alert-info"><h3 class="title">制限</h3><p>
+  </p><div class="alert alert-info"><h3 class="title">制限：final、private および static メソッド</h3><p>
       <code class="literal">final</code>, <code class="literal">private</code> および
       <code class="literal">static</code> メソッドのスタブやモックは作れないことに注意しましょう。
       PHPUnit のテストダブル機能ではこれらを無視し、元のメソッドの振る舞いをそのまま維持します。
@@ -78,7 +78,7 @@
         <a class="xref" href="test-doubles.html#test-doubles.mock-objects.examples.clone-object-parameters-usecase.php" title="例 9.15: メソッドが一度だけ呼ばれ、同じオブジェクトが渡されたことを確かめるテスト">例 9.15</a> に、新しい実装の活用例を示します。
         <a class="xref" href="test-doubles.html#test-doubles.mock-objects.examples.enable-clone-object-parameters.php" title="例 9.16: パラメータのクローンの有効にしたモックオブジェクトの作成">例 9.16</a> に、以前の挙動に戻す方法を示します。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="test-doubles.stubs"></a>スタブ</h2></div></div></div><p>
-      <a id="idp1011968" class="indexterm"></a>
+      <a id="idp905968" class="indexterm"></a>
 
       実際のオブジェクトを置き換えて、
       設定した何らかの値を (オプションで) 返すようなテストダブルのことを
@@ -88,12 +88,12 @@
       SUT の入力を間接的にコントロールできるようにすることができます。
       これにより、SUT が他の何者も実行しないことを強制させることができます。」
     </p><p>
-      <a id="idp1014304" class="indexterm"></a>
+      <a id="idp908304" class="indexterm"></a>
 
       <a class="xref" href="test-doubles.html#test-doubles.stubs.examples.StubTest.php" title="例 9.2: メソッドに固定値を返させるスタブ">例 9.2</a>
       に、スタブメソッドの作成と返り値の設定の方法を示します。まず、
       <code class="literal">PHPUnit_Framework_TestCase</code> クラスの
-      <code class="literal">getMock()</code> メソッドを用いて
+      <code class="literal">getMockBuilder()</code> メソッドを用いて
       <code class="literal">SomeClass</code> オブジェクトのスタブを作成します
       (<a class="xref" href="test-doubles.html#test-doubles.stubs.examples.SomeClass.php" title="例 9.1: スタブを作りたいクラス">例 9.1</a>)。
       次に、PHPUnit が提供する、いわゆる
@@ -112,7 +112,7 @@ class SomeClass
         // なにかをします
     }
 }
-?&gt;</pre></div></div><br class="example-break"></br><div class="example"><a id="test-doubles.stubs.examples.StubTest.php"></a><p class="title"><strong>例 9.2: メソッドに固定値を返させるスタブ</strong></p><div class="example-contents"><a id="idp865872" class="indexterm"></a><a id="idp866448" class="indexterm"></a><a id="idp867024" class="indexterm"></a><pre class="programlisting">&lt;?php
+?&gt;</pre></div></div><br class="example-break"></br><div class="example"><a id="test-doubles.stubs.examples.StubTest.php"></a><p class="title"><strong>例 9.2: メソッドに固定値を返させるスタブ</strong></p><div class="example-contents"><a id="idp915968" class="indexterm"></a><a id="idp916544" class="indexterm"></a><a id="idp917120" class="indexterm"></a><pre class="programlisting">&lt;?php
 require_once 'SomeClass.php';
 
 class StubTest extends PHPUnit_Framework_TestCase
@@ -120,7 +120,8 @@ class StubTest extends PHPUnit_Framework_TestCase
     public function testStub()
     {
         // SomeClass クラスのスタブを作成します
-        $stub = $this-&gt;getMock('SomeClass');
+        $stub = $this-&gt;getMockBuilder('SomeClass')
+                     -&gt;getMock();
 
         // スタブの設定を行います
         $stub-&gt;method('doSomething')
@@ -131,17 +132,18 @@ class StubTest extends PHPUnit_Framework_TestCase
         $this-&gt;assertEquals('foo', $stub-&gt;doSomething());
     }
 }
-?&gt;</pre></div></div><br class="example-break"></br><p>
+?&gt;</pre></div></div><br class="example-break"></br><div class="alert alert-info"><h3 class="title">制限："method" という名前のメソッド</h3><p>
+        この例がきちんと動作するのは、元のクラスで "method" という名前のメソッドが宣言されていない場合だけです。
+      </p><p>
+        元のクラスで "method" という名前のメソッドが宣言されている場合は、
+        <code class="literal">$stub-&gt;expects($this-&gt;any())-&gt;method('doSomething')-&gt;willReturn('foo');</code> としなければいけません。
+      </p></div><p>
       舞台裏では、<code class="literal">getMock()</code> メソッドが使われたときに
       PHPUnit が自動的に、求める振る舞いを実装した新たな PHP のクラスを生成しています。
-      生成されるテストダブルクラスの設定は、
-      <code class="literal">getMock()</code> メソッドのオプションの引数を使って行います。
-    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>デフォルトでは、指定したクラスのすべてのメソッドが単に <code class="literal">NULL</code> を返すだけのテストダブルとなります。返り値を変更するには、たとえば <code class="literal">will($this-&gt;returnValue())</code> を使います。</p></li><li class="listitem"><p>オプションの第二パラメータを指定すると、その配列の中に含まれる名前のメソッドだけがテストダブルに置き換えらて、その他のメソッドはそのままとなります。パラメータに <code class="literal">NULL</code> を渡すと、どのメソッドも置き換えません。</p></li><li class="listitem"><p>オプションの第三パラメータには、元クラスのコンストラクタに渡すパラメータの配列を渡します (デフォルトでは、コンストラクタはダミー実装に置き換えられません)。</p></li><li class="listitem"><p>オプションの第四パラメータを使うと、生成されるテストダブルクラスのクラス名を指定することができます。</p></li><li class="listitem"><p>オプションの第五パラメータを使うと、元クラスのコンストラクタを呼び出さないようにすることができます。</p></li><li class="listitem"><p>オプションの第六パラメータを使うと、元クラスの clone コンストラクタを呼び出さないようにすることができます。</p></li><li class="listitem"><p>オプションの第七パラメータを使うと、テストダブルクラスの生成時に <code class="literal">__autoload()</code> を無効にすることができます。</p></li></ul></div><p>
-      もうひとつのやり方として、生成されたテストダブルクラスの設定を
-      モックビルダー API で行うことができます。
+    </p><p>
       <a class="xref" href="test-doubles.html#test-doubles.stubs.examples.StubTest2.php" title="例 9.3: モックビルダー API を使った、生成されるテストダブルクラスの変更">例 9.3</a> に例を示します。
-      モックビルダーで使えるメソッドの一覧は次のとおりです。
-    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="literal">setMethods(array $methods)</code> をモックビルダーオブジェクト上でコールすると、テストダブルで置き換えるメソッドを指定することができます。その他のメソッドの挙動は変更しません。<code class="literal">setMethods(NULL)</code> とすると、どのメソッドも置き換えません。</p></li><li class="listitem"><p><code class="literal">setConstructorArgs(array $args)</code> をコールしてパラメータの配列を渡すと、それを元クラスのコンストラクタに渡すことができます (デフォルトのダミー実装では、コンストラクタは置き換えません)。</p></li><li class="listitem"><p><code class="literal">setMockClassName($name)</code> を使うと、生成されるテストダブルクラスのクラス名を指定することができます。</p></li><li class="listitem"><p><code class="literal">disableOriginalConstructor()</code> を使うと、元クラスのコンストラクタを無効にすることができます。</p></li><li class="listitem"><p><code class="literal">disableOriginalClone()</code> を使うと、元クラスのクローンコンストラクタを無効にすることができます。</p></li><li class="listitem"><p><code class="literal">disableAutoload()</code> を使うと、テストダブルクラスを生成するときに <code class="literal">__autoload()</code> を無効にすることができます。</p></li></ul></div><div class="example"><a id="test-doubles.stubs.examples.StubTest2.php"></a><p class="title"><strong>例 9.3: モックビルダー API を使った、生成されるテストダブルクラスの変更</strong></p><div class="example-contents"><a id="idp810544" class="indexterm"></a><a id="idp811120" class="indexterm"></a><a id="idp811696" class="indexterm"></a><pre class="programlisting">&lt;?php
+      これは、モックビルダーの流れるようなインターフェイスを使って、テストダブルの作成方法を設定するものです。
+    </p><div class="example"><a id="test-doubles.stubs.examples.StubTest2.php"></a><p class="title"><strong>例 9.3: モックビルダー API を使った、生成されるテストダブルクラスの変更</strong></p><div class="example-contents"><a id="idp924736" class="indexterm"></a><a id="idp925312" class="indexterm"></a><a id="idp925888" class="indexterm"></a><pre class="programlisting">&lt;?php
 require_once 'SomeClass.php';
 
 class StubTest extends PHPUnit_Framework_TestCase
@@ -163,6 +165,8 @@ class StubTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br><p>
+      モックビルダーが提供するメソッドの一覧は、次のとおりです。
+    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="literal">setMethods(array $methods)</code> をモックビルダーオブジェクト上でコールすると、テストダブルで置き換えるメソッドを指定することができます。その他のメソッドの挙動は変更しません。<code class="literal">setMethods(NULL)</code> とすると、どのメソッドも置き換えません。</p></li><li class="listitem"><p><code class="literal">setConstructorArgs(array $args)</code> をコールしてパラメータの配列を渡すと、それを元クラスのコンストラクタに渡すことができます (デフォルトのダミー実装では、コンストラクタは置き換えません)。</p></li><li class="listitem"><p><code class="literal">setMockClassName($name)</code> を使うと、生成されるテストダブルクラスのクラス名を指定することができます。</p></li><li class="listitem"><p><code class="literal">disableOriginalConstructor()</code> を使うと、元クラスのコンストラクタを無効にすることができます。</p></li><li class="listitem"><p><code class="literal">disableOriginalClone()</code> を使うと、元クラスのクローンコンストラクタを無効にすることができます。</p></li><li class="listitem"><p><code class="literal">disableAutoload()</code> を使うと、テストダブルクラスを生成するときに <code class="literal">__autoload()</code> を無効にすることができます。</p></li></ul></div><p>
       ここまでの例では、
       <code class="literal">willReturn($value)</code> を使ってシンプルな値を返していました。
       この構文は、
@@ -174,7 +178,7 @@ class StubTest extends PHPUnit_Framework_TestCase
       <a class="xref" href="test-doubles.html#test-doubles.stubs.examples.StubTest3.php" title="例 9.4: メソッドに引数のひとつを返させるスタブ">例 9.4</a> は、
       <code class="literal">returnValue()</code> のかわりに
       <code class="literal">returnArgument()</code> を用いてこれを実現する例です。
-    </p><div class="example"><a id="test-doubles.stubs.examples.StubTest3.php"></a><p class="title"><strong>例 9.4: メソッドに引数のひとつを返させるスタブ</strong></p><div class="example-contents"><a id="idp1226976" class="indexterm"></a><a id="idp1227552" class="indexterm"></a><a id="idp1228128" class="indexterm"></a><a id="idp1228704" class="indexterm"></a><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="test-doubles.stubs.examples.StubTest3.php"></a><p class="title"><strong>例 9.4: メソッドに引数のひとつを返させるスタブ</strong></p><div class="example-contents"><a id="idp1217584" class="indexterm"></a><a id="idp1218160" class="indexterm"></a><a id="idp1218736" class="indexterm"></a><a id="idp1219312" class="indexterm"></a><pre class="programlisting">&lt;?php
 require_once 'SomeClass.php';
 
 class StubTest extends PHPUnit_Framework_TestCase
@@ -182,7 +186,8 @@ class StubTest extends PHPUnit_Framework_TestCase
     public function testReturnArgumentStub()
     {
         // SomeClass クラスのスタブを作成します
-        $stub = $this-&gt;getMock('SomeClass');
+        $stub = $this-&gt;getMockBuilder('SomeClass')
+                     -&gt;getMock();
 
         // スタブの設定を行います
         $stub-&gt;method('doSomething')
@@ -200,7 +205,7 @@ class StubTest extends PHPUnit_Framework_TestCase
       スタブメソッドがオブジェクト自身への参照を返すようにできると便利です。
       <a class="xref" href="test-doubles.html#test-doubles.stubs.examples.StubTest4.php" title="例 9.5: スタブオブジェクトへの参照を返すメソッドのスタブ">例 9.5</a> は、
       <code class="literal">returnSelf()</code> を使ってこれを実現する例です。
-    </p><div class="example"><a id="test-doubles.stubs.examples.StubTest4.php"></a><p class="title"><strong>例 9.5: スタブオブジェクトへの参照を返すメソッドのスタブ</strong></p><div class="example-contents"><a id="idp1233312" class="indexterm"></a><a id="idp1233888" class="indexterm"></a><a id="idp1234464" class="indexterm"></a><a id="idp1235040" class="indexterm"></a><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="test-doubles.stubs.examples.StubTest4.php"></a><p class="title"><strong>例 9.5: スタブオブジェクトへの参照を返すメソッドのスタブ</strong></p><div class="example-contents"><a id="idp1223968" class="indexterm"></a><a id="idp1224544" class="indexterm"></a><a id="idp1225120" class="indexterm"></a><a id="idp1225696" class="indexterm"></a><pre class="programlisting">&lt;?php
 require_once 'SomeClass.php';
 
 class StubTest extends PHPUnit_Framework_TestCase
@@ -208,7 +213,8 @@ class StubTest extends PHPUnit_Framework_TestCase
     public function testReturnSelf()
     {
         // SomeClass クラスのスタブを作成します
-        $stub = $this-&gt;getMock('SomeClass');
+        $stub = $this-&gt;getMockBuilder('SomeClass')
+                     -&gt;getMock();
 
         // スタブの設定を行います
         $stub-&gt;method('doSomething')
@@ -224,7 +230,7 @@ class StubTest extends PHPUnit_Framework_TestCase
       <code class="literal">returnValueMap()</code> を使えば、
       マップを作って引数と関連付け、それを返り値に対応させることができます。
       <a class="xref" href="test-doubles.html#test-doubles.stubs.examples.StubTest5.php" title="例 9.6: メソッドにマップからの値を返させるスタブ">例 9.6</a> を参照ください。
-    </p><div class="example"><a id="test-doubles.stubs.examples.StubTest5.php"></a><p class="title"><strong>例 9.6: メソッドにマップからの値を返させるスタブ</strong></p><div class="example-contents"><a id="idp1239600" class="indexterm"></a><a id="idp1240176" class="indexterm"></a><a id="idp1240752" class="indexterm"></a><a id="idp1241328" class="indexterm"></a><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="test-doubles.stubs.examples.StubTest5.php"></a><p class="title"><strong>例 9.6: メソッドにマップからの値を返させるスタブ</strong></p><div class="example-contents"><a id="idp1230192" class="indexterm"></a><a id="idp1230768" class="indexterm"></a><a id="idp1231344" class="indexterm"></a><a id="idp1231920" class="indexterm"></a><pre class="programlisting">&lt;?php
 require_once 'SomeClass.php';
 
 class StubTest extends PHPUnit_Framework_TestCase
@@ -232,7 +238,8 @@ class StubTest extends PHPUnit_Framework_TestCase
     public function testReturnValueMapStub()
     {
         // SomeClass クラスのスタブを作成します
-        $stub = $this-&gt;getMock('SomeClass');
+        $stub = $this-&gt;getMockBuilder('SomeClass')
+                     -&gt;getMock();
 
         // 値を返すための、引数のマップを作製します
         $map = array(
@@ -258,7 +265,7 @@ class StubTest extends PHPUnit_Framework_TestCase
       これは、スタブメソッドからコールバック関数やメソッドの結果を返させます。
       <a class="xref" href="test-doubles.html#test-doubles.stubs.examples.StubTest6.php" title="例 9.7: メソッドにコールバックからの値を返させるスタブ">例 9.7</a>
       を参照ください。
-    </p><div class="example"><a id="test-doubles.stubs.examples.StubTest6.php"></a><p class="title"><strong>例 9.7: メソッドにコールバックからの値を返させるスタブ</strong></p><div class="example-contents"><a id="idp1247088" class="indexterm"></a><a id="idp1247664" class="indexterm"></a><a id="idp1248240" class="indexterm"></a><a id="idp1248816" class="indexterm"></a><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="test-doubles.stubs.examples.StubTest6.php"></a><p class="title"><strong>例 9.7: メソッドにコールバックからの値を返させるスタブ</strong></p><div class="example-contents"><a id="idp1237728" class="indexterm"></a><a id="idp1238304" class="indexterm"></a><a id="idp1238880" class="indexterm"></a><a id="idp1239456" class="indexterm"></a><pre class="programlisting">&lt;?php
 require_once 'SomeClass.php';
 
 class StubTest extends PHPUnit_Framework_TestCase
@@ -266,7 +273,8 @@ class StubTest extends PHPUnit_Framework_TestCase
     public function testReturnCallbackStub()
     {
         // SomeClass クラスのスタブを作成します
-        $stub = $this-&gt;getMock('SomeClass');
+        $stub = $this-&gt;getMockBuilder('SomeClass')
+                     -&gt;getMock();
 
         // スタブの設定を行います
         $stub-&gt;method('doSomething')
@@ -282,7 +290,7 @@ class StubTest extends PHPUnit_Framework_TestCase
       <code class="literal">onConsecutiveCalls()</code> メソッドです。
       <a class="xref" href="test-doubles.html#test-doubles.stubs.examples.StubTest7.php" title="例 9.8: メソッドに、リストで指定した値をその順で返させるスタブ">例 9.8</a>
       の例を参照ください。
-    </p><div class="example"><a id="test-doubles.stubs.examples.StubTest7.php"></a><p class="title"><strong>例 9.8: メソッドに、リストで指定した値をその順で返させるスタブ</strong></p><div class="example-contents"><a id="idp1253376" class="indexterm"></a><a id="idp1253952" class="indexterm"></a><a id="idp1254528" class="indexterm"></a><a id="idp1255104" class="indexterm"></a><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="test-doubles.stubs.examples.StubTest7.php"></a><p class="title"><strong>例 9.8: メソッドに、リストで指定した値をその順で返させるスタブ</strong></p><div class="example-contents"><a id="idp1244048" class="indexterm"></a><a id="idp1244624" class="indexterm"></a><a id="idp1245200" class="indexterm"></a><a id="idp1245776" class="indexterm"></a><pre class="programlisting">&lt;?php
 require_once 'SomeClass.php';
 
 class StubTest extends PHPUnit_Framework_TestCase
@@ -290,7 +298,8 @@ class StubTest extends PHPUnit_Framework_TestCase
     public function testOnConsecutiveCallsStub()
     {
         // SomeClass クラスのスタブを作成します
-        $stub = $this-&gt;getMock('SomeClass');
+        $stub = $this-&gt;getMockBuilder('SomeClass')
+                     -&gt;getMock();
 
         // スタブの設定を行います
         $stub-&gt;method('doSomething')
@@ -306,7 +315,7 @@ class StubTest extends PHPUnit_Framework_TestCase
       値を返すのではなく、スタブメソッドで例外を発生させることもできます。
       <a class="xref" href="test-doubles.html#test-doubles.stubs.examples.StubTest8.php" title="例 9.9: メソッドに例外をスローさせるスタブ">例 9.9</a>
       に、<code class="literal">throwException()</code> でこれを行う方法を示します。
-    </p><div class="example"><a id="test-doubles.stubs.examples.StubTest8.php"></a><p class="title"><strong>例 9.9: メソッドに例外をスローさせるスタブ</strong></p><div class="example-contents"><a id="idp1259632" class="indexterm"></a><a id="idp1260208" class="indexterm"></a><a id="idp1260784" class="indexterm"></a><a id="idp1261360" class="indexterm"></a><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="test-doubles.stubs.examples.StubTest8.php"></a><p class="title"><strong>例 9.9: メソッドに例外をスローさせるスタブ</strong></p><div class="example-contents"><a id="idp1250336" class="indexterm"></a><a id="idp1250912" class="indexterm"></a><a id="idp1251488" class="indexterm"></a><a id="idp1252064" class="indexterm"></a><pre class="programlisting">&lt;?php
 require_once 'SomeClass.php';
 
 class StubTest extends PHPUnit_Framework_TestCase
@@ -314,7 +323,8 @@ class StubTest extends PHPUnit_Framework_TestCase
     public function testThrowExceptionStub()
     {
         // SomeClass クラスのスタブを作成します
-        $stub = $this-&gt;getMock('SomeClass');
+        $stub = $this-&gt;getMockBuilder('SomeClass')
+                     -&gt;getMock();
 
         // スタブの設定を行います
         $stub-&gt;method('doSomething')
@@ -347,18 +357,19 @@ class StubTest extends PHPUnit_Framework_TestCase
       (メソッドがコールされたことなどの) 期待する内容を検証するテストダブルのことを
       <span class="emphasis"><em>モック</em></span> といいます。
     </p><p>
-      <a id="idp1269728" class="indexterm"></a>
+      <a id="idp1260464" class="indexterm"></a>
 
       <span class="emphasis"><em>モックオブジェクト</em></span> は
-      SUT の間接的な出力の内容を検証するために使用する観測地点です。
+      "SUT の間接的な出力の内容を検証するために使用する観測地点です。
       一般的に、モックオブジェクトにはテスト用スタブの機能も含まれます。
       まだテストに失敗していない場合に、間接的な出力の検証用の値を SUT に返す機能です。
       したがって、モックオブジェクトとは
       テスト用スタブにアサーション機能を足しただけのものとは異なります。
-      それ以外の用途にも使うことができます。
-    </p><div class="alert alert-info"><h3 class="title">制限</h3><p>
+      それ以外の用途にも使うことができます" (Gerard Meszaros)。
+    </p><div class="alert alert-info"><h3 class="title">制限：期待値の自動検証</h3><p>
         そのテストのスコープ内で生成されたモックオブジェクトだけが、PHPUnit による自動検証の対象となります。
-        たとえばデータプロバイダなどで生成されたモックオブジェクトについては、PHPUnit では検証しません。
+        たとえば、データプロバイダなどで生成されたモックオブジェクトや
+        <code class="literal">@depends</code> アノテーションで注入されたオブジェクトについては、PHPUnit では検証しません。
       </p></div><p>
       ひとつ例を示します。ここでは、別のオブジェクトを観察している
       あるオブジェクトの特定のメソッド (この例では <code class="literal">update()</code>)
@@ -428,7 +439,7 @@ class Observer
     // その他のメソッド
 }
 ?&gt;</pre></div></div><br class="example-break"></br><p>
-      <a id="idp1278992" class="indexterm"></a>
+      <a id="idp1270288" class="indexterm"></a>
 
       <a class="xref" href="test-doubles.html#test-doubles.mock-objects.examples.SubjectTest.php" title="例 9.11: あるメソッドが、指定した引数で一度だけコールされることを確かめるテスト">例 9.11</a>
       では、モックオブジェクトを作成して
@@ -444,7 +455,7 @@ class Observer
       クラスの中の <code class="literal">update()</code> メソッドについてのみモック実装が作成されます。
     </p><p>
       あるメソッドがコールされたのかどうか、そしてどんな引数を渡してコールされたのかを検証したいので、
-      <code class="literal">expects()</code> メソッドと <code class="literal">with</code> メソッドを用意しました。
+      <code class="literal">expects()</code> メソッドと <code class="literal">with()</code> メソッドを用意しました。
       これらを使って、このやりとりがどのように行われるのかを指定します。
     </p><div class="example"><a id="test-doubles.mock-objects.examples.SubjectTest.php"></a><p class="title"><strong>例 9.11: あるメソッドが、指定した引数で一度だけコールされることを確かめるテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class SubjectTest extends PHPUnit_Framework_TestCase
@@ -453,7 +464,9 @@ class SubjectTest extends PHPUnit_Framework_TestCase
     {
         // Observer クラスのモックを作成します。
         // update() メソッドのみのモックです。
-        $observer = $this-&gt;getMock('Observer', array('update'));
+        $observer = $this-&gt;getMockBuilder('Observer')
+                         -&gt;setMethods(array('update'))
+                         -&gt;getMock();
 
         // update() メソッドが一度だけコールされ、その際の
         // パラメータは文字列 'something' となる、
@@ -484,13 +497,17 @@ class SubjectTest extends PHPUnit_Framework_TestCase
     {
         // Observer クラスのモックを作成します。
         // reportError() メソッドをモックします。
-        $observer = $this-&gt;getMock('Observer', array('reportError'));
+        $observer = $this-&gt;getMockBuilder('Observer')
+                         -&gt;setMethods(array('reportError'))
+                         -&gt;getMock();
 
         $observer-&gt;expects($this-&gt;once())
                  -&gt;method('reportError')
-                 -&gt;with($this-&gt;greaterThan(0),
-                        $this-&gt;stringContains('Something'),
-                        $this-&gt;anything());
+                 -&gt;with(
+                       $this-&gt;greaterThan(0),
+                       $this-&gt;stringContains('Something'),
+                       $this-&gt;anything()
+                   );
 
         $subject = new Subject('My subject');
         $subject-&gt;attach($observer);
@@ -510,7 +527,10 @@ class FooTest extends PHPUnit_Framework_TestCase
 {
     public function testFunctionCalledTwoTimesWithSpecificArguments()
     {
-        $mock = $this-&gt;getMock('stdClass', array('set'));
+        $mock = $this-&gt;getMockBuilder('stdClass')
+                     -&gt;setMethods(array('set'))
+                     -&gt;getMock();
+
         $mock-&gt;expects($this-&gt;exactly(2))
              -&gt;method('set')
              -&gt;withConsecutive(
@@ -534,7 +554,9 @@ class SubjectTest extends PHPUnit_Framework_TestCase
     {
         // Observer クラスのモックを作成します。
         // reportError() メソッドをモックします。
-        $observer = $this-&gt;getMock('Observer', array('reportError'));
+        $observer = $this-&gt;getMockBuilder('Observer')
+                         -&gt;setMethods(array('reportError'))
+                         -&gt;getMock();
 
         $observer-&gt;expects($this-&gt;once())
                  -&gt;method('reportError')
@@ -560,7 +582,10 @@ class FooTest extends PHPUnit_Framework_TestCase
     {
         $expectedObject = new stdClass;
 
-        $mock = $this-&gt;getMock('stdClass', array('foo'));
+        $mock = $this-&gt;getMockBuilder('stdClass')
+                     -&gt;setMethods(array('foo'))
+                     -&gt;getMock();
+
         $mock-&gt;expects($this-&gt;once())
              -&gt;method('foo')
              -&gt;with($this-&gt;identicalTo($expectedObject));
@@ -575,18 +600,6 @@ class FooTest extends PHPUnit_Framework_TestCase
     {
         $cloneArguments = true;
 
-        $mock = $this-&gt;getMock(
-            'stdClass',
-            array(),
-            array(),
-            '',
-            FALSE,
-            TRUE,
-            TRUE,
-            $cloneArguments
-        );
-
-        // あるいは、モックビルダーを使います
         $mock = $this-&gt;getMockBuilder('stdClass')
                      -&gt;enableArgumentCloning()
                      -&gt;getMock();
@@ -600,19 +613,58 @@ class FooTest extends PHPUnit_Framework_TestCase
       はメソッドの引数に適用できる制約、そして
       <a class="xref" href="test-doubles.html#test-doubles.mock-objects.tables.matchers" title="表9.1 Matchers">表 9.1</a>
       は起動回数を指定するために使える matcher です。
-    </p><div class="table"><a id="test-doubles.mock-objects.tables.matchers"></a><p class="title"><strong>表9.1 Matchers</strong></p><div class="table-contents"><table summary="Matchers" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">Matcher</th><th align="left">意味</th></tr></thead><tbody><tr><td align="left"><code class="literal" style="white-space: normal" id="any">PHPUnit_Framework_MockObject_Matcher_AnyInvokedCount any()</code></td><td align="left">評価対象のメソッドがゼロ回以上実行された際にマッチするオブジェクトを返します。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="never">PHPUnit_Framework_MockObject_Matcher_InvokedCount never()</code></td><td align="left">評価対象のメソッドが実行されなかった際にマッチするオブジェクトを返します。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="atLeastOnce">PHPUnit_Framework_MockObject_Matcher_InvokedAtLeastOnce atLeastOnce()</code></td><td align="left">評価対象のメソッドが最低一回以上実行された際にマッチするオブジェクトを返します。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="once">PHPUnit_Framework_MockObject_Matcher_InvokedCount once()</code></td><td align="left">評価対象のメソッドが一度だけ実行された際にマッチするオブジェクトを返します。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="exactly">PHPUnit_Framework_MockObject_Matcher_InvokedCount exactly(int $count)</code></td><td align="left">評価対象のメソッドが指定した回数だけ実行された際にマッチするオブジェクトを返します。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="at">PHPUnit_Framework_MockObject_Matcher_InvokedAtIndex at(int $index)</code></td><td align="left">評価対象のメソッドが <code class="literal">$index</code> 回目に実行された際にマッチするオブジェクトを返します。</td></tr></tbody></table></div></div><br class="table-break"></br><div class="alert alert-info"><h3 class="title">注記</h3><p>
+    </p><div class="table"><a id="test-doubles.mock-objects.tables.matchers"></a><p class="title"><strong>表9.1 Matchers</strong></p><div class="table-contents"><table class="table" summary="Matchers" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">Matcher</th><th align="left">意味</th></tr></thead><tbody><tr><td align="left"><code class="literal" style="white-space: normal" id="any">PHPUnit_Framework_MockObject_Matcher_AnyInvokedCount any()</code></td><td align="left">評価対象のメソッドがゼロ回以上実行された際にマッチするオブジェクトを返します。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="never">PHPUnit_Framework_MockObject_Matcher_InvokedCount never()</code></td><td align="left">評価対象のメソッドが実行されなかった際にマッチするオブジェクトを返します。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="atLeastOnce">PHPUnit_Framework_MockObject_Matcher_InvokedAtLeastOnce atLeastOnce()</code></td><td align="left">評価対象のメソッドが最低一回以上実行された際にマッチするオブジェクトを返します。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="once">PHPUnit_Framework_MockObject_Matcher_InvokedCount once()</code></td><td align="left">評価対象のメソッドが一度だけ実行された際にマッチするオブジェクトを返します。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="exactly">PHPUnit_Framework_MockObject_Matcher_InvokedCount exactly(int $count)</code></td><td align="left">評価対象のメソッドが指定した回数だけ実行された際にマッチするオブジェクトを返します。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="at">PHPUnit_Framework_MockObject_Matcher_InvokedAtIndex at(int $index)</code></td><td align="left">評価対象のメソッドが <code class="literal">$index</code> 回目に実行された際にマッチするオブジェクトを返します。</td></tr></tbody></table></div></div><br class="table-break"></br><div class="alert alert-info"><h3 class="title">注記</h3><p>
         <code class="literal">at()</code> マッチャーのパラメータ <code class="literal">$index</code> は、
         指定したモックオブジェクトでの <span class="emphasis"><em>すべてのメソッドの実行</em></span>
         の、ゼロからはじまるインデックスを参照します。
         このマッチャーを使うときには注意しましょう。テストが実装の詳細とあまりにも密結合になり、
         脆いテストになってしまう可能性があるからです。
-      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="test-doubles.mocking-traits-and-abstract-classes"></a>トレイトと抽象クラスのモック</h2></div></div></div><p>
-      <a id="idp1327152" class="indexterm"></a>
+      </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="test-doubles.prophecy"></a>Prophecy</h2></div></div></div><p>
+      <a class="ulink" href="https://github.com/phpspec/prophecy" target="_top">Prophecy</a> は
+      「クセは強いけれども、強力で柔軟な、PHP のオブジェクトモッキングフレームワークです。
+      最初は phpspec2 のニーズを満たすために作られましたが、今やそれ以外のテスティングフレームワークでも、
+      最小限の努力で使えるようになりました」
+      とのことです。
+    </p><p>
+      PHPUnit バージョン 4.5 以降では、Prophecy を使ったテストダブルの作成に標準で対応しています。
+      <a class="xref" href="test-doubles.html#test-doubles.prophecy.examples.SubjectTest.php" title="例 9.17: あるメソッドが、指定した引数で一度だけコールされることを確かめるテスト">例 9.17</a>
+      は、<a class="xref" href="test-doubles.html#test-doubles.mock-objects.examples.SubjectTest.php" title="例 9.11: あるメソッドが、指定した引数で一度だけコールされることを確かめるテスト">例 9.11</a>
+      と同じテストを、Prophecy の理念に沿って表すとどうなるかを示す例です。
+    </p><div class="example"><a id="test-doubles.prophecy.examples.SubjectTest.php"></a><p class="title"><strong>例 9.17: あるメソッドが、指定した引数で一度だけコールされることを確かめるテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+class SubjectTest extends PHPUnit_Framework_TestCase
+{
+    public function testObserversAreUpdated()
+    {
+        $subject = new Subject('My subject');
+
+        // Observer クラスの prophecy を作成します。
+        $observer = $this-&gt;prophesize('Observer');
+
+        // update() メソッドが一度だけコールされ、その際の
+        // パラメータは文字列 'something' となる、
+        // ということを期待しています。
+        $observer-&gt;update('something')-&gt;shouldBeCalled();
+
+        // prophecy を公開し、モックオブジェクトを
+        // Subject にアタッチします。
+        $subject-&gt;attach($observer-&gt;reveal());
+
+        // $subject オブジェクトの doSomething() メソッドをコールします。
+        // これは、Observer オブジェクトのモックの update() メソッドを、
+        // 文字列 'something' を引数としてコールすることを期待されています。
+        $subject-&gt;doSomething();
+    }
+}
+?&gt;</pre></div></div><br class="example-break"></br><p>
+      Prophecy を使ってスタブやスパイそしてモックを作ったり設定したり使ったりする方法の詳細については、
+      その <a class="ulink" href="https://github.com/phpspec/prophecy#how-to-use-it" target="_top">ドキュメント</a> を参照ください。
+    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="test-doubles.mocking-traits-and-abstract-classes"></a>トレイトと抽象クラスのモック</h2></div></div></div><p>
+      <a id="idp1327296" class="indexterm"></a>
 
       <code class="literal">getMockForTrait()</code> メソッドは、指定したトレイトを使ったモックオブジェクトを返します。
       そのトレイトのすべての抽象メソッドがモックの対象となります。
       これを使えば、トレイトの具象メソッドをテストすることができます。
-    </p><div class="example"><a id="test-doubles.mock-objects.examples.TraitClassTest.php"></a><p class="title"><strong>例 9.17: トレイトの具象メソッドのテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="test-doubles.mock-objects.examples.TraitClassTest.php"></a><p class="title"><strong>例 9.18: トレイトの具象メソッドのテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 trait AbstractTrait
 {
     public function concreteMethod()
@@ -628,6 +680,7 @@ class TraitClassTest extends PHPUnit_Framework_TestCase
     public function testConcreteMethod()
     {
         $mock = $this-&gt;getMockForTrait('AbstractTrait');
+
         $mock-&gt;expects($this-&gt;any())
              -&gt;method('abstractMethod')
              -&gt;will($this-&gt;returnValue(TRUE));
@@ -636,13 +689,13 @@ class TraitClassTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br><p>
-      <a id="idp1331088" class="indexterm"></a>
+      <a id="idp1331232" class="indexterm"></a>
 
       <code class="literal">getMockForAbstractClass()</code> メソッドは、
       抽象クラスのモックオブジェクトを返します。
       そのクラスのすべての抽象メソッドがモックの対象となります。
       これを使えば、抽象クラスにある具象メソッドをテストすることができます。
-    </p><div class="example"><a id="test-doubles.mock-objects.examples.AbstractClassTest.php"></a><p class="title"><strong>例 9.18: 抽象クラスの具象メソッドのテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="test-doubles.mock-objects.examples.AbstractClassTest.php"></a><p class="title"><strong>例 9.19: 抽象クラスの具象メソッドのテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 abstract class AbstractClass
 {
     public function concreteMethod()
@@ -658,6 +711,7 @@ class AbstractClassTest extends PHPUnit_Framework_TestCase
     public function testConcreteMethod()
     {
         $stub = $this-&gt;getMockForAbstractClass('AbstractClass');
+
         $stub-&gt;expects($this-&gt;any())
              -&gt;method('abstractMethod')
              -&gt;will($this-&gt;returnValue(TRUE));
@@ -666,7 +720,7 @@ class AbstractClassTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="test-doubles.stubbing-and-mocking-web-services"></a>ウェブサービスのスタブおよびモック</h2></div></div></div><p>
-      <a id="idp1336336" class="indexterm"></a>
+      <a id="idp1336480" class="indexterm"></a>
 
       ウェブサービスとのやりとりを行うアプリケーションを、
       実際にウェブサービスとやりとりすることなくテストしたくなることもあるでしょう。
@@ -677,10 +731,10 @@ class AbstractClassTest extends PHPUnit_Framework_TestCase
       のウェブサービス記述にもとづくものであるのに対して <code class="literal">getMock()</code>
       が返すスタブやモックが PHP のクラスやインターフェイスにもとづくものであるという点です。
     </p><p>
-      <a class="xref" href="test-doubles.html#test-doubles.stubbing-and-mocking-web-services.examples.GoogleTest.php" title="例 9.19: ウェブサービスのスタブ">例 9.19</a>
+      <a class="xref" href="test-doubles.html#test-doubles.stubbing-and-mocking-web-services.examples.GoogleTest.php" title="例 9.20: ウェブサービスのスタブ">例 9.20</a>
       は、<code class="literal">getMockFromWsdl()</code> を使って
       <code class="filename">GoogleSearch.wsdl</code> に記述されたウェブサービスのスタブを作る例です。
-    </p><div class="example"><a id="test-doubles.stubbing-and-mocking-web-services.examples.GoogleTest.php"></a><p class="title"><strong>例 9.19: ウェブサービスのスタブ</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="test-doubles.stubbing-and-mocking-web-services.examples.GoogleTest.php"></a><p class="title"><strong>例 9.20: ウェブサービスのスタブ</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class GoogleTest extends PHPUnit_Framework_TestCase
 {
     public function testSearch()
@@ -689,11 +743,11 @@ class GoogleTest extends PHPUnit_Framework_TestCase
           'GoogleSearch.wsdl', 'GoogleSearch'
         );
 
-        $directoryCategory = new StdClass;
+        $directoryCategory = new stdClass;
         $directoryCategory-&gt;fullViewableName = '';
         $directoryCategory-&gt;specialEncoding = '';
 
-        $element = new StdClass;
+        $element = new stdClass;
         $element-&gt;summary = '';
         $element-&gt;URL = 'https://phpunit.de/';
         $element-&gt;snippet = '...';
@@ -704,7 +758,7 @@ class GoogleTest extends PHPUnit_Framework_TestCase
         $element-&gt;directoryCategory = $directoryCategory;
         $element-&gt;directoryTitle = '';
 
-        $result = new StdClass;
+        $result = new stdClass;
         $result-&gt;documentFiltering = FALSE;
         $result-&gt;searchComments = '';
         $result-&gt;estimatedTotalResultsCount = 3.9000;
@@ -754,16 +808,16 @@ class GoogleTest extends PHPUnit_Framework_TestCase
       <code class="filename">composer.json</code> ファイルに追加します。
       次に示すのは最小限の
       <code class="filename">composer.json</code> ファイルの例で、
-      開発時の PHPUnit 4.2 と vfsStream への依存を定義しています。
+      開発時の PHPUnit 4.6 と vfsStream への依存を定義しています。
     </p><pre class="programlisting">{
     "require-dev": {
-        "phpunit/phpunit": "4.2.*",
-        "mikey179/vfsStream": "1.*"
+        "phpunit/phpunit": "~4.6",
+        "mikey179/vfsStream": "~1"
     }
 }</pre><p>
-      <a class="xref" href="test-doubles.html#test-doubles.mocking-the-filesystem.examples.Example.php" title="例 9.20: ファイルシステムを操作するクラス">例 9.20</a>
+      <a class="xref" href="test-doubles.html#test-doubles.mocking-the-filesystem.examples.Example.php" title="例 9.21: ファイルシステムを操作するクラス">例 9.21</a>
       は、ファイルシステムを操作するクラスの例です。
-    </p><div class="example"><a id="test-doubles.mocking-the-filesystem.examples.Example.php"></a><p class="title"><strong>例 9.20: ファイルシステムを操作するクラス</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="test-doubles.mocking-the-filesystem.examples.Example.php"></a><p class="title"><strong>例 9.21: ファイルシステムを操作するクラス</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class Example
 {
     protected $id;
@@ -785,9 +839,9 @@ class Example
 }?&gt;</pre></div></div><br class="example-break"></br><p>
       vfsStream のような仮想ファイルシステムがなければ、外部への影響なしに
       <code class="literal">setDirectory()</code> メソッドを個別にテストすることができません
-      (<a class="xref" href="test-doubles.html#test-doubles.mocking-the-filesystem.examples.ExampleTest.php" title="例 9.21: ファイルシステムを操作するクラスのテスト">例 9.21</a>
+      (<a class="xref" href="test-doubles.html#test-doubles.mocking-the-filesystem.examples.ExampleTest.php" title="例 9.22: ファイルシステムを操作するクラスのテスト">例 9.22</a>
       を参照ください)。
-    </p><div class="example"><a id="test-doubles.mocking-the-filesystem.examples.ExampleTest.php"></a><p class="title"><strong>例 9.21: ファイルシステムを操作するクラスのテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="test-doubles.mocking-the-filesystem.examples.ExampleTest.php"></a><p class="title"><strong>例 9.22: ファイルシステムを操作するクラスのテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 require_once 'Example.php';
 
 class ExampleTest extends PHPUnit_Framework_TestCase
@@ -818,10 +872,10 @@ class ExampleTest extends PHPUnit_Framework_TestCase
 ?&gt;</pre></div></div><br class="example-break"></br><p>
       この方式には、次のような問題があります。
     </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>外部のリソースを使うため、ファイルシステムのテストが断続的になる可能性があります。その結果、テストがあまり当てにならないものになります。</p></li><li class="listitem"><p><code class="literal">setUp()</code> と <code class="literal">tearDown()</code> で、テストの前後にそのディレクトリがないことを確認する必要があります。</p></li><li class="listitem"><p><code class="literal">tearDown()</code> メソッドを実行する前にテストが異常終了したときに、ファイルシステム上にディレクトリが残ったままとなります。</p></li></ul></div><p>
-      <a class="xref" href="test-doubles.html#test-doubles.mocking-the-filesystem.examples.ExampleTest2.php" title="例 9.22: ファイルシステムを操作するクラスのテストにおけるファイルシステムのモックの作成">例 9.22</a>
+      <a class="xref" href="test-doubles.html#test-doubles.mocking-the-filesystem.examples.ExampleTest2.php" title="例 9.23: ファイルシステムを操作するクラスのテストにおけるファイルシステムのモックの作成">例 9.23</a>
       は、vfsStream を使ってファイルシステムのモックを作成し、
       ファイルシステムを操作するクラスのテストを行う例です。
-    </p><div class="example"><a id="test-doubles.mocking-the-filesystem.examples.ExampleTest2.php"></a><p class="title"><strong>例 9.22: ファイルシステムを操作するクラスのテストにおけるファイルシステムのモックの作成</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="test-doubles.mocking-the-filesystem.examples.ExampleTest2.php"></a><p class="title"><strong>例 9.23: ファイルシステムを操作するクラスのテストにおけるファイルシステムのモックの作成</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 require_once 'vfsStream/vfsStream.php';
 require_once 'Example.php';
 
@@ -849,12 +903,14 @@ class ExampleTest extends PHPUnit_Framework_TestCase
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="database.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="testing-practices.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
+
+
+
     </div>
    </div>
    <hr/>
    <footer>
-    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2014 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
+    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2016 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
    </footer>
   </div>
   <script src="js/jquery.js"></script>
@@ -862,18 +918,6 @@ class ExampleTest extends PHPUnit_Framework_TestCase
   <script src="js/highlight.pack.js"></script>
   <script type="text/javascript">
   $(document).ready(function() { $('pre.programlisting').each(function(i, e) {hljs.highlightBlock(e)}); });
-
-  var _paq = _paq || [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "2"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-  })();
   </script>
  </body>
 </html>

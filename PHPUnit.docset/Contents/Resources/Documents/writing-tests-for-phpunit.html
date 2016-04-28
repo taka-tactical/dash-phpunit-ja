@@ -15,18 +15,18 @@
   
   <div class="container-fluid">
    <div class="row">
-    <div style='padding: 1.5em'>
+    <div style='padding: 2.0em'>
      <div class="row">
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="installation.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="textui.html">次へ</a></div>
      </div>
 <div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="writing-tests-for-phpunit"></a>第2章 PHPUnit 用のテストの書き方</h1></div></div></div><p>
-    <a id="idp144880" class="indexterm"></a>
+    <a id="idp139120" class="indexterm"></a>
 
     <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.examples.StackTest.php" title="例 2.1: PHPUnit での配列操作のテスト">例 2.1</a> で、
     PHP の配列操作のテストを PHPUnit 用に書く方法を示します。
     この例では、PHPUnit を使ったテストを書く際の基本的な決まり事や手順を紹介します。
-  </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><code class="literal">Class</code> という名前のクラスのテストは、<code class="literal">ClassTest</code> という名前のクラスに記述します。</p></li><li class="listitem"><p><code class="literal">ClassTest</code> は、(ほとんどの場合) <code class="literal">PHPUnit_Framework_TestCase</code> を継承します。</p></li><li class="listitem"><a id="idp169264" class="indexterm"></a><a id="idp169680" class="indexterm"></a><p>テストは、<code class="literal">test*</code> という名前のパブリックメソッドとなります。</p><p><a id="idp170928" class="indexterm"></a>あるいは、<code class="literal">@test</code> アノテーションをメソッドのコメント部で使用することで、それがテストメソッドであることを示すこともできます。</p></li><li class="listitem"><p>テストメソッドの中で <code class="literal">assertEquals()</code> のようなアサーションメソッド (<a class="xref" href="appendixes.assertions.html" title="付録A アサーション">付録 A</a> を参照ください) を使用して、期待される値と実際の値が等しいことを確かめます。</p></li></ol></div><div class="example"><a id="writing-tests-for-phpunit.examples.StackTest.php"></a><p class="title"><strong>例 2.1: PHPUnit での配列操作のテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+  </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p><code class="literal">Class</code> という名前のクラスのテストは、<code class="literal">ClassTest</code> という名前のクラスに記述します。</p></li><li class="listitem"><p><code class="literal">ClassTest</code> は、(ほとんどの場合) <code class="literal">PHPUnit_Framework_TestCase</code> を継承します。</p></li><li class="listitem"><p>テストは、<code class="literal">test*</code> という名前のパブリックメソッドとなります。</p><p><a id="idp119184" class="indexterm"></a><a id="idp119600" class="indexterm"></a>あるいは、<code class="literal">@test</code> アノテーションをメソッドのコメント部で使用することで、それがテストメソッドであることを示すこともできます。</p></li><li class="listitem"><p>テストメソッドの中で <code class="literal">assertEquals()</code> のようなアサーションメソッド (<a class="xref" href="appendixes.assertions.html" title="付録A アサーション">付録 A</a> を参照ください) を使用して、期待される値と実際の値が等しいことを確かめます。</p></li></ol></div><div class="example"><a id="writing-tests-for-phpunit.examples.StackTest.php"></a><p class="title"><strong>例 2.1: PHPUnit での配列操作のテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class StackTest extends PHPUnit_Framework_TestCase
 {
     public function testPushAndPop()
@@ -70,15 +70,15 @@ class StackTest extends PHPUnit_Framework_TestCase
         複数のテストメソッドの間に暗黙の依存性があって、
         隠された実装シナリオがテストの中にあるのもよくあることだ。
       </p></td><td width="10%" valign="top"> </td></tr><tr><td width="10%" valign="top"> </td><td colspan="2" align="right" valign="top">--<span class="attribution">Adrian Kuhn et. al.</span></td></tr></table></div><p>
-      <a id="idp231184" class="indexterm"></a>
+      <a id="idp218464" class="indexterm"></a>
 
       PHPUnit は、テストメソッド間の依存性の明示的な宣言をサポートしています。
       この依存性とは、テストメソッドが実行される順序を定義するものではありません。
       プロデューサーがテストフィクスチャを作ってそのインスタンスを返し、
       依存するコンシューマーがそれを受け取って利用するというものです。
     </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>プロデューサーとは、返り値としてテスト対象のユニットを生成するテストメソッドのこと。</p></li><li class="listitem"><p>コンシューマーとは、プロデューサーの返り値に依存するテストメソッドのこと。</p></li></ul></div><p>
-      <a id="idp234448" class="indexterm"></a>
-      <a id="idp235024" class="indexterm"></a>
+      <a id="idp221728" class="indexterm"></a>
+      <a id="idp222304" class="indexterm"></a>
 
       <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.examples.StackTest2.php" title="例 2.2: @depends アノテーションを使った依存性の表現">例 2.2</a>
       は、<code class="literal">@depends</code> アノテーションを使ってテストメソッドの依存性をあらわす例です。
@@ -123,8 +123,16 @@ class StackTest extends PHPUnit_Framework_TestCase
       依存するテストの結果を引数として受け取ります。
       最後の <code class="literal">testPop()</code> は
       <code class="literal">testPush()</code> に依存しています。
-    </p><p>
-      <a id="idp62320" class="indexterm"></a>
+    </p><div class="alert alert-info"><h3 class="title">注記</h3><p>
+        <a id="idp70192" class="indexterm"></a>
+        <a id="idp70768" class="indexterm"></a>
+
+        プロデューサーの生成する戻り値は、デフォルトでは「そのままの形式」でコンシューマーに渡されます。
+        つまり、プロデューサーがオブジェクトを戻した場合は、そのオブジェクトへの参照がコンシューマーに渡されるということです。
+        参照ではなくオブジェクトのコピーを渡す必要がある場合は、<code class="code">@depends</code>
+        ではなく <code class="code">@depends clone</code> を使う必要があります。
+      </p></div><p>
+      <a id="idp73296" class="indexterm"></a>
 
       問題の局所化を手早く行うには、失敗したテストに目を向けやすくしたいものです。
       そのため PHPUnit では、
@@ -148,7 +156,7 @@ class DependencyFailureTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit --verbose DependencyFailureTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 FS
 
@@ -206,15 +214,15 @@ class MultipleDependenciesTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit --verbose MultipleDependenciesTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 ...
 
 Time: 0 seconds, Memory: 3.25Mb
 
 OK (3 tests, 3 assertions)</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="writing-tests-for-phpunit.data-providers"></a>データプロバイダ</h2></div></div></div><p>
-      <a id="idp74608" class="indexterm"></a>
-      <a id="idp75184" class="indexterm"></a>
+      <a id="idp329712" class="indexterm"></a>
+      <a id="idp330288" class="indexterm"></a>
       テストメソッドには任意の引数を渡すことができます。
       この引数は、データプロバイダメソッド
       (<a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.data-providers.examples.DataTest.php" title="例 2.5: 配列の配列を返すデータプロバイダの使用">例 2.5</a>
@@ -250,7 +258,7 @@ class DataTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit DataTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 ...F
 
@@ -264,7 +272,46 @@ Failed asserting that 2 matches expected 3.
 /home/sb/DataTest.php:9
 
 FAILURES!
-Tests: 4, Assertions: 4, Failures: 1.</pre></div></div><br class="example-break"></br><div class="example"><a id="writing-tests-for-phpunit.data-providers.examples.DataTest2.php"></a><p class="title"><strong>例 2.6: Iterator オブジェクトを返すデータプロバイダの使用</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 4, Assertions: 4, Failures: 1.</pre></div></div><br class="example-break"></br><p>
+      大量のデータセットを使う場合は、デフォルトの数字を使うのではなく、各データセットに文字列の名前をつけておくと便利です。
+      出力もよりわかりやすくなり、テストを失敗させたデータセットの名前もわかるようになります。
+    </p><div class="example"><a id="writing-tests-for-phpunit.data-providers.examples.DataTest1.php"></a><p class="title"><strong>例 2.6: データプロバイダでの名前つきデータセットの使用</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+class DataTest extends PHPUnit_Framework_TestCase
+{
+    /**
+     * @dataProvider additionProvider
+     */
+    public function testAdd($a, $b, $expected)
+    {
+        $this-&gt;assertEquals($expected, $a + $b);
+    }
+
+    public function additionProvider()
+    {
+        return array(
+          'adding zeros' =&gt; array(0, 0, 0),
+          'zero plus one' =&gt; array(0, 1, 1),
+          'one plus zero' =&gt; array(1, 0, 1),
+          'one plus one' =&gt; array(1, 1, 3)
+        );
+    }
+}
+?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit DataTest</code></strong>
+PHPUnit 4.6.0 by Sebastian Bergmann and contributors.
+
+...F
+
+Time: 0 seconds, Memory: 5.75Mb
+
+There was 1 failure:
+
+1) DataTest::testAdd with data set "one plus one" (1, 1, 3)
+Failed asserting that 2 matches expected 3.
+
+/home/sb/DataTest.php:9
+
+FAILURES!
+Tests: 4, Assertions: 4, Failures: 1.</pre></div></div><br class="example-break"></br><div class="example"><a id="writing-tests-for-phpunit.data-providers.examples.DataTest2.php"></a><p class="title"><strong>例 2.7: Iterator オブジェクトを返すデータプロバイダの使用</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 require 'CsvFileIterator.php';
 
 class DataTest extends PHPUnit_Framework_TestCase
@@ -283,7 +330,7 @@ class DataTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit DataTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 ...F
 
@@ -297,7 +344,7 @@ Failed asserting that 2 matches expected '3'.
 /home/sb/DataTest.php:11
 
 FAILURES!
-Tests: 4, Assertions: 4, Failures: 1.</pre></div></div><br class="example-break"></br><div class="example"><a id="writing-tests-for-phpunit.data-providers.examples.CsvFileIterator.php"></a><p class="title"><strong>例 2.7: CsvFileIterator クラス</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 4, Assertions: 4, Failures: 1.</pre></div></div><br class="example-break"></br><div class="example"><a id="writing-tests-for-phpunit.data-providers.examples.CsvFileIterator.php"></a><p class="title"><strong>例 2.8: CsvFileIterator クラス</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class CsvFileIterator implements Iterator {
     protected $file;
     protected $key = 0;
@@ -335,17 +382,17 @@ class CsvFileIterator implements Iterator {
     }
 }
 ?&gt;</pre></div></div><br class="example-break"></br><p>
-      <a id="idp361472" class="indexterm"></a>
-      <a id="idp362048" class="indexterm"></a>
-      <a id="idp362624" class="indexterm"></a>
+      <a id="idp347360" class="indexterm"></a>
+      <a id="idp347936" class="indexterm"></a>
+      <a id="idp348512" class="indexterm"></a>
 
       <code class="literal">@dataProvider</code> で指定したメソッドと
       <code class="literal">@depends</code> で指定したテストの両方からの入力を受け取るテストの場合、
       データプロバイダからの引数のほうが依存するテストからの引数より先にきます。
       依存するテストからの引数は、どちらのデータセットに対しても同じになります。
-      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.data-providers.examples.DependencyAndDataProviderCombo.php" title="例 2.8: 同じテストでの @depends と @dataProvider の組み合わせ">例 2.8</a>
+      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.data-providers.examples.DependencyAndDataProviderCombo.php" title="例 2.9: 同じテストでの @depends と @dataProvider の組み合わせ">例 2.9</a>
       を参照ください。
-    </p><div class="example"><a id="writing-tests-for-phpunit.data-providers.examples.DependencyAndDataProviderCombo.php"></a><p class="title"><strong>例 2.8: 同じテストでの @depends と @dataProvider の組み合わせ</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="writing-tests-for-phpunit.data-providers.examples.DependencyAndDataProviderCombo.php"></a><p class="title"><strong>例 2.9: 同じテストでの @depends と @dataProvider の組み合わせ</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class DependencyAndDataProviderComboTest extends PHPUnit_Framework_TestCase
 {
     public function provider()
@@ -379,7 +426,7 @@ class DependencyAndDataProviderComboTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit --verbose DependencyAndDataProviderComboTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 ...F
 
@@ -404,18 +451,18 @@ Array (
 FAILURES!
 Tests: 4, Assertions: 4, Failures: 1.
 </pre></div></div><br class="example-break"></br><div class="alert alert-info"><h3 class="title">注記</h3><p>
-        <a id="idp369312" class="indexterm"></a>
-        <a id="idp369888" class="indexterm"></a>
-        <a id="idp370464" class="indexterm"></a>
+        <a id="idp355232" class="indexterm"></a>
+        <a id="idp355808" class="indexterm"></a>
+        <a id="idp356384" class="indexterm"></a>
 
         あるテストがデータプロバイダを使う別のテストに依存している場合、
         別のテストで少なくともひとつのデータセットに対するテストが成功すれば
         そのテストも実行されます。
         データプロバイダを使ったテストの結果をそのテストに注入することはできません。
       </p></div><div class="alert alert-info"><h3 class="title">注記</h3><p>
-        <a id="idp372320" class="indexterm"></a>
-        <a id="idp372896" class="indexterm"></a>
-        <a id="idp373472" class="indexterm"></a>
+        <a id="idp358240" class="indexterm"></a>
+        <a id="idp358816" class="indexterm"></a>
+        <a id="idp359392" class="indexterm"></a>
 
         すべてのデータプロバイダを実行してから、
         静的メソッド <code class="literal">setUpBeforeClass</code>
@@ -423,24 +470,22 @@ Tests: 4, Assertions: 4, Failures: 1.
         これらのメソッドで作った変数にデータプロバイダ内からアクセスすることはできません。
         そうなっている理由は、PHPUnit がテストの総数を算出できるようにするためです。
       </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="writing-tests-for-phpunit.exceptions"></a>例外のテスト</h2></div></div></div><p>
-      <a id="idp377136" class="indexterm"></a>
-      <a id="idp377712" class="indexterm"></a>
+      <a id="idp363056" class="indexterm"></a>
+      <a id="idp363632" class="indexterm"></a>
 
-      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions.examples.ExceptionTest.php" title="例 2.9: @expectedException アノテーションの使用法">例 2.9</a>
+      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions.examples.ExceptionTest.php" title="例 2.10: expectException() メソッドの使用法">例 2.10</a>
       は、テストするコード内で例外がスローされたかどうかを
-      <code class="literal">@expectedException</code> アノテーションを使用して調べる方法を示すものです。
-    </p><div class="example"><a id="writing-tests-for-phpunit.exceptions.examples.ExceptionTest.php"></a><p class="title"><strong>例 2.9: @expectedException アノテーションの使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+      <code class="literal">expectException()</code> メソッドを使用して調べる方法を示すものです。
+    </p><div class="example"><a id="writing-tests-for-phpunit.exceptions.examples.ExceptionTest.php"></a><p class="title"><strong>例 2.10: expectException() メソッドの使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class ExceptionTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testException()
     {
+        $this-&gt;expectException(InvalidArgumentException::class);
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ExceptionTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -451,159 +496,68 @@ There was 1 failure:
 1) ExceptionTest::testException
 Expected exception InvalidArgumentException
 
-
 FAILURES!
 Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br><p>
-      <a id="idp382736" class="indexterm"></a>
-      <a id="idp383312" class="indexterm"></a>
-      <a id="idp383888" class="indexterm"></a>
-      <a id="idp384480" class="indexterm"></a>
+      <a id="idp368672" class="indexterm"></a>
+      <a id="idp369248" class="indexterm"></a>
+      <a id="idp369840" class="indexterm"></a>
 
-      さらに、<code class="literal">@expectedExceptionMessage</code> や
-      <code class="literal">@expectedExceptionCode</code> を
-      <code class="literal">@expectedException</code> と組み合わせて使うと、
-      例外メッセージや例外コードを
-      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions.examples.ExceptionTest2.php" title="例 2.10: @expectedExceptionMessage および @expectedExceptionCode アノテーションの使用法">例 2.10</a>
-      のようにテストできます。
-    </p><div class="example"><a id="writing-tests-for-phpunit.exceptions.examples.ExceptionTest2.php"></a><p class="title"><strong>例 2.10: @expectedExceptionMessage および @expectedExceptionCode アノテーションの使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+      さらに、<code class="literal">expectException()</code>、
+      <code class="literal">expectExceptionCode()</code>、
+      <code class="literal">expectExceptionMessage()</code>、
+      <code class="literal">expectExceptionMessageRegExp()</code> といったメソッドで、
+      テスト対象のコードで発生するであろう例外をテストできます。
+    </p><p>
+      <a id="idp372816" class="indexterm"></a>
+      <a id="idp373392" class="indexterm"></a>
+
+      別の方法として、<code class="literal">@expectedException</code>、
+      <code class="literal">@expectedExceptionCode</code>、
+      <code class="literal">@expectedExceptionMessage</code>、
+      <code class="literal">@expectedExceptionMessageRegExp</code> といったアノテーションでも、
+      テスト対象のコードで発生するであろう例外をテストできます。
+      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions.examples.ExceptionTest2.php" title="例 2.11: @expectedException アノテーションの使用法">例 2.11</a>
+      に例を示します。
+    </p><div class="example"><a id="writing-tests-for-phpunit.exceptions.examples.ExceptionTest2.php"></a><p class="title"><strong>例 2.11: @expectedException アノテーションの使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class ExceptionTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @expectedException        InvalidArgumentException
-     * @expectedExceptionMessage Right Message
+     * @expectedException InvalidArgumentException
      */
-    public function testExceptionHasRightMessage()
+    public function testException()
     {
-        throw new InvalidArgumentException('Some Message', 10);
-    }
-
-    /**
-     * @expectedException     InvalidArgumentException
-     * @expectedExceptionCode 20
-     */
-    public function testExceptionHasRightCode()
-    {
-        throw new InvalidArgumentException('Some Message', 10);
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ExceptionTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
-FF
+F
 
-Time: 0 seconds, Memory: 3.00Mb
+Time: 0 seconds, Memory: 4.75Mb
 
-There were 2 failures:
-
-1) ExceptionTest::testExceptionHasRightMessage
-Failed asserting that exception message 'Some Message' contains 'Right Message'.
-
-
-2) ExceptionTest::testExceptionHasRightCode
-Failed asserting that expected exception code 20 is equal to 10.
-
-
-FAILURES!
-Tests: 2, Assertions: 4, Failures: 2.</pre></div></div><br class="example-break"></br><p>
-      <code class="literal">@expectedExceptionMessage</code> や <code class="literal">@expectedExceptionCode</code>
-      を使ったその他の例が、それぞれ
-      <a class="xref" href="appendixes.annotations.html#appendixes.annotations.expectedExceptionMessage" title="@expectedExceptionMessage">「@expectedExceptionMessage」</a> と
-      <a class="xref" href="appendixes.annotations.html#appendixes.annotations.expectedExceptionCode" title="@expectedExceptionCode">「@expectedExceptionCode」</a> にあります。
-    </p><p>
-      一方、<code class="literal">setExpectedException()</code>
-      メソッドを使用して、発生するであろう例外を指定することもできます。この方法を
-      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions.examples.ExceptionTest3.php" title="例 2.11: テスト対象のコードで発生するであろう例外の指定">例 2.11</a>
-      に示します。
-    </p><div class="example"><a id="writing-tests-for-phpunit.exceptions.examples.ExceptionTest3.php"></a><p class="title"><strong>例 2.11: テスト対象のコードで発生するであろう例外の指定</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
-class ExceptionTest extends PHPUnit_Framework_TestCase
-{
-    public function testException()
-    {
-        $this-&gt;setExpectedException('InvalidArgumentException');
-    }
-
-    public function testExceptionHasRightMessage()
-    {
-        $this-&gt;setExpectedException(
-          'InvalidArgumentException', 'Right Message'
-        );
-        throw new InvalidArgumentException('Some Message', 10);
-    }
-
-    public function testExceptionHasRightCode()
-    {
-        $this-&gt;setExpectedException(
-          'InvalidArgumentException', 'Right Message', 20
-        );
-        throw new InvalidArgumentException('The Right Message', 10);
-    }
-}?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ExceptionTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
-
-FFF
-
-Time: 0 seconds, Memory: 3.00Mb
-
-There were 3 failures:
+There was 1 failure:
 
 1) ExceptionTest::testException
 Expected exception InvalidArgumentException
 
-
-2) ExceptionTest::testExceptionHasRightMessage
-Failed asserting that exception message 'Some Message' contains 'Right Message'.
-
-
-3) ExceptionTest::testExceptionHasRightCode
-Failed asserting that expected exception code 20 is equal to 10.
-
-
 FAILURES!
-Tests: 3, Assertions: 6, Failures: 3.</pre></div></div><br class="example-break"></br><p>
-      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions.tables.api" title="表2.1 例外のテスト用のメソッド">表 2.1</a>
-      は、例外をテストするために用意されているメソッドをまとめたものです。
-    </p><div class="table"><a id="writing-tests-for-phpunit.exceptions.tables.api"></a><p class="title"><strong>表2.1 例外のテスト用のメソッド</strong></p><div class="table-contents"><table summary="例外のテスト用のメソッド" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">メソッド</th><th align="left">意味</th></tr></thead><tbody><tr><td align="left"><code class="literal" style="white-space: normal" id="setExpectedException">void setExpectedException(string $exceptionName[, string $exceptionMessage = '', integer $exceptionCode = NULL])</code></td><td align="left">期待する <code class="literal">$exceptionName</code>、<code class="literal">$exceptionMessage</code> および <code class="literal">$exceptionCode</code> を設定します。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="getExpectedException">String getExpectedException()</code></td><td align="left">発生することを期待する例外の名前を返します。</td></tr></tbody></table></div></div><br class="table-break"></br><p>
-      一方、
-      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions.examples.ExceptionTest4.php" title="例 2.12: 例外をテストするための、別の方法">例 2.12</a>
-      のような方法で例外をテストすることもできます。
-    </p><div class="example"><a id="writing-tests-for-phpunit.exceptions.examples.ExceptionTest4.php"></a><p class="title"><strong>例 2.12: 例外をテストするための、別の方法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
-class ExceptionTest extends PHPUnit_Framework_TestCase {
-    public function testException() {
-        try {
-            // ... 例外が発生するであろうコード ...
-        }
-
-        catch (InvalidArgumentException $expected) {
-            return;
-        }
-
-        $this-&gt;fail('期待通りの例外が発生しませんでした。');
-    }
-}
-?&gt;</pre></div></div><br class="example-break"></br><p>
-      例外が発生するはずの
-      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions.examples.ExceptionTest4.php" title="例 2.12: 例外をテストするための、別の方法">例 2.12</a>
-      のコードで例外が発生しなかった場合、それに続く
-      <code class="literal">fail()</code>
-      によってテストが終了し、問題を報告します。期待通りに例外が発生すると、
-      <code class="literal">catch</code> ブロックが実行されてテストは正常終了します。
-    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="writing-tests-for-phpunit.errors"></a>PHP のエラーのテスト</h2></div></div></div><p>
-      <a id="idp415872" class="indexterm"></a>
-      <a id="idp416448" class="indexterm"></a>
-      <a id="idp417024" class="indexterm"></a>
-      <a id="idp417600" class="indexterm"></a>
-      <a id="idp418176" class="indexterm"></a>
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="writing-tests-for-phpunit.errors"></a>PHP のエラーのテスト</h2></div></div></div><p>
+      <a id="idp381024" class="indexterm"></a>
+      <a id="idp381600" class="indexterm"></a>
+      <a id="idp382176" class="indexterm"></a>
+      <a id="idp382752" class="indexterm"></a>
+      <a id="idp383328" class="indexterm"></a>
 
       デフォルトでは、PHPUnit はテストの実行中に発生した PHP のエラーや警告そして notice
       を例外に変換します。これらの例外を用いて、たとえば
-      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions.examples.ErrorTest.php" title="例 2.13: @expectedException を用いた、PHP エラーが発生することのテスト">例 2.13</a>
+      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions.examples.ErrorTest.php" title="例 2.12: @expectedException を用いた、PHP エラーが発生することのテスト">例 2.12</a>
       のように PHP のエラーが発生することをテストできます。
     </p><div class="alert alert-info"><h3 class="title">注記</h3><p>
         PHP の実行時設定 <code class="literal">error_reporting</code> を使うと、
         PHPUnit がどのエラーを例外に変換するのかを制限できます。
         この機能に関して何か問題がでた場合は、PHP の設定を見直し、
         調べたいと思っているエラーを抑制するようになっていないかどうか確認しましょう。
-      </p></div><div class="example"><a id="writing-tests-for-phpunit.exceptions.examples.ErrorTest.php"></a><p class="title"><strong>例 2.13: @expectedException を用いた、PHP エラーが発生することのテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+      </p></div><div class="example"><a id="writing-tests-for-phpunit.exceptions.examples.ErrorTest.php"></a><p class="title"><strong>例 2.12: @expectedException を用いた、PHP エラーが発生することのテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class ExpectedErrorTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -615,15 +569,15 @@ class ExpectedErrorTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit -d error_reporting=2 ExpectedErrorTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 .
 
 Time: 0 seconds
 
 OK (1 test, 1 assertion)</pre></div></div><br class="example-break"></br><p>
-      <a id="idp424528" class="indexterm"></a>
-      <a id="idp425120" class="indexterm"></a>
+      <a id="idp389696" class="indexterm"></a>
+      <a id="idp390288" class="indexterm"></a>
 
       <code class="literal">PHPUnit_Framework_Error_Notice</code> および
       <code class="literal">PHPUnit_Framework_Error_Warning</code> は、
@@ -642,7 +596,7 @@ OK (1 test, 1 assertion)</pre></div></div><br class="example-break"></br><p>
         そうすれば、notice のせいで
         <code class="literal">PHPUnit_Framework_Error_Notice</code>
         が出てしまうことなく、返り値だけをチェックできるようになります。
-        </p><div class="example"><a id="writing-tests-for-phpunit.exceptions.examples.TriggerErrorReturnValue.php"></a><p class="title"><strong>例 2.14: PHP のエラーが発生するコードの返り値のテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+        </p><div class="example"><a id="writing-tests-for-phpunit.exceptions.examples.TriggerErrorReturnValue.php"></a><p class="title"><strong>例 2.13: PHP のエラーが発生するコードの返り値のテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class ErrorSuppressionTest extends PHPUnit_Framework_TestCase
 {
     public function testFileWriting() {
@@ -662,7 +616,7 @@ class FileWriter
 }
 
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ErrorSuppressionTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 .
 
@@ -681,11 +635,11 @@ OK (1 test, 1 assertion)</pre></div></div><p><br class="example-break"></br>
       <a class="ulink" href="http://www.php.net/manual/ja/ref.outcontrol.php" target="_top">
       出力バッファリング</a> 機能を使用してこの仕組みを提供します。
     </p><p>
-      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.output.examples.OutputTest.php" title="例 2.15: 関数やメソッドの出力内容のテスト">例 2.15</a>
+      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.output.examples.OutputTest.php" title="例 2.14: 関数やメソッドの出力内容のテスト">例 2.14</a>
       では、期待する出力内容を <code class="literal">expectOutputString()</code>
       メソッドで設定する方法を示します。
       期待通りの出力が得られなかった場合は、そのテストは失敗という扱いになります。
-    </p><div class="example"><a id="writing-tests-for-phpunit.output.examples.OutputTest.php"></a><p class="title"><strong>例 2.15: 関数やメソッドの出力内容のテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="writing-tests-for-phpunit.output.examples.OutputTest.php"></a><p class="title"><strong>例 2.14: 関数やメソッドの出力内容のテスト</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class OutputTest extends PHPUnit_Framework_TestCase
 {
     public function testExpectFooActualFoo()
@@ -701,7 +655,7 @@ class OutputTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit OutputTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 .F
 
@@ -720,14 +674,14 @@ Failed asserting that two strings are equal.
 
 FAILURES!
 Tests: 2, Assertions: 2, Failures: 1.</pre></div></div><br class="example-break"></br><p>
-      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.output.tables.api" title="表2.2 テストの出力用のメソッド">表 2.2</a> は、
+      <a class="xref" href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.output.tables.api" title="表2.1 テストの出力用のメソッド">表 2.1</a> は、
       テストの出力用に提供するメソッドをまとめたものです。
-    </p><div class="table"><a id="writing-tests-for-phpunit.output.tables.api"></a><p class="title"><strong>表2.2 テストの出力用のメソッド</strong></p><div class="table-contents"><table summary="テストの出力用のメソッド" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">メソッド</th><th align="left">意味</th></tr></thead><tbody><tr><td align="left"><code class="literal" style="white-space: normal" id="expectOutputRegex">void expectOutputRegex(string $regularExpression)</code></td><td align="left">出力が正規表現 <code class="literal">$regularExpression</code> にマッチするであろうという予測を設定します。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="expectOutputString">void expectOutputString(string $expectedString)</code></td><td align="left">出力が文字列 <code class="literal">$expectedString</code> と等しくなるであろうという予測を設定します。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="setOutputCallback">bool setOutputCallback(callable $callback)</code></td><td align="left">たとえば出力時の正規化などに使用するコールバック関数を設定します。</td></tr></tbody></table></div></div><br class="table-break"></br><div class="alert alert-info"><h3 class="title">注記</h3><p>
+    </p><div class="table"><a id="writing-tests-for-phpunit.output.tables.api"></a><p class="title"><strong>表2.1 テストの出力用のメソッド</strong></p><div class="table-contents"><table class="table" summary="テストの出力用のメソッド" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">メソッド</th><th align="left">意味</th></tr></thead><tbody><tr><td align="left"><code class="literal" style="white-space: normal" id="expectOutputRegex">void expectOutputRegex(string $regularExpression)</code></td><td align="left">出力が正規表現 <code class="literal">$regularExpression</code> にマッチするであろうという予測を設定します。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="expectOutputString">void expectOutputString(string $expectedString)</code></td><td align="left">出力が文字列 <code class="literal">$expectedString</code> と等しくなるであろうという予測を設定します。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="setOutputCallback">bool setOutputCallback(callable $callback)</code></td><td align="left">たとえば出力時の正規化などに使用するコールバック関数を設定します。</td></tr></tbody></table></div></div><br class="table-break"></br><div class="alert alert-info"><h3 class="title">注記</h3><p>
         strict モードでは、出力を発生させるテストは失敗します。
       </p></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="writing-tests-for-phpunit.error-output"></a>エラー出力</h2></div></div></div><p>
       テストが失敗した場合、PHPUnit は、状況を可能な限り詳細に報告します。
       これが、何が問題だったのかを調べるのに役立つでしょう。
-    </p><div class="example"><a id="writing-tests-for-phpunit.error-output.examples.ArrayDiffTest.php"></a><p class="title"><strong>例 2.16: 配列の比較に失敗したときのエラー出力</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="writing-tests-for-phpunit.error-output.examples.ArrayDiffTest.php"></a><p class="title"><strong>例 2.15: 配列の比較に失敗したときのエラー出力</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class ArrayDiffTest extends PHPUnit_Framework_TestCase
 {
     public function testEquality() {
@@ -738,7 +692,7 @@ class ArrayDiffTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ArrayDiffTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -769,7 +723,7 @@ Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"
       それ以外の値も表示することで、どこが悪かったのかをわかりやすくしています。
     </p><p>
       出力が長すぎる場合は PHPUnit が出力を分割し、違っている部分の前後数行だけを出力します。
-    </p><div class="example"><a id="writing-tests-for-phpunit.error-output.examples.LongArrayDiffTest.php"></a><p class="title"><strong>例 2.17: 要素数の多い配列の比較に失敗したときのエラー出力</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="example"><a id="writing-tests-for-phpunit.error-output.examples.LongArrayDiffTest.php"></a><p class="title"><strong>例 2.16: 要素数の多い配列の比較に失敗したときのエラー出力</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class LongArrayDiffTest extends PHPUnit_Framework_TestCase
 {
     public function testEquality() {
@@ -780,7 +734,7 @@ class LongArrayDiffTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit LongArrayDiffTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -811,7 +765,7 @@ Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"
       </p><p>
         この問題が発生するのは、
         assertEquals などの「緩い」比較の関数を、配列やオブジェクトに対して使った場合だけです。
-      </p><div class="example"><a id="writing-tests-for-phpunit.error-output.edge-cases.examples.ArrayWeakComparisonTest.php"></a><p class="title"><strong>例 2.18: 緩い比較を使った場合の diff の生成のエッジケース</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+      </p><div class="example"><a id="writing-tests-for-phpunit.error-output.edge-cases.examples.ArrayWeakComparisonTest.php"></a><p class="title"><strong>例 2.17: 緩い比較を使った場合の diff の生成のエッジケース</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 class ArrayWeakComparisonTest extends PHPUnit_Framework_TestCase
 {
     public function testEquality() {
@@ -822,7 +776,7 @@ class ArrayWeakComparisonTest extends PHPUnit_Framework_TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ArrayWeakComparisonTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -859,12 +813,14 @@ Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="installation.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="textui.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
+
+
+
     </div>
    </div>
    <hr/>
    <footer>
-    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2014 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
+    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2016 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
    </footer>
   </div>
   <script src="js/jquery.js"></script>
@@ -872,18 +828,6 @@ Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"
   <script src="js/highlight.pack.js"></script>
   <script type="text/javascript">
   $(document).ready(function() { $('pre.programlisting').each(function(i, e) {hljs.highlightBlock(e)}); });
-
-  var _paq = _paq || [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "2"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-  })();
   </script>
  </body>
 </html>

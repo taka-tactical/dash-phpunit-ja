@@ -15,7 +15,7 @@
   
   <div class="container-fluid">
    <div class="row">
-    <div style='padding: 1.5em'>
+    <div style='padding: 2.0em'>
      <div class="row">
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="writing-tests-for-phpunit.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="fixtures.html">次へ</a></div>
@@ -25,7 +25,7 @@
     のコマンドライン版テストランナーが起動します。
     コマンドラインのテストランナーを使用したテストの様子を以下に示します。
   </p><pre class="screen"><strong class="userinput"><code>phpunit ArrayTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 ..
 
@@ -49,7 +49,7 @@ OK (2 tests, 2 assertions)</pre><p>
           テストメソッドの実行中、エラーが発生した際に表示されます。
         </p></dd><dt><span class="term"><code class="literal">R</code></span></dt><dd><p>
           テストが危険だとマークされている場合に表示されます
-          (<a class="xref" href="strict-mode.html" title="第6章 Strict モード">第 6 章</a> を参照ください)。
+          (<a class="xref" href="textui.html">???</a> を参照ください)。
         </p></dd><dt><span class="term"><code class="literal">S</code></span></dt><dd><p>
           テストが飛ばされた場合に表示されます
           (<a class="xref" href="incomplete-and-skipped-tests.html" title="第7章 不完全なテスト・テストの省略">第 7 章</a> を参照ください)。
@@ -57,8 +57,8 @@ OK (2 tests, 2 assertions)</pre><p>
           テストが「不完全」あるいは「未実装」とマークされている場合に表示されます
           (<a class="xref" href="incomplete-and-skipped-tests.html" title="第7章 不完全なテスト・テストの省略">第 7 章</a> を参照ください)。
         </p></dd></dl></div><p>
-    <a id="idp120032" class="indexterm"></a>
-    <a id="idp120608" class="indexterm"></a>
+    <a id="idp147440" class="indexterm"></a>
+    <a id="idp148016" class="indexterm"></a>
 
     PHPUnit は、<span class="emphasis"><em>失敗 (failures)</em></span> と
     <span class="emphasis"><em>エラー (errors)</em></span> を区別します。
@@ -69,10 +69,10 @@ OK (2 tests, 2 assertions)</pre><p>
     より修正しやすい傾向があるからです。
     もし大量の問題が発生した場合は、まず「エラー」を最初に片付け、
     その後で「失敗」を修正していくのが最良の方法です。
-  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="textui.clioptions"></a>Command-Line switches</h2></div></div></div><p>
+  </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="textui.clioptions"></a>コマンドラインオプション</h2></div></div></div><p>
       以下のコードで、コマンドライン版テストランナーのオプションの一覧を見てみましょう。
     </p><pre class="screen"><strong class="userinput"><code>phpunit --help</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 Usage: phpunit [options] UnitTest [UnitTest.php]
        phpunit [options] &lt;directory&gt;
@@ -109,15 +109,18 @@ Test Execution Options:
 
   --report-useless-tests    Be strict about tests that do not test anything.
   --strict-coverage         Be strict about unintentionally covered code.
+  --strict-global-state     Be strict about changes to global state
   --disallow-test-output    Be strict about output during tests.
   --enforce-time-limit      Enforce time limit based on test size.
-  --strict                  Run tests in strict mode (enables all of the above).
+  --disallow-todo-tests     Disallow @todo-annotated tests.
 
   --process-isolation       Run each test in a separate PHP process.
   --no-globals-backup       Do not backup and restore $GLOBALS for each test.
   --static-backup           Backup and restore static attributes for each test.
 
-  --colors                  Use colors in output.
+  --colors=&lt;flag&gt;           Use colors in output ("never", "auto" or "always").
+  --columns &lt;n&gt;             Number of columns to use for progress output.
+  --columns max             Use maximum number of columns for progress output.
   --stderr                  Write to STDERR instead of STDOUT.
   --stop-on-error           Stop execution upon first error.
   --stop-on-failure         Stop execution upon first error or failure.
@@ -160,7 +163,7 @@ Miscellaneous Options:
           </p></dd><dt><span class="term"><code class="literal">--coverage-clover</code></span></dt><dd><p>
             テスト結果から XML 形式のログファイルを作成し、
             コードカバレッジ情報もそこに含めます。
-            詳細は <a class="xref" href="logging.html" title="第14章 ログ出力">第 14 章</a> を参照ください。
+            詳細は <a class="xref" href="logging.html" title="第13章 ログ出力">第 13 章</a> を参照ください。
           </p><p>
             この機能は、tokenizer 拡張モジュールおよび Xdebug
             拡張モジュールがインストールされている場合にのみ使用可能となることに注意しましょう。
@@ -185,21 +188,21 @@ Miscellaneous Options:
           </p></dd><dt><span class="term"><code class="literal">--coverage-text</code></span></dt><dd><p>
             テストを実行したときに、ログファイルあるいはコマンドライン出力で
             可読形式のコードカバレッジ情報を生成します。
-            詳細は <a class="xref" href="logging.html" title="第14章 ログ出力">第 14 章</a> を参照ください。
+            詳細は <a class="xref" href="logging.html" title="第13章 ログ出力">第 13 章</a> を参照ください。
           </p><p>
             この機能は、tokenizer 拡張モジュールおよび Xdebug
             拡張モジュールがインストールされている場合にのみ使用可能となることに注意しましょう。
           </p></dd><dt><span class="term"><code class="literal">--log-junit</code></span></dt><dd><p>
             JUnit XML フォーマットを使用して、テストの実行結果のログを作成します。
-            詳細は <a class="xref" href="logging.html" title="第14章 ログ出力">第 14 章</a> を参照ください。
+            詳細は <a class="xref" href="logging.html" title="第13章 ログ出力">第 13 章</a> を参照ください。
           </p></dd><dt><span class="term"><code class="literal">--log-tap</code></span></dt><dd><p>
             <a class="ulink" href="http://testanything.org/" target="_top">Test Anything Protocol (TAP)</a>
             フォーマットを使用して、テストの実行結果のログを作成します。
-            詳細は <a class="xref" href="logging.html" title="第14章 ログ出力">第 14 章</a> を参照ください。
+            詳細は <a class="xref" href="logging.html" title="第13章 ログ出力">第 13 章</a> を参照ください。
           </p></dd><dt><span class="term"><code class="literal">--log-json</code></span></dt><dd><p>
             <a class="ulink" href="http://www.json.org/" target="_top">JSON</a>
             フォーマットを使用して、ログファイルを作成します。
-            詳細は <a class="xref" href="logging.html" title="第14章 ログ出力">第 14 章</a> を参照ください。
+            詳細は <a class="xref" href="logging.html" title="第13章 ログ出力">第 13 章</a> を参照ください。
           </p></dd><dt><span class="term"><code class="literal">--testdox-html</code> および <code class="literal">--testdox-text</code></span></dt><dd><p>
             実行したテストについて、HTML あるいはプレーンテキスト形式のドキュメントを生成します
             詳細は <a class="xref" href="other-uses-for-tests.html" title="第12章 テストのその他の使用法">第 12 章</a> を参照ください。
@@ -268,20 +271,21 @@ class TestCaseClass extends \PHPUnit_Framework_TestCase
             指定したサフィックスのテストファイルだけを探します。
           </p></dd><dt><span class="term"><code class="literal">--report-useless-tests</code></span></dt><dd><p>
             何もテストをしないテストについて厳格にチェックします。
-            詳細は <a class="xref" href="strict-mode.html" title="第6章 Strict モード">第 6 章</a> を参照ください。
+            詳細は <a class="xref" href="textui.html">???</a> を参照ください。
           </p></dd><dt><span class="term"><code class="literal">--strict-coverage</code></span></dt><dd><p>
             意図せずカバーしているコードについて厳格にチェックします。
-            詳細は <a class="xref" href="strict-mode.html" title="第6章 Strict モード">第 6 章</a> を参照ください。
+            詳細は <a class="xref" href="textui.html">???</a> を参照ください。
+          </p></dd><dt><span class="term"><code class="literal">--strict-global-state</code></span></dt><dd><p>
+            グローバルな状態の変更について厳格にチェックします。
+            詳細は <a class="xref" href="textui.html">???</a> を参照ください。
           </p></dd><dt><span class="term"><code class="literal">--disallow-test-output</code></span></dt><dd><p>
             実行中に何かを出力するテストについて厳格にチェックします。
-            詳細は <a class="xref" href="strict-mode.html" title="第6章 Strict モード">第 6 章</a> を参照ください。
+            詳細は <a class="xref" href="textui.html">???</a> を参照ください。
+          </p></dd><dt><span class="term"><code class="literal">--disallow-todo-tests</code></span></dt><dd><p>
+            docblock に <code class="literal">@todo</code> アノテーションが指定されているテストを実行しません。
           </p></dd><dt><span class="term"><code class="literal">--enforce-time-limit</code></span></dt><dd><p>
             テストのサイズに応じて、制限時間を設定します。
-            詳細は <a class="xref" href="strict-mode.html" title="第6章 Strict モード">第 6 章</a> を参照ください。
-          </p></dd><dt><span class="term"><code class="literal">--strict</code></span></dt><dd><p>
-            テストを strict モードで実行します (<code class="literal">--report-useless-tests</code>、
-            <code class="literal">--strict-coverage</code>、<code class="literal">--disallow-test-output</code>、
-            そして <code class="literal">--enforce-time-limit</code> を指定するのと同じ動きです)。詳細は <a class="xref" href="strict-mode.html" title="第6章 Strict モード">第 6 章</a> を参照ください。
+            詳細は <a class="xref" href="textui.html">???</a> を参照ください。
           </p></dd><dt><span class="term"><code class="literal">--process-isolation</code></span></dt><dd><p>
             各テストを個別の PHP プロセスで実行します。
           </p></dd><dt><span class="term"><code class="literal">--no-globals-backup</code></span></dt><dd><p>
@@ -294,6 +298,18 @@ class TestCaseClass extends \PHPUnit_Framework_TestCase
             出力に色を使用します。
             Windows では、<a class="ulink" href="https://github.com/adoxa/ansicon" target="_top">ANSICON</a> あるいは <a class="ulink" href="https://github.com/Maximus5/ConEmu" target="_top">ConEmu</a>
             を利用します。
+          </p><p>
+            指定できる値は、以下の三つです。
+            </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+                  <code class="literal">never</code>: 出力を色分けしません。これは、<code class="literal">--colors</code> オプションを省略したときのデフォルトです。
+                </p></li><li class="listitem"><p>
+                  <code class="literal">auto</code>: ターミナルが色をサポートしていない場合や、
+                  出力をコマンドにパイプしたりファイルにリダイレクトしたりする場合を除き、出力に色を使います。
+                </p></li><li class="listitem"><p>
+                  <code class="literal">always</code>: ターミナルが色をサポートしていない場合や、
+                  出力をコマンドにパイプしたりファイルにリダイレクトしたりする場合も含めて、常に出力に色を使います。
+                </p></li></ul></div><p>
+            <code class="literal">--colors</code> だけを指定して何も値を指定しなかった場合は、<code class="literal">auto</code> を選んだものとみなされます。
           </p></dd><dt><span class="term"><code class="literal">--stderr</code></span></dt><dd><p>
             オプションで、出力先を
             <code class="literal">STDOUT</code> ではなく <code class="literal">STDERR</code> にします。
@@ -327,7 +343,7 @@ class TestCaseClass extends \PHPUnit_Framework_TestCase
           </p></dd><dt><span class="term"><code class="literal">--tap</code></span></dt><dd><p>
             <a class="ulink" href="http://testanything.org/" target="_top">Test Anything Protocol (TAP)</a>
             を使用して、テストの進行状況を報告します。
-            詳細は <a class="xref" href="logging.html" title="第14章 ログ出力">第 14 章</a> を参照ください。
+            詳細は <a class="xref" href="logging.html" title="第13章 ログ出力">第 13 章</a> を参照ください。
           </p></dd><dt><span class="term"><code class="literal">--testdox</code></span></dt><dd><p>
             テストの進行状況を、アジャイルな文書として報告します。
             詳細は <a class="xref" href="other-uses-for-tests.html" title="第12章 テストのその他の使用法">第 12 章</a> を参照ください。
@@ -354,18 +370,20 @@ class TestCaseClass extends \PHPUnit_Framework_TestCase
           </p></dd><dt><span class="term"><code class="literal">-d</code></span></dt><dd><p>
             指定した PHP 設定オプションの値を設定します。
           </p></dd></dl></div><div class="alert alert-info"><h3 class="title">注記</h3><p>
-        これらのオプションは、引数の後に指定してはいけないことに注意しましょう。
+        PHPUnit 4.8 以降では、これらのオプションを引数の後にも指定できるようになりました。
       </p></div></div></div>
      <div class="row">
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="writing-tests-for-phpunit.html">戻る</a></div>
       <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="fixtures.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
+
+
+
     </div>
    </div>
    <hr/>
    <footer>
-    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2014 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
+    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2016 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
    </footer>
   </div>
   <script src="js/jquery.js"></script>
@@ -373,18 +391,6 @@ class TestCaseClass extends \PHPUnit_Framework_TestCase
   <script src="js/highlight.pack.js"></script>
   <script type="text/javascript">
   $(document).ready(function() { $('pre.programlisting').each(function(i, e) {hljs.highlightBlock(e)}); });
-
-  var _paq = _paq || [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "2"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-  })();
   </script>
  </body>
 </html>

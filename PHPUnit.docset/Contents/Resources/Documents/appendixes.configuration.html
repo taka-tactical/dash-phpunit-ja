@@ -15,17 +15,17 @@
   
   <div class="container-fluid">
    <div class="row">
-    <div style='padding: 1.5em'>
+    <div style='padding: 2.0em'>
      <div class="row">
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="appendixes.annotations.html">戻る</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="appendixes.upgrading.html">次へ</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="appendixes.index.html">次へ</a></div>
      </div>
 <div class="appendix"><div class="titlepage"><div><div><h1 class="title"><a id="appendixes.configuration"></a>付録C XML 設定ファイル</h1></div></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.phpunit"></a>PHPUnit</h2></div></div></div><p>
       <code class="literal">&lt;phpunit&gt;</code> 要素の属性を使って
       PHPUnit のコア機能を設定します。
     </p><pre class="screen">&lt;phpunit
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.2/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.5/phpunit.xsd"
          backupGlobals="true"
          backupStaticAttributes="false"
          &lt;!--bootstrap="/path/to/bootstrap.php"--&gt;
@@ -43,17 +43,17 @@
          stopOnFailure="false"
          stopOnIncomplete="false"
          stopOnSkipped="false"
+         stopOnRisky="false"
          testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader"
          &lt;!--testSuiteLoaderFile="/path/to/StandardTestSuiteLoader.php"--&gt;
          timeoutForSmallTests="1"
          timeoutForMediumTests="10"
          timeoutForLargeTests="60"
-         strict="false"
          verbose="false"&gt;
   &lt;!-- ... --&gt;
 &lt;/phpunit&gt;</pre><p>
       上の XML 設定ファイルは、TextUI テストランナーをデフォルトの設定で起動します。
-      その詳細は <a class="xref" href="textui.html#textui.clioptions" title="Command-Line switches">「Command-Line switches」</a> で説明します。
+      その詳細は <a class="xref" href="textui.html#textui.clioptions" title="コマンドラインオプション">「コマンドラインオプション」</a> で説明します。
     </p><p>
       その他、コマンドラインからは設定できないオプションもあります。
     </p><div class="variablelist"><dl class="variablelist"><dt><span class="term"><code class="literal">convertErrorsToExceptions</code></span></dt><dd><p>
@@ -75,20 +75,20 @@
             このアノテーションについては
             <a class="xref" href="appendixes.annotations.html#appendixes.annotations.covers" title="@covers">「@covers」</a> で説明します。
           </p></dd><dt><span class="term"><code class="literal">timeoutForLargeTests</code></span></dt><dd><p>
-            <code class="literal">PHP_Invoker</code> パッケージがインストールされていて strict モードが有効な場合に、
+            テストのサイズによるタイムアウト値を制限する場合に、
             <code class="literal">@large</code> とマークされたすべてのテストのタイムアウトをこの属性で設定します。
             ここで指定した時間内にテストが完了しなかった場合、テストは失敗します。
           </p></dd><dt><span class="term"><code class="literal">timeoutForMediumTests</code></span></dt><dd><p>
-            <code class="literal">PHP_Invoker</code> パッケージがインストールされていて strict モードが有効な場合に、
+            テストのサイズによるタイムアウト値を制限する場合に、
             <code class="literal">@medium</code> とマークされたすべてのテストのタイムアウトをこの属性で設定します。
             ここで指定した時間内にテストが完了しなかった場合、テストは失敗します。
           </p></dd><dt><span class="term"><code class="literal">timeoutForSmallTests</code></span></dt><dd><p>
-            <code class="literal">PHP_Invoker</code> パッケージがインストールされていて strict モードが有効な場合に、
+            テストのサイズによるタイムアウト値を制限する場合に、
             <code class="literal">@medium</code> あるいは <code class="literal">@large</code>
             のいずれのマークもついていないすべてのテストのタイムアウトをこの属性で設定します。
             ここで指定した時間内にテストが完了しなかった場合、テストは失敗します。
           </p></dd></dl></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.testsuites"></a>テストスイート</h2></div></div></div><p>
-      <a id="idp1888832" class="indexterm"></a>
+      <a id="idp1763504" class="indexterm"></a>
 
       <code class="literal">&lt;testsuites&gt;</code> 要素とその子要素である
       <code class="literal">&lt;testsuite&gt;</code> を使って、
@@ -114,7 +114,7 @@
       <code class="literal">phpVersionOperator</code> 属性はオプションで、デフォルトは
       <code class="literal">&gt;=</code> です。
     </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.groups"></a>グループ</h2></div></div></div><p>
-      <a id="idp1815696" class="indexterm"></a>
+      <a id="idp1771904" class="indexterm"></a>
 
       <code class="literal">&lt;groups&gt;</code> 要素とその子要素である
       <code class="literal">&lt;include&gt;</code>、
@@ -132,22 +132,13 @@
   &lt;/exclude&gt;
 &lt;/groups&gt;</pre><p>
       上の XML 設定ファイルは、 TextUI テストランナーを以下の引数で起動します。
-    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="literal">--group name</code></p></li><li class="listitem"><p><code class="literal">--exclude-group name</code></p></li></ul></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.blacklist-whitelist"></a>コードカバレッジ対象のファイルの追加や除外</h2></div></div></div><p>
-      <a id="idp1823824" class="indexterm"></a>
-      <a id="idp1824400" class="indexterm"></a>
-      <a id="idp1824976" class="indexterm"></a>
+    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="literal">--group name</code></p></li><li class="listitem"><p><code class="literal">--exclude-group name</code></p></li></ul></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.whitelisting-files"></a>コードカバレッジ対象のファイルのホワイトリスト</h2></div></div></div><p>
+      <a id="idp1476576" class="indexterm"></a>
+      <a id="idp1477152" class="indexterm"></a>
 
       <code class="literal">&lt;filter&gt;</code> 要素とその子要素を使って、
-      コードカバレッジレポートのブラックリストとホワイトリストを設定します。
+      コードカバレッジレポートのホワイトリストを設定します。
     </p><pre class="screen">&lt;filter&gt;
-  &lt;blacklist&gt;
-    &lt;directory suffix=".php"&gt;/path/to/files&lt;/directory&gt;
-    &lt;file&gt;/path/to/file&lt;/file&gt;
-    &lt;exclude&gt;
-      &lt;directory suffix=".php"&gt;/path/to/files&lt;/directory&gt;
-      &lt;file&gt;/path/to/file&lt;/file&gt;
-    &lt;/exclude&gt;
-  &lt;/blacklist&gt;
   &lt;whitelist processUncoveredFilesFromWhitelist="true"&gt;
     &lt;directory suffix=".php"&gt;/path/to/files&lt;/directory&gt;
     &lt;file&gt;/path/to/file&lt;/file&gt;
@@ -157,14 +148,14 @@
     &lt;/exclude&gt;
   &lt;/whitelist&gt;
 &lt;/filter&gt;</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.logging"></a>ログ出力</h2></div></div></div><p>
-      <a id="idp1828736" class="indexterm"></a>
+      <a id="idp1480656" class="indexterm"></a>
 
       <code class="literal">&lt;logging&gt;</code> 要素とその子要素である
       <code class="literal">&lt;log&gt;</code> を使って、
       テストの実行結果のログ出力を設定します。
     </p><pre class="screen">&lt;logging&gt;
-  &lt;log type="coverage-html" target="/tmp/report" charset="UTF-8"
-       highlight="false" lowUpperBound="35" highLowerBound="70"/&gt;
+  &lt;log type="coverage-html" target="/tmp/report" lowUpperBound="35"
+       highLowerBound="70"/&gt;
   &lt;log type="coverage-clover" target="/tmp/coverage.xml"/&gt;
   &lt;log type="coverage-php" target="/tmp/coverage.serialized"/&gt;
   &lt;log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/&gt;
@@ -176,14 +167,13 @@
 &lt;/logging&gt;</pre><p>
       上の XML 設定ファイルは、 TextUI テストランナーを以下の引数で起動します。
     </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="literal">--coverage-html /tmp/report</code></p></li><li class="listitem"><p><code class="literal">--coverage-clover /tmp/coverage.xml</code></p></li><li class="listitem"><p><code class="literal">--coverage-php /tmp/coverage.serialized</code></p></li><li class="listitem"><p><code class="literal">--coverage-text</code></p></li><li class="listitem"><p><code class="literal">--log-json /tmp/logfile.json</code></p></li><li class="listitem"><p><code class="literal">&gt; /tmp/logfile.txt</code></p></li><li class="listitem"><p><code class="literal">--log-tap /tmp/logfile.tap</code></p></li><li class="listitem"><p><code class="literal">--log-junit /tmp/logfile.xml</code></p></li><li class="listitem"><p><code class="literal">--testdox-html /tmp/testdox.html</code></p></li><li class="listitem"><p><code class="literal">--testdox-text /tmp/testdox.txt</code></p></li></ul></div><p>
-      <code class="literal">charset</code>、<code class="literal">highlight</code>、
       <code class="literal">lowUpperBound</code>、<code class="literal">highLowerBound</code>、
       <code class="literal">logIncompleteSkipped</code>
       および <code class="literal">showUncoveredFiles</code>
       属性には、TextUI テストランナーで対応するオプションがありません。
-    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="literal">charset</code>: 生成する html ページで使う文字セット。</p></li><li class="listitem"><p><code class="literal">highlight</code>: <code class="literal">true</code> にすると、カバレッジレポート内のコードにシンタックスハイライト処理を施します。</p></li><li class="listitem"><p><code class="literal">lowUpperBound</code>: カバー率がこの値に満たないときに、カバー率が "低い" とみなします。</p></li><li class="listitem"><p><code class="literal">highLowerBound</code>: カバー率がこの値を超えるときに、カバー率が "高い" とみなします。</p></li><li class="listitem"><p><code class="literal">showUncoveredFiles</code>: <code class="literal">--coverage-text</code> の出力で、カバレッジ情報だけではなくホワイトリストの全ファイル一覧も表示します。</p></li><li class="listitem"><p><code class="literal">showOnlySummary</code>: Show only the summary in <code class="literal">--coverage-text</code> output.</p></li></ul></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.test-listeners"></a>テストリスナー</h2></div></div></div><p>
-      <a id="idp1851824" class="indexterm"></a>
-      <a id="idp1852416" class="indexterm"></a>
+    </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="literal">lowUpperBound</code>: カバー率がこの値に満たないときに、カバー率が "低い" とみなします。</p></li><li class="listitem"><p><code class="literal">highLowerBound</code>: カバー率がこの値を超えるときに、カバー率が "高い" とみなします。</p></li><li class="listitem"><p><code class="literal">showUncoveredFiles</code>: <code class="literal">--coverage-text</code> の出力で、カバレッジ情報だけではなくホワイトリストの全ファイル一覧も表示します。</p></li><li class="listitem"><p><code class="literal">showOnlySummary</code>: Show only the summary in <code class="literal">--coverage-text</code> output.</p></li></ul></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.test-listeners"></a>テストリスナー</h2></div></div></div><p>
+      <a id="idp1500496" class="indexterm"></a>
+      <a id="idp1501088" class="indexterm"></a>
 
       <code class="literal">&lt;listeners&gt;</code> 要素とその子要素である
       <code class="literal">&lt;listener&gt;</code> を使って、
@@ -215,9 +205,9 @@
   NULL,
   new stdClass
 );</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.php-ini-constants-variables"></a>PHP INI 項目や定数、グローバル変数の設定</h2></div></div></div><p>
-      <a id="idp1697104" class="indexterm"></a>
-      <a id="idp1697680" class="indexterm"></a>
-      <a id="idp1698256" class="indexterm"></a>
+      <a id="idp1506720" class="indexterm"></a>
+      <a id="idp1507296" class="indexterm"></a>
+      <a id="idp1507872" class="indexterm"></a>
 
       <code class="literal">&lt;php&gt;</code> 要素とその子要素を使って、
       PHP の設定や定数、グローバル変数を設定します。また、
@@ -246,7 +236,7 @@ $_COOKIE['foo'] = 'bar';
 $_SERVER['foo'] = 'bar';
 $_FILES['foo'] = 'bar';
 $_REQUEST['foo'] = 'bar';</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.configuration.selenium-rc"></a>Selenium RC の設定ブラウザ</h2></div></div></div><p>
-      <a id="idp1703568" class="indexterm"></a>
+      <a id="idp1513184" class="indexterm"></a>
 
       <code class="literal">&lt;selenium&gt;</code> 要素とその子要素である
       <code class="literal">&lt;browser&gt;</code> を使って、
@@ -275,14 +265,16 @@ $_REQUEST['foo'] = 'bar';</pre></div><div class="section"><div class="titlepage"
 }</pre></div></div>
      <div class="row">
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="appendixes.annotations.html">戻る</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="appendixes.upgrading.html">次へ</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="appendixes.index.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
+
+
+
     </div>
    </div>
    <hr/>
    <footer>
-    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2014 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
+    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2016 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
    </footer>
   </div>
   <script src="js/jquery.js"></script>
@@ -290,18 +282,6 @@ $_REQUEST['foo'] = 'bar';</pre></div><div class="section"><div class="titlepage"
   <script src="js/highlight.pack.js"></script>
   <script type="text/javascript">
   $(document).ready(function() { $('pre.programlisting').each(function(i, e) {hljs.highlightBlock(e)}); });
-
-  var _paq = _paq || [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "2"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-  })();
   </script>
  </body>
 </html>

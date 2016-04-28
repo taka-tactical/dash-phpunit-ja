@@ -5,7 +5,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>phpunit-ja</string>
 	<key>CFBundleName</key>
-	<string>PHPUnit 4.2-ja</string>
+	<string>PHPUnit 5.3-ja</string>
 	<key>DocSetPlatformFamily</key>
 	<string>phpunit</string>
 	<key>isDashDocset</key>

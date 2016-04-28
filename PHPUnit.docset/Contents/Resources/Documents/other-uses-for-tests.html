@@ -15,20 +15,20 @@
   
   <div class="container-fluid">
    <div class="row">
-    <div style='padding: 1.5em'>
+    <div style='padding: 2.0em'>
      <div class="row">
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="code-coverage-analysis.html">戻る</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="selenium.html">次へ</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="logging.html">次へ</a></div>
      </div>
 <div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a id="other-uses-for-tests"></a>第12章 テストのその他の使用法</h1></div></div></div><p>
     自動テストに慣れてくると、
     ほかの目的のためにもテストを使いたくなってくることでしょう。
     ここではそんな例を説明します。
   </p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="testing-practices.agile-documentation"></a>アジャイルな文書作成</h2></div></div></div><p>
-      <a id="idp738320" class="indexterm"></a>
-      <a id="idp738864" class="indexterm"></a>
-      <a id="idp739440" class="indexterm"></a>
-      <a id="idp739984" class="indexterm"></a>
+      <a id="idp855056" class="indexterm"></a>
+      <a id="idp855600" class="indexterm"></a>
+      <a id="idp856176" class="indexterm"></a>
+      <a id="idp856720" class="indexterm"></a>
 
       一般的に、エクストリームプログラミングのようなアジャイルプロセスを採用しているプロジェクトでは、
       ドキュメントの内容が実際の設計やコードに追いついていないことが多いものです。
@@ -52,7 +52,7 @@
     </p><p>
       <code class="literal">BankAccount</code> クラスのアジャイルな文書を見てみましょう。
     </p><pre class="screen"><strong class="userinput"><code>phpunit --testdox BankAccountTest</code></strong>
-PHPUnit 4.2.0 by Sebastian Bergmann.
+PHPUnit 5.3.0 by Sebastian Bergmann and contributors.
 
 BankAccount
  [x] Balance is initially zero
@@ -61,7 +61,7 @@ BankAccount
       この場合は、引数 <code class="literal">--testdox-html</code>
       あるいは <code class="literal">--testdox-text</code> を使用します。
     </p><p>
-      <a id="idp998464" class="indexterm"></a>
+      <a id="idp951504" class="indexterm"></a>
 
       アジャイルな文書は、プロジェクト内であなたが作成しようとしている外部パッケージについて、
       このように動作するであるという期待をまとめた文書にもなります。
@@ -89,7 +89,7 @@ BankAccount
       また、すべてのテストにクリアした時点で、
       作者はパッケージが完成したことを知ることになります。
     </p><p>
-      <a id="idp1003744" class="indexterm"></a>
+      <a id="idp957056" class="indexterm"></a>
 
       スタブ (本書の前のほうで説明した "モックオブジェクト" の章を参照ください)
       を使用することで、パッケージの作者と別れても作業できるようになります。
@@ -100,14 +100,16 @@ BankAccount
     </p></div></div>
      <div class="row">
       <div class="col-md-1 pull-left prev-nav"><a accesskey="p" href="code-coverage-analysis.html">戻る</a></div>
-      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="selenium.html">次へ</a></div>
+      <div class="col-md-1 pull-right next-nav"><a accesskey="n" href="logging.html">次へ</a></div>
      </div>
-<div class="row"><div class="col-md-2"></div><div class="col-md-8"><div class="alert alert-info" style="text-align: center;">このページの改善案を<a href="https://github.com/sebastianbergmann/phpunit-documentation/issues">GitHubで提案</a>してください!</div></div><div class="col-md-2"></div></div>
+
+
+
     </div>
    </div>
    <hr/>
    <footer>
-    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2014 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
+    <p><a href="appendixes.copyright.html">Copyright</a> &copy; 2005-2016 <a href="http://sebastian-bergmann.de/">Sebastian Bergmann</a>.</p>
    </footer>
   </div>
   <script src="js/jquery.js"></script>
@@ -115,18 +117,6 @@ BankAccount
   <script src="js/highlight.pack.js"></script>
   <script type="text/javascript">
   $(document).ready(function() { $('pre.programlisting').each(function(i, e) {hljs.highlightBlock(e)}); });
-
-  var _paq = _paq || [];
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
-
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.sebastian-bergmann.de/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "2"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-  })();
   </script>
  </body>
 </html>
