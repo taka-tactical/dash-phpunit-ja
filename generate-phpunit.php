@@ -81,7 +81,7 @@ foreach ($dom->getElementsByTagName("a") as $a) {
 		// remove comment area
 		if (($p = strpos($html, '<div class="row"><div class="col-md-2"></div><div class="col-md-8">')) !== false) {
 			if (($q = strpos($html, '</noscript></div><div class="col-md-2"></div></div>', $p + 1)) !== false)
-				$html = substr($html, 0, $p) . "<div style='padding: 2.0em'>" . substr($html, $q + 51);
+				$html = substr($html, 0, $p) . substr($html, $q + 51);
 		}
 
 		// remove navi bar
