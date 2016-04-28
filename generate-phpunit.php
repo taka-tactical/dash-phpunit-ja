@@ -50,38 +50,45 @@ $db = new sqlite3(__DIR__ . "/PHPUnit.docset/Contents/Resources/docSet.dsidx");
 $db->query("CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT)");
 $db->query("CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path)");
 
-$p = strpos($html, '<nav');
-
-if ($p !== false) {
-	$q = strpos($html, '</nav');
-	$html = substr($html, 0, $p) . '<br />' . substr($html, $q + 6);
-	file_put_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/index.html", $html);
+if (strpos($html, '<nav') !== false) {
+	file_put_contents(
+		__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/index.html",
+		remove_navibar($html, '<br />')
+	);
 }
 
 // add links from the table of contents
 echo "\nCreate search indexes ...\n\n";
-$links = $edited = array();
+$links = $edited = [];
 
 foreach ($dom->getElementsByTagName("a") as $a) {
 	$href = $a->getAttribute("href");
 	$str  = substr($href, 0, 6);
+
 	if ($str[0] == '.') continue;
 	if ($str == 'https:' || !strncmp($str, 'http:', 5)) continue;
-
 	$file = preg_replace("/#.*$/", "", $href);
+
 	if (!isset($edited[$file]) && $file != "index.html") {
 		$html = file_get_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/" . $file);
-		$p = strpos($html, '<div class="col-md-4 col-lg-3">');
-		if ($p !== false) {
-			$q = strpos($html, '<div class="col-md-8 col-lg-9">');
-			$html = substr($html, 0, $p) . "<div style='padding: 1.5em'>" . substr($html, $q + 31);
 
-			$p = strpos($html, '<nav');
-			$q = strpos($html, '</nav');
-			$html = substr($html, 0, $p) . substr($html, $q + 6);
-
-			file_put_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/" . $file, $html);
+		// remove index area
+		if (($p = strpos($html, '<div class="col-md-4 col-lg-3">')) !== false) {
+			if (($q = strpos($html, '<div class="col-md-8 col-lg-9">', $p + 1)) !== false)
+				$html = substr($html, 0, $p) . "<div style='padding: 2.0em'>" . substr($html, $q + 31);
 		}
+
+		// remove comment area
+		if (($p = strpos($html, '<div class="row"><div class="col-md-2"></div><div class="col-md-8">')) !== false) {
+			if (($q = strpos($html, '</noscript></div><div class="col-md-2"></div></div>', $p + 1)) !== false)
+				$html = substr($html, 0, $p) . "<div style='padding: 2.0em'>" . substr($html, $q + 51);
+		}
+
+		// remove navi bar
+		file_put_contents(
+			__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/" . $file,
+			remove_navibar($html)
+		);
 		$edited[$file] = true;
 	}
 
@@ -97,8 +104,8 @@ foreach ($dom->getElementsByTagName("a") as $a) {
 }
 
 // now go through some of the files to add pointers to inline documentation
-foreach (array("appendixes.assertions", "appendixes.annotations", "incomplete-and-skipped-tests", "test-doubles", "writing-tests-for-phpunit") as $file) {
-	$search = $replace = array();
+foreach ([ "appendixes.assertions", "appendixes.annotations", "incomplete-and-skipped-tests", "test-doubles", "writing-tests-for-phpunit" ] as $file) {
+	$search = $replace = [];
 	$html   = file_get_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/{$file}.html");
 
 	@$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
@@ -130,4 +137,15 @@ foreach (array("appendixes.assertions", "appendixes.annotations", "incomplete-an
 }
 
 echo "\nPHPUnit docset created !\n";
+
+
+// remove navi bar
+function remove_navibar($html, $alt = '') {
+	if ($html && ($p = strpos($html, '<nav')) !== false) {
+		if (($q = strpos($html, '</nav', $p + 1)) !== false)
+			$html = substr($html, 0, $p) . $alt . substr($html, $q + 6);
+	}
+	return $html;
+}
+
 
