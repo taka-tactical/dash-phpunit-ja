@@ -1,8 +1,8 @@
 <?php
 
-/**
- * Config
- */
+//----------------------------------------
+// Config
+//----------------------------------------
 
 // set your language (en/ja/zh_cn)
 $cfg_lang = 'ja';
@@ -15,9 +15,11 @@ $cfg_index  = true;
 $cfg_nosans = true;
 
 
-/**
- * Main process
- */
+//----------------------------------------
+//
+// Main process
+//
+//----------------------------------------
 
 // get manual html
 exec("rm -rf PHPUnit.docset/Contents/Resources/");
@@ -25,7 +27,7 @@ exec("rm -rf PHPUnit.docset/Contents/Resources/");
 mkdir("PHPUnit.docset/Contents/Resources/", 0777, true);
 exec("wget -rkl1 https://phpunit.de/manual/current/{$cfg_lang}/index.html");
 exec("mv " . __DIR__ . "/phpunit.de/manual/current/{$cfg_lang} " . __DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/");
-exec("rm -r " . __DIR__ . "/phpunit.de/");
+exec("rm -rf " . __DIR__ . "/phpunit.de/");
 
 // get current version (if available)
 $html = file_get_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/index.html");
@@ -191,6 +193,10 @@ foreach ([ "appendixes.assertions", "appendixes.annotations", "incomplete-and-sk
 
 echo "\nPHPUnit docset created !\n";
 
+
+//----------------------------------------
+// Helper functions
+//----------------------------------------
 
 // remove navi bar
 function remove_navibar($html, $alt = '') {
