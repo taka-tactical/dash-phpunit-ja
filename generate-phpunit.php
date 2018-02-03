@@ -143,7 +143,7 @@ foreach ($dom->getElementsByTagName("a") as $a) {
 		$class = "Function";
 	}
 	$links[$name] = true;
-	$db->query("INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (\"$name\",\"$class\",\"$href\")");
+	$db->query("INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (\"{$name}\",\"{$class}\",\"{$href}\")");
 
 	echo "{$name}\n";
 }
@@ -183,12 +183,12 @@ foreach ([ "appendixes.assertions", "appendixes.annotations", "incomplete-and-sk
 			continue;
 		}
 
-		$db->query("INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (\"$name\",\"Function\",\"$href\")");
+		$db->query("INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (\"{$name}\",\"Function\",\"{$href}\")");
 		echo "{$name}\n";
 	}
 
 	$html = str_replace($search, $replace, $html);
-	file_put_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/$file.html", $html);
+	file_put_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/{$file}.html", $html);
 }
 
 echo "\nPHPUnit docset created !\n";
