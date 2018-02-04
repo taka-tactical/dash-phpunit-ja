@@ -1,4 +1,13 @@
 <?php
+/**
+dash-phpunit-ja
+
+Copyright (c) 2017 T.Takamatsu <takamatsu@tactical.jp>
+
+This software is released under the MIT License.
+http://opensource.org/licenses/mit-license.php
+*/
+
 
 //----------------------------------------
 // Config
