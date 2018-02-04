@@ -16,7 +16,7 @@
    <div class="row">
     <div class="col-md-4 col-lg-3">
      <div class="well well-sm sidebar-nav">
-<dl class="toc nav hidden-print"><dt><span class="chapter"><a href="installation.html">1. PHPUnit のインストール</a></span></dt><dd><dl><dt><span class="section"><a href="installation.html#installation.requirements">要件</a></span></dt><dt><span class="section"><a href="installation.html#installation.phar">PHP Archive (PHAR)</a></span></dt><dd><dl><dt><span class="section"><a href="installation.html#installation.phar.windows">Windows</a></span></dt><dt><span class="section"><a href="installation.html#installation.phar.verification">PHPUnit の PHAR リリースの検証</a></span></dt></dl></dd><dt><span class="section"><a href="installation.html#installation.composer">Composer</a></span></dt><dt><span class="section"><a href="installation.html#installation.optional-packages">オプションのパッケージ</a></span></dt></dl></dd><dt><span class="chapter"><a href="writing-tests-for-phpunit.html">2. PHPUnit 用のテストの書き方</a></span></dt><dd><dl><dt><span class="section"><a href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.test-dependencies">テストの依存性</a></span></dt><dt><span class="section"><a href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.data-providers">データプロバイダ</a></span></dt><dt><span class="section"><a href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions">例外のテスト</a></span></dt><dt><span class="section"><a href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.errors">PHP のエラーのテスト</a></span></dt><dt><span class="section"><a href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.output">出力内容のテスト</a></span></dt><dt><span class="section"><a href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.error-output">エラー出力</a></span></dt><dd><dl><dt><span class="section"><a href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.error-output.edge-cases">エッジケース</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="textui.html">3. コマンドラインのテストランナー</a></span></dt><dd><dl><dt><span class="section"><a href="textui.html#textui.clioptions">コマンドラインオプション</a></span></dt></dl></dd><dt><span class="chapter"><a href="fixtures.html">4. フィクスチャ</a></span></dt><dd><dl><dt><span class="section"><a href="fixtures.html#fixtures.more-setup-than-teardown">tearDown() よりも setUp()</a></span></dt><dt><span class="section"><a href="fixtures.html#fixtures.variations">バリエーション</a></span></dt><dt><span class="section"><a href="fixtures.html#fixtures.sharing-fixture">フィクスチャの共有</a></span></dt><dt><span class="section"><a href="fixtures.html#fixtures.global-state">グローバルな状態</a></span></dt></dl></dd><dt><span class="chapter"><a href="organizing-tests.html">5. テストの構成</a></span></dt><dd><dl><dt><span class="section"><a href="organizing-tests.html#organizing-tests.filesystem">ファイルシステムを用いたテストスイートの構成</a></span></dt><dt><span class="section"><a href="organizing-tests.html#organizing-tests.xml-configuration">XML 設定ファイルを用いたテストスイートの構成</a></span></dt></dl></dd><dt><span class="chapter"><a href="strict-mode.html">6. リスクを伴うテスト</a></span></dt><dd><dl><dt><span class="section"><a href="strict-mode.html#risky-tests.useless-tests">無意味なテスト</a></span></dt><dt><span class="section"><a href="strict-mode.html#risky-tests.unintentionally-covered-code">意図せぬうちにカバーされているコード</a></span></dt><dt><span class="section"><a href="strict-mode.html#risky-tests.output-during-test-execution">テストの実行時の出力</a></span></dt><dt><span class="section"><a href="strict-mode.html#risky-tests.test-execution-timeout">テストの実行時のタイムアウト</a></span></dt><dt><span class="section"><a href="strict-mode.html#risky-tests.global-state-manipulation">グローバルな状態の変更</a></span></dt></dl></dd><dt><span class="chapter"><a href="incomplete-and-skipped-tests.html">7. 不完全なテスト・テストの省略</a></span></dt><dd><dl><dt><span class="section"><a href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.incomplete-tests">不完全なテスト</a></span></dt><dt><span class="section"><a href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.skipping-tests">テストの省略</a></span></dt><dt><span class="section"><a href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.skipping-tests-using-requires">@requires によるテストのスキップ</a></span></dt></dl></dd><dt><span class="chapter"><a href="database.html">8. データベースのテスト</a></span></dt><dd><dl><dt><span class="section"><a href="database.html#database.supported-vendors-for-database-testing">データベースのテストに対応しているベンダー</a></span></dt><dt><span class="section"><a href="database.html#database.difficulties-in-database-testing">データベースのテストの難しさ</a></span></dt><dt><span class="section"><a href="database.html#database.the-four-stages-of-a-database-test">データベーステストの四段階</a></span></dt><dd><dl><dt><span class="section"><a href="database.html#database.clean-up-database">1. データベースのクリーンアップ</a></span></dt><dt><span class="section"><a href="database.html#database.set-up-fixture">2. フィクスチャの準備</a></span></dt><dt><span class="section"><a href="database.html#database.run-test-verify-outcome-and-teardown">3–5. テストの実行、結果の検証、そして後始末</a></span></dt></dl></dd><dt><span class="section"><a href="database.html#database.configuration-of-a-phpunit-database-testcase">PHPUnit のデータベーステストケースの設定</a></span></dt><dd><dl><dt><span class="section"><a href="database.html#database.implementing-getconnection">getConnection() の実装</a></span></dt><dt><span class="section"><a href="database.html#database.implementing-getdataset">getDataSet() の実装</a></span></dt><dt><span class="section"><a href="database.html#database.what-about-the-database-schema-ddl">データベーススキーマ (DDL) とは?</a></span></dt><dt><span class="section"><a href="database.html#database.tip-use-your-own-abstract-database-testcase">ヒント: 自前でのデータベーステストケースの抽象化</a></span></dt></dl></dd><dt><span class="section"><a href="database.html#database.understanding-datasets-and-datatables">データセットとデータテーブルについて知る</a></span></dt><dd><dl><dt><span class="section"><a href="database.html#database.available-implementations">利用できる実装</a></span></dt><dt><span class="section"><a href="database.html#database.beware-of-foreign-keys">外部キーには注意</a></span></dt><dt><span class="section"><a href="database.html#database.implementing-your-own-datasetsdatatables">自作のデータセットやデータテーブルの実装</a></span></dt></dl></dd><dt><span class="section"><a href="database.html#database.the-connection-api">接続 API</a></span></dt><dt><span class="section"><a href="database.html#database.database-assertions-api">データベースアサーション API</a></span></dt><dd><dl><dt><span class="section"><a href="database.html#database.asserting-the-row-count-of-a-table">テーブルの行数のアサーション</a></span></dt><dt><span class="section"><a href="database.html#database.asserting-the-state-of-a-table">テーブルの状態のアサーション</a></span></dt><dt><span class="section"><a href="database.html#database.asserting-the-result-of-a-query">クエリの結果のアサーション</a></span></dt><dt><span class="section"><a href="database.html#database.asserting-the-state-of-multiple-tables">複数のテーブルの状態のアサーション</a></span></dt></dl></dd><dt><span class="section"><a href="database.html#database.frequently-asked-questions">よくある質問</a></span></dt><dd><dl><dt><span class="section"><a href="database.html#database.will-phpunit-re-create-the-database-schema-for-each-test">PHPUnit は、テストごとにデータベーススキーマを作り直すの?</a></span></dt><dt><span class="section"><a href="database.html#database.am-i-required-to-use-pdo-in-my-application-for-the-database-extension-to-work">PDO を使ったアプリケーションじゃないと Database Extension を使えないの?</a></span></dt><dt><span class="section"><a href="database.html#database.what-can-i-do-when-i-get-a-too-much-connections-error"><span class="quote">「<span class="quote">Too much Connections</span>」</span> というエラーが出たらどうすればいい?</a></span></dt><dt><span class="section"><a href="database.html#database.how-to-handle-null-with-flat-xml-csv-datasets">フラット XML や CSV のデータセットで NULL を扱う方法は?</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="test-doubles.html">9. テストダブル</a></span></dt><dd><dl><dt><span class="section"><a href="test-doubles.html#test-doubles.stubs">スタブ</a></span></dt><dt><span class="section"><a href="test-doubles.html#test-doubles.mock-objects">モックオブジェクト</a></span></dt><dt><span class="section"><a href="test-doubles.html#test-doubles.prophecy">Prophecy</a></span></dt><dt><span class="section"><a href="test-doubles.html#test-doubles.mocking-traits-and-abstract-classes">トレイトと抽象クラスのモック</a></span></dt><dt><span class="section"><a href="test-doubles.html#test-doubles.stubbing-and-mocking-web-services">ウェブサービスのスタブおよびモック</a></span></dt><dt><span class="section"><a href="test-doubles.html#test-doubles.mocking-the-filesystem">ファイルシステムのモック</a></span></dt></dl></dd><dt><span class="chapter"><a href="testing-practices.html">10. テストの進め方</a></span></dt><dd><dl><dt><span class="section"><a href="testing-practices.html#testing-practices.during-development">開発中のテスト</a></span></dt><dt><span class="section"><a href="testing-practices.html#testing-practices.during-debugging">デバッグ中のテスト</a></span></dt></dl></dd><dt><span class="chapter"><a href="code-coverage-analysis.html">11. コードカバレッジ解析</a></span></dt><dd><dl><dt><span class="section"><a href="code-coverage-analysis.html#code-coverage-analysis.metrics">コードカバレッジの指標</a></span></dt><dt><span class="section"><a href="code-coverage-analysis.html#code-coverage-analysis.whitelisting-files">ファイルのホワイトリスト</a></span></dt><dt><span class="section"><a href="code-coverage-analysis.html#code-coverage-analysis.ignoring-code-blocks">コードブロックの無視</a></span></dt><dt><span class="section"><a href="code-coverage-analysis.html#code-coverage-analysis.specifying-covered-methods">カバーするメソッドの指定</a></span></dt><dt><span class="section"><a href="code-coverage-analysis.html#code-coverage-analysis.edge-cases">エッジケース</a></span></dt></dl></dd><dt><span class="chapter"><a href="other-uses-for-tests.html">12. テストのその他の使用法</a></span></dt><dd><dl><dt><span class="section"><a href="other-uses-for-tests.html#testing-practices.agile-documentation">アジャイルな文書作成</a></span></dt><dt><span class="section"><a href="other-uses-for-tests.html#testing-practices.cross-team-tests">複数チームでのテスト</a></span></dt></dl></dd><dt><span class="chapter"><a href="logging.html">13. ログ出力</a></span></dt><dd><dl><dt><span class="section"><a href="logging.html#logging.xml">テスト結果 (XML)</a></span></dt><dt><span class="section"><a href="logging.html#logging.codecoverage.xml">コードカバレッジ (XML)</a></span></dt><dt><span class="section"><a href="logging.html#logging.codecoverage.text">コードカバレッジ (テキスト)</a></span></dt></dl></dd><dt><span class="chapter"><a href="extending-phpunit.html">14. PHPUnit の拡張</a></span></dt><dd><dl><dt><span class="section"><a href="extending-phpunit.html#extending-phpunit.PHPUnit_Framework_TestCase">PHPUnit\Framework\TestCase のサブクラスの作成</a></span></dt><dt><span class="section"><a href="extending-phpunit.html#extending-phpunit.custom-assertions">カスタムアサーションの作成</a></span></dt><dt><span class="section"><a href="extending-phpunit.html#extending-phpunit.PHPUnit_Framework_TestListener">PHPUnit_Framework_TestListener の実装</a></span></dt><dt><span class="section"><a href="extending-phpunit.html#extending-phpunit.PHPUnit_Extensions_TestDecorator">PHPUnit_Extensions_TestDecorator のサブクラスの作成</a></span></dt><dt><span class="section"><a href="extending-phpunit.html#extending-phpunit.PHPUnit_Framework_Test">PHPUnit_Framework_Test の実装</a></span></dt></dl></dd><dt><span class="appendix"><a href="appendixes.assertions.html" class="active">A. アサーション</a></span></dt><dd><dl><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.static-vs-non-static-usage-of-assertion-methods">アサーションメソッドはstaticで使うべきか、それとも非staticで使うべきか</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertArrayHasKey">assertArrayHasKey()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertClassHasAttribute">assertClassHasAttribute()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertArraySubset">assertArraySubset()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertClassHasStaticAttribute">assertClassHasStaticAttribute()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertContains">assertContains()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertContainsOnly">assertContainsOnly()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertContainsOnlyInstancesOf">assertContainsOnlyInstancesOf()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertCount">assertCount()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertDirectoryExists">assertDirectoryExists()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertDirectoryIsReadable">assertDirectoryIsReadable()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertDirectoryIsWritable">assertDirectoryIsWritable()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertEmpty">assertEmpty()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertEqualXMLStructure">assertEqualXMLStructure()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertEquals">assertEquals()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertFalse">assertFalse()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertFileEquals">assertFileEquals()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertFileExists">assertFileExists()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertFileIsReadable">assertFileIsReadable()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertFileIsWritable">assertFileIsWritable()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertGreaterThan">assertGreaterThan()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertGreaterThanOrEqual">assertGreaterThanOrEqual()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertInfinite">assertInfinite()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertInstanceOf">assertInstanceOf()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertInternalType">assertInternalType()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertIsReadable">assertIsReadable()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertIsWritable">assertIsWritable()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertJsonFileEqualsJsonFile">assertJsonFileEqualsJsonFile()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertJsonStringEqualsJsonFile">assertJsonStringEqualsJsonFile()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertJsonStringEqualsJsonString">assertJsonStringEqualsJsonString()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertLessThan">assertLessThan()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertLessThanOrEqual">assertLessThanOrEqual()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertNan">assertNan()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertNull">assertNull()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertObjectHasAttribute">assertObjectHasAttribute()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertRegExp">assertRegExp()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertStringMatchesFormat">assertStringMatchesFormat()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertStringMatchesFormatFile">assertStringMatchesFormatFile()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertSame">assertSame()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertStringEndsWith">assertStringEndsWith()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertStringEqualsFile">assertStringEqualsFile()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertStringStartsWith">assertStringStartsWith()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertThat">assertThat()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertTrue">assertTrue()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertXmlFileEqualsXmlFile">assertXmlFileEqualsXmlFile()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertXmlStringEqualsXmlFile">assertXmlStringEqualsXmlFile()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertXmlStringEqualsXmlString">assertXmlStringEqualsXmlString()</a></span></dt></dl></dd><dt><span class="appendix"><a href="appendixes.annotations.html">B. アノテーション</a></span></dt><dd><dl><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.author">@author</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.after">@after</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.afterClass">@afterClass</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.backupGlobals">@backupGlobals</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.backupStaticAttributes">@backupStaticAttributes</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.before">@before</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.beforeClass">@beforeClass</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.codeCoverageIgnore">@codeCoverageIgnore*</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.covers">@covers</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.coversDefaultClass">@coversDefaultClass</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.coversNothing">@coversNothing</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.dataProvider">@dataProvider</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.depends">@depends</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.expectedException">@expectedException</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.expectedExceptionCode">@expectedExceptionCode</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.expectedExceptionMessage">@expectedExceptionMessage</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.expectedExceptionMessageRegExp">@expectedExceptionMessageRegExp</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.group">@group</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.large">@large</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.medium">@medium</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.preserveGlobalState">@preserveGlobalState</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.requires">@requires</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.runTestsInSeparateProcesses">@runTestsInSeparateProcesses</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.runInSeparateProcess">@runInSeparateProcess</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.small">@small</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.test">@test</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.testdox">@testdox</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.ticket">@ticket</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.uses">@uses</a></span></dt></dl></dd><dt><span class="appendix"><a href="appendixes.configuration.html">C. XML 設定ファイル</a></span></dt><dd><dl><dt><span class="section"><a href="appendixes.configuration.html#appendixes.configuration.phpunit">PHPUnit</a></span></dt><dt><span class="section"><a href="appendixes.configuration.html#appendixes.configuration.testsuites">テストスイート</a></span></dt><dt><span class="section"><a href="appendixes.configuration.html#appendixes.configuration.groups">グループ</a></span></dt><dt><span class="section"><a href="appendixes.configuration.html#appendixes.configuration.whitelisting-files">コードカバレッジ対象のファイルのホワイトリスト</a></span></dt><dt><span class="section"><a href="appendixes.configuration.html#appendixes.configuration.logging">ログ出力</a></span></dt><dt><span class="section"><a href="appendixes.configuration.html#appendixes.configuration.test-listeners">テストリスナー</a></span></dt><dt><span class="section"><a href="appendixes.configuration.html#appendixes.configuration.php-ini-constants-variables">PHP INI 項目や定数、グローバル変数の設定</a></span></dt></dl></dd><dt><span class="appendix"><a href="appendixes.index.html">D. 目次</a></span></dt><dd><dl><dt><span class="index"><a href="appendixes.index.html#appendixes.index.index"></a></span></dt></dl></dd><dt><span class="appendix"><a href="appendixes.bibliography.html">E. 参考文献</a></span></dt><dt><span class="appendix"><a href="appendixes.copyright.html">F. 著作権</a></span></dt></dl>
+<dl class="toc nav hidden-print"><dt><span class="chapter"><a href="installation.html">1. PHPUnit のインストール</a></span></dt><dd><dl><dt><span class="section"><a href="installation.html#installation.requirements">要件</a></span></dt><dt><span class="section"><a href="installation.html#installation.phar">PHP Archive (PHAR)</a></span></dt><dd><dl><dt><span class="section"><a href="installation.html#installation.phar.windows">Windows</a></span></dt><dt><span class="section"><a href="installation.html#installation.phar.verification">PHPUnit の PHAR リリースの検証</a></span></dt></dl></dd><dt><span class="section"><a href="installation.html#installation.composer">Composer</a></span></dt><dt><span class="section"><a href="installation.html#installation.optional-packages">オプションのパッケージ</a></span></dt></dl></dd><dt><span class="chapter"><a href="writing-tests-for-phpunit.html">2. PHPUnit 用のテストの書き方</a></span></dt><dd><dl><dt><span class="section"><a href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.test-dependencies">テストの依存性</a></span></dt><dt><span class="section"><a href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.data-providers">データプロバイダ</a></span></dt><dt><span class="section"><a href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions">例外のテスト</a></span></dt><dt><span class="section"><a href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.errors">PHP のエラーのテスト</a></span></dt><dt><span class="section"><a href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.output">出力内容のテスト</a></span></dt><dt><span class="section"><a href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.error-output">エラー出力</a></span></dt><dd><dl><dt><span class="section"><a href="writing-tests-for-phpunit.html#writing-tests-for-phpunit.error-output.edge-cases">エッジケース</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="textui.html">3. コマンドラインのテストランナー</a></span></dt><dd><dl><dt><span class="section"><a href="textui.html#textui.clioptions">コマンドラインオプション</a></span></dt></dl></dd><dt><span class="chapter"><a href="fixtures.html">4. フィクスチャ</a></span></dt><dd><dl><dt><span class="section"><a href="fixtures.html#fixtures.more-setup-than-teardown">tearDown() よりも setUp()</a></span></dt><dt><span class="section"><a href="fixtures.html#fixtures.variations">バリエーション</a></span></dt><dt><span class="section"><a href="fixtures.html#fixtures.sharing-fixture">フィクスチャの共有</a></span></dt><dt><span class="section"><a href="fixtures.html#fixtures.global-state">グローバルな状態</a></span></dt></dl></dd><dt><span class="chapter"><a href="organizing-tests.html">5. テストの構成</a></span></dt><dd><dl><dt><span class="section"><a href="organizing-tests.html#organizing-tests.filesystem">ファイルシステムを用いたテストスイートの構成</a></span></dt><dt><span class="section"><a href="organizing-tests.html#organizing-tests.xml-configuration">XML 設定ファイルを用いたテストスイートの構成</a></span></dt></dl></dd><dt><span class="chapter"><a href="risky-tests.html">6. リスクを伴うテスト</a></span></dt><dd><dl><dt><span class="section"><a href="risky-tests.html#risky-tests.useless-tests">無意味なテスト</a></span></dt><dt><span class="section"><a href="risky-tests.html#risky-tests.unintentionally-covered-code">意図せぬうちにカバーされているコード</a></span></dt><dt><span class="section"><a href="risky-tests.html#risky-tests.output-during-test-execution">テストの実行時の出力</a></span></dt><dt><span class="section"><a href="risky-tests.html#risky-tests.test-execution-timeout">テストの実行時のタイムアウト</a></span></dt><dt><span class="section"><a href="risky-tests.html#risky-tests.global-state-manipulation">グローバルな状態の変更</a></span></dt></dl></dd><dt><span class="chapter"><a href="incomplete-and-skipped-tests.html">7. 不完全なテスト・テストの省略</a></span></dt><dd><dl><dt><span class="section"><a href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.incomplete-tests">不完全なテスト</a></span></dt><dt><span class="section"><a href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.skipping-tests">テストの省略</a></span></dt><dt><span class="section"><a href="incomplete-and-skipped-tests.html#incomplete-and-skipped-tests.skipping-tests-using-requires">@requires によるテストのスキップ</a></span></dt></dl></dd><dt><span class="chapter"><a href="database.html">8. データベースのテスト</a></span></dt><dd><dl><dt><span class="section"><a href="database.html#database.supported-vendors-for-database-testing">データベースのテストに対応しているベンダー</a></span></dt><dt><span class="section"><a href="database.html#database.difficulties-in-database-testing">データベースのテストの難しさ</a></span></dt><dt><span class="section"><a href="database.html#database.the-four-stages-of-a-database-test">データベーステストの四段階</a></span></dt><dd><dl><dt><span class="section"><a href="database.html#database.clean-up-database">1. データベースのクリーンアップ</a></span></dt><dt><span class="section"><a href="database.html#database.set-up-fixture">2. フィクスチャの準備</a></span></dt><dt><span class="section"><a href="database.html#database.run-test-verify-outcome-and-teardown">3–5. テストの実行、結果の検証、そして後始末</a></span></dt></dl></dd><dt><span class="section"><a href="database.html#database.configuration-of-a-phpunit-database-testcase">PHPUnit のデータベーステストケースの設定</a></span></dt><dd><dl><dt><span class="section"><a href="database.html#database.implementing-getconnection">getConnection() の実装</a></span></dt><dt><span class="section"><a href="database.html#database.implementing-getdataset">getDataSet() の実装</a></span></dt><dt><span class="section"><a href="database.html#database.what-about-the-database-schema-ddl">データベーススキーマ (DDL) とは?</a></span></dt><dt><span class="section"><a href="database.html#database.tip-use-your-own-abstract-database-testcase">ヒント: 自前でのデータベーステストケースの抽象化</a></span></dt></dl></dd><dt><span class="section"><a href="database.html#database.understanding-datasets-and-datatables">データセットとデータテーブルについて知る</a></span></dt><dd><dl><dt><span class="section"><a href="database.html#database.available-implementations">利用できる実装</a></span></dt><dt><span class="section"><a href="database.html#database.beware-of-foreign-keys">外部キーには注意</a></span></dt><dt><span class="section"><a href="database.html#database.implementing-your-own-datasetsdatatables">自作のデータセットやデータテーブルの実装</a></span></dt></dl></dd><dt><span class="section"><a href="database.html#database.the-connection-api">接続 API</a></span></dt><dt><span class="section"><a href="database.html#database.database-assertions-api">データベースアサーション API</a></span></dt><dd><dl><dt><span class="section"><a href="database.html#database.asserting-the-row-count-of-a-table">テーブルの行数のアサーション</a></span></dt><dt><span class="section"><a href="database.html#database.asserting-the-state-of-a-table">テーブルの状態のアサーション</a></span></dt><dt><span class="section"><a href="database.html#database.asserting-the-result-of-a-query">クエリの結果のアサーション</a></span></dt><dt><span class="section"><a href="database.html#database.asserting-the-state-of-multiple-tables">複数のテーブルの状態のアサーション</a></span></dt></dl></dd><dt><span class="section"><a href="database.html#database.frequently-asked-questions">よくある質問</a></span></dt><dd><dl><dt><span class="section"><a href="database.html#database.will-phpunit-re-create-the-database-schema-for-each-test">PHPUnit は、テストごとにデータベーススキーマを作り直すの?</a></span></dt><dt><span class="section"><a href="database.html#database.am-i-required-to-use-pdo-in-my-application-for-the-database-extension-to-work">PDO を使ったアプリケーションじゃないと Database Extension を使えないの?</a></span></dt><dt><span class="section"><a href="database.html#database.what-can-i-do-when-i-get-a-too-much-connections-error"><span class="quote">「<span class="quote">Too much Connections</span>」</span> というエラーが出たらどうすればいい?</a></span></dt><dt><span class="section"><a href="database.html#database.how-to-handle-null-with-flat-xml-csv-datasets">フラット XML や CSV のデータセットで NULL を扱う方法は?</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="test-doubles.html">9. テストダブル</a></span></dt><dd><dl><dt><span class="section"><a href="test-doubles.html#test-doubles.stubs">スタブ</a></span></dt><dt><span class="section"><a href="test-doubles.html#test-doubles.mock-objects">モックオブジェクト</a></span></dt><dt><span class="section"><a href="test-doubles.html#test-doubles.prophecy">Prophecy</a></span></dt><dt><span class="section"><a href="test-doubles.html#test-doubles.mocking-traits-and-abstract-classes">トレイトと抽象クラスのモック</a></span></dt><dt><span class="section"><a href="test-doubles.html#test-doubles.stubbing-and-mocking-web-services">ウェブサービスのスタブおよびモック</a></span></dt><dt><span class="section"><a href="test-doubles.html#test-doubles.mocking-the-filesystem">ファイルシステムのモック</a></span></dt></dl></dd><dt><span class="chapter"><a href="testing-practices.html">10. テストの進め方</a></span></dt><dd><dl><dt><span class="section"><a href="testing-practices.html#testing-practices.during-development">開発中のテスト</a></span></dt><dt><span class="section"><a href="testing-practices.html#testing-practices.during-debugging">デバッグ中のテスト</a></span></dt></dl></dd><dt><span class="chapter"><a href="code-coverage-analysis.html">11. コードカバレッジ解析</a></span></dt><dd><dl><dt><span class="section"><a href="code-coverage-analysis.html#code-coverage-analysis.metrics">コードカバレッジの指標</a></span></dt><dt><span class="section"><a href="code-coverage-analysis.html#code-coverage-analysis.whitelisting-files">ファイルのホワイトリスト</a></span></dt><dt><span class="section"><a href="code-coverage-analysis.html#code-coverage-analysis.ignoring-code-blocks">コードブロックの無視</a></span></dt><dt><span class="section"><a href="code-coverage-analysis.html#code-coverage-analysis.specifying-covered-methods">カバーするメソッドの指定</a></span></dt><dt><span class="section"><a href="code-coverage-analysis.html#code-coverage-analysis.edge-cases">エッジケース</a></span></dt></dl></dd><dt><span class="chapter"><a href="other-uses-for-tests.html">12. テストのその他の使用法</a></span></dt><dd><dl><dt><span class="section"><a href="other-uses-for-tests.html#testing-practices.agile-documentation">アジャイルな文書作成</a></span></dt><dt><span class="section"><a href="other-uses-for-tests.html#testing-practices.cross-team-tests">複数チームでのテスト</a></span></dt></dl></dd><dt><span class="chapter"><a href="logging.html">13. ログ出力</a></span></dt><dd><dl><dt><span class="section"><a href="logging.html#logging.xml">テスト結果 (XML)</a></span></dt><dt><span class="section"><a href="logging.html#logging.codecoverage.xml">コードカバレッジ (XML)</a></span></dt><dt><span class="section"><a href="logging.html#logging.codecoverage.text">コードカバレッジ (テキスト)</a></span></dt></dl></dd><dt><span class="chapter"><a href="extending-phpunit.html">14. PHPUnit の拡張</a></span></dt><dd><dl><dt><span class="section"><a href="extending-phpunit.html#extending-phpunit.PHPUnit_Framework_TestCase">PHPUnit\Framework\TestCase のサブクラスの作成</a></span></dt><dt><span class="section"><a href="extending-phpunit.html#extending-phpunit.custom-assertions">カスタムアサーションの作成</a></span></dt><dt><span class="section"><a href="extending-phpunit.html#extending-phpunit.PHPUnit_Framework_TestListener">PHPUnit\Framework\TestListener の実装</a></span></dt><dt><span class="section"><a href="extending-phpunit.html#extending-phpunit.PHPUnit_Extensions_TestDecorator">PHPUnit_Extensions_TestDecorator のサブクラスの作成</a></span></dt><dt><span class="section"><a href="extending-phpunit.html#extending-phpunit.PHPUnit_Framework_Test">PHPUnit_Framework_Test の実装</a></span></dt></dl></dd><dt><span class="appendix"><a href="appendixes.assertions.html" class="active">A. アサーション</a></span></dt><dd><dl><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.static-vs-non-static-usage-of-assertion-methods">アサーションメソッドはstaticで使うべきか、それとも非staticで使うべきか</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertArrayHasKey">assertArrayHasKey()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertClassHasAttribute">assertClassHasAttribute()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertArraySubset">assertArraySubset()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertClassHasStaticAttribute">assertClassHasStaticAttribute()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertContains">assertContains()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertContainsOnly">assertContainsOnly()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertContainsOnlyInstancesOf">assertContainsOnlyInstancesOf()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertCount">assertCount()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertDirectoryExists">assertDirectoryExists()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertDirectoryIsReadable">assertDirectoryIsReadable()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertDirectoryIsWritable">assertDirectoryIsWritable()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertEmpty">assertEmpty()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertEqualXMLStructure">assertEqualXMLStructure()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertEquals">assertEquals()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertFalse">assertFalse()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertFileEquals">assertFileEquals()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertFileExists">assertFileExists()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertFileIsReadable">assertFileIsReadable()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertFileIsWritable">assertFileIsWritable()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertGreaterThan">assertGreaterThan()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertGreaterThanOrEqual">assertGreaterThanOrEqual()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertInfinite">assertInfinite()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertInstanceOf">assertInstanceOf()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertInternalType">assertInternalType()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertIsReadable">assertIsReadable()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertIsWritable">assertIsWritable()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertJsonFileEqualsJsonFile">assertJsonFileEqualsJsonFile()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertJsonStringEqualsJsonFile">assertJsonStringEqualsJsonFile()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertJsonStringEqualsJsonString">assertJsonStringEqualsJsonString()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertLessThan">assertLessThan()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertLessThanOrEqual">assertLessThanOrEqual()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertNan">assertNan()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertNull">assertNull()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertObjectHasAttribute">assertObjectHasAttribute()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertRegExp">assertRegExp()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertStringMatchesFormat">assertStringMatchesFormat()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertStringMatchesFormatFile">assertStringMatchesFormatFile()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertSame">assertSame()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertStringEndsWith">assertStringEndsWith()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertStringEqualsFile">assertStringEqualsFile()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertStringStartsWith">assertStringStartsWith()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertThat">assertThat()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertTrue">assertTrue()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertXmlFileEqualsXmlFile">assertXmlFileEqualsXmlFile()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertXmlStringEqualsXmlFile">assertXmlStringEqualsXmlFile()</a></span></dt><dt><span class="section"><a href="appendixes.assertions.html#appendixes.assertions.assertXmlStringEqualsXmlString">assertXmlStringEqualsXmlString()</a></span></dt></dl></dd><dt><span class="appendix"><a href="appendixes.annotations.html">B. アノテーション</a></span></dt><dd><dl><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.author">@author</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.after">@after</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.afterClass">@afterClass</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.backupGlobals">@backupGlobals</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.backupStaticAttributes">@backupStaticAttributes</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.before">@before</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.beforeClass">@beforeClass</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.codeCoverageIgnore">@codeCoverageIgnore*</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.covers">@covers</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.coversDefaultClass">@coversDefaultClass</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.coversNothing">@coversNothing</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.dataProvider">@dataProvider</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.depends">@depends</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.expectedException">@expectedException</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.expectedExceptionCode">@expectedExceptionCode</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.expectedExceptionMessage">@expectedExceptionMessage</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.expectedExceptionMessageRegExp">@expectedExceptionMessageRegExp</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.group">@group</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.large">@large</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.medium">@medium</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.preserveGlobalState">@preserveGlobalState</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.requires">@requires</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.runTestsInSeparateProcesses">@runTestsInSeparateProcesses</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.runInSeparateProcess">@runInSeparateProcess</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.small">@small</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.test">@test</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.testdox">@testdox</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.ticket">@ticket</a></span></dt><dt><span class="section"><a href="appendixes.annotations.html#appendixes.annotations.uses">@uses</a></span></dt></dl></dd><dt><span class="appendix"><a href="appendixes.configuration.html">C. XML 設定ファイル</a></span></dt><dd><dl><dt><span class="section"><a href="appendixes.configuration.html#appendixes.configuration.phpunit">PHPUnit</a></span></dt><dt><span class="section"><a href="appendixes.configuration.html#appendixes.configuration.testsuites">テストスイート</a></span></dt><dt><span class="section"><a href="appendixes.configuration.html#appendixes.configuration.groups">グループ</a></span></dt><dt><span class="section"><a href="appendixes.configuration.html#appendixes.configuration.whitelisting-files">コードカバレッジ対象のファイルのホワイトリスト</a></span></dt><dt><span class="section"><a href="appendixes.configuration.html#appendixes.configuration.logging">ログ出力</a></span></dt><dt><span class="section"><a href="appendixes.configuration.html#appendixes.configuration.test-listeners">テストリスナー</a></span></dt><dt><span class="section"><a href="appendixes.configuration.html#appendixes.configuration.php-ini-constants-variables">PHP INI 項目や定数、グローバル変数の設定</a></span></dt></dl></dd><dt><span class="appendix"><a href="appendixes.index.html">D. 目次</a></span></dt><dd><dl><dt><span class="index"><a href="appendixes.index.html#appendixes.index.index"></a></span></dt></dl></dd><dt><span class="appendix"><a href="appendixes.bibliography.html">E. 参考文献</a></span></dt><dt><span class="appendix"><a href="appendixes.copyright.html">F. 著作権</a></span></dt></dl>
      </div>
     </div>
     <div class="col-md-8 col-lg-9">
@@ -53,7 +53,7 @@
       また、グローバル関数のラッパーを使えば、
       (<code class="code">$this-&gt;assertTrue()</code> や <code class="code">self::assertTrue()</code> ではなく
       <code class="code">assertTrue()</code> と書くことによって) タイプ量を抑えることができます。
-    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertArrayHasKey"></a>assertArrayHasKey()</h2></div></div></div><a id="idp1371904" class="indexterm"></a><a id="idp1372480" class="indexterm"></a><p><code class="literal">assertArrayHasKey(mixed $key, array $array[, string $message = ''])</code></p><p><code class="literal">$array</code> にキー <code class="literal">$key</code> が存在しない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertArrayNotHasKey()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertArrayHasKey.example"></a><p class="title"><strong>例 A.1: assertArrayHasKey() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertArrayHasKey"></a>assertArrayHasKey()</h2></div></div></div><a id="idp1374432" class="indexterm"></a><a id="idp1375008" class="indexterm"></a><p><code class="literal">assertArrayHasKey(mixed $key, array $array[, string $message = ''])</code></p><p><code class="literal">$array</code> にキー <code class="literal">$key</code> が存在しない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertArrayNotHasKey()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertArrayHasKey.example"></a><p class="title"><strong>例 A.1: assertArrayHasKey() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class ArrayHasKeyTest extends TestCase
@@ -64,7 +64,7 @@ class ArrayHasKeyTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ArrayHasKeyTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -78,7 +78,7 @@ Failed asserting that an array has the key 'foo'.
 /home/sb/ArrayHasKeyTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertClassHasAttribute"></a>assertClassHasAttribute()</h2></div></div></div><a id="idp1409984" class="indexterm"></a><a id="idp1410576" class="indexterm"></a><p><code class="literal">assertClassHasAttribute(string $attributeName, string $className[, string $message = ''])</code></p><p><code class="literal">$className::attributeName</code> が存在しない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertClassNotHasAttribute()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertClassHasAttribute.example"></a><p class="title"><strong>例 A.2: assertClassHasAttribute() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertClassHasAttribute"></a>assertClassHasAttribute()</h2></div></div></div><a id="idp1413312" class="indexterm"></a><a id="idp1413904" class="indexterm"></a><p><code class="literal">assertClassHasAttribute(string $attributeName, string $className[, string $message = ''])</code></p><p><code class="literal">$className::attributeName</code> が存在しない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertClassNotHasAttribute()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertClassHasAttribute.example"></a><p class="title"><strong>例 A.2: assertClassHasAttribute() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class ClassHasAttributeTest extends TestCase
@@ -89,7 +89,7 @@ class ClassHasAttributeTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ClassHasAttributeTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -103,7 +103,7 @@ Failed asserting that class "stdClass" has attribute "foo".
 /home/sb/ClassHasAttributeTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertArraySubset"></a>assertArraySubset()</h2></div></div></div><a id="idp1417920" class="indexterm"></a><a id="idp1418496" class="indexterm"></a><p><code class="literal">assertArraySubset(array $subset, array $array[, bool $strict = '', string $message = ''])</code></p><p><code class="literal">$array</code> が <code class="literal">$subset</code> を含まない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">$strict</code> フラグを使うと、配列内のオブジェクトの比較にその識別子を利用します。</p><div class="example"><a id="appendixes.assertions.assertArraySubset.example"></a><p class="title"><strong>例 A.3: Usage of assertArraySubset()</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertArraySubset"></a>assertArraySubset()</h2></div></div></div><a id="idp1421248" class="indexterm"></a><a id="idp1421824" class="indexterm"></a><p><code class="literal">assertArraySubset(array $subset, array $array[, bool $strict = '', string $message = ''])</code></p><p><code class="literal">$array</code> が <code class="literal">$subset</code> を含まない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">$strict</code> フラグを使うと、配列内のオブジェクトの比較にその識別子を利用します。</p><div class="example"><a id="appendixes.assertions.assertArraySubset.example"></a><p class="title"><strong>例 A.3: Usage of assertArraySubset()</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class ArraySubsetTest extends TestCase
@@ -114,7 +114,7 @@ class ArraySubsetTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ArrayHasKeyTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -133,7 +133,7 @@ Failed asserting that an array has the subset Array &amp;0 (
 /home/sb/ArraySubsetTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertClassHasStaticAttribute"></a>assertClassHasStaticAttribute()</h2></div></div></div><a id="idp1940000" class="indexterm"></a><a id="idp1940592" class="indexterm"></a><p><code class="literal">assertClassHasStaticAttribute(string $attributeName, string $className[, string $message = ''])</code></p><p><code class="literal">$className::attributeName</code> が存在しない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertClassNotHasStaticAttribute()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertClassHasStaticAttribute.example"></a><p class="title"><strong>例 A.4: assertClassHasStaticAttribute() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertClassHasStaticAttribute"></a>assertClassHasStaticAttribute()</h2></div></div></div><a id="idp1943392" class="indexterm"></a><a id="idp1943984" class="indexterm"></a><p><code class="literal">assertClassHasStaticAttribute(string $attributeName, string $className[, string $message = ''])</code></p><p><code class="literal">$className::attributeName</code> が存在しない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertClassNotHasStaticAttribute()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertClassHasStaticAttribute.example"></a><p class="title"><strong>例 A.4: assertClassHasStaticAttribute() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class ClassHasStaticAttributeTest extends TestCase
@@ -144,7 +144,7 @@ class ClassHasStaticAttributeTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ClassHasStaticAttributeTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -158,7 +158,7 @@ Failed asserting that class "stdClass" has static attribute "foo".
 /home/sb/ClassHasStaticAttributeTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertContains"></a>assertContains()</h2></div></div></div><a id="idp1947984" class="indexterm"></a><a id="idp1948560" class="indexterm"></a><a id="idp1949136" class="indexterm"></a><a id="idp1949728" class="indexterm"></a><p><code class="literal">assertContains(mixed $needle, Iterator|array $haystack[, string $message = ''])</code></p><p><code class="literal">$needle</code> が <code class="literal">$haystack</code> の要素でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotContains()</code> はこのアサーションの逆で、同じ引数をとります。</p><p><code class="literal">assertAttributeContains()</code> と <code class="literal">assertAttributeNotContains()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を haystack として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertContains.example"></a><p class="title"><strong>例 A.5: assertContains() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertContains"></a>assertContains()</h2></div></div></div><a id="idp1951376" class="indexterm"></a><a id="idp1951952" class="indexterm"></a><a id="idp1952528" class="indexterm"></a><a id="idp1953120" class="indexterm"></a><p><code class="literal">assertContains(mixed $needle, Iterator|array $haystack[, string $message = ''])</code></p><p><code class="literal">$needle</code> が <code class="literal">$haystack</code> の要素でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotContains()</code> はこのアサーションの逆で、同じ引数をとります。</p><p><code class="literal">assertAttributeContains()</code> と <code class="literal">assertAttributeNotContains()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を haystack として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertContains.example"></a><p class="title"><strong>例 A.5: assertContains() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class ContainsTest extends TestCase
@@ -169,7 +169,7 @@ class ContainsTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ContainsTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -194,7 +194,7 @@ class ContainsTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ContainsTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -224,7 +224,7 @@ class ContainsTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ContainsTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F.
 
@@ -238,7 +238,7 @@ Failed asserting that 'FooBar' contains "foo".
 /home/sb/ContainsTest.php:6
 
 FAILURES!
-Tests: 2, Assertions: 2, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertContainsOnly"></a>assertContainsOnly()</h2></div></div></div><a id="idp1969360" class="indexterm"></a><a id="idp1969936" class="indexterm"></a><a id="idp1970512" class="indexterm"></a><a id="idp1971104" class="indexterm"></a><p><code class="literal">assertContainsOnly(string $type, Iterator|array $haystack[, boolean $isNativeType = NULL, string $message = ''])</code></p><p><code class="literal">$haystack</code> の中身の型が <code class="literal">$type</code> だけではない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">$isNativeType</code> はフラグで、<code class="literal">$type</code> がネイティブな PHP の型であるかどうかを表します。</p><p><code class="literal">assertNotContainsOnly()</code> はこのアサーションの逆で、同じ引数をとります。</p><p><code class="literal">assertAttributeContainsOnly()</code> と <code class="literal">assertAttributeNotContainsOnly()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を haystack として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertContainsOnly.example"></a><p class="title"><strong>例 A.8: assertContainsOnly() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 2, Assertions: 2, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertContainsOnly"></a>assertContainsOnly()</h2></div></div></div><a id="idp1972752" class="indexterm"></a><a id="idp1973328" class="indexterm"></a><a id="idp1973904" class="indexterm"></a><a id="idp1974496" class="indexterm"></a><p><code class="literal">assertContainsOnly(string $type, Iterator|array $haystack[, boolean $isNativeType = NULL, string $message = ''])</code></p><p><code class="literal">$haystack</code> の中身の型が <code class="literal">$type</code> だけではない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">$isNativeType</code> はフラグで、<code class="literal">$type</code> がネイティブな PHP の型であるかどうかを表します。</p><p><code class="literal">assertNotContainsOnly()</code> はこのアサーションの逆で、同じ引数をとります。</p><p><code class="literal">assertAttributeContainsOnly()</code> と <code class="literal">assertAttributeNotContainsOnly()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を haystack として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertContainsOnly.example"></a><p class="title"><strong>例 A.8: assertContainsOnly() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class ContainsOnlyTest extends TestCase
@@ -249,7 +249,7 @@ class ContainsOnlyTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ContainsOnlyTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -267,7 +267,7 @@ Failed asserting that Array (
 /home/sb/ContainsOnlyTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertContainsOnlyInstancesOf"></a>assertContainsOnlyInstancesOf()</h2></div></div></div><a id="idp1982832" class="indexterm"></a><p><code class="literal">assertContainsOnlyInstancesOf(string $classname, Traversable|array $haystack[, string $message = ''])</code></p><p><code class="literal">$haystack</code> が <code class="literal">$classname</code> クラスの唯一のインスタンスを含まない場合にエラー <code class="literal">$message</code> を報告します。</p><div class="example"><a id="appendixes.assertions.assertContainsOnlyInstancesOf.example"></a><p class="title"><strong>例 A.9: assertContainsOnlyInstancesOf() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertContainsOnlyInstancesOf"></a>assertContainsOnlyInstancesOf()</h2></div></div></div><a id="idp1986224" class="indexterm"></a><p><code class="literal">assertContainsOnlyInstancesOf(string $classname, Traversable|array $haystack[, string $message = ''])</code></p><p><code class="literal">$haystack</code> が <code class="literal">$classname</code> クラスの唯一のインスタンスを含まない場合にエラー <code class="literal">$message</code> を報告します。</p><div class="example"><a id="appendixes.assertions.assertContainsOnlyInstancesOf.example"></a><p class="title"><strong>例 A.9: assertContainsOnlyInstancesOf() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class ContainsOnlyInstancesOfTest extends TestCase
@@ -281,7 +281,7 @@ class ContainsOnlyInstancesOfTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ContainsOnlyInstancesOfTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -295,7 +295,7 @@ Failed asserting that Array ([0]=&gt; Bar Object(...)) is an instance of class "
 /home/sb/ContainsOnlyInstancesOfTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertCount"></a>assertCount()</h2></div></div></div><a id="idp1989968" class="indexterm"></a><a id="idp1990544" class="indexterm"></a><p><code class="literal">assertCount($expectedCount, $haystack[, string $message = ''])</code></p><p><code class="literal">$haystack</code> の要素数が <code class="literal">$expectedCount</code> でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotCount()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertCount.example"></a><p class="title"><strong>例 A.10: assertCount() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertCount"></a>assertCount()</h2></div></div></div><a id="idp1993360" class="indexterm"></a><a id="idp1993936" class="indexterm"></a><p><code class="literal">assertCount($expectedCount, $haystack[, string $message = ''])</code></p><p><code class="literal">$haystack</code> の要素数が <code class="literal">$expectedCount</code> でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotCount()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertCount.example"></a><p class="title"><strong>例 A.10: assertCount() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class CountTest extends TestCase
@@ -306,7 +306,7 @@ class CountTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit CountTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -320,7 +320,7 @@ Failed asserting that actual size 1 matches expected size 0.
 /home/sb/CountTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertDirectoryExists"></a>assertDirectoryExists()</h2></div></div></div><a id="idp1998176" class="indexterm"></a><a id="idp1998752" class="indexterm"></a><p><code class="literal">assertDirectoryExists(string $directory[, string $message = ''])</code></p><p><code class="literal">$directory</code> で指定したディレクトリが存在しない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertDirectoryNotExists()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertDirectoryExists.example"></a><p class="title"><strong>例 A.11: assertDirectoryExists() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertDirectoryExists"></a>assertDirectoryExists()</h2></div></div></div><a id="idp2001568" class="indexterm"></a><a id="idp2002144" class="indexterm"></a><p><code class="literal">assertDirectoryExists(string $directory[, string $message = ''])</code></p><p><code class="literal">$directory</code> で指定したディレクトリが存在しない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertDirectoryNotExists()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertDirectoryExists.example"></a><p class="title"><strong>例 A.11: assertDirectoryExists() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class DirectoryExistsTest extends TestCase
@@ -331,7 +331,7 @@ class DirectoryExistsTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit DirectoryExistsTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -345,7 +345,7 @@ Failed asserting that directory "/path/to/directory" exists.
 /home/sb/DirectoryExistsTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertDirectoryIsReadable"></a>assertDirectoryIsReadable()</h2></div></div></div><a id="idp2006080" class="indexterm"></a><a id="idp2006672" class="indexterm"></a><p><code class="literal">assertDirectoryIsReadable(string $directory[, string $message = ''])</code></p><p><code class="literal">$directory</code> で指定したディレクトリが読み込み可能でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertDirectoryNotIsReadable()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertDirectoryIsReadable.example"></a><p class="title"><strong>例 A.12: assertDirectoryIsReadable() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertDirectoryIsReadable"></a>assertDirectoryIsReadable()</h2></div></div></div><a id="idp2009472" class="indexterm"></a><a id="idp2010064" class="indexterm"></a><p><code class="literal">assertDirectoryIsReadable(string $directory[, string $message = ''])</code></p><p><code class="literal">$directory</code> で指定したディレクトリが読み込み可能でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertDirectoryNotIsReadable()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertDirectoryIsReadable.example"></a><p class="title"><strong>例 A.12: assertDirectoryIsReadable() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class DirectoryIsReadableTest extends TestCase
@@ -356,7 +356,7 @@ class DirectoryIsReadableTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit DirectoryIsReadableTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -370,7 +370,7 @@ Failed asserting that "/path/to/directory" is readable.
 /home/sb/DirectoryIsReadableTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertDirectoryIsWritable"></a>assertDirectoryIsWritable()</h2></div></div></div><a id="idp2014064" class="indexterm"></a><a id="idp2014656" class="indexterm"></a><p><code class="literal">assertDirectoryIsWritable(string $directory[, string $message = ''])</code></p><p><code class="literal">$directory</code> で指定したディレクトリが書き込み可能でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertDirectoryNotIsWritable()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertDirectoryIsWritable.example"></a><p class="title"><strong>例 A.13: assertDirectoryIsWritable() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertDirectoryIsWritable"></a>assertDirectoryIsWritable()</h2></div></div></div><a id="idp2017456" class="indexterm"></a><a id="idp2018048" class="indexterm"></a><p><code class="literal">assertDirectoryIsWritable(string $directory[, string $message = ''])</code></p><p><code class="literal">$directory</code> で指定したディレクトリが書き込み可能でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertDirectoryNotIsWritable()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertDirectoryIsWritable.example"></a><p class="title"><strong>例 A.13: assertDirectoryIsWritable() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class DirectoryIsWritableTest extends TestCase
@@ -381,7 +381,7 @@ class DirectoryIsWritableTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit DirectoryIsWritableTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -395,7 +395,7 @@ Failed asserting that "/path/to/directory" is writable.
 /home/sb/DirectoryIsWritableTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertEmpty"></a>assertEmpty()</h2></div></div></div><a id="idp2022016" class="indexterm"></a><a id="idp2022592" class="indexterm"></a><a id="idp2023168" class="indexterm"></a><a id="idp2023744" class="indexterm"></a><p><code class="literal">assertEmpty(mixed $actual[, string $message = ''])</code></p><p><code class="literal">$actual</code> が空でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotEmpty()</code> はこのアサーションの逆で、同じ引数をとります。</p><p><code class="literal">assertAttributeEmpty()</code> および <code class="literal">assertAttributeNotEmpty()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性に対して使えます。</p><div class="example"><a id="appendixes.assertions.assertEmpty.example"></a><p class="title"><strong>例 A.14: assertEmpty() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertEmpty"></a>assertEmpty()</h2></div></div></div><a id="idp2025408" class="indexterm"></a><a id="idp2025984" class="indexterm"></a><a id="idp2026560" class="indexterm"></a><a id="idp2027136" class="indexterm"></a><p><code class="literal">assertEmpty(mixed $actual[, string $message = ''])</code></p><p><code class="literal">$actual</code> が空でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotEmpty()</code> はこのアサーションの逆で、同じ引数をとります。</p><p><code class="literal">assertAttributeEmpty()</code> および <code class="literal">assertAttributeNotEmpty()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性に対して使えます。</p><div class="example"><a id="appendixes.assertions.assertEmpty.example"></a><p class="title"><strong>例 A.14: assertEmpty() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class EmptyTest extends TestCase
@@ -406,7 +406,7 @@ class EmptyTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit EmptyTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -420,7 +420,7 @@ Failed asserting that an array is empty.
 /home/sb/EmptyTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertEqualXMLStructure"></a>assertEqualXMLStructure()</h2></div></div></div><a id="idp2033536" class="indexterm"></a><p><code class="literal">assertEqualXMLStructure(DOMElement $expectedElement, DOMElement $actualElement[, boolean $checkAttributes = false, string $message = ''])</code></p><p><code class="literal">$actualElement</code> の DOMElement の XML 構造が <code class="literal">$expectedElement</code> の DOMElement の XML 構造と等しくない場合にエラー <code class="literal">$message</code> を報告します。</p><div class="example"><a id="appendixes.assertions.assertEqualXMLStructure.example"></a><p class="title"><strong>例 A.15: assertEqualXMLStructure() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertEqualXMLStructure"></a>assertEqualXMLStructure()</h2></div></div></div><a id="idp2036928" class="indexterm"></a><p><code class="literal">assertEqualXMLStructure(DOMElement $expectedElement, DOMElement $actualElement[, boolean $checkAttributes = false, string $message = ''])</code></p><p><code class="literal">$actualElement</code> の DOMElement の XML 構造が <code class="literal">$expectedElement</code> の DOMElement の XML 構造と等しくない場合にエラー <code class="literal">$message</code> を報告します。</p><div class="example"><a id="appendixes.assertions.assertEqualXMLStructure.example"></a><p class="title"><strong>例 A.15: assertEqualXMLStructure() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class EqualXMLStructureTest extends TestCase
@@ -473,7 +473,7 @@ class EqualXMLStructureTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit EqualXMLStructureTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 FFFF
 
@@ -514,7 +514,7 @@ Failed asserting that two strings are equal.
 /home/sb/EqualXMLStructureTest.php:48
 
 FAILURES!
-Tests: 4, Assertions: 8, Failures: 4.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertEquals"></a>assertEquals()</h2></div></div></div><a id="idp2042400" class="indexterm"></a><a id="idp2042976" class="indexterm"></a><a id="idp2043552" class="indexterm"></a><a id="idp2044128" class="indexterm"></a><p><code class="literal">assertEquals(mixed $expected, mixed $actual[, string $message = ''])</code></p><p>2 つの変数 <code class="literal">$expected</code> と <code class="literal">$actual</code> が等しくない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotEquals()</code> はこのアサーションの逆で、同じ引数をとります。</p><p><code class="literal">assertAttributeEquals()</code> と <code class="literal">assertAttributeNotEquals()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を実際の値として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertEquals.example"></a><p class="title"><strong>例 A.16: assertEquals() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 4, Assertions: 8, Failures: 4.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertEquals"></a>assertEquals()</h2></div></div></div><a id="idp2045792" class="indexterm"></a><a id="idp2046368" class="indexterm"></a><a id="idp2046944" class="indexterm"></a><a id="idp2047520" class="indexterm"></a><p><code class="literal">assertEquals(mixed $expected, mixed $actual[, string $message = ''])</code></p><p>2 つの変数 <code class="literal">$expected</code> と <code class="literal">$actual</code> が等しくない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotEquals()</code> はこのアサーションの逆で、同じ引数をとります。</p><p><code class="literal">assertAttributeEquals()</code> と <code class="literal">assertAttributeNotEquals()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を実際の値として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertEquals.example"></a><p class="title"><strong>例 A.16: assertEquals() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class EqualsTest extends TestCase
@@ -535,7 +535,7 @@ class EqualsTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit EqualsTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 FFF
 
@@ -588,7 +588,7 @@ class EqualsTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit EqualsTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 .F
 
@@ -619,7 +619,7 @@ class EqualsTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit EqualsTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -662,7 +662,7 @@ class EqualsTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit EqualsTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -696,7 +696,7 @@ class EqualsTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit EqualsTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -720,7 +720,7 @@ Failed asserting that two arrays are equal.
 /home/sb/EqualsTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertFalse"></a>assertFalse()</h2></div></div></div><a id="idp2080736" class="indexterm"></a><p><code class="literal">assertFalse(bool $condition[, string $message = ''])</code></p><p><code class="literal">$condition</code> が <code class="literal">true</code> の場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotFalse()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertFalse.example"></a><p class="title"><strong>例 A.21: assertFalse() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertFalse"></a>assertFalse()</h2></div></div></div><a id="idp2084128" class="indexterm"></a><p><code class="literal">assertFalse(bool $condition[, string $message = ''])</code></p><p><code class="literal">$condition</code> が <code class="literal">true</code> の場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotFalse()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertFalse.example"></a><p class="title"><strong>例 A.21: assertFalse() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class FalseTest extends TestCase
@@ -731,7 +731,7 @@ class FalseTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit FalseTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -745,7 +745,7 @@ Failed asserting that true is false.
 /home/sb/FalseTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertFileEquals"></a>assertFileEquals()</h2></div></div></div><a id="idp2088304" class="indexterm"></a><a id="idp2088880" class="indexterm"></a><p><code class="literal">assertFileEquals(string $expected, string $actual[, string $message = ''])</code></p><p><code class="literal">$expected</code> で指定したファイルと <code class="literal">$actual</code> で指定したファイルの内容が異なる場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertFileNotEquals()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertFileEquals.example"></a><p class="title"><strong>例 A.22: assertFileEquals() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertFileEquals"></a>assertFileEquals()</h2></div></div></div><a id="idp2091696" class="indexterm"></a><a id="idp2092272" class="indexterm"></a><p><code class="literal">assertFileEquals(string $expected, string $actual[, string $message = ''])</code></p><p><code class="literal">$expected</code> で指定したファイルと <code class="literal">$actual</code> で指定したファイルの内容が異なる場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertFileNotEquals()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertFileEquals.example"></a><p class="title"><strong>例 A.22: assertFileEquals() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class FileEqualsTest extends TestCase
@@ -756,7 +756,7 @@ class FileEqualsTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit FileEqualsTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -776,7 +776,7 @@ Failed asserting that two strings are equal.
 /home/sb/FileEqualsTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 3, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertFileExists"></a>assertFileExists()</h2></div></div></div><a id="idp2096656" class="indexterm"></a><a id="idp2097232" class="indexterm"></a><p><code class="literal">assertFileExists(string $filename[, string $message = ''])</code></p><p>ファイル <code class="literal">$filename</code> が存在しない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertFileNotExists()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertFileExists.example"></a><p class="title"><strong>例 A.23: assertFileExists() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 3, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertFileExists"></a>assertFileExists()</h2></div></div></div><a id="idp2100048" class="indexterm"></a><a id="idp2100624" class="indexterm"></a><p><code class="literal">assertFileExists(string $filename[, string $message = ''])</code></p><p>ファイル <code class="literal">$filename</code> が存在しない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertFileNotExists()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertFileExists.example"></a><p class="title"><strong>例 A.23: assertFileExists() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class FileExistsTest extends TestCase
@@ -787,7 +787,7 @@ class FileExistsTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit FileExistsTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -801,7 +801,7 @@ Failed asserting that file "/path/to/file" exists.
 /home/sb/FileExistsTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertFileIsReadable"></a>assertFileIsReadable()</h2></div></div></div><a id="idp2104592" class="indexterm"></a><a id="idp2105168" class="indexterm"></a><p><code class="literal">assertFileIsReadable(string $filename[, string $message = ''])</code></p><p><code class="literal">$filename</code> で指定したファイルが読み込み可能でない場合、あるいはファイルでない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertFileNotIsReadable()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertFileIsReadable.example"></a><p class="title"><strong>例 A.24: assertFileIsReadable() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertFileIsReadable"></a>assertFileIsReadable()</h2></div></div></div><a id="idp2107984" class="indexterm"></a><a id="idp2108560" class="indexterm"></a><p><code class="literal">assertFileIsReadable(string $filename[, string $message = ''])</code></p><p><code class="literal">$filename</code> で指定したファイルが読み込み可能でない場合、あるいはファイルでない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertFileNotIsReadable()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertFileIsReadable.example"></a><p class="title"><strong>例 A.24: assertFileIsReadable() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class FileIsReadableTest extends TestCase
@@ -812,7 +812,7 @@ class FileIsReadableTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit FileIsReadableTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -826,7 +826,7 @@ Failed asserting that "/path/to/file" is readable.
 /home/sb/FileIsReadableTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertFileIsWritable"></a>assertFileIsWritable()</h2></div></div></div><a id="idp2112528" class="indexterm"></a><a id="idp2113104" class="indexterm"></a><p><code class="literal">assertFileIsWritable(string $filename[, string $message = ''])</code></p><p><code class="literal">$filename</code> で指定したファイルが書き込み可能でない場合、あるいはファイルでない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertFileNotIsWritable()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertFileIsWritable.example"></a><p class="title"><strong>例 A.25: assertFileIsWritable() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertFileIsWritable"></a>assertFileIsWritable()</h2></div></div></div><a id="idp2115920" class="indexterm"></a><a id="idp2116496" class="indexterm"></a><p><code class="literal">assertFileIsWritable(string $filename[, string $message = ''])</code></p><p><code class="literal">$filename</code> で指定したファイルが書き込み可能でない場合、あるいはファイルでない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertFileNotIsWritable()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertFileIsWritable.example"></a><p class="title"><strong>例 A.25: assertFileIsWritable() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class FileIsWritableTest extends TestCase
@@ -837,7 +837,7 @@ class FileIsWritableTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit FileIsWritableTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -851,7 +851,7 @@ Failed asserting that "/path/to/file" is writable.
 /home/sb/FileIsWritableTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertGreaterThan"></a>assertGreaterThan()</h2></div></div></div><a id="idp2120448" class="indexterm"></a><a id="idp2121024" class="indexterm"></a><p><code class="literal">assertGreaterThan(mixed $expected, mixed $actual[, string $message = ''])</code></p><p><code class="literal">$actual</code> の値が <code class="literal">$expected</code> の値より大きくない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertAttributeGreaterThan()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を実際の値として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertGreaterThan.example"></a><p class="title"><strong>例 A.26: assertGreaterThan() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertGreaterThan"></a>assertGreaterThan()</h2></div></div></div><a id="idp2123840" class="indexterm"></a><a id="idp2124416" class="indexterm"></a><p><code class="literal">assertGreaterThan(mixed $expected, mixed $actual[, string $message = ''])</code></p><p><code class="literal">$actual</code> の値が <code class="literal">$expected</code> の値より大きくない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertAttributeGreaterThan()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を実際の値として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertGreaterThan.example"></a><p class="title"><strong>例 A.26: assertGreaterThan() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class GreaterThanTest extends TestCase
@@ -862,7 +862,7 @@ class GreaterThanTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit GreaterThanTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -876,7 +876,7 @@ Failed asserting that 1 is greater than 2.
 /home/sb/GreaterThanTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertGreaterThanOrEqual"></a>assertGreaterThanOrEqual()</h2></div></div></div><a id="idp2130144" class="indexterm"></a><a id="idp2130736" class="indexterm"></a><p><code class="literal">assertGreaterThanOrEqual(mixed $expected, mixed $actual[, string $message = ''])</code></p><p><code class="literal">$actual</code> の値が <code class="literal">$expected</code> の値以上でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertAttributeGreaterThanOrEqual()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を実際の値として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertGreaterThanOrEqual.example"></a><p class="title"><strong>例 A.27: assertGreaterThanOrEqual() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertGreaterThanOrEqual"></a>assertGreaterThanOrEqual()</h2></div></div></div><a id="idp2133536" class="indexterm"></a><a id="idp2134128" class="indexterm"></a><p><code class="literal">assertGreaterThanOrEqual(mixed $expected, mixed $actual[, string $message = ''])</code></p><p><code class="literal">$actual</code> の値が <code class="literal">$expected</code> の値以上でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertAttributeGreaterThanOrEqual()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を実際の値として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertGreaterThanOrEqual.example"></a><p class="title"><strong>例 A.27: assertGreaterThanOrEqual() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class GreatThanOrEqualTest extends TestCase
@@ -887,7 +887,7 @@ class GreatThanOrEqualTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit GreaterThanOrEqualTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -901,7 +901,7 @@ Failed asserting that 1 is equal to 2 or is greater than 2.
 /home/sb/GreaterThanOrEqualTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 2, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertInfinite"></a>assertInfinite()</h2></div></div></div><a id="idp2139872" class="indexterm"></a><a id="idp2140448" class="indexterm"></a><p><code class="literal">assertInfinite(mixed $variable[, string $message = ''])</code></p><p><code class="literal">$variable</code> が <code class="literal">INF</code> でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertFinite()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertInfinite.example"></a><p class="title"><strong>例 A.28: assertInfinite() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 2, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertInfinite"></a>assertInfinite()</h2></div></div></div><a id="idp2143264" class="indexterm"></a><a id="idp2143840" class="indexterm"></a><p><code class="literal">assertInfinite(mixed $variable[, string $message = ''])</code></p><p><code class="literal">$variable</code> が <code class="literal">INF</code> でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertFinite()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertInfinite.example"></a><p class="title"><strong>例 A.28: assertInfinite() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class InfiniteTest extends TestCase
@@ -912,7 +912,7 @@ class InfiniteTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit InfiniteTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -926,7 +926,7 @@ Failed asserting that 1 is infinite.
 /home/sb/InfiniteTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertInstanceOf"></a>assertInstanceOf()</h2></div></div></div><a id="idp2148032" class="indexterm"></a><a id="idp2148608" class="indexterm"></a><a id="idp2149184" class="indexterm"></a><a id="idp2149776" class="indexterm"></a><p><code class="literal">assertInstanceOf($expected, $actual[, $message = ''])</code></p><p><code class="literal">$actual</code> が <code class="literal">$expected</code> のインスタンスでない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotInstanceOf()</code> はこのアサーションの逆で、同じ引数をとります。</p><p><code class="literal">assertAttributeInstanceOf()</code> および <code class="literal">assertAttributeNotInstanceOf()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性に対して使えます。</p><div class="example"><a id="appendixes.assertions.assertInstanceOf.example"></a><p class="title"><strong>例 A.29: assertInstanceOf() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertInstanceOf"></a>assertInstanceOf()</h2></div></div></div><a id="idp2151424" class="indexterm"></a><a id="idp2152000" class="indexterm"></a><a id="idp2152576" class="indexterm"></a><a id="idp2153168" class="indexterm"></a><p><code class="literal">assertInstanceOf($expected, $actual[, $message = ''])</code></p><p><code class="literal">$actual</code> が <code class="literal">$expected</code> のインスタンスでない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotInstanceOf()</code> はこのアサーションの逆で、同じ引数をとります。</p><p><code class="literal">assertAttributeInstanceOf()</code> および <code class="literal">assertAttributeNotInstanceOf()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性に対して使えます。</p><div class="example"><a id="appendixes.assertions.assertInstanceOf.example"></a><p class="title"><strong>例 A.29: assertInstanceOf() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class InstanceOfTest extends TestCase
@@ -937,7 +937,7 @@ class InstanceOfTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit InstanceOfTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -951,7 +951,7 @@ Failed asserting that Exception Object (...) is an instance of class "RuntimeExc
 /home/sb/InstanceOfTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertInternalType"></a>assertInternalType()</h2></div></div></div><a id="idp2160144" class="indexterm"></a><a id="idp2160720" class="indexterm"></a><a id="idp2161296" class="indexterm"></a><a id="idp2161888" class="indexterm"></a><p><code class="literal">assertInternalType($expected, $actual[, $message = ''])</code></p><p><code class="literal">$actual</code> の型が <code class="literal">$expected</code> でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotInternalType()</code> はこのアサーションの逆で、同じ引数をとります。</p><p><code class="literal">assertAttributeInternalType()</code> および <code class="literal">assertAttributeNotInternalType()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性に対して使えます。</p><div class="example"><a id="appendixes.assertions.assertInternalType.example"></a><p class="title"><strong>例 A.30: assertInternalType() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertInternalType"></a>assertInternalType()</h2></div></div></div><a id="idp2163536" class="indexterm"></a><a id="idp2164112" class="indexterm"></a><a id="idp2164688" class="indexterm"></a><a id="idp2165280" class="indexterm"></a><p><code class="literal">assertInternalType($expected, $actual[, $message = ''])</code></p><p><code class="literal">$actual</code> の型が <code class="literal">$expected</code> でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotInternalType()</code> はこのアサーションの逆で、同じ引数をとります。</p><p><code class="literal">assertAttributeInternalType()</code> および <code class="literal">assertAttributeNotInternalType()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性に対して使えます。</p><div class="example"><a id="appendixes.assertions.assertInternalType.example"></a><p class="title"><strong>例 A.30: assertInternalType() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class InternalTypeTest extends TestCase
@@ -962,7 +962,7 @@ class InternalTypeTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit InternalTypeTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -976,7 +976,7 @@ Failed asserting that 42 is of type "string".
 /home/sb/InternalTypeTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertIsReadable"></a>assertIsReadable()</h2></div></div></div><a id="idp2172160" class="indexterm"></a><a id="idp2172736" class="indexterm"></a><p><code class="literal">assertIsReadable(string $filename[, string $message = ''])</code></p><p><code class="literal">$filename</code> で指定したファイルあるいはディレクトリが読み込み可能でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotIsReadable()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertIsReadable.example"></a><p class="title"><strong>例 A.31: assertIsReadable() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertIsReadable"></a>assertIsReadable()</h2></div></div></div><a id="idp2175552" class="indexterm"></a><a id="idp2176128" class="indexterm"></a><p><code class="literal">assertIsReadable(string $filename[, string $message = ''])</code></p><p><code class="literal">$filename</code> で指定したファイルあるいはディレクトリが読み込み可能でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotIsReadable()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertIsReadable.example"></a><p class="title"><strong>例 A.31: assertIsReadable() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class IsReadableTest extends TestCase
@@ -987,7 +987,7 @@ class IsReadableTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit IsReadableTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1001,7 +1001,7 @@ Failed asserting that "/path/to/unreadable" is readable.
 /home/sb/IsReadableTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertIsWritable"></a>assertIsWritable()</h2></div></div></div><a id="idp2180032" class="indexterm"></a><a id="idp2180608" class="indexterm"></a><p><code class="literal">assertIsWritable(string $filename[, string $message = ''])</code></p><p><code class="literal">$filename</code> で指定したファイルあるいはディレクトリが書き込み可能でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotIsWritable()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertIsWritable.example"></a><p class="title"><strong>例 A.32: assertIsWritable() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertIsWritable"></a>assertIsWritable()</h2></div></div></div><a id="idp2183424" class="indexterm"></a><a id="idp2184000" class="indexterm"></a><p><code class="literal">assertIsWritable(string $filename[, string $message = ''])</code></p><p><code class="literal">$filename</code> で指定したファイルあるいはディレクトリが書き込み可能でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotIsWritable()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertIsWritable.example"></a><p class="title"><strong>例 A.32: assertIsWritable() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class IsWritableTest extends TestCase
@@ -1012,7 +1012,7 @@ class IsWritableTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit IsWritableTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1026,7 +1026,7 @@ Failed asserting that "/path/to/unwritable" is writable.
 /home/sb/IsWritableTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertJsonFileEqualsJsonFile"></a>assertJsonFileEqualsJsonFile()</h2></div></div></div><a id="idp2187936" class="indexterm"></a><a id="idp2188528" class="indexterm"></a><p><code class="literal">assertJsonFileEqualsJsonFile(mixed $expectedFile, mixed $actualFile[, string $message = ''])</code></p><p>
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertJsonFileEqualsJsonFile"></a>assertJsonFileEqualsJsonFile()</h2></div></div></div><a id="idp2191328" class="indexterm"></a><a id="idp2191920" class="indexterm"></a><p><code class="literal">assertJsonFileEqualsJsonFile(mixed $expectedFile, mixed $actualFile[, string $message = ''])</code></p><p>
       <code class="literal">$actualFile</code> の値が
       <code class="literal">$expectedFile</code> の値にマッチしない場合にエラー <code class="literal">$message</code> を報告します。
     </p><div class="example"><a id="appendixes.assertions.assertJsonFileEqualsJsonFile.example"></a><p class="title"><strong>例 A.33: assertJsonFileEqualsJsonFile() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
@@ -1041,7 +1041,7 @@ class JsonFileEqualsJsonFileTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit JsonFileEqualsJsonFileTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1055,7 +1055,7 @@ Failed asserting that '{"Mascot":"Tux"}' matches JSON string "["Mascott", "Tux",
 /home/sb/JsonFileEqualsJsonFileTest.php:5
 
 FAILURES!
-Tests: 1, Assertions: 3, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertJsonStringEqualsJsonFile"></a>assertJsonStringEqualsJsonFile()</h2></div></div></div><a id="idp2195824" class="indexterm"></a><a id="idp2196416" class="indexterm"></a><p><code class="literal">assertJsonStringEqualsJsonFile(mixed $expectedFile, mixed $actualJson[, string $message = ''])</code></p><p>
+Tests: 1, Assertions: 3, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertJsonStringEqualsJsonFile"></a>assertJsonStringEqualsJsonFile()</h2></div></div></div><a id="idp2199216" class="indexterm"></a><a id="idp2199808" class="indexterm"></a><p><code class="literal">assertJsonStringEqualsJsonFile(mixed $expectedFile, mixed $actualJson[, string $message = ''])</code></p><p>
       <code class="literal">$actualJson</code> の値が
       <code class="literal">$expectedFile</code> の値にマッチしない場合にエラー <code class="literal">$message</code> を報告します。
     </p><div class="example"><a id="appendixes.assertions.assertJsonStringEqualsJsonFile.example"></a><p class="title"><strong>例 A.34: assertJsonStringEqualsJsonFile() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
@@ -1071,7 +1071,7 @@ class JsonStringEqualsJsonFileTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit JsonStringEqualsJsonFileTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1085,7 +1085,7 @@ Failed asserting that '{"Mascot":"ux"}' matches JSON string "{"Mascott":"Tux"}".
 /home/sb/JsonStringEqualsJsonFileTest.php:5
 
 FAILURES!
-Tests: 1, Assertions: 3, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertJsonStringEqualsJsonString"></a>assertJsonStringEqualsJsonString()</h2></div></div></div><a id="idp2203744" class="indexterm"></a><a id="idp2204336" class="indexterm"></a><p><code class="literal">assertJsonStringEqualsJsonString(mixed $expectedJson, mixed $actualJson[, string $message = ''])</code></p><p>
+Tests: 1, Assertions: 3, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertJsonStringEqualsJsonString"></a>assertJsonStringEqualsJsonString()</h2></div></div></div><a id="idp2207136" class="indexterm"></a><a id="idp2207728" class="indexterm"></a><p><code class="literal">assertJsonStringEqualsJsonString(mixed $expectedJson, mixed $actualJson[, string $message = ''])</code></p><p>
       <code class="literal">$actualJson</code> の値が
       <code class="literal">$expectedJson</code> の値にマッチしない場合にエラー <code class="literal">$message</code> を報告します。
     </p><div class="example"><a id="appendixes.assertions.assertJsonStringEqualsJsonString.example"></a><p class="title"><strong>例 A.35: assertJsonStringEqualsJsonString() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
@@ -1102,7 +1102,7 @@ class JsonStringEqualsJsonStringTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit JsonStringEqualsJsonStringTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1123,7 +1123,7 @@ Failed asserting that two objects are equal.
 /home/sb/JsonStringEqualsJsonStringTest.php:5
 
 FAILURES!
-Tests: 1, Assertions: 3, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertLessThan"></a>assertLessThan()</h2></div></div></div><a id="idp2211712" class="indexterm"></a><a id="idp2212288" class="indexterm"></a><p><code class="literal">assertLessThan(mixed $expected, mixed $actual[, string $message = ''])</code></p><p><code class="literal">$actual</code> の値が <code class="literal">$expected</code> の値より小さくない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertAttributeLessThan()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を実際の値として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertLessThan.example"></a><p class="title"><strong>例 A.36: assertLessThan() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 3, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertLessThan"></a>assertLessThan()</h2></div></div></div><a id="idp2215104" class="indexterm"></a><a id="idp2215680" class="indexterm"></a><p><code class="literal">assertLessThan(mixed $expected, mixed $actual[, string $message = ''])</code></p><p><code class="literal">$actual</code> の値が <code class="literal">$expected</code> の値より小さくない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertAttributeLessThan()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を実際の値として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertLessThan.example"></a><p class="title"><strong>例 A.36: assertLessThan() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class LessThanTest extends TestCase
@@ -1134,7 +1134,7 @@ class LessThanTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit LessThanTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1148,7 +1148,7 @@ Failed asserting that 2 is less than 1.
 /home/sb/LessThanTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertLessThanOrEqual"></a>assertLessThanOrEqual()</h2></div></div></div><a id="idp2221344" class="indexterm"></a><a id="idp2221920" class="indexterm"></a><p><code class="literal">assertLessThanOrEqual(mixed $expected, mixed $actual[, string $message = ''])</code></p><p><code class="literal">$actual</code> の値が <code class="literal">$expected</code> の値以下でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertAttributeLessThanOrEqual()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を実際の値として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertLessThanOrEqual.example"></a><p class="title"><strong>例 A.37: assertLessThanOrEqual() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertLessThanOrEqual"></a>assertLessThanOrEqual()</h2></div></div></div><a id="idp2224736" class="indexterm"></a><a id="idp2225312" class="indexterm"></a><p><code class="literal">assertLessThanOrEqual(mixed $expected, mixed $actual[, string $message = ''])</code></p><p><code class="literal">$actual</code> の値が <code class="literal">$expected</code> の値以下でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertAttributeLessThanOrEqual()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を実際の値として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertLessThanOrEqual.example"></a><p class="title"><strong>例 A.37: assertLessThanOrEqual() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class LessThanOrEqualTest extends TestCase
@@ -1159,7 +1159,7 @@ class LessThanOrEqualTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit LessThanOrEqualTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1173,7 +1173,7 @@ Failed asserting that 2 is equal to 1 or is less than 1.
 /home/sb/LessThanOrEqualTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 2, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertNan"></a>assertNan()</h2></div></div></div><a id="idp2231040" class="indexterm"></a><p><code class="literal">assertNan(mixed $variable[, string $message = ''])</code></p><p><code class="literal">$variable</code> が <code class="literal">NAN</code> でない場合にエラー <code class="literal">$message</code> を報告します。</p><div class="example"><a id="appendixes.assertions.assertNan.example"></a><p class="title"><strong>例 A.38: assertNan() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 2, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertNan"></a>assertNan()</h2></div></div></div><a id="idp2234432" class="indexterm"></a><p><code class="literal">assertNan(mixed $variable[, string $message = ''])</code></p><p><code class="literal">$variable</code> が <code class="literal">NAN</code> でない場合にエラー <code class="literal">$message</code> を報告します。</p><div class="example"><a id="appendixes.assertions.assertNan.example"></a><p class="title"><strong>例 A.38: assertNan() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class NanTest extends TestCase
@@ -1184,7 +1184,7 @@ class NanTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit NanTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1198,7 +1198,7 @@ Failed asserting that 1 is nan.
 /home/sb/NanTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertNull"></a>assertNull()</h2></div></div></div><a id="idp2237792" class="indexterm"></a><a id="idp2238368" class="indexterm"></a><p><code class="literal">assertNull(mixed $variable[, string $message = ''])</code></p><p><code class="literal">$variable</code> が <code class="literal">NULL</code> でないときにエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotNull()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertNull.example"></a><p class="title"><strong>例 A.39: assertNull() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertNull"></a>assertNull()</h2></div></div></div><a id="idp2241184" class="indexterm"></a><a id="idp2241760" class="indexterm"></a><p><code class="literal">assertNull(mixed $variable[, string $message = ''])</code></p><p><code class="literal">$variable</code> が <code class="literal">NULL</code> でないときにエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotNull()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertNull.example"></a><p class="title"><strong>例 A.39: assertNull() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class NullTest extends TestCase
@@ -1209,7 +1209,7 @@ class NullTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit NotNullTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1223,7 +1223,7 @@ Failed asserting that 'foo' is null.
 /home/sb/NotNullTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertObjectHasAttribute"></a>assertObjectHasAttribute()</h2></div></div></div><a id="idp2245984" class="indexterm"></a><a id="idp2246576" class="indexterm"></a><p><code class="literal">assertObjectHasAttribute(string $attributeName, object $object[, string $message = ''])</code></p><p><code class="literal">$object-&gt;attributeName</code> が存在しない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertObjectNotHasAttribute()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertObjectHasAttribute.example"></a><p class="title"><strong>例 A.40: assertObjectHasAttribute() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertObjectHasAttribute"></a>assertObjectHasAttribute()</h2></div></div></div><a id="idp2249376" class="indexterm"></a><a id="idp2249968" class="indexterm"></a><p><code class="literal">assertObjectHasAttribute(string $attributeName, object $object[, string $message = ''])</code></p><p><code class="literal">$object-&gt;attributeName</code> が存在しない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertObjectNotHasAttribute()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertObjectHasAttribute.example"></a><p class="title"><strong>例 A.40: assertObjectHasAttribute() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class ObjectHasAttributeTest extends TestCase
@@ -1234,7 +1234,7 @@ class ObjectHasAttributeTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit ObjectHasAttributeTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1248,7 +1248,7 @@ Failed asserting that object of class "stdClass" has attribute "foo".
 /home/sb/ObjectHasAttributeTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertRegExp"></a>assertRegExp()</h2></div></div></div><a id="idp2253872" class="indexterm"></a><a id="idp2254448" class="indexterm"></a><p><code class="literal">assertRegExp(string $pattern, string $string[, string $message = ''])</code></p><p><code class="literal">$string</code> が正規表現 <code class="literal">$pattern</code> にマッチしない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotRegExp()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertRegExp.example"></a><p class="title"><strong>例 A.41: assertRegExp() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertRegExp"></a>assertRegExp()</h2></div></div></div><a id="idp2257264" class="indexterm"></a><a id="idp2257840" class="indexterm"></a><p><code class="literal">assertRegExp(string $pattern, string $string[, string $message = ''])</code></p><p><code class="literal">$string</code> が正規表現 <code class="literal">$pattern</code> にマッチしない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotRegExp()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertRegExp.example"></a><p class="title"><strong>例 A.41: assertRegExp() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class RegExpTest extends TestCase
@@ -1259,7 +1259,7 @@ class RegExpTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit RegExpTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1273,7 +1273,7 @@ Failed asserting that 'bar' matches PCRE pattern "/foo/".
 /home/sb/RegExpTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertStringMatchesFormat"></a>assertStringMatchesFormat()</h2></div></div></div><a id="idp2262128" class="indexterm"></a><a id="idp2262720" class="indexterm"></a><p><code class="literal">assertStringMatchesFormat(string $format, string $string[, string $message = ''])</code></p><p><code class="literal">$string</code> が書式文字列 <code class="literal">$format</code> にマッチしない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertStringNotMatchesFormat()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertStringMatchesFormat.example"></a><p class="title"><strong>例 A.42: assertStringMatchesFormat() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertStringMatchesFormat"></a>assertStringMatchesFormat()</h2></div></div></div><a id="idp2265520" class="indexterm"></a><a id="idp2266112" class="indexterm"></a><p><code class="literal">assertStringMatchesFormat(string $format, string $string[, string $message = ''])</code></p><p><code class="literal">$string</code> が書式文字列 <code class="literal">$format</code> にマッチしない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertStringNotMatchesFormat()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertStringMatchesFormat.example"></a><p class="title"><strong>例 A.42: assertStringMatchesFormat() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class StringMatchesFormatTest extends TestCase
@@ -1284,7 +1284,7 @@ class StringMatchesFormatTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit StringMatchesFormatTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1298,7 +1298,7 @@ Failed asserting that 'foo' matches PCRE pattern "/^[+-]?\d+$/s".
 /home/sb/StringMatchesFormatTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br><p>書式文字列には次のプレースホルダを含めることができます。</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="literal">%e</code>: ディレクトリ区切り文字、たとえば Linux なら <code class="literal">/</code> を表します。</p></li><li class="listitem"><p><code class="literal">%s</code>: 一文字以上の何か (文字あるいは空白)、ただし改行文字は含みません。</p></li><li class="listitem"><p><code class="literal">%S</code>: ゼロ文字以上の何か (文字あるいは空白)、ただし改行文字は含みません。</p></li><li class="listitem"><p><code class="literal">%a</code>: 一文字以上の何か (文字あるいは空白)、改行文字も含みます。</p></li><li class="listitem"><p><code class="literal">%A</code>: ゼロ文字以上の何か (文字あるいは空白)、改行文字も含みます。</p></li><li class="listitem"><p><code class="literal">%w</code>: ゼロ文字以上の空白。</p></li><li class="listitem"><p><code class="literal">%i</code>: 符号付き整数値。例: <code class="literal">+3142</code>, <code class="literal">-3142</code></p></li><li class="listitem"><p><code class="literal">%d</code>: 符号なし整数値。例: <code class="literal">123.66</code></p></li><li class="listitem"><p><code class="literal">%x</code>: 一文字以上の十六進文字 (<code class="literal">0-9</code>, <code class="literal">a-f</code>, <code class="literal">A-F</code>)。</p></li><li class="listitem"><p><code class="literal">%f</code>: 浮動小数点数値。例: <code class="literal">3.142</code>, <code class="literal">-3.142</code>, <code class="literal">3.142E-10</code>, <code class="literal">3.142e+10</code></p></li><li class="listitem"><p><code class="literal">%c</code>: 任意の一文字。</p></li></ul></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertStringMatchesFormatFile"></a>assertStringMatchesFormatFile()</h2></div></div></div><a id="idp2285872" class="indexterm"></a><a id="idp2286464" class="indexterm"></a><p><code class="literal">assertStringMatchesFormatFile(string $formatFile, string $string[, string $message = ''])</code></p><p><code class="literal">$string</code> が <code class="literal">$formatFile</code> の内容にマッチしない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertStringNotMatchesFormatFile()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertStringMatchesFormatFile.example"></a><p class="title"><strong>例 A.43: assertStringMatchesFormatFile() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br><p>書式文字列には次のプレースホルダを含めることができます。</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="literal">%e</code>: ディレクトリ区切り文字、たとえば Linux なら <code class="literal">/</code> を表します。</p></li><li class="listitem"><p><code class="literal">%s</code>: 一文字以上の何か (文字あるいは空白)、ただし改行文字は含みません。</p></li><li class="listitem"><p><code class="literal">%S</code>: ゼロ文字以上の何か (文字あるいは空白)、ただし改行文字は含みません。</p></li><li class="listitem"><p><code class="literal">%a</code>: 一文字以上の何か (文字あるいは空白)、改行文字も含みます。</p></li><li class="listitem"><p><code class="literal">%A</code>: ゼロ文字以上の何か (文字あるいは空白)、改行文字も含みます。</p></li><li class="listitem"><p><code class="literal">%w</code>: ゼロ文字以上の空白。</p></li><li class="listitem"><p><code class="literal">%i</code>: 符号付き整数値。例: <code class="literal">+3142</code>, <code class="literal">-3142</code></p></li><li class="listitem"><p><code class="literal">%d</code>: 符号なし整数値。例: <code class="literal">123.66</code></p></li><li class="listitem"><p><code class="literal">%x</code>: 一文字以上の十六進文字 (<code class="literal">0-9</code>, <code class="literal">a-f</code>, <code class="literal">A-F</code>)。</p></li><li class="listitem"><p><code class="literal">%f</code>: 浮動小数点数値。例: <code class="literal">3.142</code>, <code class="literal">-3.142</code>, <code class="literal">3.142E-10</code>, <code class="literal">3.142e+10</code></p></li><li class="listitem"><p><code class="literal">%c</code>: 任意の一文字。</p></li></ul></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertStringMatchesFormatFile"></a>assertStringMatchesFormatFile()</h2></div></div></div><a id="idp2289264" class="indexterm"></a><a id="idp2289856" class="indexterm"></a><p><code class="literal">assertStringMatchesFormatFile(string $formatFile, string $string[, string $message = ''])</code></p><p><code class="literal">$string</code> が <code class="literal">$formatFile</code> の内容にマッチしない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertStringNotMatchesFormatFile()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertStringMatchesFormatFile.example"></a><p class="title"><strong>例 A.43: assertStringMatchesFormatFile() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class StringMatchesFormatFileTest extends TestCase
@@ -1309,7 +1309,7 @@ class StringMatchesFormatFileTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit StringMatchesFormatFileTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1324,7 +1324,7 @@ $/s".
 /home/sb/StringMatchesFormatFileTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 2, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertSame"></a>assertSame()</h2></div></div></div><a id="idp2294320" class="indexterm"></a><a id="idp2294896" class="indexterm"></a><a id="idp2295472" class="indexterm"></a><a id="idp2296048" class="indexterm"></a><p><code class="literal">assertSame(mixed $expected, mixed $actual[, string $message = ''])</code></p><p>2 つの変数 <code class="literal">$expected</code> と <code class="literal">$actual</code> が同じ型・同じ値でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotSame()</code> はこのアサーションの逆で、同じ引数をとります。</p><p><code class="literal">assertAttributeSame()</code> と <code class="literal">assertAttributeNotSame()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を実際の値として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertSame.example"></a><p class="title"><strong>例 A.44: assertSame() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 2, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertSame"></a>assertSame()</h2></div></div></div><a id="idp2297712" class="indexterm"></a><a id="idp2298288" class="indexterm"></a><a id="idp2298864" class="indexterm"></a><a id="idp2299440" class="indexterm"></a><p><code class="literal">assertSame(mixed $expected, mixed $actual[, string $message = ''])</code></p><p>2 つの変数 <code class="literal">$expected</code> と <code class="literal">$actual</code> が同じ型・同じ値でない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotSame()</code> はこのアサーションの逆で、同じ引数をとります。</p><p><code class="literal">assertAttributeSame()</code> と <code class="literal">assertAttributeNotSame()</code> は便利なラッパーで、クラスやオブジェクトの <code class="literal">public</code>、<code class="literal">protected</code>、<code class="literal">private</code> 属性を実際の値として使用することができます。</p><div class="example"><a id="appendixes.assertions.assertSame.example"></a><p class="title"><strong>例 A.44: assertSame() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class SameTest extends TestCase
@@ -1335,7 +1335,7 @@ class SameTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit SameTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1360,7 +1360,7 @@ class SameTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit SameTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1374,7 +1374,7 @@ Failed asserting that two variables reference the same object.
 /home/sb/SameTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertStringEndsWith"></a>assertStringEndsWith()</h2></div></div></div><a id="idp2311792" class="indexterm"></a><a id="idp2312368" class="indexterm"></a><p><code class="literal">assertStringEndsWith(string $suffix, string $string[, string $message = ''])</code></p><p><code class="literal">$string</code> が <code class="literal">$suffix</code> で終わっていない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertStringEndsNotWith()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertStringEndsWith.example"></a><p class="title"><strong>例 A.46: assertStringEndsWith() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertStringEndsWith"></a>assertStringEndsWith()</h2></div></div></div><a id="idp2315184" class="indexterm"></a><a id="idp2315760" class="indexterm"></a><p><code class="literal">assertStringEndsWith(string $suffix, string $string[, string $message = ''])</code></p><p><code class="literal">$string</code> が <code class="literal">$suffix</code> で終わっていない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertStringEndsNotWith()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertStringEndsWith.example"></a><p class="title"><strong>例 A.46: assertStringEndsWith() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class StringEndsWithTest extends TestCase
@@ -1385,7 +1385,7 @@ class StringEndsWithTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit StringEndsWithTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1399,7 +1399,7 @@ Failed asserting that 'foo' ends with "suffix".
 /home/sb/StringEndsWithTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertStringEqualsFile"></a>assertStringEqualsFile()</h2></div></div></div><a id="idp2320128" class="indexterm"></a><a id="idp2320720" class="indexterm"></a><p><code class="literal">assertStringEqualsFile(string $expectedFile, string $actualString[, string $message = ''])</code></p><p><code class="literal">$expectedFile</code> で指定したファイルの内容に <code class="literal">$actualString</code> が含まれない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertStringNotEqualsFile()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertStringEqualsFile.example"></a><p class="title"><strong>例 A.47: assertStringEqualsFile() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertStringEqualsFile"></a>assertStringEqualsFile()</h2></div></div></div><a id="idp2323520" class="indexterm"></a><a id="idp2324112" class="indexterm"></a><p><code class="literal">assertStringEqualsFile(string $expectedFile, string $actualString[, string $message = ''])</code></p><p><code class="literal">$expectedFile</code> で指定したファイルの内容に <code class="literal">$actualString</code> が含まれない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertStringNotEqualsFile()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertStringEqualsFile.example"></a><p class="title"><strong>例 A.47: assertStringEqualsFile() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class StringEqualsFileTest extends TestCase
@@ -1410,7 +1410,7 @@ class StringEqualsFileTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit StringEqualsFileTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1430,7 +1430,7 @@ Failed asserting that two strings are equal.
 /home/sb/StringEqualsFileTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 2, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertStringStartsWith"></a>assertStringStartsWith()</h2></div></div></div><a id="idp2328592" class="indexterm"></a><a id="idp2329184" class="indexterm"></a><p><code class="literal">assertStringStartsWith(string $prefix, string $string[, string $message = ''])</code></p><p><code class="literal">$string</code> が <code class="literal">$prefix</code> で始まっていない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertStringStartsNotWith()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertStringStartsWith.example"></a><p class="title"><strong>例 A.48: assertStringStartsWith() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 2, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertStringStartsWith"></a>assertStringStartsWith()</h2></div></div></div><a id="idp2331984" class="indexterm"></a><a id="idp2332576" class="indexterm"></a><p><code class="literal">assertStringStartsWith(string $prefix, string $string[, string $message = ''])</code></p><p><code class="literal">$string</code> が <code class="literal">$prefix</code> で始まっていない場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertStringStartsNotWith()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertStringStartsWith.example"></a><p class="title"><strong>例 A.48: assertStringStartsWith() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class StringStartsWithTest extends TestCase
@@ -1441,7 +1441,7 @@ class StringStartsWithTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit StringStartsWithTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1455,7 +1455,7 @@ Failed asserting that 'foo' starts with "prefix".
 /home/sb/StringStartsWithTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertThat"></a>assertThat()</h2></div></div></div><a id="idp2336928" class="indexterm"></a><p>
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertThat"></a>assertThat()</h2></div></div></div><a id="idp2340320" class="indexterm"></a><p>
       もっと複雑なアサーションを行う場合には、
       <code class="literal">PHPUnit_Framework_Constraint</code> クラスを使用します。
       これらは、<code class="literal">assertThat()</code> メソッドを使用して評価されます。
@@ -1484,7 +1484,7 @@ class BiscuitTest extends TestCase
 ?&gt;</pre></div></div><br class="example-break"></br><p>
       <a class="xref" href="appendixes.assertions.html#appendixes.assertions.assertThat.tables.constraints" title="表A.1 制約">表 A.1</a> に、
       使用できる <code class="literal">PHPUnit_Framework_Constraint</code> クラスをまとめます。
-    </p><div class="table"><a id="appendixes.assertions.assertThat.tables.constraints"></a><p class="title"><strong>表A.1 制約</strong></p><div class="table-contents"><table class="table" summary="制約" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">制約</th><th align="left">意味</th></tr></thead><tbody><tr><td align="left"><code class="literal" style="white-space: normal" id="attribute">PHPUnit_Framework_Constraint_Attribute attribute(PHPUnit_Framework_Constraint $constraint, $attributeName)</code></td><td align="left">別の制約を、クラスあるいはオブジェクトの属性として適用する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="anything">PHPUnit_Framework_Constraint_IsAnything anything()</code></td><td align="left">あらゆる入力値を受け入れる制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="arrayHasKey">PHPUnit_Framework_Constraint_ArrayHasKey arrayHasKey(mixed $key)</code></td><td align="left">配列が指定したキーを保持していることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="contains">PHPUnit_Framework_Constraint_TraversableContains contains(mixed $value)</code></td><td align="left"><code class="literal">Iterator</code> インターフェイスを実装している <code class="literal">array</code> やオブジェクトが、指定した値を保持していることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="containsOnly">PHPUnit_Framework_Constraint_TraversableContainsOnly containsOnly(string $type)</code></td><td align="left">評価対象の <code class="literal">array</code>、あるいは <code class="literal">Iterator</code> インターフェイスを実装したオブジェクトが、指定した型の唯一の値を含むことを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="containsOnlyInstancesOf">PHPUnit_Framework_Constraint_TraversableContainsOnly containsOnlyInstancesOf(string $classname)</code></td><td align="left">評価対象の <code class="literal">array</code>、あるいは <code class="literal">Iterator</code> インターフェイスを実装したオブジェクトが、指定したクラスの唯一のインスタンスを含むことを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="equalTo">PHPUnit_Framework_Constraint_IsEqual equalTo($value, $delta = 0, $maxDepth = 10)</code></td><td align="left">ある値が別の値と等しいかどうかを調べる制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="attributeEqualTo">PHPUnit_Framework_Constraint_Attribute attributeEqualTo($attributeName, $value, $delta = 0, $maxDepth = 10)</code></td><td align="left">ある値がクラスあるいはオブジェクトの属性と等しいかどうかを調べる制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="directoryExists">PHPUnit_Framework_Constraint_DirectoryExists directoryExists()</code></td><td align="left">指定した名前のディレクトリが存在するかどうかを調べる制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="fileExists">PHPUnit_Framework_Constraint_FileExists fileExists()</code></td><td align="left">指定した名前のファイルが存在するかどうかを調べる制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="isReadable">PHPUnit_Framework_Constraint_IsReadable isReadable()</code></td><td align="left">指定した名前のファイルが読み込み可能かどうかを調べる制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="isWritable">PHPUnit_Framework_Constraint_IsWritable isWritable()</code></td><td align="left">指定した名前のファイルが書き込み可能かどうかを調べる制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="greaterThan">PHPUnit_Framework_Constraint_GreaterThan greaterThan(mixed $value)</code></td><td align="left">評価される値が、指定した値より大きいことを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="greaterThanOrEqual">PHPUnit_Framework_Constraint_Or greaterThanOrEqual(mixed $value)</code></td><td align="left">評価される値が、指定した値以上であることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="classHasAttribute">PHPUnit_Framework_Constraint_ClassHasAttribute classHasAttribute(string $attributeName)</code></td><td align="left">評価されるクラスに、指定した属性があることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="classHasStaticAttribute">PHPUnit_Framework_Constraint_ClassHasStaticAttribute classHasStaticAttribute(string $attributeName)</code></td><td align="left">評価されるクラスに、指定した static 属性があることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="hasAttribute">PHPUnit_Framework_Constraint_ObjectHasAttribute hasAttribute(string $attributeName)</code></td><td align="left">評価されるオブジェクトが、指定した属性を保持していることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="identicalTo">PHPUnit_Framework_Constraint_IsIdentical identicalTo(mixed $value)</code></td><td align="left">ある値が別の値と同一であることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="isFalse">PHPUnit_Framework_Constraint_IsFalse isFalse()</code></td><td align="left">評価される値が <code class="literal">false</code> であることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="isInstanceOf">PHPUnit_Framework_Constraint_IsInstanceOf isInstanceOf(string $className)</code></td><td align="left">評価されるオブジェクトが、指定したクラスのインスタンスであることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="isNull">PHPUnit_Framework_Constraint_IsNull isNull()</code></td><td align="left">評価される値が <code class="literal">NULL</code> であることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="isTrue">PHPUnit_Framework_Constraint_IsTrue isTrue()</code></td><td align="left">評価される値が <code class="literal">true</code> であることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="isType">PHPUnit_Framework_Constraint_IsType isType(string $type)</code></td><td align="left">評価される値が、指定した型であることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="lessThan">PHPUnit_Framework_Constraint_LessThan lessThan(mixed $value)</code></td><td align="left">評価される値が、指定した値より小さいことを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="lessThanOrEqual">PHPUnit_Framework_Constraint_Or lessThanOrEqual(mixed $value)</code></td><td align="left">評価される値が、指定した値以下であることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="logicalAnd">logicalAnd()</code></td><td align="left">論理積 (AND)。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="logicalNot">logicalNot(PHPUnit_Framework_Constraint $constraint)</code></td><td align="left">論理否定 (NOT)。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="logicalOr">logicalOr()</code></td><td align="left">論理和 (OR)。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="logicalXor">logicalXor()</code></td><td align="left">排他的論理和 (XOR)。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="matchesRegularExpression">PHPUnit_Framework_Constraint_PCREMatch matchesRegularExpression(string $pattern)</code></td><td align="left">評価される文字列が、正規表現にマッチすることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="stringContains">PHPUnit_Framework_Constraint_StringContains stringContains(string $string, bool $case)</code></td><td align="left">評価される文字列が、指定した文字列を含むことを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="stringEndsWith">PHPUnit_Framework_Constraint_StringEndsWith stringEndsWith(string $suffix)</code></td><td align="left">評価される文字列が、指定したサフィックスで終わることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="stringStartsWith">PHPUnit_Framework_Constraint_StringStartsWith stringStartsWith(string $prefix)</code></td><td align="left">評価される文字列が、指定したプレフィックスで始まることを保証する制約。</td></tr></tbody></table></div></div><br class="table-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertTrue"></a>assertTrue()</h2></div></div></div><a id="idp2428240" class="indexterm"></a><p><code class="literal">assertTrue(bool $condition[, string $message = ''])</code></p><p><code class="literal">$condition</code> が <code class="literal">false</code> の場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotTrue()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertTrue.example"></a><p class="title"><strong>例 A.50: assertTrue() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+    </p><div class="table"><a id="appendixes.assertions.assertThat.tables.constraints"></a><p class="title"><strong>表A.1 制約</strong></p><div class="table-contents"><table class="table" summary="制約" border="1"><colgroup><col></col><col></col></colgroup><thead><tr><th align="left">制約</th><th align="left">意味</th></tr></thead><tbody><tr><td align="left"><code class="literal" style="white-space: normal" id="attribute">PHPUnit_Framework_Constraint_Attribute attribute(PHPUnit_Framework_Constraint $constraint, $attributeName)</code></td><td align="left">別の制約を、クラスあるいはオブジェクトの属性として適用する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="anything">PHPUnit_Framework_Constraint_IsAnything anything()</code></td><td align="left">あらゆる入力値を受け入れる制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="arrayHasKey">PHPUnit_Framework_Constraint_ArrayHasKey arrayHasKey(mixed $key)</code></td><td align="left">配列が指定したキーを保持していることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="contains">PHPUnit_Framework_Constraint_TraversableContains contains(mixed $value)</code></td><td align="left"><code class="literal">Iterator</code> インターフェイスを実装している <code class="literal">array</code> やオブジェクトが、指定した値を保持していることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="containsOnly">PHPUnit_Framework_Constraint_TraversableContainsOnly containsOnly(string $type)</code></td><td align="left">評価対象の <code class="literal">array</code>、あるいは <code class="literal">Iterator</code> インターフェイスを実装したオブジェクトが、指定した型の唯一の値を含むことを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="containsOnlyInstancesOf">PHPUnit_Framework_Constraint_TraversableContainsOnly containsOnlyInstancesOf(string $classname)</code></td><td align="left">評価対象の <code class="literal">array</code>、あるいは <code class="literal">Iterator</code> インターフェイスを実装したオブジェクトが、指定したクラスの唯一のインスタンスを含むことを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="equalTo">PHPUnit_Framework_Constraint_IsEqual equalTo($value, $delta = 0, $maxDepth = 10)</code></td><td align="left">ある値が別の値と等しいかどうかを調べる制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="attributeEqualTo">PHPUnit_Framework_Constraint_Attribute attributeEqualTo($attributeName, $value, $delta = 0, $maxDepth = 10)</code></td><td align="left">ある値がクラスあるいはオブジェクトの属性と等しいかどうかを調べる制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="directoryExists">PHPUnit_Framework_Constraint_DirectoryExists directoryExists()</code></td><td align="left">指定した名前のディレクトリが存在するかどうかを調べる制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="fileExists">PHPUnit_Framework_Constraint_FileExists fileExists()</code></td><td align="left">指定した名前のファイルが存在するかどうかを調べる制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="isReadable">PHPUnit_Framework_Constraint_IsReadable isReadable()</code></td><td align="left">指定した名前のファイルが読み込み可能かどうかを調べる制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="isWritable">PHPUnit_Framework_Constraint_IsWritable isWritable()</code></td><td align="left">指定した名前のファイルが書き込み可能かどうかを調べる制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="greaterThan">PHPUnit_Framework_Constraint_GreaterThan greaterThan(mixed $value)</code></td><td align="left">評価される値が、指定した値より大きいことを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="greaterThanOrEqual">PHPUnit_Framework_Constraint_Or greaterThanOrEqual(mixed $value)</code></td><td align="left">評価される値が、指定した値以上であることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="classHasAttribute">PHPUnit_Framework_Constraint_ClassHasAttribute classHasAttribute(string $attributeName)</code></td><td align="left">評価されるクラスに、指定した属性があることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="classHasStaticAttribute">PHPUnit_Framework_Constraint_ClassHasStaticAttribute classHasStaticAttribute(string $attributeName)</code></td><td align="left">評価されるクラスに、指定した static 属性があることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="hasAttribute">PHPUnit_Framework_Constraint_ObjectHasAttribute hasAttribute(string $attributeName)</code></td><td align="left">評価されるオブジェクトが、指定した属性を保持していることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="identicalTo">PHPUnit_Framework_Constraint_IsIdentical identicalTo(mixed $value)</code></td><td align="left">ある値が別の値と同一であることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="isFalse">PHPUnit_Framework_Constraint_IsFalse isFalse()</code></td><td align="left">評価される値が <code class="literal">false</code> であることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="isInstanceOf">PHPUnit_Framework_Constraint_IsInstanceOf isInstanceOf(string $className)</code></td><td align="left">評価されるオブジェクトが、指定したクラスのインスタンスであることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="isNull">PHPUnit_Framework_Constraint_IsNull isNull()</code></td><td align="left">評価される値が <code class="literal">NULL</code> であることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="isTrue">PHPUnit_Framework_Constraint_IsTrue isTrue()</code></td><td align="left">評価される値が <code class="literal">true</code> であることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="isType">PHPUnit_Framework_Constraint_IsType isType(string $type)</code></td><td align="left">評価される値が、指定した型であることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="lessThan">PHPUnit_Framework_Constraint_LessThan lessThan(mixed $value)</code></td><td align="left">評価される値が、指定した値より小さいことを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="lessThanOrEqual">PHPUnit_Framework_Constraint_Or lessThanOrEqual(mixed $value)</code></td><td align="left">評価される値が、指定した値以下であることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="logicalAnd">logicalAnd()</code></td><td align="left">論理積 (AND)。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="logicalNot">logicalNot(PHPUnit_Framework_Constraint $constraint)</code></td><td align="left">論理否定 (NOT)。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="logicalOr">logicalOr()</code></td><td align="left">論理和 (OR)。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="logicalXor">logicalXor()</code></td><td align="left">排他的論理和 (XOR)。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="matchesRegularExpression">PHPUnit_Framework_Constraint_PCREMatch matchesRegularExpression(string $pattern)</code></td><td align="left">評価される文字列が、正規表現にマッチすることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="stringContains">PHPUnit_Framework_Constraint_StringContains stringContains(string $string, bool $case)</code></td><td align="left">評価される文字列が、指定した文字列を含むことを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="stringEndsWith">PHPUnit_Framework_Constraint_StringEndsWith stringEndsWith(string $suffix)</code></td><td align="left">評価される文字列が、指定したサフィックスで終わることを保証する制約。</td></tr><tr><td align="left"><code class="literal" style="white-space: normal" id="stringStartsWith">PHPUnit_Framework_Constraint_StringStartsWith stringStartsWith(string $prefix)</code></td><td align="left">評価される文字列が、指定したプレフィックスで始まることを保証する制約。</td></tr></tbody></table></div></div><br class="table-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertTrue"></a>assertTrue()</h2></div></div></div><a id="idp2431632" class="indexterm"></a><p><code class="literal">assertTrue(bool $condition[, string $message = ''])</code></p><p><code class="literal">$condition</code> が <code class="literal">false</code> の場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertNotTrue()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertTrue.example"></a><p class="title"><strong>例 A.50: assertTrue() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class TrueTest extends TestCase
@@ -1495,7 +1495,7 @@ class TrueTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit TrueTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1509,7 +1509,7 @@ Failed asserting that false is true.
 /home/sb/TrueTest.php:6
 
 FAILURES!
-Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertXmlFileEqualsXmlFile"></a>assertXmlFileEqualsXmlFile()</h2></div></div></div><a id="idp2435840" class="indexterm"></a><a id="idp2436432" class="indexterm"></a><p><code class="literal">assertXmlFileEqualsXmlFile(string $expectedFile, string $actualFile[, string $message = ''])</code></p><p><code class="literal">$actualFile</code> の XML ドキュメントが <code class="literal">$expectedFile</code> の XML ドキュメントと異なる場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertXmlFileNotEqualsXmlFile()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertXmlFileEqualsXmlFile.example"></a><p class="title"><strong>例 A.51: assertXmlFileEqualsXmlFile() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 1, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertXmlFileEqualsXmlFile"></a>assertXmlFileEqualsXmlFile()</h2></div></div></div><a id="idp2439232" class="indexterm"></a><a id="idp2439824" class="indexterm"></a><p><code class="literal">assertXmlFileEqualsXmlFile(string $expectedFile, string $actualFile[, string $message = ''])</code></p><p><code class="literal">$actualFile</code> の XML ドキュメントが <code class="literal">$expectedFile</code> の XML ドキュメントと異なる場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertXmlFileNotEqualsXmlFile()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertXmlFileEqualsXmlFile.example"></a><p class="title"><strong>例 A.51: assertXmlFileEqualsXmlFile() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class XmlFileEqualsXmlFileTest extends TestCase
@@ -1521,7 +1521,7 @@ class XmlFileEqualsXmlFileTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit XmlFileEqualsXmlFileTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1543,7 +1543,7 @@ Failed asserting that two DOM documents are equal.
 /home/sb/XmlFileEqualsXmlFileTest.php:7
 
 FAILURES!
-Tests: 1, Assertions: 3, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertXmlStringEqualsXmlFile"></a>assertXmlStringEqualsXmlFile()</h2></div></div></div><a id="idp2444432" class="indexterm"></a><a id="idp2445024" class="indexterm"></a><p><code class="literal">assertXmlStringEqualsXmlFile(string $expectedFile, string $actualXml[, string $message = ''])</code></p><p><code class="literal">$actualXml</code> の XML ドキュメントが <code class="literal">$expectedFile</code> の XML ドキュメントと異なる場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertXmlStringNotEqualsXmlFile()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertXmlStringEqualsXmlFile.example"></a><p class="title"><strong>例 A.52: assertXmlStringEqualsXmlFile() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 3, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertXmlStringEqualsXmlFile"></a>assertXmlStringEqualsXmlFile()</h2></div></div></div><a id="idp2447824" class="indexterm"></a><a id="idp2448416" class="indexterm"></a><p><code class="literal">assertXmlStringEqualsXmlFile(string $expectedFile, string $actualXml[, string $message = ''])</code></p><p><code class="literal">$actualXml</code> の XML ドキュメントが <code class="literal">$expectedFile</code> の XML ドキュメントと異なる場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertXmlStringNotEqualsXmlFile()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertXmlStringEqualsXmlFile.example"></a><p class="title"><strong>例 A.52: assertXmlStringEqualsXmlFile() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class XmlStringEqualsXmlFileTest extends TestCase
@@ -1555,7 +1555,7 @@ class XmlStringEqualsXmlFileTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit XmlStringEqualsXmlFileTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 
@@ -1577,7 +1577,7 @@ Failed asserting that two DOM documents are equal.
 /home/sb/XmlStringEqualsXmlFileTest.php:7
 
 FAILURES!
-Tests: 1, Assertions: 2, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertXmlStringEqualsXmlString"></a>assertXmlStringEqualsXmlString()</h2></div></div></div><a id="idp2453024" class="indexterm"></a><a id="idp2453616" class="indexterm"></a><p><code class="literal">assertXmlStringEqualsXmlString(string $expectedXml, string $actualXml[, string $message = ''])</code></p><p><code class="literal">$actualXml</code> の XML ドキュメントが <code class="literal">$expectedXml</code> の XML ドキュメントと異なる場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertXmlStringNotEqualsXmlString()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertXmlStringEqualsXmlString.example"></a><p class="title"><strong>例 A.53: assertXmlStringEqualsXmlString() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
+Tests: 1, Assertions: 2, Failures: 1.</pre></div></div><br class="example-break"></br></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="appendixes.assertions.assertXmlStringEqualsXmlString"></a>assertXmlStringEqualsXmlString()</h2></div></div></div><a id="idp2456416" class="indexterm"></a><a id="idp2457008" class="indexterm"></a><p><code class="literal">assertXmlStringEqualsXmlString(string $expectedXml, string $actualXml[, string $message = ''])</code></p><p><code class="literal">$actualXml</code> の XML ドキュメントが <code class="literal">$expectedXml</code> の XML ドキュメントと異なる場合にエラー <code class="literal">$message</code> を報告します。</p><p><code class="literal">assertXmlStringNotEqualsXmlString()</code> はこのアサーションの逆で、同じ引数をとります。</p><div class="example"><a id="appendixes.assertions.assertXmlStringEqualsXmlString.example"></a><p class="title"><strong>例 A.53: assertXmlStringEqualsXmlString() の使用法</strong></p><div class="example-contents"><pre class="programlisting">&lt;?php
 use PHPUnit\Framework\TestCase;
 
 class XmlStringEqualsXmlStringTest extends TestCase
@@ -1589,7 +1589,7 @@ class XmlStringEqualsXmlStringTest extends TestCase
     }
 }
 ?&gt;</pre><pre class="screen"><strong class="userinput"><code>phpunit XmlStringEqualsXmlStringTest</code></strong>
-PHPUnit 6.3.0 by Sebastian Bergmann and contributors.
+PHPUnit 6.5.0 by Sebastian Bergmann and contributors.
 
 F
 

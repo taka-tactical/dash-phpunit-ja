@@ -22,15 +22,15 @@ $cfg_nosans = true;
 //----------------------------------------
 
 // get manual html
-exec("rm -rf PHPUnit.docset/Contents/Resources/");
-//exec("mkdir -p PHPUnit.docset/Contents/Resources/");
-mkdir("PHPUnit.docset/Contents/Resources/", 0777, true);
+exec('rm -rf PHPUnit.docset/Contents/Resources/');
+//exec('mkdir -p PHPUnit.docset/Contents/Resources/');
+mkdir('PHPUnit.docset/Contents/Resources/', 0777, true);
 exec("wget -rkl1 https://phpunit.de/manual/current/{$cfg_lang}/index.html");
-exec("mv " . __DIR__ . "/phpunit.de/manual/current/{$cfg_lang} " . __DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/");
-exec("rm -rf " . __DIR__ . "/phpunit.de/");
+exec('mv ' . __DIR__ . "/phpunit.de/manual/current/{$cfg_lang} " . __DIR__ . '/PHPUnit.docset/Contents/Resources/Documents/');
+exec('rm -rf ' . __DIR__ . '/phpunit.de/');
 
 // get current version (if available)
-$html = file_get_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/index.html");
+$html = file_get_contents(__DIR__ . '/PHPUnit.docset/Contents/Resources/Documents/index.html');
 $edit = false;
 
 if (preg_match('#>(\d+(\.\d+)) \(<strong>stable</strong>\)</a>#', $html, $matches)) {
@@ -58,15 +58,15 @@ file_put_contents(__DIR__ . "/PHPUnit.docset/Contents/Info.plist", <<<ENDE
 </plist>
 ENDE
 );
-copy(__DIR__ . "/icon.png", __DIR__ . "/PHPUnit.docset/icon.png");
+copy(__DIR__ . '/icon.png', __DIR__ . '/PHPUnit.docset/icon.png');
 
 // gen docset
 $dom = new DomDocument;
 @$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
 
-$db = new sqlite3(__DIR__ . "/PHPUnit.docset/Contents/Resources/docSet.dsidx");
-$db->query("CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT)");
-$db->query("CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path)");
+$db = new sqlite3(__DIR__ . '/PHPUnit.docset/Contents/Resources/docSet.dsidx');
+$db->query('CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT)');
+$db->query('CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path)');
 
 // remove google open sans font
 if ($cfg_nosans) {
@@ -79,7 +79,7 @@ if (strpos($html, '<nav') !== false) {
 }
 if ($edit) {
 	file_put_contents(
-		__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/index.html",
+		__DIR__ . '/PHPUnit.docset/Contents/Resources/Documents/index.html',
 		$html
 	);
 }
@@ -89,8 +89,8 @@ if ($edit) {
 echo "\nCreate search indexes ...\n\n";
 $links = $edited = [];
 
-foreach ($dom->getElementsByTagName("a") as $a) {
-	$href = $a->getAttribute("href");
+foreach ($dom->getElementsByTagName('a') as $a) {
+	$href = $a->getAttribute('href');
 	$str  = substr($href, 0, 6);
 
 	if ($str[0] == '.') {
@@ -100,10 +100,10 @@ foreach ($dom->getElementsByTagName("a") as $a) {
 		continue;
 	}
 
-	$file = preg_replace("/#.*$/", "", $href);
+	$file = preg_replace('/#.*$/', '', $href);
 
-	if (!isset($edited[$file]) && $file != "index.html") {
-		$html = file_get_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/" . $file);
+	if (!isset($edited[$file]) && $file != 'index.html') {
+		$html = file_get_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/{$file}");
 
 		// remove google open sans font
 		if ($cfg_nosans) {
@@ -126,21 +126,21 @@ foreach ($dom->getElementsByTagName("a") as $a) {
 
 		// remove navi bar
 		file_put_contents(
-			__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/" . $file,
+			__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/{$file}",
 			remove_navibar($html)
 		);
 		$edited[$file] = true;
 	}
 
-	$name = trim(preg_replace("#\s+#u", ' ', preg_replace("#^[A-Z0-9-]+\.#u", '', $a->nodeValue)));
+	$name = trim(preg_replace('#\s+#u', ' ', preg_replace('#^[A-Z0-9-]+\.#u', '', $a->nodeValue)));
 
 	if (empty($name)) {
 		continue;
 	}
-	$class = "Guide";
+	$class = 'Guide';
 
-	if (substr($href, 0, 30) == "writing-tests-for-phpunit.html" && strpos($name, "(") !== false) {
-		$class = "Function";
+	if (substr($href, 0, 30) == 'writing-tests-for-phpunit.html' && strpos($name, '(') !== false) {
+		$class = 'Function';
 	}
 	$links[$name] = true;
 	$db->query("INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (\"{$name}\",\"{$class}\",\"{$href}\")");
@@ -150,34 +150,34 @@ foreach ($dom->getElementsByTagName("a") as $a) {
 
 
 // now go through some of the files to add pointers to inline documentation
-foreach ([ "appendixes.assertions", "appendixes.annotations", "incomplete-and-skipped-tests", "test-doubles", "writing-tests-for-phpunit" ] as $file) {
+foreach ([ 'appendixes.assertions', 'appendixes.annotations', 'incomplete-and-skipped-tests', 'test-doubles', 'writing-tests-for-phpunit' ] as $file) {
 	$search = $replace = [];
 	$html   = file_get_contents(__DIR__ . "/PHPUnit.docset/Contents/Resources/Documents/{$file}.html");
 
 	@$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
 
-	foreach ($dom->getElementsByTagName("td") as $td) {
+	foreach ($dom->getElementsByTagName('td') as $td) {
 		if (!$td->firstChild) {
 			continue;
 		}
-		if (strtolower($td->firstChild->nodeName) != "code") {
+		if (strtolower($td->firstChild->nodeName) != 'code') {
 			continue;
 		}
 		$name = $td->firstChild->nodeValue;
 
-		if (!preg_match("#^([a-z_]+ )?([a-z0-9_]+\()#i", $name, $m)) {
+		if (!preg_match('#^([a-z_]+ )?([a-z0-9_]+\()#i', $name, $m)) {
 			continue;
 		}
 
-		$name = isset($m[2]) ? $m[2] : $m[1];
-		$anchor = preg_replace("#[^a-z]#i", "", $name);
-		$href = $file .".html#" . $anchor;
+		$name   = isset($m[2]) ? $m[2] : $m[1];
+		$anchor = preg_replace('#[^a-z]#i', '', $name);
+		$href   = "{$file}.html#{$anchor}";
 
-		$search[] = '<td align="left"><code class="literal">' . $m[0];
+		$search[]  = '<td align="left"><code class="literal">' . $m[0];
 		$replace[] = '<td align="left"><code class="literal" style="white-space: normal" id="' . $anchor . '">' . $m[0];
 
-		$name .= ")";
-		// echo $name, " -> ", $href, "\n";
+		$name .= ')';
+		// echo $name, ' -> ', $href, "\n";
 
 		if (isset($links[$name])) {
 			continue;
@@ -213,7 +213,7 @@ function remove_navibar($html, $alt = '') {
 function remove_googlefonts($html) {
 	if ($html) {
 		$html = preg_replace(
-			'#\s+<link href=\'http(s)?://fonts.googleapis.com/css\?family=Open\+Sans:.+>#i',
+			'#\s+<link( rel="stylesheet")? href=("|\')http(s)?://fonts.googleapis.com/css\?family=Open\+Sans:.+>#i',
 			'',
 			$html
 		);
